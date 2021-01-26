@@ -1,0 +1,450 @@
+openapi: 3.0.0
+servers:
+  - url: 'https://api.vipps.no/payments/v1'
+    description: Production source URL for the Vipps ePayments api
+info:
+  description: The new merchant payments api for Vipps wallet
+  version: 0.1.0
+  title: Vipps ePayments API
+  contact:
+    email: thomas.haakon.townsend@vipps.no
+    name: Thomas Haakon Townsend
+    url: 'http://github.com/tht13'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  termsOfService: 'https://www.vipps.no/vilkar/vilkar-bedrift/'
+tags:
+  - description: "\tPayments Endpoints"
+    name: Payments
+paths:
+  /:
+    post:
+      operationId: createPayment
+      summary: Create Payment
+      tags:
+        - Payments
+      description: Create a new payment
+      requestBody:
+        description: New payment request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '201':
+          $ref: '#/components/responses/Payment-Response'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+          headers: {}
+        '409':
+          description: Conflict
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Idempotency-Key'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+    parameters: []
+  '/{referenceId}':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    get:
+      summary: Get Payment
+      tags:
+        - Payments
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+      operationId: getPayment
+      description: Get a payment object by its reference ID
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+  '/{referenceId}/events':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    get:
+      summary: Get Payment Event Log
+      tags:
+        - Payments
+      responses:
+        '200':
+          description: OK
+      operationId: getPaymentEventLog
+      security:
+        - Bearer Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+      description: Get event log for the specified payment reference
+  '/{referenceId}/cancel':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    put:
+      summary: Cancel Payment
+      operationId: cancelPayment
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      description: Cancel the given payment
+      security:
+        - Bearer Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Idempotency-Key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionModificationRequest'
+        description: Requested cancel modification
+      tags:
+        - Payments
+  '/{referenceId}/capture':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    post:
+      summary: Capture Payment
+      operationId: capturPeayment
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      description: Capture the given payment
+      security:
+        - Bearer Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Idempotency-Key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionModificationRequest'
+        description: Requested capture modification
+      tags:
+        - Payments
+  '/{referenceId}/refund':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    post:
+      summary: Refund Payment
+      operationId: refundPayment
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      description: Refund the given payment
+      security:
+        - Bearer Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Idempotency-Key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionModificationRequest'
+        description: Requested refund modification
+      tags:
+        - Payments
+  '/{referenceId}/adjustAuthorization':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    put:
+      summary: Adjust Authorization
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+      operationId: adjustAuthorization
+      description: Adjust the current authorisation
+      security:
+        - Bearer Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Idempotency-Key'
+components:
+  schemas:
+    PaymentRequest:
+      description: New payment object
+      type: object
+      x-examples: {}
+      title: PaymentRequest
+      properties:
+        amount:
+          $ref: '#/components/schemas/Amount'
+        reference:
+          $ref: '#/components/schemas/ReferenceType'
+        subReference:
+          $ref: '#/components/schemas/ReferenceType'
+        returnUrl:
+          type: string
+          example: 'https://example.io/redirect?orderId=abcc123'
+          description: URL to redirect the user to after the payment has been acted upon
+        shopperInteraction:
+          type: string
+          enum:
+            - customer-present
+            - customer-not-present
+          example: customer-not-present
+        autoCapture:
+          type: boolean
+          default: 'false'
+          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
+        additionalData:
+          allOf:
+            - $ref: '#/components/schemas/AdditionalAirlineData'
+        userFlow:
+          type: string
+          enum:
+            - PUSH_MESSAGE
+            - NATIVE_REDIRECT
+            - WEB_REDIRECT
+            - SDK
+          example: NATIVE_REDIRECT
+          description: The flow for bringing to user to the Vipps Wallet payment confirmation screen.
+      required:
+        - amount
+        - reference
+        - returnUrl
+        - shopperInteraction
+        - userFlow
+    Amount:
+      description: Amount Object
+      type: object
+      properties:
+        value:
+          type: integer
+          example: 1000
+          format: int64
+          description: 'Integer value of price in the currencys monitary subunit (eg Norwegian Øre), or monitary unit where applicable (eg Japanese YEN). Type of monitary unit is defined in  ISO 4217.'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        type:
+          type: string
+          enum:
+            - purchase
+            - tips
+            - cashback
+          example: purchase
+          description: |-
+            The type of transaction this amount represents for legal marking through the schemes.
+
+            only ebax?
+          default: purchase
+      required:
+        - value
+        - currency
+    Currency:
+      type: string
+      example: NOK
+      enum:
+        - NOK
+      description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian Kroner, Note, should this be using digit code? eg NOK = 578'
+    Payment:
+      title: Payment
+      description: Payment object
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Amount'
+        reference:
+          $ref: '#/components/schemas/ReferenceType'
+        subReference:
+          $ref: '#/components/schemas/ReferenceType'
+        shopperInteraction:
+          type: string
+          enum:
+            - customer-present
+            - customer-not-present
+          example: customer-not-present
+        authorised:
+          type: boolean
+        redirectUrl:
+          type: string
+          format: uri
+          example: 'https://landing.vipps.no?token=abc123'
+          description: 'The url you should redirect the user to to continue with the payment. '
+        sdkData:
+          type: object
+          description: The data which should be provided to the *Vipps Trigger SDK* if `userFlow` is `SDK`.
+          properties:
+            token:
+              type: string
+          required:
+            - token
+        pspReference:
+          $ref: '#/components/schemas/PspReferenceType'
+        additionalData:
+          allOf:
+            - $ref: '#/components/schemas/AdditionalAirlineData'
+            - $ref: '#/components/schemas/TransactionSummary'
+        userText:
+          type: string
+          description: message to user
+      required:
+        - amount
+        - reference
+        - shopperInteraction
+        - authorised
+        - pspReference
+    AdditionalAirlineData:
+      title: AdditionalAirlineData
+      type: object
+      description: |-
+        Airline related data
+
+        If present, `passenderName`, `airlineCode`, `airlineDesignatorCode` and `agencyInvoiceNumber` are all required.
+      properties:
+        passengerName:
+          type: string
+          description: 'Passenger name, initials, and a title.'
+          format: last name + first name or initials + title.
+          example: FLYER / MARY MS.
+          minLength: 1
+          maxLength: 49
+        airlineCode:
+          type: string
+          description: IATA 3-digit accounting code (PAX); numeric. It identifies the carrier. eg KLM = 074
+          format: IATA 3-digit accounting code (PAX)
+          example: '074'
+          minLength: 3
+          maxLength: 3
+        airlineDesignatorCode:
+          type: string
+          description: IATA 2-letter accounting code (PAX); alphabetical. It identifies the carrier. Eg KLM = KL
+          format: IATA 2-letter airline code
+          example: KL
+          minLength: 2
+          maxLength: 2
+        ticketNumber:
+          type: string
+          description: The ticket's unique identifier.
+          minLength: 1
+          maxLength: 150
+        agencyInvoiceNumber:
+          type: string
+          description: 'Reference number for the invoice, issued by the agency.'
+          minLength: 1
+          maxLength: 6
+    TransactionSummary:
+      title: TransactionSummary
+      type: object
+      properties:
+        currentAuthorizedAmount:
+          $ref: '#/components/schemas/Amount'
+        cancelledAmount:
+          $ref: '#/components/schemas/Amount'
+        capturedAmount:
+          $ref: '#/components/schemas/Amount'
+        refundedAmount:
+          $ref: '#/components/schemas/Amount'
+        remainingCapturableAmount:
+          $ref: '#/components/schemas/Amount'
+        remainingRefundableAmount:
+          $ref: '#/components/schemas/Amount'
+      required:
+        - currentAuthorizedAmount
+        - cancelledAmount
+        - capturedAmount
+        - refundedAmount
+        - remainingCapturableAmount
+        - remainingRefundableAmount
+    TransactionModificationRequest:
+      title: TransactionModificationRequest
+      type: object
+      properties:
+        modificationAmount:
+          $ref: '#/components/schemas/Amount'
+        modificationReference:
+          $ref: '#/components/schemas/ReferenceType'
+      required:
+        - modificationAmount
+    ReferenceType:
+      type: string
+      title: ReferenceType
+      description: A reference
+      pattern: '^[a-zA-Z0-9-]{8,50}$'
+      minLength: 8
+      maxLength: 50
+      example: reference-string
+    PspReferenceType:
+      type: string
+      title: PspReferenceType
+      description: Reference value for a payment defined by Vipps
+      format: uuid
+  parameters:
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      required: true
+      schema:
+        type: string
+        pattern: '^[0-9]{4,6}$'
+        minLength: 4
+        maxLength: 6
+        example: '123456'
+      description: Serial number for the merchant performing the payments
+    APIM-Subscription-Key:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        example: da7d5b0e18a84aeda961c0c31b75c2a9
+      description: APIM Subscription Key
+    Payment-Reference-ID:
+      name: referenceId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9-]{8,50}$'
+        minLength: 8
+        maxLength: 50
+      description: Given primary reference ID when creating the payment
+    Idempotency-Key:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+      description: 'Idempotency key for the request, ensures idempotent actions.'
+  securitySchemes:
+    Bearer Authorization:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: Access bearer token
+  responses:
+    Payment-Response:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Payment'
+security:
+  - Bearer Authorization: []
