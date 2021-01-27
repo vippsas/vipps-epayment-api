@@ -1,0 +1,57 @@
+@startuml Pending Payments
+participant Merchant
+actor Customer
+participant ProductService
+participant FeedAPI
+participant App
+participant PE
+
+Merchant -> ProductService: Initiate Order with ID abc
+
+Customer -> ProductService: submit phone number
+ProductService -> PE: Create Order
+PE -> ProductService: Return token xyz and store
+
+alt push
+  ProductService --> App: Send Push with abc
+  Customer -> App: Interact
+else pull-to-refresh
+ProductService --> FeedAPI: Publish event for pending order ABC
+Customer --> App: Interact
+App -> FeedAPI: get pending orders
+FeedAPI -> App: pending order abc on service: "ProductService" maybe with "minimum info"
+end
+
+  
+App -> ProductService: Fetch order abc
+ProductService -> App: Return order ABC and payment token xyz
+
+
+App <-> ProductService: Do product things
+Customer --> App: Go to payment screen
+  App -> PE: GET order/<ordertoken>
+  App <-- PE: Info for SCA incl. amount
+
+loop while user interacts with order flow
+  App -> ProductService: Modify order
+  ProductService -> PE: POST order/
+  ProductService <-- PE: ordertoken
+
+  App <-- ProductService: ordertoken
+  App -> PE: GET order/<ordertoken>
+  App <-- PE: Info for SCA incl. amount
+  App -> PE: Call /prepare
+  App <-- PE: Surcharge etc.
+
+
+  note over App, PE: Display screen for approval by user.\nSCA info (amount, merchant etc.) MUST be taken from PE.\nIn addition supplementary info from product service (delivery\nmethod; shopping cart) can be displayed from data exchanged\nwith product service.
+
+
+end
+
+Customer --> App: Approve payment
+App -> PE: User signs; POST payment/
+App <-- PE: OK
+ProductService <- PE: Notified through Event Hub\nor polling
+
+@enduml
