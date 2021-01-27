@@ -46,6 +46,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Content-Type'
     parameters: []
   '/{referenceId}':
     parameters:
@@ -101,6 +102,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
+        - $ref: '#/components/parameters/Content-Type'
       requestBody:
         content:
           application/json:
@@ -131,6 +133,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
+        - $ref: '#/components/parameters/Content-Type'
       requestBody:
         content:
           application/json:
@@ -161,6 +164,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
+        - $ref: '#/components/parameters/Content-Type'
       requestBody:
         content:
           application/json:
@@ -186,6 +190,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
+        - $ref: '#/components/parameters/Content-Type'
 components:
   schemas:
     PaymentRequest:
@@ -210,13 +215,15 @@ components:
             - customer-present
             - customer-not-present
           example: customer-not-present
+          description: The legal assosiation to the customers interaction with the payment.
         autoCapture:
           type: boolean
           default: 'false'
           description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
         additionalData:
           allOf:
-            - $ref: '#/components/schemas/AdditionalAirlineData'
+            - $ref: '#/components/schemas/AdditionalDataAirline'
+            - $ref: '#/components/schemas/AdditionalDataCommon'
         userFlow:
           type: string
           enum:
@@ -225,7 +232,19 @@ components:
             - WEB_REDIRECT
             - SDK
           example: NATIVE_REDIRECT
-          description: The flow for bringing to user to the Vipps Wallet payment confirmation screen.
+          description: |-
+            The flow for bringing to user to the Vipps Wallet payment confirmation screen.
+
+            If flow is `PUSH_MESSAGE` then one of `$.profile.userIdentificationSub` or `$.profile.phoneNumber` must be valid and is required.
+        profile:
+          $ref: '#/components/schemas/Profile'
+        lineItems:
+          type: array
+          description: The items purchased with this payment
+          items:
+            $ref: '#/components/schemas/LineItem'
+        logistics:
+          $ref: '#/components/schemas/Logistics'
       required:
         - amount
         - reference
@@ -300,19 +319,27 @@ components:
           $ref: '#/components/schemas/PspReferenceType'
         additionalData:
           allOf:
-            - $ref: '#/components/schemas/AdditionalAirlineData'
+            - $ref: '#/components/schemas/AdditionalDataAirline'
             - $ref: '#/components/schemas/TransactionSummary'
+            - $ref: '#/components/schemas/AdditionalDataCommon'
         userText:
           type: string
           description: message to user
+        profile:
+          $ref: '#/components/schemas/Profile'
+        lineItems:
+          type: array
+          description: The items purchased with this payment
+          items:
+            $ref: '#/components/schemas/LineItem'
       required:
         - amount
         - reference
         - shopperInteraction
         - authorised
         - pspReference
-    AdditionalAirlineData:
-      title: AdditionalAirlineData
+    AdditionalDataAirline:
+      title: AdditionalDataAirline
       type: object
       description: |-
         Airline related data
@@ -396,6 +423,110 @@ components:
       title: PspReferenceType
       description: Reference value for a payment defined by Vipps
       format: uuid
+    Address:
+      title: Address
+      type: object
+      x-examples:
+        Vipps:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          lines:
+            - Robert Levins gate 5
+          postCode: '0154'
+          city: Oslo
+          country: Norway
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: 'Unique ID of the address, always provided in response from Vipps'
+        lines:
+          type: array
+          description: 'Array of addressLines, for example streetname, number etc'
+          items:
+            type: string
+            example: Robert Levins gate 5
+        postCode:
+          type: string
+          description: Postcode of the address in local country format
+          example: '0154'
+        city:
+          type: string
+          example: Oslo
+        country:
+          type: string
+          example: 'NO'
+          description: Country code according to ISO 3166
+      required:
+        - lines
+        - postCode
+        - city
+        - country
+    LineItem:
+      title: LineItem
+      type: object
+      properties:
+        amountExcludingTax:
+          type: integer
+        amountIncludingTax:
+          type: integer
+        description:
+          type: string
+        id:
+          type: string
+          description: The product ID
+        imageUrl:
+          type: string
+        productUrl:
+          type: string
+        quantity:
+          type: integer
+        taxAmount:
+          type: string
+        taxPercentage:
+          type: integer
+      required:
+        - amountExcludingTax
+        - amountIncludingTax
+        - description
+        - id
+        - quantity
+        - taxAmount
+        - taxPercentage
+      description: A object describing a purchased product.
+    AdditionalDataCommon:
+      title: AdditionalDataCommon
+      type: object
+      properties:
+        authorisationType:
+          type: string
+          enum:
+            - PRE_AUTH
+            - FINAL_AUTH
+          description: Flags a card payment request for either pre-authorisation or final authorisation
+    Profile:
+      title: Profile
+      type: object
+      properties:
+        userIdentificationSub:
+          type: string
+          description: |-
+            If `$.profile.scope` was requested in `createPayment` this value will populate once `$.authorised` is `true`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
+
+            If `$.profile.scope` included new values from a previously authorised payment or approved Vipps Login session then a new `userIdentificationSub` value will be provided here.
+
+            Else the user subscription identifier provided in the `createPayment` request. 
+        phoneNumber:
+          type: string
+          description: Target users phone number in MSISDN format
+        scope:
+          type: string
+          description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
+    Logistics:
+      title: Logistics
+      type: object
+      properties:
+        id:
+          type: string
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
@@ -433,6 +564,14 @@ components:
       schema:
         type: string
       description: 'Idempotency key for the request, ensures idempotent actions.'
+    Content-Type:
+      name: Content-Type
+      in: header
+      required: true
+      schema:
+        type: string
+        example: application/json
+      description: The context type of the request. Must be `application/json`
   securitySchemes:
     Bearer Authorization:
       name: Authorization
@@ -446,5 +585,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Payment'
+  examples: {}
 security:
   - Bearer Authorization: []
