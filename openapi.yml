@@ -31,7 +31,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PaymentRequest'
+              $ref: '#/components/schemas/Payment'
       responses:
         '201':
           $ref: '#/components/responses/Payment-Response'
@@ -193,64 +193,6 @@ paths:
         - $ref: '#/components/parameters/Content-Type'
 components:
   schemas:
-    PaymentRequest:
-      description: New payment object
-      type: object
-      x-examples: {}
-      title: PaymentRequest
-      properties:
-        amount:
-          $ref: '#/components/schemas/Amount'
-        reference:
-          $ref: '#/components/schemas/ReferenceType'
-        subReference:
-          $ref: '#/components/schemas/ReferenceType'
-        returnUrl:
-          type: string
-          example: 'https://example.io/redirect?orderId=abcc123'
-          description: URL to redirect the user to after the payment has been acted upon
-        shopperInteraction:
-          type: string
-          enum:
-            - customer-present
-            - customer-not-present
-          example: customer-not-present
-          description: The legal assosiation to the customers interaction with the payment.
-        autoCapture:
-          type: boolean
-          default: 'false'
-          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
-        additionalData:
-          allOf:
-            - $ref: '#/components/schemas/AdditionalDataAirline'
-            - $ref: '#/components/schemas/AdditionalDataCommon'
-        userFlow:
-          type: string
-          enum:
-            - PUSH_MESSAGE
-            - NATIVE_REDIRECT
-            - WEB_REDIRECT
-            - SDK
-          example: NATIVE_REDIRECT
-          description: |-
-            The flow for bringing to user to the Vipps Wallet payment confirmation screen.
-
-            If flow is `PUSH_MESSAGE` then one of `$.profile.userIdentificationSub` or `$.profile.phoneNumber` must be valid and is required.
-        profile:
-          $ref: '#/components/schemas/Profile'
-        lineItems:
-          type: array
-          description: The items purchased with this payment
-          items:
-            $ref: '#/components/schemas/LineItem'
-        logistics:
-          $ref: '#/components/schemas/Logistics'
-      required:
-        - amount
-        - reference
-        - returnUrl
-        - shopperInteraction
-        - userFlow
     Amount:
       description: Amount Object
       type: object
@@ -294,12 +236,20 @@ components:
           $ref: '#/components/schemas/ReferenceType'
         subReference:
           $ref: '#/components/schemas/ReferenceType'
+        returnUrl:
+          type: string
+          example: 'https://example.io/redirect?orderId=abcc123'
+          description: URL to redirect the user to after the payment has been
         shopperInteraction:
           type: string
           enum:
             - customer-present
             - customer-not-present
           example: customer-not-present
+        autoCapture:
+          type: boolean
+          default: 'false'
+          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
         authorised:
           type: boolean
         redirectUrl:
@@ -322,6 +272,18 @@ components:
             - $ref: '#/components/schemas/AdditionalDataAirline'
             - $ref: '#/components/schemas/TransactionSummary'
             - $ref: '#/components/schemas/AdditionalDataCommon'
+        userFlow:
+          type: string
+          enum:
+            - PUSH_MESSAGE
+            - NATIVE_REDIRECT
+            - WEB_REDIRECT
+            - SDK
+          example: NATIVE_REDIRECT
+          description: |-
+            The flow for bringing to user to the Vipps Wallet payment confirmation screen.
+
+            If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
         userText:
           type: string
           description: message to user
@@ -332,12 +294,16 @@ components:
           description: The items purchased with this payment
           items:
             $ref: '#/components/schemas/LineItem'
+        logistics:
+          $ref: '#/components/schemas/Logistics'
+        paymentMethod:
+          $ref: ''
       required:
         - amount
         - reference
+        - returnUrl
         - shopperInteraction
-        - authorised
-        - pspReference
+        - userFlow
     AdditionalDataAirline:
       title: AdditionalDataAirline
       type: object
@@ -507,12 +473,12 @@ components:
       title: Profile
       type: object
       properties:
-        userIdentificationSub:
+        sub:
           type: string
           description: |-
             If `$.profile.scope` was requested in `createPayment` this value will populate once `$.authorised` is `true`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
 
-            If `$.profile.scope` included new values from a previously authorised payment or approved Vipps Login session then a new `userIdentificationSub` value will be provided here.
+            If `$.profile.scope` included new values from a previously authorised payment or approved Vipps Login session then a new `$.profile.sub` value will be provided here.
 
             Else the user subscription identifier provided in the `createPayment` request. 
         phoneNumber:
@@ -521,6 +487,8 @@ components:
         scope:
           type: string
           description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
+        targetConsent?:
+          type: string
     Logistics:
       title: Logistics
       type: object
