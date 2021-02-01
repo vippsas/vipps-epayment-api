@@ -207,15 +207,15 @@ components:
         type:
           type: string
           enum:
-            - purchase
-            - tips
-            - cashback
-          example: purchase
+            - PURCHASE
+            - TIPS
+            - CASHBACK
+          example: PURCHASE
+          default: PURCHASE
           description: |-
             The type of transaction this amount represents for legal marking through the schemes.
 
             only ebax?
-          default: purchase
       required:
         - value
         - currency
@@ -243,9 +243,9 @@ components:
         shopperInteraction:
           type: string
           enum:
-            - customer-present
-            - customer-not-present
-          example: customer-not-present
+            - CUSTOMER_PRESENT
+            - CUSTOMER_NOT_PRESENT
+          example: CUSTOMER_NOT_PRESENT
         autoCapture:
           type: boolean
           default: 'false'
@@ -258,13 +258,7 @@ components:
           example: 'https://landing.vipps.no?token=abc123'
           description: 'The url you should redirect the user to to continue with the payment. '
         sdkData:
-          type: object
-          description: The data which should be provided to the *Vipps Trigger SDK* if `userFlow` is `SDK`.
-          properties:
-            token:
-              type: string
-          required:
-            - token
+          $ref: '#/components/schemas/SdkData'
         pspReference:
           $ref: '#/components/schemas/PspReferenceType'
         additionalData:
@@ -272,6 +266,7 @@ components:
             - $ref: '#/components/schemas/AdditionalDataAirline'
             - $ref: '#/components/schemas/TransactionSummary'
             - $ref: '#/components/schemas/AdditionalDataCommon'
+          description: Additional data related to the transaction.
         userFlow:
           type: string
           enum:
@@ -297,13 +292,16 @@ components:
         logistics:
           $ref: '#/components/schemas/Logistics'
         paymentMethod:
-          $ref: ''
+          $ref: '#/components/schemas/PaymentMethod'
+        shopper:
+          $ref: '#/components/schemas/Shopper'
       required:
         - amount
         - reference
         - returnUrl
         - shopperInteraction
         - userFlow
+        - paymentMethod
     AdditionalDataAirline:
       title: AdditionalDataAirline
       type: object
@@ -468,9 +466,32 @@ components:
           enum:
             - PRE_AUTH
             - FINAL_AUTH
+          example: FINAL_AUTH
           description: Flags a card payment request for either pre-authorisation or final authorisation
     Profile:
       title: Profile
+      type: object
+      properties:
+        scope:
+          type: string
+          description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
+        targetConsent?:
+          type: string
+    Logistics:
+      title: Logistics
+      type: object
+      description: |-
+        Logistics options for a payment.
+
+        Must be combined with the use of `$.profile.scope` where the value must contain, at least, `name address`.
+      properties:
+        fixedOptions:
+          type: array
+          description: Fixed logistics alternatives if no location based calculation is needed.
+          items:
+            $ref: '#/components/schemas/LogitsticsOption'
+    Shopper:
+      title: Shopper
       type: object
       properties:
         sub:
@@ -484,17 +505,62 @@ components:
         phoneNumber:
           type: string
           description: Target users phone number in MSISDN format
-        scope:
+    SdkData:
+      title: SdkData
+      type: object
+      description: The data which should be provided to the *Vipps Trigger SDK* if `userFlow` is `SDK`.
+      properties:
+        token:
           type: string
-          description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
-        targetConsent?:
-          type: string
-    Logistics:
-      title: Logistics
+      required:
+        - token
+    LogitsticsOption:
+      title: LogitsticsOption
       type: object
       properties:
+        priority:
+          type: integer
+          format: int32
+          description: Priority of the logistic option for sorting. Higher number is greater priority.
+        amount:
+          $ref: '#/components/schemas/Amount'
+        title:
+          type: string
+          description: 'Shipping method. Max length: 256 characters. Recommended length for readability on most screens: 25 characters.'
+          example: Posten Servicepakke
+          maxLength: 256
         id:
           type: string
+          maxLength: 100
+          format: uuid
+          description: Unique ID of the logistic option
+      required:
+        - amount
+        - title
+        - id
+    PaymentMethod:
+      title: PaymentMethod
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - WALLET
+            - WALLET_PREFER_BANKAXEPT
+            - ONECLICK
+            - WALLET_REQUEST_ONECLICK
+          example: WALLET
+          default: WALLET
+          description: The paymentMethod type to be performed.
+        oneclickToken:
+          type: string
+          description: |-
+            The token returned from XXXX (TODO) when `$.paymentMethod.type` is `WALLET_REQUEST_ONECLICK`
+
+
+            Required if `$.paymentMethod.type` is `ONECLICK`.
+      required:
+        - type
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
