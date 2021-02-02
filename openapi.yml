@@ -197,11 +197,6 @@ components:
       description: Amount Object
       type: object
       properties:
-        value:
-          type: integer
-          example: 1000
-          format: int64
-          description: 'Integer value of price in the currencys monitary subunit (eg Norwegian Øre), or monitary unit where applicable (eg Japanese YEN). Type of monitary unit is defined in  ISO 4217.'
         currency:
           $ref: '#/components/schemas/Currency'
         type:
@@ -216,6 +211,11 @@ components:
             The type of transaction this amount represents for legal marking through the schemes.
 
             only ebax?
+        value:
+          type: integer
+          example: 1000
+          format: int64
+          description: 'Integer value of price in the currencys monitary subunit (eg Norwegian Øre), or monitary unit where applicable (eg Japanese YEN). Type of monitary unit is defined in  ISO 4217.'
       required:
         - value
         - currency
@@ -232,41 +232,53 @@ components:
       properties:
         amount:
           $ref: '#/components/schemas/Amount'
-        reference:
-          $ref: '#/components/schemas/ReferenceType'
-        subReference:
-          $ref: '#/components/schemas/ReferenceType'
-        returnUrl:
-          type: string
-          example: 'https://example.io/redirect?orderId=abcc123'
-          description: URL to redirect the user to after the payment has been
-        shopperInteraction:
-          type: string
-          enum:
-            - CUSTOMER_PRESENT
-            - CUSTOMER_NOT_PRESENT
-          example: CUSTOMER_NOT_PRESENT
-        autoCapture:
-          type: boolean
-          default: 'false'
-          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
-        authorised:
-          type: boolean
-        redirectUrl:
-          type: string
-          format: uri
-          example: 'https://landing.vipps.no?token=abc123'
-          description: 'The url you should redirect the user to to continue with the payment. '
-        sdkData:
-          $ref: '#/components/schemas/SdkData'
-        pspReference:
-          $ref: '#/components/schemas/PspReferenceType'
         additionalData:
           allOf:
             - $ref: '#/components/schemas/AdditionalDataAirline'
             - $ref: '#/components/schemas/TransactionSummary'
             - $ref: '#/components/schemas/AdditionalDataCommon'
           description: Additional data related to the transaction.
+        authorised:
+          type: boolean
+        autoCapture:
+          type: boolean
+          default: 'false'
+          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
+        lineItems:
+          type: array
+          description: The items purchased with this payment
+          items:
+            $ref: '#/components/schemas/LineItem'
+        logistics:
+          $ref: '#/components/schemas/Logistics'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        profile:
+          $ref: '#/components/schemas/Profile'
+        pspReference:
+          $ref: '#/components/schemas/PspReferenceType'
+        redirectUrl:
+          type: string
+          format: uri
+          example: 'https://landing.vipps.no?token=abc123'
+          description: 'The url you should redirect the user to to continue with the payment. '
+        reference:
+          $ref: '#/components/schemas/ReferenceType'
+        returnUrl:
+          type: string
+          example: 'https://example.io/redirect?orderId=abcc123'
+        sdkData:
+          $ref: '#/components/schemas/SdkData'
+        shopper:
+          $ref: '#/components/schemas/Shopper'
+        shopperInteraction:
+          type: string
+          enum:
+            - CUSTOMER_PRESENT
+            - CUSTOMER_NOT_PRESENT
+          example: CUSTOMER_NOT_PRESENT
+        subReference:
+          $ref: '#/components/schemas/ReferenceType'
         userFlow:
           type: string
           enum:
@@ -282,19 +294,6 @@ components:
         userText:
           type: string
           description: message to user
-        profile:
-          $ref: '#/components/schemas/Profile'
-        lineItems:
-          type: array
-          description: The items purchased with this payment
-          items:
-            $ref: '#/components/schemas/LineItem'
-        logistics:
-          $ref: '#/components/schemas/Logistics'
-        paymentMethod:
-          $ref: '#/components/schemas/PaymentMethod'
-        shopper:
-          $ref: '#/components/schemas/Shopper'
       required:
         - amount
         - reference
@@ -310,13 +309,11 @@ components:
 
         If present, `passenderName`, `airlineCode`, `airlineDesignatorCode` and `agencyInvoiceNumber` are all required.
       properties:
-        passengerName:
+        agencyInvoiceNumber:
           type: string
-          description: 'Passenger name, initials, and a title.'
-          format: last name + first name or initials + title.
-          example: FLYER / MARY MS.
+          description: 'Reference number for the invoice, issued by the agency.'
           minLength: 1
-          maxLength: 49
+          maxLength: 6
         airlineCode:
           type: string
           description: IATA 3-digit accounting code (PAX); numeric. It identifies the carrier. eg KLM = 074
@@ -331,21 +328,23 @@ components:
           example: KL
           minLength: 2
           maxLength: 2
+        passengerName:
+          type: string
+          description: 'Passenger name, initials, and a title.'
+          format: last name + first name or initials + title.
+          example: FLYER / MARY MS.
+          minLength: 1
+          maxLength: 49
         ticketNumber:
           type: string
           description: The ticket's unique identifier.
           minLength: 1
           maxLength: 150
-        agencyInvoiceNumber:
-          type: string
-          description: 'Reference number for the invoice, issued by the agency.'
-          minLength: 1
-          maxLength: 6
     TransactionSummary:
       title: TransactionSummary
       type: object
       properties:
-        currentAuthorizedAmount:
+        authorizedAmount:
           $ref: '#/components/schemas/Amount'
         cancelledAmount:
           $ref: '#/components/schemas/Amount'
@@ -353,17 +352,11 @@ components:
           $ref: '#/components/schemas/Amount'
         refundedAmount:
           $ref: '#/components/schemas/Amount'
-        remainingCapturableAmount:
-          $ref: '#/components/schemas/Amount'
-        remainingRefundableAmount:
-          $ref: '#/components/schemas/Amount'
       required:
         - currentAuthorizedAmount
         - cancelledAmount
         - capturedAmount
         - refundedAmount
-        - remainingCapturableAmount
-        - remainingRefundableAmount
     TransactionModificationRequest:
       title: TransactionModificationRequest
       type: object
@@ -399,6 +392,13 @@ components:
           city: Oslo
           country: Norway
       properties:
+        city:
+          type: string
+          example: Oslo
+        country:
+          type: string
+          example: 'NO'
+          description: Country code according to ISO 3166
         id:
           type: string
           format: uuid
@@ -413,13 +413,6 @@ components:
           type: string
           description: Postcode of the address in local country format
           example: '0154'
-        city:
-          type: string
-          example: Oslo
-        country:
-          type: string
-          example: 'NO'
-          description: Country code according to ISO 3166
       required:
         - lines
         - postCode
@@ -518,22 +511,22 @@ components:
       title: LogitsticsOption
       type: object
       properties:
-        priority:
-          type: integer
-          format: int32
-          description: Priority of the logistic option for sorting. Higher number is greater priority.
         amount:
           $ref: '#/components/schemas/Amount'
-        title:
-          type: string
-          description: 'Shipping method. Max length: 256 characters. Recommended length for readability on most screens: 25 characters.'
-          example: Posten Servicepakke
-          maxLength: 256
         id:
           type: string
           maxLength: 100
           format: uuid
           description: Unique ID of the logistic option
+        priority:
+          type: integer
+          format: int32
+          description: Priority of the logistic option for sorting. Higher number is greater priority.
+        title:
+          type: string
+          description: 'Shipping method. Max length: 256 characters. Recommended length for readability on most screens: 25 characters.'
+          example: Posten Servicepakke
+          maxLength: 256
       required:
         - amount
         - title
@@ -542,6 +535,13 @@ components:
       title: PaymentMethod
       type: object
       properties:
+        oneclickToken:
+          type: string
+          description: |-
+            The token returned from XXXX (TODO) when `$.paymentMethod.type` is `WALLET_REQUEST_ONECLICK`
+
+
+            Required if `$.paymentMethod.type` is `ONECLICK`.
         type:
           type: string
           enum:
@@ -552,13 +552,6 @@ components:
           example: WALLET
           default: WALLET
           description: The paymentMethod type to be performed.
-        oneclickToken:
-          type: string
-          description: |-
-            The token returned from XXXX (TODO) when `$.paymentMethod.type` is `WALLET_REQUEST_ONECLICK`
-
-
-            Required if `$.paymentMethod.type` is `ONECLICK`.
       required:
         - type
   parameters:
