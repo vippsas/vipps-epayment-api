@@ -7,9 +7,9 @@ info:
   version: 0.2.0
   title: Vipps ePayments API
   contact:
-    email: thomas.haakon.townsend@vipps.no
-    name: Thomas Haakon Townsend
-    url: 'http://github.com/tht13'
+    email: integration@vipps.no
+    name: Vipps AS
+    url: 'http://github.com/vippsas'
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
