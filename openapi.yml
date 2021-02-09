@@ -73,6 +73,12 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentEvent'
       operationId: getPaymentEventLog
       security:
         - Bearer Authorization: []
@@ -612,6 +618,34 @@ components:
         - url
         - supplier
         - id
+    PaymentEvent:
+      title: PaymentEvent
+      type: object
+      properties:
+        reference:
+          $ref: '#/components/schemas/ReferenceType'
+        pspReference:
+          $ref: '#/components/schemas/PspReferenceType'
+        paymentAction:
+          type: string
+          enum:
+            - AUTHORISATION
+            - CANCEL
+            - CAPTURE
+            - REFUND
+            - ADJUSTMENT
+            - TERMINATE
+          example: AUTHORISATION
+        amount:
+          $ref: '#/components/schemas/Amount'
+        additionalData:
+          allOf:
+            - $ref: '#/components/schemas/AdditionalDataCommon'
+      required:
+        - reference
+        - pspReference
+        - paymentAction
+        - amount
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
