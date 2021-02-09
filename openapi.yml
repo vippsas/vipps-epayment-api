@@ -14,6 +14,10 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   termsOfService: 'https://www.vipps.no/vilkar/vilkar-bedrift/'
+  x-logo:
+    url: "https://vipps.no/static/vipps_frontend/311340/media/extra-images/vipps-logo.svg"
+    backgroundColor: "#FFFFFF"
+    altText: "Vipps logo"
 tags:
   - description: "\tPayments Endpoints"
     name: Payments
@@ -184,7 +188,8 @@ paths:
       - $ref: '#/components/parameters/Payment-Reference-ID'
     put:
       summary: Adjust Authorization
-      tags: []
+      tags:
+        - Payments
       responses:
         '200':
           $ref: '#/components/responses/Payment-Response'
