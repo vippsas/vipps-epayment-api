@@ -4,7 +4,7 @@ servers:
     description: Production source URL for the Vipps ePayments api
 info:
   description: The new merchant payments api for Vipps wallet
-  version: 0.1.0
+  version: 0.2.0
   title: Vipps ePayments API
   contact:
     email: thomas.haakon.townsend@vipps.no
@@ -191,6 +191,12 @@ paths:
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/Content-Type'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentAdjustment'
+        description: Payment adjustment body
 components:
   schemas:
     Amount:
@@ -483,6 +489,14 @@ components:
           description: Fixed logistics alternatives if no location based calculation is needed.
           items:
             $ref: '#/components/schemas/LogitsticsOption'
+        dynamicOptionsCallback:
+          type: string
+          format: uri
+          example: 'https://example.com/shipping/123'
+          pattern: '^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
+          description: Callback url for dynamic Logistics Option calculation
+        tracking:
+          $ref: '#/components/schemas/Tracking'
     Shopper:
       title: Shopper
       type: object
@@ -549,11 +563,55 @@ components:
             - WALLET_PREFER_BANKAXEPT
             - ONECLICK
             - WALLET_REQUEST_ONECLICK
+            - CARD
           example: WALLET
           default: WALLET
-          description: The paymentMethod type to be performed.
+          description: |-
+            The paymentMethod type to be performed.
+
+            `ONECLICK` must be combined with a valid `$.paymentMethod.oneclickToken`, and a low-value exemption transaction will attempted on the saved payment source of the user. If the transaction is rejected, a `$.returnUrl` will be provided in accordance with the `WALLET_REQUEST_ONECLICK` paymentMethod flow.
+
+            `CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT`.
       required:
         - type
+    PaymentAdjustment:
+      title: PaymentAdjustment
+      type: object
+      properties:
+        modificationAmount:
+          $ref: '#/components/schemas/Amount'
+        additionalData:
+          allOf:
+            - $ref: '#/components/schemas/AdditionalDataCommon'
+        modificationReference:
+          $ref: '#/components/schemas/ReferenceType'
+        logistics:
+          $ref: '#/components/schemas/Logistics'
+      required:
+        - modificationAmount
+        - modificationReference
+    Tracking:
+      title: Tracking
+      type: object
+      description: Logistics tracking information
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Tracking URL
+        supplier:
+          type: string
+          enum:
+            - BRING
+            - POSTNORD
+          description: Logistics supplier
+        id:
+          type: string
+          description: Tracking ID
+      required:
+        - url
+        - supplier
+        - id
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
