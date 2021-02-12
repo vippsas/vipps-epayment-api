@@ -15,9 +15,9 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   termsOfService: 'https://www.vipps.no/vilkar/vilkar-bedrift/'
   x-logo:
-    url: "https://vipps.no/static/vipps_frontend/311340/media/extra-images/vipps-logo.svg"
-    backgroundColor: "#FFFFFF"
-    altText: "Vipps logo"
+    url: 'https://vipps.no/static/vipps_frontend/311340/media/extra-images/vipps-logo.svg'
+    backgroundColor: '#FFFFFF'
+    altText: Vipps logo
 tags:
   - description: "\tPayments Endpoints"
     name: Payments
@@ -247,20 +247,24 @@ components:
       description: Payment object
       type: object
       properties:
+        aggregate:
+          $ref: '#/components/schemas/TransactionAggregate'
         amount:
           $ref: '#/components/schemas/Amount'
-        additionalData:
-          allOf:
-            - $ref: '#/components/schemas/AdditionalDataAirline'
-            - $ref: '#/components/schemas/TransactionSummary'
-            - $ref: '#/components/schemas/AdditionalDataCommon'
-          description: Additional data related to the transaction.
+        authorisationType:
+          $ref: '#/components/schemas/AuthorisationType'
         authorised:
           type: boolean
         autoCapture:
           type: boolean
           default: 'false'
           description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
+        industryData:
+          description: Additional data related to the transaction.
+          type: object
+          properties:
+            airline:
+              $ref: '#/components/schemas/AirlineData'
         lineItems:
           type: array
           description: The items purchased with this payment
@@ -313,13 +317,13 @@ components:
           description: message to user
       required:
         - amount
+        - paymentMethod
         - reference
         - returnUrl
         - shopperInteraction
         - userFlow
-        - paymentMethod
-    AdditionalDataAirline:
-      title: AdditionalDataAirline
+    AirlineData:
+      title: AirlineData
       type: object
       description: |-
         Airline related data
@@ -357,8 +361,8 @@ components:
           description: The ticket's unique identifier.
           minLength: 1
           maxLength: 150
-    TransactionSummary:
-      title: TransactionSummary
+    TransactionAggregate:
+      title: TransactionAggregate
       type: object
       properties:
         authorizedAmount:
@@ -467,17 +471,6 @@ components:
         - taxAmount
         - taxPercentage
       description: A object describing a purchased product.
-    AdditionalDataCommon:
-      title: AdditionalDataCommon
-      type: object
-      properties:
-        authorisationType:
-          type: string
-          enum:
-            - PRE_AUTH
-            - FINAL_AUTH
-          example: FINAL_AUTH
-          description: Flags a card payment request for either pre-authorisation or final authorisation
     Profile:
       title: Profile
       type: object
@@ -591,9 +584,8 @@ components:
       properties:
         modificationAmount:
           $ref: '#/components/schemas/Amount'
-        additionalData:
-          allOf:
-            - $ref: '#/components/schemas/AdditionalDataCommon'
+        authorisationType:
+          $ref: '#/components/schemas/AuthorisationType'
         modificationReference:
           $ref: '#/components/schemas/ReferenceType'
         logistics:
@@ -643,14 +635,21 @@ components:
           example: AUTHORISATION
         amount:
           $ref: '#/components/schemas/Amount'
-        additionalData:
-          allOf:
-            - $ref: '#/components/schemas/AdditionalDataCommon'
+        authorisationType:
+          $ref: '#/components/schemas/AuthorisationType'
       required:
         - reference
         - pspReference
         - paymentAction
         - amount
+    AuthorisationType:
+      title: AuthorisationType
+      type: string
+      enum:
+        - PRE_AUTH
+        - FINAL_AUTH
+      example: FINAL_AUTH
+      description: Flags a card payment request for either pre-authorisation or final authorisation
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
