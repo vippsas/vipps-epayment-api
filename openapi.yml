@@ -630,6 +630,7 @@ components:
         paymentAction:
           type: string
           enum:
+            - CREATED
             - AUTHORISATION
             - CANCEL
             - CAPTURE
@@ -641,11 +642,15 @@ components:
           $ref: '#/components/schemas/Amount'
         authorisationType:
           $ref: '#/components/schemas/AuthorisationType'
+        processedAt:
+          type: string
+          format: date-time
       required:
         - reference
         - pspReference
         - paymentAction
         - amount
+        - processedAt
     AuthorisationType:
       title: AuthorisationType
       type: string
