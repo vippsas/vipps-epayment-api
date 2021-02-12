@@ -487,6 +487,7 @@ components:
           type: string
         sub:
           type: string
+          readOnly: true
           description: |-
             If `$.profile.scope` was requested in `createPayment` this value will populate once `$.authorised` is `true`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
     Logistics:
