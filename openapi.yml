@@ -47,7 +47,6 @@ paths:
         '409':
           description: Conflict
       parameters:
-        - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Content-Type'
@@ -109,7 +108,6 @@ paths:
       security:
         - Bearer Authorization: []
       parameters:
-        - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/Content-Type'
@@ -140,7 +138,6 @@ paths:
       security:
         - Bearer Authorization: []
       parameters:
-        - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/Content-Type'
@@ -171,7 +168,6 @@ paths:
       security:
         - Bearer Authorization: []
       parameters:
-        - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/Content-Type'
@@ -198,7 +194,6 @@ paths:
       security:
         - Bearer Authorization: []
       parameters:
-        - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/Content-Type'
@@ -282,6 +277,8 @@ components:
             $ref: '#/components/schemas/LineItem'
         logistics:
           $ref: '#/components/schemas/Logistics'
+        merchantAccount:
+          $ref: '#/components/schemas/MerchantAccount'
         paymentMethod:
           $ref: '#/components/schemas/PaymentMethod'
         profile:
@@ -291,9 +288,9 @@ components:
         redirectUrl:
           type: string
           format: uri
-          readOnly: true
           example: 'https://landing.vipps.no?token=abc123'
           description: 'The url you should redirect the user to to continue with the payment. '
+          readOnly: true
         reference:
           $ref: '#/components/schemas/ReferenceType'
         returnUrl:
@@ -323,8 +320,8 @@ components:
         - paymentMethod
         - reference
         - returnUrl
-        - shopperInteraction
         - userFlow
+        - merchantAccount
     AirlineData:
       title: AirlineData
       type: object
@@ -488,8 +485,7 @@ components:
         sub:
           type: string
           readOnly: true
-          description: |-
-            If `$.profile.scope` was requested in `createPayment` this value will populate once `$.authorised` is `true`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
+          description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.authorised` is `true`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
     Logistics:
       title: Logistics
       type: object
@@ -584,14 +580,16 @@ components:
       title: PaymentAdjustment
       type: object
       properties:
-        modificationAmount:
-          $ref: '#/components/schemas/Amount'
         authorisationType:
           $ref: '#/components/schemas/AuthorisationType'
-        modificationReference:
-          $ref: '#/components/schemas/ReferenceType'
         logistics:
           $ref: '#/components/schemas/Logistics'
+        merchantAccount:
+          $ref: '#/components/schemas/MerchantAccount'
+        modificationAmount:
+          $ref: '#/components/schemas/Amount'
+        modificationReference:
+          $ref: '#/components/schemas/ReferenceType'
       required:
         - modificationAmount
         - modificationReference
@@ -657,6 +655,11 @@ components:
         - FINAL_AUTH
       example: FINAL_AUTH
       description: Flags a card payment request for either pre-authorisation or final authorisation
+    MerchantAccount:
+      type: string
+      title: MerchantAccount
+      pattern: '^[1-9][0-9]{3,4}$'
+      description: The merchant account identifier
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
