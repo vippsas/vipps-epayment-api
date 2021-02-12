@@ -260,6 +260,15 @@ components:
           type: boolean
           default: false
           description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
+        customer:
+          $ref: '#/components/schemas/Customer'
+        customerInteraction:
+          type: string
+          description: The form of customer interaction to trigger the purchase
+          enum:
+            - CUSTOMER_PRESENT
+            - CUSTOMER_NOT_PRESENT
+          example: CUSTOMER_NOT_PRESENT
         industryData:
           description: Additional data related to the transaction.
           type: object
@@ -292,14 +301,6 @@ components:
           example: 'https://example.io/redirect?orderId=abcc123'
         sdkData:
           $ref: '#/components/schemas/SdkData'
-        shopper:
-          $ref: '#/components/schemas/Shopper'
-        shopperInteraction:
-          type: string
-          enum:
-            - CUSTOMER_PRESENT
-            - CUSTOMER_NOT_PRESENT
-          example: CUSTOMER_NOT_PRESENT
         subReference:
           $ref: '#/components/schemas/ReferenceType'
         userFlow:
@@ -484,6 +485,10 @@ components:
           description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
         targetConsent?:
           type: string
+        sub:
+          type: string
+          description: |-
+            If `$.profile.scope` was requested in `createPayment` this value will populate once `$.authorised` is `true`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
     Logistics:
       title: Logistics
       type: object
@@ -505,21 +510,13 @@ components:
           description: Callback url for dynamic Logistics Option calculation
         tracking:
           $ref: '#/components/schemas/Tracking'
-    Shopper:
-      title: Shopper
-      type: object
-      properties:
-        sub:
-          type: string
-          description: |-
-            If `$.profile.scope` was requested in `createPayment` this value will populate once `$.authorised` is `true`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
-
-            If `$.profile.scope` included new values from a previously authorised payment or approved Vipps Login session then a new `$.profile.sub` value will be provided here.
-
-            Else the user subscription identifier provided in the `createPayment` request. 
-        phoneNumber:
-          type: string
-          description: Target users phone number in MSISDN format
+    Customer:
+      title: Customer
+      type: string
+      description: |-
+        Can be one of:
+          * The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
+          * Target users phone number in MSISDN format
     SdkData:
       title: SdkData
       type: object
