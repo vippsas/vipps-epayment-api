@@ -255,9 +255,10 @@ components:
           $ref: '#/components/schemas/AuthorisationType'
         authorised:
           type: boolean
+          readOnly: true
         autoCapture:
           type: boolean
-          default: 'false'
+          default: false
           description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
         industryData:
           description: Additional data related to the transaction.
@@ -281,6 +282,7 @@ components:
         redirectUrl:
           type: string
           format: uri
+          readOnly: true
           example: 'https://landing.vipps.no?token=abc123'
           description: 'The url you should redirect the user to to continue with the payment. '
         reference:
@@ -364,6 +366,7 @@ components:
     TransactionAggregate:
       title: TransactionAggregate
       type: object
+      readOnly: true
       properties:
         authorizedAmount:
           $ref: '#/components/schemas/Amount'
@@ -398,6 +401,7 @@ components:
       example: reference-string
     PspReferenceType:
       type: string
+      readOnly: true
       title: PspReferenceType
       description: Reference value for a payment defined by Vipps
       format: uuid
