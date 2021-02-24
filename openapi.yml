@@ -264,6 +264,7 @@ components:
             - CUSTOMER_PRESENT
             - CUSTOMER_NOT_PRESENT
           example: CUSTOMER_NOT_PRESENT
+          default: CUSTOMER_NOT_PRESENT
         industryData:
           description: Additional data related to the transaction.
           type: object
@@ -317,11 +318,12 @@ components:
           description: message to user
       required:
         - amount
+        - merchantAccount
         - paymentMethod
         - reference
         - returnUrl
         - userFlow
-        - merchantAccount
+      x-examples: {}
     AirlineData:
       title: AirlineData
       type: object
@@ -397,6 +399,7 @@ components:
       minLength: 8
       maxLength: 50
       example: reference-string
+      x-examples: {}
     PspReferenceType:
       type: string
       readOnly: true
@@ -567,7 +570,6 @@ components:
             - WALLET_REQUEST_ONECLICK
             - CARD
           example: WALLET
-          default: WALLET
           description: |-
             The paymentMethod type to be performed.
 
@@ -647,6 +649,7 @@ components:
         - paymentAction
         - amount
         - processedAt
+      x-examples: {}
     AuthorisationType:
       title: AuthorisationType
       type: string
