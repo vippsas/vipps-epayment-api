@@ -23,7 +23,8 @@ Once your account is active in production use the domain `https://api.vipps.no`.
 curl https://apitest.vipps.no/accessToken/get \
 -H "client_id: YOUR-CLIENT-ID" \
 -H "client_secret: YOUR-CLIENT-SECRET" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY"
+-H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-X POST
 ```
 
 In response you will get a body whith the following schema. 
@@ -52,10 +53,9 @@ The property `access_token` should be used for all other API requests in the `Au
 
 To create a payment you need to send the specifications of that payment to Vipps, there is an extensive selection of options available which you can combine to make your custom payment experience. The required fields for a simple payment are:
 
-
 Parameter | Type | Required | Description
 ----------|------|----------|------------
-`amount` | `Object` | Y | The `curreny` and `value` of the payment in minor units
+`amount` | `Object` | Y | The `currency` and `value` of the payment in minor units
 `merchantAccount` | `string` | Y | Your merchant account identifier
 `paymentMethod` | `Object` | Y | The `type` of payment method you wish to process with
 `reference` | `string` | Y | Your unique reference to this payment
@@ -71,6 +71,7 @@ curl https://apitest.vipps.no/payments/v1 \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
 -H "Idempotency-Key: UNIQUE-ID" \
+-X POST
 -d '{
   "amount": {
     "currency": "NOK",
@@ -157,7 +158,8 @@ Example request:
 ```bash
 curl https://apitest.vipps.no/payments/v1/UNIQUE-PAYMENT-REFERENCE \
 -H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY"
+-H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-X GET
 ```
 
 To verify if a payment has been authorised by the user check the `authorised` property. If the user has instead chosed to reject the payment the `aggregate.cancelledAmount.value` will be equal to the `amount.value` originally specified in the Create Payment request.
@@ -167,7 +169,8 @@ The payment event log can be fetched as such:
 ```bash
 curl https://apitest.vipps.no/payments/v1/UNIQUE-PAYMENT-REFERENCE/events \
 -H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY"
+-H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-X GET
 ```
 
 In the case the payment has been completed this will yield an array of events like such:
@@ -198,3 +201,119 @@ In the case the payment has been completed this will yield an array of events li
   }
 ]
 ```
+
+### Notification Events
+
+If you are not dependent on getting the payment result immediately you may also use notification events to recieve the payment status update via our [Notification Webhooks]() service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than imediate delivery. 
+
+> Note: this means we may deliver the same message several times to verify succesful delivery, use the `pspReference` field for duplicate delivery checking.
+
+If you use the notification service you will recieve events in the same format as those in the array list returned from the [Get Payment Events]() endpoint.
+
+
+For example a succeful authentication event would look like
+
+```json
+{
+  "reference": "UNIQUE-PAYMENT-REFERENCE",
+  "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+  "paymentAction": "CREATED",
+  "amount": {
+    "currency": "NOK",
+    "type": "PURCHASE",
+    "value": 1000
+  },
+  "processedAt": "2021-02-24T14:15:22Z"
+}
+```
+
+If the user had rejected or not acted upon the payment the event would look like
+
+```json
+{
+  "reference": "UNIQUE-PAYMENT-REFERENCE",
+  "pspReference": "38ab3a93-a819-4982-912d-089f3177e6c8",
+  "paymentAction": "TERMINATE",
+  "amount": {
+    "currency": "NOK",
+    "type": "PURCHASE",
+    "value": 1000
+  },
+  "processedAt": "2021-02-24T14:15:12Z"
+}
+```
+
+## Step 4 - Capture the payment
+
+Once the good or services are delivered or on their way to the customer it is time to capture the payment.
+This can be done through the [Capture Payment]().
+This endpoint take the following properties in the body of the request
+
+Parameter | Type | Required | Description
+----------|------|----------|------------
+`merchantAccount` | `string` | Y | Your merchant account identifier
+`modificationAmount` | `Object` | Y | The `currency` and `value` of the modification in minor units. Must not be the entire amount, but cannot be more than the remaining amount.
+`modificationReference` | `string` | N | Your unique reference to this modification
+
+An example capture would look like:
+
+```bash
+curl https://apitest.vipps.no/payments/v1/UNIQUE-PAYMENT-REFERENCE/capture \
+-H "Authorization: Bearer <TOKEN>" \
+-H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Content-Type: application/json" \
+-H "Idempotency-Key: UNIQUE-ID" \
+-X POST
+-d '{
+  "merchantAccount": "YOUR-MERCHANT-ACCOUNT-NUMBER",
+  "modificationAmount": {
+    "currency": "NOK",
+    "type": "PURCHASE",
+    "value": 1000
+  },
+  "modificationReference": "UNIQUE-MODIFICATION-REFERENCE"
+}'
+```
+
+In reponse you will get the payment object you get from the [Create Payment]() and [Get Payment]() endpoints, updated to reflect the modification performed.
+
+In this case the `aggregate` property will be updated as such:
+
+```json
+{
+  "aggregate": {
+    "authorizedAmount": {
+      "currency": "NOK",
+      "type": "PURCHASE",
+      "value": 1000
+    },
+    "cancelledAmount": {
+      "currency": "NOK",
+      "type": "PURCHASE",
+      "value": 0
+    },
+    "capturedAmount": {
+      "currency": "NOK",
+      "type": "PURCHASE",
+      "value": 1000
+    },
+    "refundedAmount": {
+      "currency": "NOK",
+      "type": "PURCHASE",
+      "value": 0
+    }
+  }
+}
+```
+
+# Next Steps
+
+Now that you have completed your first payment we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
+
+* [How to setup Notification Webhooks]()
+* [Payment modification, how to use cancel, capture and refund?]()
+* [Profile sharing, requesting the users personal information]()
+* [Logistics, how can I enable express checkout?]()
+* [Using Vipps Merchant Payments in a shopper present context]()
+
+

@@ -384,12 +384,16 @@ components:
     TransactionModificationRequest:
       title: TransactionModificationRequest
       type: object
+      x-examples: {}
       properties:
+        merchantAccount:
+          $ref: '#/components/schemas/MerchantAccount'
         modificationAmount:
           $ref: '#/components/schemas/Amount'
         modificationReference:
           $ref: '#/components/schemas/ReferenceType'
       required:
+        - merchantAccount
         - modificationAmount
     ReferenceType:
       type: string
