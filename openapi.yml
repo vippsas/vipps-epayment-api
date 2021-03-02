@@ -3,7 +3,7 @@ servers:
   - url: 'https://api.vipps.no/payments/v1'
     description: Production source URL for the Vipps ePayments api
 info:
-  description: The new merchant payments api for Vipps wallet
+  description: The merchant payments api for Vipps wallet
   version: 0.2.0
   title: Vipps ePayments API
   contact:
@@ -231,6 +231,23 @@ components:
       required:
         - value
         - currency
+    CardData: 
+      title: Card Data for the payment
+      type: object
+      properties:
+        expiryMonth: 
+          type: string
+          example: 20
+        expiryYear: 
+          type: string
+          example: 20
+        securityCode:
+          type: string
+          example: 200
+        cardNumber:
+          type: string
+          example: 4100000000001
+          description: At the time of writing this API only accepts encrypted formats        
     Currency:
       type: string
       example: NOK
@@ -579,7 +596,9 @@ components:
 
             `ONECLICK` must be combined with a valid `$.paymentMethod.oneclickToken`, and a low-value exemption transaction will attempted on the saved payment source of the user. If the transaction is rejected, a `$.returnUrl` will be provided in accordance with the `WALLET_REQUEST_ONECLICK` paymentMethod flow.
 
-            `CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT`.
+            `CARD` has to be combined with a `$.userFlow` or `WEB_REDIRECT`.
+        cardData: 
+          $ref: '#/components/schemas/CardData'
       required:
         - type
     PaymentAdjustment:
