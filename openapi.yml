@@ -231,23 +231,33 @@ components:
       required:
         - value
         - currency
-    CardData: 
-      title: Card Data for the payment
+    EncryptedCardData: 
+      title: Encrypted card data for the payment
       type: object
       properties:
+        type:
+          type: string
+          description: Type of payment method, currently only supports 'scheme'
+          enum:
+            - scheme
         expiryMonth: 
           type: string
-          example: 20
+          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
         expiryYear: 
           type: string
-          example: 20
+          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
         securityCode:
           type: string
-          example: 200
+          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
         cardNumber:
           type: string
-          example: 4100000000001
-          description: At the time of writing this API only accepts encrypted formats        
+          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
+      required:
+        - type
+        - expiryMonth
+        - expiryYear
+        - securityCode
+        - cardNumber
     Currency:
       type: string
       example: NOK
@@ -589,16 +599,16 @@ components:
             - WALLET_PREFER_BANKAXEPT
             - ONECLICK
             - WALLET_REQUEST_ONECLICK
-            - CARD
+            - ENCRYPTED_CARD
           example: WALLET
           description: |-
             The paymentMethod type to be performed.
 
             `ONECLICK` must be combined with a valid `$.paymentMethod.oneclickToken`, and a low-value exemption transaction will attempted on the saved payment source of the user. If the transaction is rejected, a `$.returnUrl` will be provided in accordance with the `WALLET_REQUEST_ONECLICK` paymentMethod flow.
 
-            `CARD` has to be combined with a `$.userFlow` or `WEB_REDIRECT`.
-        cardData: 
-          $ref: '#/components/schemas/CardData'
+            `ENCRYPTED_CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT` and requires `data` object to be present.
+        data: 
+          $ref: '#/components/schemas/EncryptedCardData'
       required:
         - type
     PaymentAdjustment:
