@@ -221,7 +221,24 @@ components:
       required:
         - value
         - currency
-<<<<<<< Updated upstream
+    AmountType:
+      type: string
+      enum:
+        - PURCHASE
+        - TIPS
+        - CASHBACK
+      example: PURCHASE
+      default: PURCHASE
+      description: |-
+        The type of transaction this amount represents for legal marking through the schemes.
+
+        only ebax?
+    Currency:
+      type: string
+      example: NOK
+      enum:
+        - NOK
+      description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian Kroner, Note, should this be using digit code? eg NOK = 578'
     EncryptedCardData: 
       title: Encrypted card data for the payment
       type: object
@@ -249,26 +266,6 @@ components:
         - expiryYear
         - securityCode
         - cardNumber
-=======
-    AmountType:
-      type: string
-      enum:
-        - PURCHASE
-        - TIPS
-        - CASHBACK
-      example: PURCHASE
-      default: PURCHASE
-      description: |-
-        The type of transaction this amount represents for legal marking through the schemes.
-
-        only ebax?
->>>>>>> Stashed changes
-    Currency:
-      type: string
-      example: NOK
-      enum:
-        - NOK
-      description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian Kroner, Note, should this be using digit code? eg NOK = 578'
     Payment:
       title: Payment
       description: Payment object
@@ -599,26 +596,9 @@ components:
 
             Required if `$.paymentMethod.type` is `ONECLICK`.
         type:
-<<<<<<< Updated upstream
-          type: string
-          enum:
-            - WALLET
-            - WALLET_PREFER_BANKAXEPT
-            - ONECLICK
-            - WALLET_REQUEST_ONECLICK
-            - ENCRYPTED_CARD
-          example: WALLET
-          description: |-
-            The paymentMethod type to be performed.
-
-            `ONECLICK` must be combined with a valid `$.paymentMethod.oneclickToken`, and a low-value exemption transaction will attempted on the saved payment source of the user. If the transaction is rejected, a `$.returnUrl` will be provided in accordance with the `WALLET_REQUEST_ONECLICK` paymentMethod flow.
-
-            `ENCRYPTED_CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT` and requires `data` object to be present.
+          $ref: '#/components/schemas/PaymentMethodType'
         data: 
           $ref: '#/components/schemas/EncryptedCardData'
-=======
-          $ref: '#/components/schemas/PaymentMethodType'
->>>>>>> Stashed changes
       required:
         - type
     PaymentMethodType:
