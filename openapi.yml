@@ -84,7 +84,7 @@ paths:
                   $ref: '#/components/schemas/PaymentEvent'
       operationId: getPaymentEventLog
       security:
-        - Bearer Authorization: []
+        - Bearer-Authorization: []
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
@@ -106,7 +106,7 @@ paths:
           description: Conflict
       description: Cancel the given payment
       security:
-        - Bearer Authorization: []
+        - Bearer-Authorization: []
       parameters:
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
@@ -136,7 +136,7 @@ paths:
           description: Conflict
       description: Capture the given payment
       security:
-        - Bearer Authorization: []
+        - Bearer-Authorization: []
       parameters:
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
@@ -166,7 +166,7 @@ paths:
           description: Conflict
       description: Refund the given payment
       security:
-        - Bearer Authorization: []
+        - Bearer-Authorization: []
       parameters:
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
@@ -192,7 +192,7 @@ paths:
       operationId: adjustAuthorization
       description: Adjust the current authorisation
       security:
-        - Bearer Authorization: []
+        - Bearer-Authorization: []
       parameters:
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
@@ -212,17 +212,7 @@ components:
         currency:
           $ref: '#/components/schemas/Currency'
         type:
-          type: string
-          enum:
-            - PURCHASE
-            - TIPS
-            - CASHBACK
-          example: PURCHASE
-          default: PURCHASE
-          description: |-
-            The type of transaction this amount represents for legal marking through the schemes.
-
-            only ebax?
+          $ref: '#/components/schemas/AmountType'
         value:
           type: integer
           example: 1000
@@ -231,6 +221,7 @@ components:
       required:
         - value
         - currency
+<<<<<<< Updated upstream
     EncryptedCardData: 
       title: Encrypted card data for the payment
       type: object
@@ -258,6 +249,20 @@ components:
         - expiryYear
         - securityCode
         - cardNumber
+=======
+    AmountType:
+      type: string
+      enum:
+        - PURCHASE
+        - TIPS
+        - CASHBACK
+      example: PURCHASE
+      default: PURCHASE
+      description: |-
+        The type of transaction this amount represents for legal marking through the schemes.
+
+        only ebax?
+>>>>>>> Stashed changes
     Currency:
       type: string
       example: NOK
@@ -551,6 +556,7 @@ components:
     SdkData:
       title: SdkData
       type: object
+      readOnly: true
       description: The data which should be provided to the *Vipps Trigger SDK* if `userFlow` is `SDK`.
       properties:
         token:
@@ -593,6 +599,7 @@ components:
 
             Required if `$.paymentMethod.type` is `ONECLICK`.
         type:
+<<<<<<< Updated upstream
           type: string
           enum:
             - WALLET
@@ -609,8 +616,26 @@ components:
             `ENCRYPTED_CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT` and requires `data` object to be present.
         data: 
           $ref: '#/components/schemas/EncryptedCardData'
+=======
+          $ref: '#/components/schemas/PaymentMethodType'
+>>>>>>> Stashed changes
       required:
         - type
+    PaymentMethodType:
+      type: string
+      enum:
+        - WALLET
+        - WALLET_PREFER_BANKAXEPT
+        - ONECLICK
+        - WALLET_REQUEST_ONECLICK
+        - CARD
+      example: WALLET
+      description: |-
+        The paymentMethod type to be performed.
+
+        `ONECLICK` must be combined with a valid `$.paymentMethod.oneclickToken`, and a low-value exemption transaction will attempted on the saved payment source of the user. If the transaction is rejected, a `$.returnUrl` will be provided in accordance with the `WALLET_REQUEST_ONECLICK` paymentMethod flow.
+
+        `CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT`.
     PaymentAdjustment:
       title: PaymentAdjustment
       type: object
@@ -742,7 +767,7 @@ components:
         example: application/json
       description: The context type of the request. Must be `application/json`
   securitySchemes:
-    Bearer Authorization:
+    Bearer-Authorization:
       name: Authorization
       type: apiKey
       in: header
@@ -756,4 +781,4 @@ components:
             $ref: '#/components/schemas/Payment'
   examples: {}
 security:
-  - Bearer Authorization: []
+  - Bearer-Authorization: []
