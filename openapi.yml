@@ -49,7 +49,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
-        - $ref: '#/components/parameters/Content-Type'
     parameters: []
   '/{referenceId}':
     parameters:
@@ -110,7 +109,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
-        - $ref: '#/components/parameters/Content-Type'
       requestBody:
         content:
           application/json:
@@ -124,7 +122,7 @@ paths:
       - $ref: '#/components/parameters/Payment-Reference-ID'
     post:
       summary: Capture Payment
-      operationId: capturPeayment
+      operationId: capturePayment
       responses:
         '200':
           $ref: '#/components/responses/Payment-Response'
@@ -140,7 +138,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
-        - $ref: '#/components/parameters/Content-Type'
       requestBody:
         content:
           application/json:
@@ -170,7 +167,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
-        - $ref: '#/components/parameters/Content-Type'
       requestBody:
         content:
           application/json:
@@ -196,7 +192,6 @@ paths:
       parameters:
         - $ref: '#/components/parameters/APIM-Subscription-Key'
         - $ref: '#/components/parameters/Idempotency-Key'
-        - $ref: '#/components/parameters/Content-Type'
       requestBody:
         content:
           application/json:
@@ -534,7 +529,7 @@ components:
           type: array
           description: Fixed logistics alternatives if no location based calculation is needed.
           items:
-            $ref: '#/components/schemas/LogitsticsOption'
+            $ref: '#/components/schemas/LogisticsOption'
         dynamicOptionsCallback:
           type: string
           format: uri
@@ -560,15 +555,14 @@ components:
           type: string
       required:
         - token
-    LogitsticsOption:
-      title: LogitsticsOption
+    LogisticsOption:
+      title: LogisticsOption
       type: object
       properties:
         amount:
           $ref: '#/components/schemas/Amount'
         id:
           type: string
-          maxLength: 100
           format: uuid
           description: Unique ID of the logistic option
         priority:
@@ -738,14 +732,6 @@ components:
       schema:
         type: string
       description: 'Idempotency key for the request, ensures idempotent actions.'
-    Content-Type:
-      name: Content-Type
-      in: header
-      required: true
-      schema:
-        type: string
-        example: application/json
-      description: The context type of the request. Must be `application/json`
   securitySchemes:
     Bearer-Authorization:
       name: Authorization
