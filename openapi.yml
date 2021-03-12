@@ -563,7 +563,6 @@ components:
           $ref: '#/components/schemas/Amount'
         id:
           type: string
-          maxLength: 100
           format: uuid
           description: Unique ID of the logistic option
         priority:
