@@ -40,12 +40,11 @@ paths:
         '201':
           $ref: '#/components/responses/Payment-Response'
         '400':
-          description: Bad Request
+          $ref: '#/components/responses/Problem-Response'
         '403':
-          description: Forbidden
-          headers: {}
+          $ref: '#/components/responses/Problem-Response'
         '409':
-          description: Conflict
+          $ref: '#/components/responses/Problem-Response'
       parameters:
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
@@ -98,11 +97,11 @@ paths:
         '200':
           $ref: '#/components/responses/Payment-Response'
         '400':
-          description: Bad Request
+          $ref: '#/components/responses/Problem-Response'
         '404':
-          description: Not Found
+          $ref: '#/components/responses/Problem-Response'
         '409':
-          description: Conflict
+          $ref: '#/components/responses/Problem-Response'
       description: Cancel the given payment
       security:
         - Bearer-Authorization: []
@@ -127,11 +126,11 @@ paths:
         '200':
           $ref: '#/components/responses/Payment-Response'
         '400':
-          description: Bad Request
+          $ref: '#/components/responses/Problem-Response'
         '404':
-          description: Not Found
+          $ref: '#/components/responses/Problem-Response'
         '409':
-          description: Conflict
+          $ref: '#/components/responses/Problem-Response'
       description: Capture the given payment
       security:
         - Bearer-Authorization: []
@@ -156,11 +155,11 @@ paths:
         '200':
           $ref: '#/components/responses/Payment-Response'
         '400':
-          description: Bad Request
+          $ref: '#/components/responses/Problem-Response'
         '404':
-          description: Not Found
+          $ref: '#/components/responses/Problem-Response'
         '409':
-          description: Conflict
+          $ref: '#/components/responses/Problem-Response'
       description: Refund the given payment
       security:
         - Bearer-Authorization: []
@@ -185,6 +184,12 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Payment-Response'
+        '400':
+          $ref: '#/components/responses/Problem-Response'
+        '404':
+          $ref: '#/components/responses/Problem-Response'
+        '409':
+          $ref: '#/components/responses/Problem-Response'
       operationId: adjustAuthorization
       description: Adjust the current authorisation
       security:
@@ -234,27 +239,27 @@ components:
       enum:
         - NOK
       description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian Kroner, Note, should this be using digit code? eg NOK = 578'
-    EncryptedCardData: 
+    EncryptedCardData:
       title: Encrypted card data for the payment
       type: object
       properties:
         type:
           type: string
-          description: Type of payment method, currently only supports 'scheme'
+          description: 'Type of payment method, currently only supports ''scheme'''
           enum:
             - scheme
-        expiryMonth: 
+        expiryMonth:
           type: string
-          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
-        expiryYear: 
+          example: vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..
+        expiryYear:
           type: string
-          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
+          example: vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..
         securityCode:
           type: string
-          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
+          example: vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..
         cardNumber:
           type: string
-          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
+          example: vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..
       required:
         - type
         - expiryMonth
@@ -591,7 +596,7 @@ components:
             Required if `$.paymentMethod.type` is `ONECLICK`.
         type:
           $ref: '#/components/schemas/PaymentMethodType'
-        data: 
+        data:
           $ref: '#/components/schemas/EncryptedCardData'
       required:
         - type
@@ -695,6 +700,29 @@ components:
       title: MerchantAccount
       pattern: '^[1-9][0-9]{3,4}$'
       description: The merchant account identifier
+    Problem:
+      title: Problem
+      type: object
+      properties:
+        type:
+          type: string
+          format: uri
+          description: A URI reference that identifies the problem type.
+        title:
+          type: string
+          description: 'A short, human-readable summary of the problem type.  It will not change from occurrence to occurrence of the problem.'
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of the problem.
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem.  It may or may not yield further information if dereferenced.
+        '':
+          type: string
+      required:
+        - type
+        - title
+        - instance
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
@@ -745,6 +773,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Payment'
+    Problem-Response:
+      description: Standard problem response
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+      headers: {}
   examples: {}
 security:
   - Bearer-Authorization: []
