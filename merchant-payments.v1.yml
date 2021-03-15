@@ -1,0 +1,750 @@
+openapi: 3.0.0
+servers:
+  - url: 'https://api.vipps.no/payments/v1'
+    description: Production source URL for the Vipps ePayments api
+info:
+  description: The merchant payments api for Vipps wallet
+  version: 0.2.0
+  title: Vipps ePayments API
+  contact:
+    email: integration@vipps.no
+    name: Vipps AS
+    url: 'http://github.com/vippsas'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  termsOfService: 'https://www.vipps.no/vilkar/vilkar-bedrift/'
+  x-logo:
+    url: 'https://vipps.no/static/vipps_frontend/311340/media/extra-images/vipps-logo.svg'
+    backgroundColor: '#FFFFFF'
+    altText: Vipps logo
+tags:
+  - description: "\tPayments Endpoints"
+    name: Payments
+paths:
+  /:
+    post:
+      operationId: createPayment
+      summary: Create Payment
+      tags:
+        - Payments
+      description: Create a new payment
+      requestBody:
+        description: New payment request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Payment'
+      responses:
+        '201':
+          $ref: '#/components/responses/Payment-Response'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+          headers: {}
+        '409':
+          description: Conflict
+      parameters:
+        - $ref: '#/components/parameters/Idempotency-Key'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+    parameters: []
+  '/{referenceId}':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    get:
+      summary: Get Payment
+      tags:
+        - Payments
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+      operationId: getPayment
+      description: Get a payment object by its reference ID
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+  '/{referenceId}/events':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    get:
+      summary: Get Payment Event Log
+      tags:
+        - Payments
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentEvent'
+      operationId: getPaymentEventLog
+      security:
+        - Bearer-Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+      description: Get event log for the specified payment reference
+  '/{referenceId}/cancel':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    put:
+      summary: Cancel Payment
+      operationId: cancelPayment
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      description: Cancel the given payment
+      security:
+        - Bearer-Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Idempotency-Key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionModificationRequest'
+        description: Requested cancel modification
+      tags:
+        - Payments
+  '/{referenceId}/capture':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    post:
+      summary: Capture Payment
+      operationId: capturePayment
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      description: Capture the given payment
+      security:
+        - Bearer-Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Idempotency-Key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionModificationRequest'
+        description: Requested capture modification
+      tags:
+        - Payments
+  '/{referenceId}/refund':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    post:
+      summary: Refund Payment
+      operationId: refundPayment
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '409':
+          description: Conflict
+      description: Refund the given payment
+      security:
+        - Bearer-Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Idempotency-Key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionModificationRequest'
+        description: Requested refund modification
+      tags:
+        - Payments
+  '/{referenceId}/adjustAuthorization':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    put:
+      summary: Adjust Authorization
+      tags:
+        - Payments
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+      operationId: adjustAuthorization
+      description: Adjust the current authorisation
+      security:
+        - Bearer-Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Idempotency-Key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentAdjustment'
+        description: Payment adjustment body
+components:
+  schemas:
+    Amount:
+      description: Amount Object
+      type: object
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        type:
+          $ref: '#/components/schemas/AmountType'
+        value:
+          type: integer
+          example: 1000
+          format: int64
+          description: 'Integer value of price in the currencys monitary subunit (eg Norwegian Øre), or monitary unit where applicable (eg Japanese YEN). Type of monitary unit is defined in  ISO 4217.'
+      required:
+        - value
+        - currency
+    AmountType:
+      type: string
+      enum:
+        - PURCHASE
+        - TIPS
+        - CASHBACK
+      example: PURCHASE
+      default: PURCHASE
+      description: |-
+        The type of transaction this amount represents for legal marking through the schemes.
+
+        only ebax?
+    Currency:
+      type: string
+      example: NOK
+      enum:
+        - NOK
+      description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian Kroner, Note, should this be using digit code? eg NOK = 578'
+    EncryptedCardData: 
+      title: Encrypted card data for the payment
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of payment method, currently only supports 'scheme'
+          enum:
+            - scheme
+        expiryMonth: 
+          type: string
+          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
+        expiryYear: 
+          type: string
+          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
+        securityCode:
+          type: string
+          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
+        cardNumber:
+          type: string
+          example: 'vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..'
+      required:
+        - type
+        - expiryMonth
+        - expiryYear
+        - securityCode
+        - cardNumber
+    Payment:
+      title: Payment
+      description: Payment object
+      type: object
+      properties:
+        aggregate:
+          $ref: '#/components/schemas/TransactionAggregate'
+        amount:
+          $ref: '#/components/schemas/Amount'
+        authorisationType:
+          $ref: '#/components/schemas/AuthorisationType'
+        authorised:
+          type: boolean
+          readOnly: true
+        autoCapture:
+          type: boolean
+          default: false
+          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
+        customer:
+          $ref: '#/components/schemas/Customer'
+        customerInteraction:
+          type: string
+          description: The form of customer interaction to trigger the purchase
+          enum:
+            - CUSTOMER_PRESENT
+            - CUSTOMER_NOT_PRESENT
+          example: CUSTOMER_NOT_PRESENT
+          default: CUSTOMER_NOT_PRESENT
+        industryData:
+          description: Additional data related to the transaction.
+          type: object
+          properties:
+            airline:
+              $ref: '#/components/schemas/AirlineData'
+        lineItems:
+          type: array
+          description: The items purchased with this payment
+          items:
+            $ref: '#/components/schemas/LineItem'
+        logistics:
+          $ref: '#/components/schemas/Logistics'
+        merchantAccount:
+          $ref: '#/components/schemas/MerchantAccount'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        profile:
+          $ref: '#/components/schemas/Profile'
+        pspReference:
+          $ref: '#/components/schemas/PspReferenceType'
+        redirectUrl:
+          type: string
+          format: uri
+          example: 'https://landing.vipps.no?token=abc123'
+          description: 'The url you should redirect the user to to continue with the payment. '
+          readOnly: true
+        reference:
+          $ref: '#/components/schemas/ReferenceType'
+        returnUrl:
+          type: string
+          example: 'https://example.io/redirect?orderId=abcc123'
+        sdkData:
+          $ref: '#/components/schemas/SdkData'
+        subReference:
+          $ref: '#/components/schemas/ReferenceType'
+        userFlow:
+          type: string
+          enum:
+            - PUSH_MESSAGE
+            - NATIVE_REDIRECT
+            - WEB_REDIRECT
+            - SDK
+          example: NATIVE_REDIRECT
+          description: |-
+            The flow for bringing to user to the Vipps Wallet payment confirmation screen.
+
+            If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
+        userText:
+          type: string
+          description: message to user
+      required:
+        - amount
+        - merchantAccount
+        - paymentMethod
+        - reference
+        - returnUrl
+        - userFlow
+      x-examples: {}
+    AirlineData:
+      title: AirlineData
+      type: object
+      description: |-
+        Airline related data
+
+        If present, `passenderName`, `airlineCode`, `airlineDesignatorCode` and `agencyInvoiceNumber` are all required.
+      properties:
+        agencyInvoiceNumber:
+          type: string
+          description: 'Reference number for the invoice, issued by the agency.'
+          minLength: 1
+          maxLength: 6
+        airlineCode:
+          type: string
+          description: IATA 3-digit accounting code (PAX); numeric. It identifies the carrier. eg KLM = 074
+          format: IATA 3-digit accounting code (PAX)
+          example: '074'
+          minLength: 3
+          maxLength: 3
+        airlineDesignatorCode:
+          type: string
+          description: IATA 2-letter accounting code (PAX); alphabetical. It identifies the carrier. Eg KLM = KL
+          format: IATA 2-letter airline code
+          example: KL
+          minLength: 2
+          maxLength: 2
+        passengerName:
+          type: string
+          description: 'Passenger name, initials, and a title.'
+          format: last name + first name or initials + title.
+          example: FLYER / MARY MS.
+          minLength: 1
+          maxLength: 49
+        ticketNumber:
+          type: string
+          description: The ticket's unique identifier.
+          minLength: 1
+          maxLength: 150
+    TransactionAggregate:
+      title: TransactionAggregate
+      type: object
+      readOnly: true
+      properties:
+        authorizedAmount:
+          $ref: '#/components/schemas/Amount'
+        cancelledAmount:
+          $ref: '#/components/schemas/Amount'
+        capturedAmount:
+          $ref: '#/components/schemas/Amount'
+        refundedAmount:
+          $ref: '#/components/schemas/Amount'
+      required:
+        - currentAuthorizedAmount
+        - cancelledAmount
+        - capturedAmount
+        - refundedAmount
+    TransactionModificationRequest:
+      title: TransactionModificationRequest
+      type: object
+      x-examples: {}
+      properties:
+        merchantAccount:
+          $ref: '#/components/schemas/MerchantAccount'
+        modificationAmount:
+          $ref: '#/components/schemas/Amount'
+        modificationReference:
+          $ref: '#/components/schemas/ReferenceType'
+      required:
+        - merchantAccount
+        - modificationAmount
+    ReferenceType:
+      type: string
+      title: ReferenceType
+      description: A reference
+      pattern: '^[a-zA-Z0-9-]{8,50}$'
+      minLength: 8
+      maxLength: 50
+      example: reference-string
+      x-examples: {}
+    PspReferenceType:
+      type: string
+      readOnly: true
+      title: PspReferenceType
+      description: Reference value for a payment defined by Vipps
+      format: uuid
+    Address:
+      title: Address
+      type: object
+      x-examples:
+        Vipps:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          lines:
+            - Robert Levins gate 5
+          postCode: '0154'
+          city: Oslo
+          country: Norway
+      properties:
+        city:
+          type: string
+          example: Oslo
+        country:
+          type: string
+          example: 'NO'
+          description: Country code according to ISO 3166
+        id:
+          type: string
+          format: uuid
+          description: 'Unique ID of the address, always provided in response from Vipps'
+        lines:
+          type: array
+          description: 'Array of addressLines, for example streetname, number etc'
+          items:
+            type: string
+            example: Robert Levins gate 5
+        postCode:
+          type: string
+          description: Postcode of the address in local country format
+          example: '0154'
+      required:
+        - lines
+        - postCode
+        - city
+        - country
+    LineItem:
+      title: LineItem
+      type: object
+      properties:
+        amountExcludingTax:
+          type: integer
+        amountIncludingTax:
+          type: integer
+        description:
+          type: string
+        id:
+          type: string
+          description: The product ID
+        imageUrl:
+          type: string
+        productUrl:
+          type: string
+        quantity:
+          type: integer
+        taxAmount:
+          type: string
+        taxPercentage:
+          type: integer
+      required:
+        - amountExcludingTax
+        - amountIncludingTax
+        - description
+        - id
+        - quantity
+        - taxAmount
+        - taxPercentage
+      description: A object describing a purchased product.
+    Profile:
+      title: Profile
+      type: object
+      properties:
+        scope:
+          type: string
+          description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
+        targetConsent?:
+          type: string
+        sub:
+          type: string
+          readOnly: true
+          description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.authorised` is `true`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
+    Logistics:
+      title: Logistics
+      type: object
+      description: |-
+        Logistics options for a payment.
+
+        Must be combined with the use of `$.profile.scope` where the value must contain, at least, `name address`.
+      properties:
+        fixedOptions:
+          type: array
+          description: Fixed logistics alternatives if no location based calculation is needed.
+          items:
+            $ref: '#/components/schemas/LogisticsOption'
+        dynamicOptionsCallback:
+          type: string
+          format: uri
+          example: 'https://example.com/shipping/123'
+          pattern: '^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
+          description: Callback url for dynamic Logistics Option calculation
+        tracking:
+          $ref: '#/components/schemas/Tracking'
+    Customer:
+      title: Customer
+      type: string
+      description: |-
+        Can be one of:
+          * The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
+          * Target users phone number in MSISDN format
+    SdkData:
+      title: SdkData
+      type: object
+      readOnly: true
+      description: The data which should be provided to the *Vipps Trigger SDK* if `userFlow` is `SDK`.
+      properties:
+        token:
+          type: string
+      required:
+        - token
+    LogisticsOption:
+      title: LogisticsOption
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Amount'
+        id:
+          type: string
+          format: uuid
+          description: Unique ID of the logistic option
+        priority:
+          type: integer
+          format: int32
+          description: Priority of the logistic option for sorting. Higher number is greater priority.
+        title:
+          type: string
+          description: 'Shipping method. Max length: 256 characters. Recommended length for readability on most screens: 25 characters.'
+          example: Posten Servicepakke
+          maxLength: 256
+      required:
+        - amount
+        - title
+        - id
+    PaymentMethod:
+      title: PaymentMethod
+      type: object
+      properties:
+        oneclickToken:
+          type: string
+          description: |-
+            The token returned from XXXX (TODO) when `$.paymentMethod.type` is `WALLET_REQUEST_ONECLICK`
+
+
+            Required if `$.paymentMethod.type` is `ONECLICK`.
+        type:
+          $ref: '#/components/schemas/PaymentMethodType'
+        data: 
+          $ref: '#/components/schemas/EncryptedCardData'
+      required:
+        - type
+    PaymentMethodType:
+      type: string
+      enum:
+        - WALLET
+        - WALLET_PREFER_BANKAXEPT
+        - ONECLICK
+        - WALLET_REQUEST_ONECLICK
+        - CARD
+      example: WALLET
+      description: |-
+        The paymentMethod type to be performed.
+
+        `ONECLICK` must be combined with a valid `$.paymentMethod.oneclickToken`, and a low-value exemption transaction will attempted on the saved payment source of the user. If the transaction is rejected, a `$.returnUrl` will be provided in accordance with the `WALLET_REQUEST_ONECLICK` paymentMethod flow.
+
+        `CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT`.
+    PaymentAdjustment:
+      title: PaymentAdjustment
+      type: object
+      properties:
+        authorisationType:
+          $ref: '#/components/schemas/AuthorisationType'
+        logistics:
+          $ref: '#/components/schemas/Logistics'
+        merchantAccount:
+          $ref: '#/components/schemas/MerchantAccount'
+        modificationAmount:
+          $ref: '#/components/schemas/Amount'
+        modificationReference:
+          $ref: '#/components/schemas/ReferenceType'
+      required:
+        - modificationAmount
+        - modificationReference
+    Tracking:
+      title: Tracking
+      type: object
+      description: Logistics tracking information
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Tracking URL
+        supplier:
+          type: string
+          enum:
+            - BRING
+            - POSTNORD
+          description: Logistics supplier
+        id:
+          type: string
+          description: Tracking ID
+      required:
+        - url
+        - supplier
+        - id
+    PaymentEvent:
+      title: PaymentEvent
+      type: object
+      properties:
+        reference:
+          $ref: '#/components/schemas/ReferenceType'
+        pspReference:
+          $ref: '#/components/schemas/PspReferenceType'
+        paymentAction:
+          type: string
+          enum:
+            - CREATED
+            - AUTHORISATION
+            - CANCEL
+            - CAPTURE
+            - REFUND
+            - ADJUSTMENT
+            - TERMINATE
+          example: AUTHORISATION
+        amount:
+          $ref: '#/components/schemas/Amount'
+        authorisationType:
+          $ref: '#/components/schemas/AuthorisationType'
+        processedAt:
+          type: string
+          format: date-time
+      required:
+        - reference
+        - pspReference
+        - paymentAction
+        - amount
+        - processedAt
+      x-examples: {}
+    AuthorisationType:
+      title: AuthorisationType
+      type: string
+      enum:
+        - PRE_AUTH
+        - FINAL_AUTH
+      example: FINAL_AUTH
+      description: Flags a card payment request for either pre-authorisation or final authorisation
+    MerchantAccount:
+      type: string
+      title: MerchantAccount
+      pattern: '^[1-9][0-9]{3,4}$'
+      description: The merchant account identifier
+  parameters:
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      required: true
+      schema:
+        type: string
+        pattern: '^[0-9]{4,6}$'
+        minLength: 4
+        maxLength: 6
+        example: '123456'
+      description: Serial number for the merchant performing the payments
+    APIM-Subscription-Key:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        example: da7d5b0e18a84aeda961c0c31b75c2a9
+      description: APIM Subscription Key
+    Payment-Reference-ID:
+      name: referenceId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9-]{8,50}$'
+        minLength: 8
+        maxLength: 50
+      description: Given primary reference ID when creating the payment
+    Idempotency-Key:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+      description: 'Idempotency key for the request, ensures idempotent actions.'
+  securitySchemes:
+    Bearer-Authorization:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: Access bearer token
+  responses:
+    Payment-Response:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Payment'
+  examples: {}
+security:
+  - Bearer-Authorization: []
