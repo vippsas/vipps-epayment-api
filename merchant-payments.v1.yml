@@ -280,7 +280,7 @@ components:
         authorised:
           type: boolean
           readOnly: true
-        autoCapture:
+        directCapture:
           type: boolean
           default: false
           description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
