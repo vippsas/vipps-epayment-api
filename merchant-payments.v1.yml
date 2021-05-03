@@ -49,7 +49,7 @@ paths:
         - $ref: '#/components/parameters/Idempotency-Key'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
     parameters: []
-  '/{referenceId}':
+  '/{reference}':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
     get:
@@ -64,7 +64,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
-  '/{referenceId}/events':
+  '/{reference}/events':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
     get:
@@ -87,7 +87,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/APIM-Subscription-Key'
       description: Get event log for the specified payment reference
-  '/{referenceId}/cancel':
+  '/{reference}/cancel':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
     put:
@@ -116,7 +116,7 @@ paths:
         description: Requested cancel modification
       tags:
         - Payments
-  '/{referenceId}/capture':
+  '/{reference}/capture':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
     post:
@@ -145,7 +145,7 @@ paths:
         description: Requested capture modification
       tags:
         - Payments
-  '/{referenceId}/refund':
+  '/{reference}/refund':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
     post:
@@ -174,7 +174,7 @@ paths:
         description: Requested refund modification
       tags:
         - Payments
-  '/{referenceId}/adjustAuthorization':
+  '/{reference}/adjustAuthorization':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
     put:
