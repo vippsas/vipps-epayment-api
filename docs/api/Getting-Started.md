@@ -121,7 +121,7 @@ A valid request like the one above will result in a response with the following 
   },
   "authorisationType": "FINAL_AUTH",
   "authorised": false,
-  "autoCapture": false,
+  "directCapture": false,
   "customerInteraction": "CUSTOMER_NOT_PRESENT",
   "merchantAccount": "YOUR-MERCHANT-ACCOUNT-NUMBER",
   "paymentMethod": {
