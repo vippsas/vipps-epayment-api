@@ -657,6 +657,7 @@ components:
     PaymentEvent:
       title: PaymentEvent
       type: object
+      x-examples: {}
       properties:
         reference:
           $ref: '#/components/schemas/ReferenceType'
@@ -680,13 +681,16 @@ components:
         processedAt:
           type: string
           format: date-time
+        idempotencyKey:
+          type: string
+          description: The Idempotency key of the request.
       required:
         - reference
         - pspReference
         - paymentAction
         - amount
         - processedAt
-      x-examples: {}
+        - idempotencyKey
     AuthorisationType:
       title: AuthorisationType
       type: string
