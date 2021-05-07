@@ -185,7 +185,8 @@ In the case the payment has been completed this will yield an array of events li
       "type": "PURCHASE",
       "value": 1000
     },
-    "processedAt": "2021-02-24T14:15:22Z"
+    "processedAt": "2021-02-24T14:15:22Z",
+  "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
   },
   {
     "reference": "UNIQUE-PAYMENT-REFERENCE",
@@ -197,7 +198,8 @@ In the case the payment has been completed this will yield an array of events li
       "value": 1000
     },
     "authorisationType": "FINAL_AUTH",
-    "processedAt": "2021-02-24T14:16:22Z"
+    "processedAt": "2021-02-24T14:16:22Z",
+  "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
   }
 ]
 ```
@@ -223,7 +225,8 @@ For example a succeful authentication event would look like
     "type": "PURCHASE",
     "value": 1000
   },
-  "processedAt": "2021-02-24T14:15:22Z"
+  "processedAt": "2021-02-24T14:15:22Z",
+  "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
 }
 ```
 
@@ -239,7 +242,8 @@ If the user had rejected or not acted upon the payment the event would look like
     "type": "PURCHASE",
     "value": 1000
   },
-  "processedAt": "2021-02-24T14:15:12Z"
+  "processedAt": "2021-02-24T14:15:12Z",
+  "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
 }
 ```
 
