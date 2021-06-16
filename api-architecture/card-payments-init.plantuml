@@ -1,0 +1,25 @@
+@startuml
+
+actor user
+participant checkout
+participant mp
+database mpDB
+database VAAP
+participant pe
+participant cardpaymentwindow
+
+
+checkout -> mp : initiate payment, payment method cards
+mp -> mpDB : save request
+mp --> eventhub : publish event (not mvp)
+mp -> pe : create order, tags: card-payment
+pe -> mp : created, JWT access token, transactionId
+mp -> VAAP : insert for backwards compatibility with transactionId
+mp -> checkout: card payment window url with JWT access token as query param
+checkout -> cardpaymentwindow : redirect
+user -> cardpaymentwindow : enter details and submit
+cardpaymentwindow -> pe : use access token to auth payment and 3ds
+
+
+pe --> callback: publish event, send callback osv
+@enduml
