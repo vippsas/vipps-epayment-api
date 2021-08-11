@@ -4,7 +4,7 @@ servers:
     description: Production source URL for the Vipps ePayments api
 info:
   description: The merchant payments api for Vipps wallet
-  version: 0.3.0
+  version: 0.4.0
   title: Vipps Merchant Payments API
   contact:
     email: integration@vipps.no
@@ -207,6 +207,35 @@ paths:
             schema:
               $ref: '#/components/schemas/PaymentAdjustment'
         description: Payment adjustment body
+  '/{reference}/updateOrderInformation':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+    put:
+      summary: Update order information
+      tags:
+        - AdjustPayments
+      description: Adjust the order information
+      security:
+        - Bearer-Authorization: []
+      parameters:
+        - $ref: '#/components/parameters/APIM-Subscription-Key'
+        - $ref: '#/components/parameters/Idempotency-Key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderAdjustment'
+        description: Order adjustment body
+      responses:
+        '200':
+          $ref: '#/components/responses/Payment-Response'
+        '400':
+          $ref: '#/components/responses/Problem-Response'
+        '404':
+          $ref: '#/components/responses/Problem-Response'
+        '409':
+          $ref: '#/components/responses/Problem-Response'
+      operationId: updateOrderInformation
 components:
   schemas:
     Amount:
@@ -243,37 +272,11 @@ components:
       enum:
         - NOK
       description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian Kroner, Note, should this be using digit code? eg NOK = 578'
-    EncryptedCardData:
-      title: Encrypted card data for the payment
-      type: object
-      properties:
-        type:
-          type: string
-          description: 'Type of payment method, currently only supports ''scheme'''
-          enum:
-            - scheme
-        expiryMonth:
-          type: string
-          example: vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..
-        expiryYear:
-          type: string
-          example: vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..
-        securityCode:
-          type: string
-          example: vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..
-        cardNumber:
-          type: string
-          example: vippsjs_0_1_0$k7s65M5V0KdPxTErhBIPoMPI8HlC..
-      required:
-        - type
-        - expiryMonth
-        - expiryYear
-        - securityCode
-        - cardNumber
     Payment:
       title: Payment
       description: Payment object
       type: object
+      x-examples: {}
       properties:
         aggregate:
           $ref: '#/components/schemas/TransactionAggregate'
@@ -304,15 +307,12 @@ components:
           properties:
             airline:
               $ref: '#/components/schemas/AirlineData'
-        lineItems:
-          type: array
-          description: The items purchased with this payment
-          items:
-            $ref: '#/components/schemas/LineItem'
         logistics:
           $ref: '#/components/schemas/Logistics'
         merchantAccount:
           $ref: '#/components/schemas/MerchantAccount'
+        orderInformation:
+          $ref: '#/components/schemas/OrderInformation'
         paymentMethod:
           $ref: '#/components/schemas/PaymentMethod'
         profile:
@@ -330,8 +330,6 @@ components:
         returnUrl:
           type: string
           example: 'https://example.io/redirect?orderId=abcc123'
-        sdkData:
-          $ref: '#/components/schemas/SdkData'
         subReference:
           $ref: '#/components/schemas/ReferenceType'
         userFlow:
@@ -340,7 +338,6 @@ components:
             - PUSH_MESSAGE
             - NATIVE_REDIRECT
             - WEB_REDIRECT
-            - SDK
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
@@ -356,14 +353,13 @@ components:
         - reference
         - returnUrl
         - userFlow
-      x-examples: {}
     AirlineData:
       title: AirlineData
       type: object
       description: |-
         Airline related data
 
-        If present, `passenderName`, `airlineCode`, `airlineDesignatorCode` and `agencyInvoiceNumber` are all required.
+        If present, `passengerName`, `airlineCode`, `airlineDesignatorCode` and `agencyInvoiceNumber` are all required.
       properties:
         agencyInvoiceNumber:
           type: string
@@ -484,6 +480,7 @@ components:
     LineItem:
       title: LineItem
       type: object
+      description: A object describing a purchased product.
       properties:
         amountExcludingTax:
           type: integer
@@ -494,8 +491,6 @@ components:
         id:
           type: string
           description: The product ID
-        imageUrl:
-          type: string
         productUrl:
           type: string
         quantity:
@@ -504,6 +499,11 @@ components:
           type: string
         taxPercentage:
           type: integer
+        discount:
+          type: integer
+          nullable: true
+        quantityUnit:
+          $ref: '#/components/schemas/QuantityUnitEnum'
       required:
         - amountExcludingTax
         - amountIncludingTax
@@ -512,7 +512,8 @@ components:
         - quantity
         - taxAmount
         - taxPercentage
-      description: A object describing a purchased product.
+        - discount
+        - quantityUnit
     Profile:
       title: Profile
       type: object
@@ -520,8 +521,6 @@ components:
         scope:
           type: string
           description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
-        targetConsent?:
-          type: string
         sub:
           type: string
           readOnly: true
@@ -554,16 +553,6 @@ components:
         Can be one of:
           * The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
           * Target users phone number in MSISDN format
-    SdkData:
-      title: SdkData
-      type: object
-      readOnly: true
-      description: The data which should be provided to the *Vipps Trigger SDK* if `userFlow` is `SDK`.
-      properties:
-        token:
-          type: string
-      required:
-        - token
     LogisticsOption:
       title: LogisticsOption
       type: object
@@ -600,15 +589,12 @@ components:
             Required if `$.paymentMethod.type` is `ONECLICK`.
         type:
           $ref: '#/components/schemas/PaymentMethodType'
-        data:
-          $ref: '#/components/schemas/EncryptedCardData'
       required:
         - type
     PaymentMethodType:
       type: string
       enum:
         - WALLET
-        - WALLET_PREFER_BANKAXEPT
         - ONECLICK
         - WALLET_REQUEST_ONECLICK
         - CARD
@@ -625,8 +611,6 @@ components:
       properties:
         authorisationType:
           $ref: '#/components/schemas/AuthorisationType'
-        logistics:
-          $ref: '#/components/schemas/Logistics'
         merchantAccount:
           $ref: '#/components/schemas/MerchantAccount'
         modificationAmount:
@@ -634,8 +618,19 @@ components:
         modificationReference:
           $ref: '#/components/schemas/ReferenceType'
       required:
+        - merchantAccount
         - modificationAmount
         - modificationReference
+    OrderAdjustment:
+      title: OrderAdjustment
+      type: object
+      properties:
+        logistics:
+          $ref: '#/components/schemas/Logistics'
+        merchantAccount:
+          $ref: '#/components/schemas/MerchantAccount'
+      required:
+        - merchantAccount
     Tracking:
       title: Tracking
       type: object
@@ -729,6 +724,29 @@ components:
         - type
         - title
         - instance
+    OrderInformation:
+      title: OrderInformation
+      type: object
+      properties:
+        lineItems:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/LineItem'
+        shippingAmount:
+          type: integer
+          nullable: true
+      required:
+        - lineItems
+        - shippingAmount
+    QuantityUnitEnum:
+      type: string
+      title: QuantityUnitEnum
+      enum:
+        - Unknown
+        - Kilogram
+        - Meter
+        - Liter
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
