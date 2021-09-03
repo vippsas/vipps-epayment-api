@@ -4,7 +4,7 @@ servers:
     description: Production source URL for the Vipps ePayments api
 info:
   description: The merchant payments api for Vipps wallet
-  version: 0.4.0
+  version: 0.5.0
   title: Vipps Merchant Payments API
   contact:
     email: integration@vipps.no
@@ -98,8 +98,8 @@ paths:
       summary: Cancel Payment
       operationId: cancelPayment
       responses:
-        '200':
-          $ref: '#/components/responses/Payment-Response'
+        '202':
+          $ref: '#/components/responses/Adjust-Response'
         '400':
           $ref: '#/components/responses/Problem-Response'
         '404':
@@ -127,8 +127,8 @@ paths:
       summary: Capture Payment
       operationId: capturePayment
       responses:
-        '200':
-          $ref: '#/components/responses/Payment-Response'
+        '202':
+          $ref: '#/components/responses/Adjust-Response'
         '400':
           $ref: '#/components/responses/Problem-Response'
         '404':
@@ -156,8 +156,8 @@ paths:
       summary: Refund Payment
       operationId: refundPayment
       responses:
-        '200':
-          $ref: '#/components/responses/Payment-Response'
+        '202':
+          $ref: '#/components/responses/Adjust-Response'
         '400':
           $ref: '#/components/responses/Problem-Response'
         '404':
@@ -186,8 +186,8 @@ paths:
       tags:
         - AdjustPayments
       responses:
-        '200':
-          $ref: '#/components/responses/Payment-Response'
+        '202':
+          $ref: '#/components/responses/Adjust-Response'
         '400':
           $ref: '#/components/responses/Problem-Response'
         '404':
@@ -207,35 +207,6 @@ paths:
             schema:
               $ref: '#/components/schemas/PaymentAdjustment'
         description: Payment adjustment body
-  '/{reference}/updateOrderInformation':
-    parameters:
-      - $ref: '#/components/parameters/Payment-Reference-ID'
-    put:
-      summary: Update order information
-      tags:
-        - AdjustPayments
-      description: Adjust the order information
-      security:
-        - Bearer-Authorization: []
-      parameters:
-        - $ref: '#/components/parameters/APIM-Subscription-Key'
-        - $ref: '#/components/parameters/Idempotency-Key'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrderAdjustment'
-        description: Order adjustment body
-      responses:
-        '200':
-          $ref: '#/components/responses/Payment-Response'
-        '400':
-          $ref: '#/components/responses/Problem-Response'
-        '404':
-          $ref: '#/components/responses/Problem-Response'
-        '409':
-          $ref: '#/components/responses/Problem-Response'
-      operationId: updateOrderInformation
 components:
   schemas:
     Amount:
@@ -773,6 +744,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Payment'
+    Adjust-Response:
+      description: Adjustment response
     Problem-Response:
       description: Standard problem response
       content:

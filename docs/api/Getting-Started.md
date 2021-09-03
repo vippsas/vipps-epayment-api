@@ -279,7 +279,7 @@ curl https://apitest.vipps.no/payments/v1/UNIQUE-PAYMENT-REFERENCE/capture \
 }'
 ```
 
-In reponse you will get the payment object you get from the [Create Payment]() and [Get Payment]() endpoints, updated to reflect the modification performed.
+Adjustments to a payment (capture, refund etc) as async. You will get a `202 Accepted` response with no body if the action is valid. A callback will be sent once the capture is completed. Additionally polling on [Get Payment]() can be done. Once capture is completed the `Payment` object will be updated to reflect this.
 
 In this case the `aggregate` property will be updated as such:
 
