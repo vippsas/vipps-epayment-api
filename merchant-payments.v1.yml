@@ -544,8 +544,6 @@ components:
           example: 'https://example.com/shipping/123'
           pattern: '^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
           description: Callback url for dynamic Logistics Option calculation
-        tracking:
-          $ref: '#/components/schemas/Tracking'
     Customer:
       title: Customer
       type: string
@@ -631,28 +629,6 @@ components:
           $ref: '#/components/schemas/MerchantAccount'
       required:
         - merchantAccount
-    Tracking:
-      title: Tracking
-      type: object
-      description: Logistics tracking information
-      properties:
-        url:
-          type: string
-          format: uri
-          description: Tracking URL
-        supplier:
-          type: string
-          enum:
-            - BRING
-            - POSTNORD
-          description: Logistics supplier
-        id:
-          type: string
-          description: Tracking ID
-      required:
-        - url
-        - supplier
-        - id
     PaymentEvent:
       title: PaymentEvent
       type: object
