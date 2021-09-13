@@ -22,7 +22,7 @@ A notification will look something like this;
 {
   "reference": "UNIQUE-PAYMENT-REFERENCE",
   "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-  "paymentAction": "AUTHORISATION",
+  "paymentAction": "AUTHORISED",
   "amount": {
     "currency": "NOK",
     "type": "PURCHASE",
@@ -37,10 +37,10 @@ Parameter | Type | Required | Description
 ----------|------|----------|------------
 `reference` | `string` | Y | Your unique reference to this payment given during `createPayment`
 `pspReference` | `string` | Y | Vipps unique reference to this `paymentAction` for this payment
-`paymentAction` | `string,enum` | Y | The action of this event, one of; `CREATED`, `AUTHORISATION`, `CANCEL`, `CAPTURE`, `REFUND`, `ADJUSTMENT`, `TERMINATE`
+`paymentAction` | `string,enum` | Y | The action of this event, one of; `CREATED`, `AUTHORISED`, `CANCEL`, `CAPTURE`, `REFUND`, `ADJUSTMENT`, `TERMINATED`
 `amount` | `Object` | Y | The `currency` and `value` of the payment in minor units
 `processedAt` | `string` | Y | The timestampt the `paymentAction` was completed at
-`idempotencyKey` | `string` | Y | The `idempotencyKey` of the triggering payment api request. Note: The `idempotencyKey` provided during `createPayment` will then be used for `CREATED`, `AUTHORISATION` and `TERMINATE` as they are the result of a single api request.
+`idempotencyKey` | `string` | Y | The `idempotencyKey` of the triggering payment api request. Note: The `idempotencyKey` provided during `createPayment` will then be used for `CREATED`, `AUTHORISED` and `TERMINATED` as they are the result of a single api request.
 
 
 Delivery of notifications should be handled idempotently as Vipps will operate this service under a "at least once" delivery mechanism. Idempotent handling should be base on the `pspReference` which will be unique per event.
@@ -55,4 +55,4 @@ Attempt | Backoff (wait time until next delivery)
 20-50 | 15 minutes
 50+ | 1 hour
 
-Events will be partitioned by `reference` and failed delivery of one event will stop further delivery of other events in that partition until the failed event can be successfully delivered. For example: if an `AUTHORISATION` event fails to be delivered, the subsequent `CAPTURE` event on that payment `reference` will not be delivered until failing event can be processed. This is to ensure consistency in the merchants systems.
+Events will be partitioned by `reference` and failed delivery of one event will stop further delivery of other events in that partition until the failed event can be successfully delivered. For example: if an `AUTHORISED` event fails to be delivered, the subsequent `CAPTURE` event on that payment `reference` will not be delivered until failing event can be processed. This is to ensure consistency in the merchants systems.

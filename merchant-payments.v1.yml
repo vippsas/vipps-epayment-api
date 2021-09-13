@@ -4,7 +4,7 @@ servers:
     description: Production source URL for the Vipps ePayments api
 info:
   description: The merchant payments api for Vipps wallet
-  version: 0.5.0
+  version: 0.6.0
   title: Vipps Merchant Payments API
   contact:
     email: integration@vipps.no
@@ -255,9 +255,8 @@ components:
           $ref: '#/components/schemas/Amount'
         authorisationType:
           $ref: '#/components/schemas/AuthorisationType'
-        authorised:
-          type: boolean
-          readOnly: true
+        state:
+          $ref: '#/components/schemas/State'
         directCapture:
           type: boolean
           default: false
@@ -549,13 +548,6 @@ components:
       title: PaymentMethod
       type: object
       properties:
-        oneclickToken:
-          type: string
-          description: |-
-            The token returned from XXXX (TODO) when `$.paymentMethod.type` is `WALLET_REQUEST_ONECLICK`
-
-
-            Required if `$.paymentMethod.type` is `ONECLICK`.
         type:
           $ref: '#/components/schemas/PaymentMethodType'
       required:
@@ -564,14 +556,10 @@ components:
       type: string
       enum:
         - WALLET
-        - ONECLICK
-        - WALLET_REQUEST_ONECLICK
         - CARD
       example: WALLET
       description: |-
         The paymentMethod type to be performed.
-
-        `ONECLICK` must be combined with a valid `$.paymentMethod.oneclickToken`, and a low-value exemption transaction will attempted on the saved payment source of the user. If the transaction is rejected, a `$.returnUrl` will be provided in accordance with the `WALLET_REQUEST_ONECLICK` paymentMethod flow.
 
         `CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT`.
     PaymentAdjustment:
@@ -590,16 +578,6 @@ components:
         - merchantAccount
         - modificationAmount
         - modificationReference
-    OrderAdjustment:
-      title: OrderAdjustment
-      type: object
-      properties:
-        logistics:
-          $ref: '#/components/schemas/Logistics'
-        merchantAccount:
-          $ref: '#/components/schemas/MerchantAccount'
-      required:
-        - merchantAccount
     PaymentEvent:
       title: PaymentEvent
       type: object
@@ -613,13 +591,13 @@ components:
           type: string
           enum:
             - CREATED
-            - AUTHORISATION
             - CANCEL
             - CAPTURE
             - REFUND
             - ADJUSTMENT
-            - TERMINATE
-          example: AUTHORISATION
+            - AUTHORISED
+            - TERMINATED
+          example: AUTHORISED
         amount:
           $ref: '#/components/schemas/Amount'
         authorisationType:
@@ -694,6 +672,21 @@ components:
         - Kilogram
         - Meter
         - Liter
+    State:
+      type: string
+      title: State
+      description: |-
+        State of the Payment
+
+        One of: 
+        - Pending : User has not yet acted upon the payment
+        - Authorised : User has approved the payment
+        - Terminated : User has not reacted within the time period allowed or actively cancelled the payment.
+      enum:
+        - PENDING
+        - AUTHORISED
+        - TERMINATED
+      readOnly: true
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
