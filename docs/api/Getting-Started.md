@@ -191,7 +191,7 @@ In the case the payment has been completed this will yield an array of events li
   {
     "reference": "UNIQUE-PAYMENT-REFERENCE",
     "pspReference": "6037fc94-0205-4274-8b09-79cbb459658d",
-    "paymentAction": "AUTHORISATION",
+    "paymentAction": "AUTHORISED",
     "amount": {
       "currency": "NOK",
       "type": "PURCHASE",
@@ -236,7 +236,7 @@ If the user had rejected or not acted upon the payment the event would look like
 {
   "reference": "UNIQUE-PAYMENT-REFERENCE",
   "pspReference": "38ab3a93-a819-4982-912d-089f3177e6c8",
-  "paymentAction": "TERMINATE",
+  "paymentAction": "TERMINATED",
   "amount": {
     "currency": "NOK",
     "type": "PURCHASE",
