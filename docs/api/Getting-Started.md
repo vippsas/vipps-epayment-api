@@ -120,7 +120,7 @@ A valid request like the one above will result in a response with the following 
     "value": 1000
   },
   "authorisationType": "FINAL_AUTH",
-  "authorised": false,
+  "state": "CREATED",
   "directCapture": false,
   "customerInteraction": "CUSTOMER_NOT_PRESENT",
   "merchantAccount": "YOUR-MERCHANT-ACCOUNT-NUMBER",
@@ -162,7 +162,7 @@ curl https://apitest.vipps.no/payments/v1/UNIQUE-PAYMENT-REFERENCE \
 -X GET
 ```
 
-To verify if a payment has been authorised by the user check the `authorised` property. If the user has instead chosed to reject the payment the `aggregate.cancelledAmount.value` will be equal to the `amount.value` originally specified in the Create Payment request.
+To verify if a payment has been authorised by the user check if the `state` property is marked `AUTHORISED`. If the user has instead chosed to reject the payment the `state` property will be  `TERMINATED`.
 
 
 The payment event log can be fetched as such:
@@ -179,7 +179,8 @@ In the case the payment has been completed this will yield an array of events li
   {
     "reference": "UNIQUE-PAYMENT-REFERENCE",
     "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-    "paymentAction": "CREATED",
+    "paymentAction": "CREATION",
+    "success": true,
     "amount": {
       "currency": "NOK",
       "type": "PURCHASE",
@@ -191,7 +192,8 @@ In the case the payment has been completed this will yield an array of events li
   {
     "reference": "UNIQUE-PAYMENT-REFERENCE",
     "pspReference": "6037fc94-0205-4274-8b09-79cbb459658d",
-    "paymentAction": "AUTHORISED",
+    "paymentAction": "AUTHORISATION",
+    "success": true,
     "amount": {
       "currency": "NOK",
       "type": "PURCHASE",
@@ -219,7 +221,8 @@ For example a succeful authentication event would look like
 {
   "reference": "UNIQUE-PAYMENT-REFERENCE",
   "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-  "paymentAction": "CREATED",
+  "paymentAction": "CREATION",
+  "success": true,
   "amount": {
     "currency": "NOK",
     "type": "PURCHASE",
@@ -236,7 +239,8 @@ If the user had rejected or not acted upon the payment the event would look like
 {
   "reference": "UNIQUE-PAYMENT-REFERENCE",
   "pspReference": "38ab3a93-a819-4982-912d-089f3177e6c8",
-  "paymentAction": "TERMINATED",
+  "paymentAction": "TERMINATION",
+  "success": true,
   "amount": {
     "currency": "NOK",
     "type": "PURCHASE",
