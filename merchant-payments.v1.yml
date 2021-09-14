@@ -605,6 +605,14 @@ components:
             - AUTHORISATION
             - TERMINATED
           example: AUTHORISATION
+          x-enum-varnames:
+            - CREATION
+            - CANCELLATION
+            - CAPTURE
+            - REFUND
+            - AUTHORISATION_ADJUSTMENT
+            - AUTHORISATION
+            - TERMINATED
         amount:
           $ref: '#/components/schemas/Amount'
         authorisationType:
@@ -696,6 +704,10 @@ components:
         - AUTHORISED : User has approved the payment
         - TERMINATED : User has not reacted within the time period allowed or actively cancelled the payment.
       enum:
+        - CREATED
+        - AUTHORISED
+        - TERMINATED
+      x-enum-varnames:
         - CREATED
         - AUTHORISED
         - TERMINATED
