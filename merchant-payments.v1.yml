@@ -4,7 +4,7 @@ servers:
     description: Production source URL for the Vipps ePayments api
 info:
   description: The merchant payments api for Vipps wallet
-  version: 0.6.0
+  version: 0.6.1
   title: Vipps Merchant Payments API
   contact:
     email: integration@vipps.no
@@ -501,7 +501,7 @@ components:
         sub:
           type: string
           readOnly: true
-          description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.authorised` is `true`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
+          description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.state` is `AUTHORISED`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
     Logistics:
       title: Logistics
       type: object
@@ -597,14 +597,22 @@ components:
         paymentAction:
           type: string
           enum:
-            - CREATED
-            - CANCEL
+            - CREATION
+            - CANCELLATION
             - CAPTURE
             - REFUND
-            - ADJUSTMENT
-            - AUTHORISED
+            - AUTHORISATION_ADJUSTMENT
+            - AUTHORISATION
             - TERMINATED
-          example: AUTHORISED
+          example: AUTHORISATION
+          x-enum-varnames:
+            - CREATION
+            - CANCELLATION
+            - CAPTURE
+            - REFUND
+            - AUTHORISATION_ADJUSTMENT
+            - AUTHORISATION
+            - TERMINATED
         amount:
           $ref: '#/components/schemas/Amount'
         authorisationType:
@@ -615,6 +623,9 @@ components:
         idempotencyKey:
           type: string
           description: The Idempotency key of the request.
+        success:
+          type: boolean
+          description: The outcome of the event
       required:
         - reference
         - pspReference
@@ -689,11 +700,15 @@ components:
         State of the Payment
 
         One of: 
-        - Pending : User has not yet acted upon the payment
-        - Authorised : User has approved the payment
-        - Terminated : User has not reacted within the time period allowed or actively cancelled the payment.
+        - CREATED : User has not yet acted upon the payment
+        - AUTHORISED : User has approved the payment
+        - TERMINATED : User has not reacted within the time period allowed or actively cancelled the payment.
       enum:
-        - PENDING
+        - CREATED
+        - AUTHORISED
+        - TERMINATED
+      x-enum-varnames:
+        - CREATED
         - AUTHORISED
         - TERMINATED
       readOnly: true
