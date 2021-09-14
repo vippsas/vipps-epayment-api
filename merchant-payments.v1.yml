@@ -269,6 +269,9 @@ components:
           enum:
             - CUSTOMER_PRESENT
             - CUSTOMER_NOT_PRESENT
+          x-enum-varnames:
+            - CUSTOMER_PRESENT
+            - CUSTOMER_NOT_PRESENT
           example: CUSTOMER_NOT_PRESENT
           default: CUSTOMER_NOT_PRESENT
         industryData:
@@ -305,6 +308,10 @@ components:
         userFlow:
           type: string
           enum:
+            - PUSH_MESSAGE
+            - NATIVE_REDIRECT
+            - WEB_REDIRECT
+          x-enum-varnames:
             - PUSH_MESSAGE
             - NATIVE_REDIRECT
             - WEB_REDIRECT
@@ -619,6 +626,9 @@ components:
       title: AuthorisationType
       type: string
       enum:
+        - PRE_AUTH
+        - FINAL_AUTH
+      x-enum-varnames:
         - PRE_AUTH
         - FINAL_AUTH
       example: FINAL_AUTH
