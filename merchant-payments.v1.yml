@@ -215,8 +215,6 @@ components:
       properties:
         currency:
           $ref: '#/components/schemas/Currency'
-        type:
-          $ref: '#/components/schemas/AmountType'
         value:
           type: integer
           example: 1000
@@ -225,18 +223,6 @@ components:
       required:
         - value
         - currency
-    AmountType:
-      type: string
-      enum:
-        - PURCHASE
-        - TIPS
-        - CASHBACK
-      example: PURCHASE
-      default: PURCHASE
-      description: |-
-        The type of transaction this amount represents for legal marking through the schemes.
-
-        only ebax?
     Currency:
       type: string
       example: NOK
