@@ -4,7 +4,7 @@ servers:
     description: Production source URL for the Vipps ePayments api
 info:
   description: The merchant payments api for Vipps wallet
-  version: 0.6.1
+  version: 0.7.0
   title: Vipps Merchant Payments API
   contact:
     email: integration@vipps.no
@@ -27,6 +27,10 @@ tags:
     name: AdjustPayments
 paths:
   /:
+    parameters:
+      - $ref: '#/components/parameters/Idempotency-Key'
+      - $ref: '#/components/parameters/APIM-Subscription-Key'
+      - $ref: '#/components/parameters/Merchant-Serial-Number'
     post:
       operationId: createPayment
       summary: Create Payment
@@ -49,13 +53,11 @@ paths:
           $ref: '#/components/responses/Problem-Response'
         '409':
           $ref: '#/components/responses/Problem-Response'
-      parameters:
-        - $ref: '#/components/parameters/Idempotency-Key'
-        - $ref: '#/components/parameters/APIM-Subscription-Key'
-    parameters: []
   '/{reference}':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
+      - $ref: '#/components/parameters/Merchant-Serial-Number'
+      - $ref: '#/components/parameters/APIM-Subscription-Key'
     get:
       summary: Get Payment
       tags:
@@ -65,12 +67,11 @@ paths:
           $ref: '#/components/responses/Payment-Response'
       operationId: getPayment
       description: Get a payment object by its reference ID
-      parameters:
-        - $ref: '#/components/parameters/Merchant-Serial-Number'
-        - $ref: '#/components/parameters/APIM-Subscription-Key'
   '/{reference}/events':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
+      - $ref: '#/components/parameters/Merchant-Serial-Number'
+      - $ref: '#/components/parameters/APIM-Subscription-Key'
     get:
       summary: Get Payment Event Log
       tags:
@@ -87,13 +88,13 @@ paths:
       operationId: getPaymentEventLog
       security:
         - Bearer-Authorization: []
-      parameters:
-        - $ref: '#/components/parameters/Merchant-Serial-Number'
-        - $ref: '#/components/parameters/APIM-Subscription-Key'
       description: Get event log for the specified payment reference
   '/{reference}/cancel':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
+      - $ref: '#/components/parameters/Merchant-Serial-Number'
+      - $ref: '#/components/parameters/APIM-Subscription-Key'
+      - $ref: '#/components/parameters/Idempotency-Key'
     put:
       summary: Cancel Payment
       operationId: cancelPayment
@@ -109,9 +110,6 @@ paths:
       description: Cancel the given payment
       security:
         - Bearer-Authorization: []
-      parameters:
-        - $ref: '#/components/parameters/APIM-Subscription-Key'
-        - $ref: '#/components/parameters/Idempotency-Key'
       requestBody:
         content:
           application/json:
@@ -123,6 +121,9 @@ paths:
   '/{reference}/capture':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
+      - $ref: '#/components/parameters/Merchant-Serial-Number'
+      - $ref: '#/components/parameters/APIM-Subscription-Key'
+      - $ref: '#/components/parameters/Idempotency-Key'
     post:
       summary: Capture Payment
       operationId: capturePayment
@@ -138,9 +139,6 @@ paths:
       description: Capture the given payment
       security:
         - Bearer-Authorization: []
-      parameters:
-        - $ref: '#/components/parameters/APIM-Subscription-Key'
-        - $ref: '#/components/parameters/Idempotency-Key'
       requestBody:
         content:
           application/json:
@@ -152,6 +150,9 @@ paths:
   '/{reference}/refund':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
+      - $ref: '#/components/parameters/Merchant-Serial-Number'
+      - $ref: '#/components/parameters/APIM-Subscription-Key'
+      - $ref: '#/components/parameters/Idempotency-Key'
     post:
       summary: Refund Payment
       operationId: refundPayment
@@ -167,9 +168,6 @@ paths:
       description: Refund the given payment
       security:
         - Bearer-Authorization: []
-      parameters:
-        - $ref: '#/components/parameters/APIM-Subscription-Key'
-        - $ref: '#/components/parameters/Idempotency-Key'
       requestBody:
         content:
           application/json:
@@ -181,6 +179,9 @@ paths:
   '/{reference}/adjustAuthorization':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
+      - $ref: '#/components/parameters/Merchant-Serial-Number'
+      - $ref: '#/components/parameters/APIM-Subscription-Key'
+      - $ref: '#/components/parameters/Idempotency-Key'
     put:
       summary: Adjust Authorization
       tags:
@@ -198,9 +199,6 @@ paths:
       description: Adjust the current authorisation
       security:
         - Bearer-Authorization: []
-      parameters:
-        - $ref: '#/components/parameters/APIM-Subscription-Key'
-        - $ref: '#/components/parameters/Idempotency-Key'
       requestBody:
         content:
           application/json:
@@ -215,8 +213,6 @@ components:
       properties:
         currency:
           $ref: '#/components/schemas/Currency'
-        type:
-          $ref: '#/components/schemas/AmountType'
         value:
           type: integer
           example: 1000
@@ -225,18 +221,6 @@ components:
       required:
         - value
         - currency
-    AmountType:
-      type: string
-      enum:
-        - PURCHASE
-        - TIPS
-        - CASHBACK
-      example: PURCHASE
-      default: PURCHASE
-      description: |-
-        The type of transaction this amount represents for legal marking through the schemes.
-
-        only ebax?
     Currency:
       type: string
       example: NOK
@@ -282,8 +266,6 @@ components:
               $ref: '#/components/schemas/AirlineData'
         logistics:
           $ref: '#/components/schemas/Logistics'
-        merchantAccount:
-          $ref: '#/components/schemas/MerchantAccount'
         orderInformation:
           $ref: '#/components/schemas/OrderInformation'
         paymentMethod:
@@ -392,8 +374,6 @@ components:
       type: object
       x-examples: {}
       properties:
-        merchantAccount:
-          $ref: '#/components/schemas/MerchantAccount'
         modificationAmount:
           $ref: '#/components/schemas/Amount'
         modificationReference:
@@ -575,8 +555,6 @@ components:
       properties:
         authorisationType:
           $ref: '#/components/schemas/AuthorisationType'
-        merchantAccount:
-          $ref: '#/components/schemas/MerchantAccount'
         modificationAmount:
           $ref: '#/components/schemas/Amount'
         modificationReference:
@@ -643,12 +621,8 @@ components:
         - PRE_AUTH
         - FINAL_AUTH
       example: FINAL_AUTH
+      default: FINAL_AUTH
       description: Flags a card payment request for either pre-authorisation or final authorisation
-    MerchantAccount:
-      type: string
-      title: MerchantAccount
-      pattern: '^[1-9][0-9]{3,4}$'
-      description: The merchant account identifier
     Problem:
       title: Problem
       type: object
