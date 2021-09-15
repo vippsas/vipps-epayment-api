@@ -643,6 +643,7 @@ components:
         - PRE_AUTH
         - FINAL_AUTH
       example: FINAL_AUTH
+      default: FINAL_AUTH
       description: Flags a card payment request for either pre-authorisation or final authorisation
     MerchantAccount:
       type: string
