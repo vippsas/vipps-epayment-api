@@ -4,7 +4,7 @@ servers:
     description: Production source URL for the Vipps ePayment api
 info:
   description: The Vipps ePayment api
-  version: 0.8.0
+  version: 0.9.0
   title: Vipps ePayment API
   contact:
     email: integration@vipps.no
