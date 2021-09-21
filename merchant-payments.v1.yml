@@ -1,11 +1,11 @@
 openapi: 3.0.0
 servers:
-  - url: 'https://api.vipps.no/payments/v1'
-    description: Production source URL for the Vipps ePayments api
+  - url: 'https://api.vipps.no/epayment'
+    description: Production source URL for the Vipps ePayment api
 info:
-  description: The merchant payments api for Vipps wallet
+  description: The Vipps ePayment api
   version: 0.8.0
-  title: Vipps Merchant Payments API
+  title: Vipps ePayment API
   contact:
     email: integration@vipps.no
     name: Vipps AS
@@ -26,7 +26,7 @@ tags:
   - description: "\tAdjust Payments Endpoints"
     name: AdjustPayments
 paths:
-  /:
+  /v1/payments:
     parameters:
       - $ref: '#/components/parameters/Idempotency-Key'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
@@ -53,7 +53,7 @@ paths:
           $ref: '#/components/responses/Problem-Response'
         '409':
           $ref: '#/components/responses/Problem-Response'
-  '/{reference}':
+  '/v1/payments/{reference}':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -67,7 +67,7 @@ paths:
           $ref: '#/components/responses/Payment-Response'
       operationId: getPayment
       description: Get a payment object by its reference ID
-  '/{reference}/events':
+  '/v1/payments/{reference}/events':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -89,7 +89,7 @@ paths:
       security:
         - Bearer-Authorization: []
       description: Get event log for the specified payment reference
-  '/{reference}/cancel':
+  '/v1/payments/{reference}/cancel':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -118,7 +118,7 @@ paths:
         description: Requested cancel modification
       tags:
         - AdjustPayments
-  '/{reference}/capture':
+  '/v1/payments/{reference}/capture':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -147,7 +147,7 @@ paths:
         description: Requested capture modification
       tags:
         - AdjustPayments
-  '/{reference}/refund':
+  '/v1/payments/{reference}/refund':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -176,7 +176,7 @@ paths:
         description: Requested refund modification
       tags:
         - AdjustPayments
-  '/{reference}/adjustAuthorization':
+  '/v1/payments/{reference}/adjustAuthorization':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
