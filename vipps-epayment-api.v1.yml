@@ -215,6 +215,7 @@ components:
           $ref: '#/components/schemas/Currency'
         value:
           type: integer
+          minimum: 1
           example: 1000
           format: int64
           description: 'Integer value of price in the currencys monitary subunit (eg Norwegian Øre), or monitary unit where applicable (eg Japanese YEN). Type of monitary unit is defined in  ISO 4217.'
