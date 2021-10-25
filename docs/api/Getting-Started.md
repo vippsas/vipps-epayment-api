@@ -7,7 +7,7 @@ tags: [api]
 
 ## Before you begin 
 
-This document covers the quick steps for getting started with the Vipps Merchant Payments API. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the [Merchant Portal]().
+This document covers the quick steps for getting started with the Vipps Merchant Payments API. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the [Merchant Portal](./Merchant-Portal.md).
 
 Once your merchant account is setup for Merchant Payments you should look at our [Configure Merchant Account]() page for available configuration options such as our [Notifications Webhooks](./How-to-setup-Notification-Webhooks.md).
 
