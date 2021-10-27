@@ -7,9 +7,9 @@ tags: [api]
 
 ## Before you begin 
 
-This document covers the quick steps for getting started with the Vipps Merchant Payments API. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the [Merchant Portal](merchant-portal-how-to).
+This document covers the quick steps for getting started with the Vipps Merchant Payments API. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the [Merchant Portal](./Merchant-Portal.md).
 
-Once your merchant account is setup for Merchant Payments you should look at our [Configure Merchant Account]() page for available configuration options such as our [Notifications Webhooks]().
+Once your merchant account is setup for Merchant Payments you should look at our [Configure Merchant Account]() page for available configuration options such as our [Notifications Webhooks](./How-to-setup-Notification-Webhooks.md).
 
 ## Your first Vipps Payment
 
@@ -56,7 +56,6 @@ To create a payment you need to send the specifications of that payment to Vipps
 Parameter | Type | Required | Description
 ----------|------|----------|------------
 `amount` | `Object` | Y | The `currency` and `value` of the payment in minor units
-`merchantAccount` | `string` | Y | Your merchant account identifier
 `paymentMethod` | `Object` | Y | The `type` of payment method you wish to process with
 `reference` | `string` | Y | Your unique reference to this payment
 `returnUrl` | `string` | Y | The URL the user should be returned to after acting upon the payment
@@ -71,13 +70,13 @@ curl https://apitest.vipps.no/payments/v1 \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
 -H "Idempotency-Key: UNIQUE-ID" \
+-H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
 -X POST
 -d '{
   "amount": {
     "currency": "NOK",
     "value": 1000
   },
-  "merchantAccount": "YOUR-MERCHANT-ACCOUNT-NUMBER",
   "paymentMethod": {
     "type": "WALLET"
   },
@@ -123,7 +122,6 @@ A valid request like the one above will result in a response with the following 
   "state": "CREATED",
   "directCapture": false,
   "customerInteraction": "CUSTOMER_NOT_PRESENT",
-  "merchantAccount": "YOUR-MERCHANT-ACCOUNT-NUMBER",
   "paymentMethod": {
     "type": "WALLET"
   },
@@ -148,7 +146,7 @@ The user will be presented with the payment in the Vipps app where theyt can com
 To receive the result of the users action you may either:
 
 1. Poll the status of the payment view the [Get Payment]() and [Get Payment Event Log]() endpoints.
-2. Receive status updates over our [Notification Webhooks]() service
+2. Receive status updates over our [Notification Webhooks](./How-to-setup-Notification-Webhooks.md) service
 
 ### Polling
 
@@ -208,7 +206,7 @@ In the case the payment has been completed this will yield an array of events li
 
 ### Notification Events
 
-If you are not dependent on getting the payment result immediately you may also use notification events to recieve the payment status update via our [Notification Webhooks]() service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than imediate delivery. 
+If you are not dependent on getting the payment result immediately you may also use notification events to recieve the payment status update via our [Notification Webhooks](./How-to-setup-Notification-Webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than imediate delivery. 
 
 > Note: this means we may deliver the same message several times to verify succesful delivery, use the `pspReference` field for duplicate delivery checking.
 
@@ -259,7 +257,6 @@ This endpoint take the following properties in the body of the request
 
 Parameter | Type | Required | Description
 ----------|------|----------|------------
-`merchantAccount` | `string` | Y | Your merchant account identifier
 `modificationAmount` | `Object` | Y | The `currency` and `value` of the modification in minor units. Must not be the entire amount, but cannot be more than the remaining amount.
 `modificationReference` | `string` | N | Your unique reference to this modification
 
@@ -271,9 +268,9 @@ curl https://apitest.vipps.no/payments/v1/UNIQUE-PAYMENT-REFERENCE/capture \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
 -H "Idempotency-Key: UNIQUE-ID" \
+-H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
 -X POST
 -d '{
-  "merchantAccount": "YOUR-MERCHANT-ACCOUNT-NUMBER",
   "modificationAmount": {
     "currency": "NOK",
     "type": "PURCHASE",
@@ -318,10 +315,10 @@ In this case the `aggregate` property will be updated as such:
 
 Now that you have completed your first payment we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
 
-* [How to setup Notification Webhooks]()
-* [Payment modification, how to use cancel, capture and refund?]()
-* [Profile sharing, requesting the users personal information]()
-* [Logistics, how can I enable express checkout?]()
-* [Using Vipps Merchant Payments in a shopper present context]()
+* [How to setup Notification Webhooks](./How-to-setup-Notification-Webhooks.md)
+* [Payment modification, how to use cancel, capture and refund?](./Payment-Modification.md)
+* [Profile sharing, requesting the users personal information](./Profile-Sharing.md)
+* [Logistics, how can I enable express checkout?](./Logistics.md)
+* [Using Vipps Merchant Payments in a shopper present context](./Customer-Present-Payments.md)
 
 
