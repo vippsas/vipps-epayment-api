@@ -307,7 +307,6 @@ components:
           description: message to user
       required:
         - amount
-        - merchantAccount
         - paymentMethod
         - reference
         - returnUrl
@@ -379,7 +378,6 @@ components:
         modificationReference:
           $ref: '#/components/schemas/ReferenceType'
       required:
-        - merchantAccount
         - modificationAmount
     ReferenceType:
       type: string
@@ -560,7 +558,6 @@ components:
         modificationReference:
           $ref: '#/components/schemas/ReferenceType'
       required:
-        - merchantAccount
         - modificationAmount
         - modificationReference
     PaymentEvent:

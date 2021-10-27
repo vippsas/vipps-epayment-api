@@ -56,7 +56,6 @@ To create a payment you need to send the specifications of that payment to Vipps
 Parameter | Type | Required | Description
 ----------|------|----------|------------
 `amount` | `Object` | Y | The `currency` and `value` of the payment in minor units
-`merchantAccount` | `string` | Y | Your merchant account identifier
 `paymentMethod` | `Object` | Y | The `type` of payment method you wish to process with
 `reference` | `string` | Y | Your unique reference to this payment
 `returnUrl` | `string` | Y | The URL the user should be returned to after acting upon the payment
@@ -71,13 +70,13 @@ curl https://apitest.vipps.no/payments/v1 \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
 -H "Idempotency-Key: UNIQUE-ID" \
+-H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
 -X POST
 -d '{
   "amount": {
     "currency": "NOK",
     "value": 1000
   },
-  "merchantAccount": "YOUR-MERCHANT-ACCOUNT-NUMBER",
   "paymentMethod": {
     "type": "WALLET"
   },
@@ -123,7 +122,6 @@ A valid request like the one above will result in a response with the following 
   "state": "CREATED",
   "directCapture": false,
   "customerInteraction": "CUSTOMER_NOT_PRESENT",
-  "merchantAccount": "YOUR-MERCHANT-ACCOUNT-NUMBER",
   "paymentMethod": {
     "type": "WALLET"
   },
@@ -259,7 +257,6 @@ This endpoint take the following properties in the body of the request
 
 Parameter | Type | Required | Description
 ----------|------|----------|------------
-`merchantAccount` | `string` | Y | Your merchant account identifier
 `modificationAmount` | `Object` | Y | The `currency` and `value` of the modification in minor units. Must not be the entire amount, but cannot be more than the remaining amount.
 `modificationReference` | `string` | N | Your unique reference to this modification
 
@@ -271,9 +268,9 @@ curl https://apitest.vipps.no/payments/v1/UNIQUE-PAYMENT-REFERENCE/capture \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
 -H "Idempotency-Key: UNIQUE-ID" \
+-H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
 -X POST
 -d '{
-  "merchantAccount": "YOUR-MERCHANT-ACCOUNT-NUMBER",
   "modificationAmount": {
     "currency": "NOK",
     "type": "PURCHASE",
