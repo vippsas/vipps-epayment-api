@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ReDoc</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+
+    <!--
+    ReDoc doesn't change outer page styles
+    -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="redoc-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"> </script>
+    <script>
+        Redoc.init('https://raw.githubusercontent.com/vippsas/vipps-epayment-api/main/epayment.v1.yml', {
+            expandResponses: "200,201", 
+            theme: {
+                colors: {
+                    primary: { main: '#ff5b24' },
+                    success: {
+                        main: '#006628',
+                    },
+                    warning: {
+                        main: '#FFE4E3',
+                    },
+                    error: {
+                        main: '#C60100',
+                    },
+                    gray: {
+                        50: '#EFEEF3',
+                        100: '#FCFBFE',
+                    },
+                    text: {
+                        secondary: '#39134C',
+                        primary: '#161225'
+                    },
+                    border: {
+                        dark: 'rgba(0,0,0, 0.1)',
+                        light: '#ffffff',
+                    },
+                    responses: {
+                        info: {
+                            color: '#59CBE8',
+                        },
+                    },
+                }
+            }
+        }, document.getElementById('redoc-container'))
+    </script>
+</body>
+
+</html>
