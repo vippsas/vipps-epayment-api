@@ -10,7 +10,7 @@ For more information about this product, please see
 * [Vipps plugins](https://github.com/vippsas/vipps-plugins): Open source plugins for various web solutions.
 
 You can peruse the API reference documentation as:
-* [ReDoc](https://vippsas.github.io/vipps-epayment-api/)
+* [ReDoc](https://vippsas.github.io/vipps-epayment-api/index.html)
 
 The flow of settlements and how to retrieve them are described in
 [Settlements](https://github.com/vippsas/vipps-developers/tree/master/settlements).
