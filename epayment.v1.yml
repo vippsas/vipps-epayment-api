@@ -214,6 +214,7 @@ components:
         currency:
           $ref: '#/components/schemas/Currency'
         value:
+          nullable: true
           type: integer
           example: 1000
           format: int64
