@@ -60,7 +60,7 @@ Parameter | Type | Required | Description
 `reference` | `string` | Y | Your unique reference to this payment
 `returnUrl` | `string` | Y | The URL the user should be returned to after acting upon the payment
 `userFlow` | `string` | Y | The method to direct the user into the Vipps app to interact with the payment
-`userText` | `string` | N | The text shown to the user in the Vipps app with the payment
+`paymentDescription` | `string` | N | The text shown to the user in the Vipps app with the payment
 
 To create a payment of 10 Norwegian Kroner send a request like the one below:
 
@@ -83,7 +83,7 @@ curl https://apitest.vipps.no/payments/v1 \
   "reference": "UNIQUE-PAYMENT-REFERENCE",
   "returnUrl": "https://yourwebsite.come/redirect?orderId=abcc123",
   "userFlow": "NATIVE_REDIRECT",
-  "userText": "A simple payment"
+  "paymentDescription": "A simple payment"
 }'
 ```
 
@@ -130,7 +130,7 @@ A valid request like the one above will result in a response with the following 
   "reference": "UNIQUE-PAYMENT-REFERENCE",
   "returnUrl": "https://yourwebsite.come/redirect?orderId=abcc123",
   "userFlow": "NATIVE_REDIRECT",
-  "userText": "A simple payment"
+  "paymentDescription": "A simple payment"
 }
 ```
 
