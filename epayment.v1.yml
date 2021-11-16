@@ -303,9 +303,9 @@ components:
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
 
             If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
-        userText:
+        paymentDescription:
           type: string
-          description: message to user
+          description: message to user that will appear in the app, in the merchant portal and settlement files.
       required:
         - amount
         - paymentMethod
