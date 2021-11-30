@@ -515,21 +515,32 @@ components:
           $ref: '#/components/schemas/Amount'
         id:
           type: string
+          description: Unique ID for the shipping method
           format: uuid
-          description: Unique ID of the logistic option
         priority:
           type: integer
           format: int32
           description: Priority of the logistic option for sorting. Higher number is greater priority.
-        title:
+        brand:
           type: string
-          description: 'Shipping method. Max length: 256 characters. Recommended length for readability on most screens: 25 characters.'
+          description: Brand of the logistics provider
           example: Posten Servicepakke
           maxLength: 256
+        product:
+          type: string
+          description: 'The logistics product, eg Next day delivery'
+        description:
+          type: string
+        default:
+          type: boolean
       required:
         - amount
-        - title
         - id
+        - priority
+        - brand
+        - id
+        - product
+        - default
     PaymentMethod:
       title: PaymentMethod
       type: object
@@ -637,7 +648,7 @@ components:
           description: A human-readable explanation specific to this occurrence of the problem.
         traceId:
           type: string
-          description: An id that can be used to facilitate in tracing the error. 
+          description: An id that can be used to facilitate in tracing the error.
       required:
         - type
         - title
