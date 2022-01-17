@@ -160,7 +160,7 @@ curl https://apitest.vipps.no/payments/v1/UNIQUE-PAYMENT-REFERENCE \
 -X GET
 ```
 
-To verify if a payment has been authorised by the user check if the `state` property is marked `AUTHORISED`. If the user has instead chosed to reject the payment the `state` property will be  `TERMINATED`.
+To verify if a payment has been authorised by the user check if the `state` property is marked `AUTHORISED`. If the user has instead chosen to reject the payment or the user has instead chosen to click `cancel` on the landing page (card) the `state` property is marked `ABORTED`. If the user did not act within the payment expiration time then the `state` property is marked `EXPIRED`.
 
 
 The payment event log can be fetched as such:

@@ -674,16 +674,19 @@ components:
         One of: 
         - CREATED : User has not yet acted upon the payment
         - ABORTED : User has aborted the payment before authorization
+        - EXPIRED: User did not act on the payment within the payment expiration time
         - AUTHORISED : User has approved the payment
         - TERMINATED : User has not reacted within the time period allowed or actively cancelled the payment.
       enum:
         - CREATED
         - ABORTED
+        - EXPIRED
         - AUTHORISED
         - TERMINATED
       x-enum-varnames:
         - CREATED
         - ABORTED
+        - EXPIRED
         - AUTHORISED
         - TERMINATED
       readOnly: true
