@@ -114,7 +114,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TransactionModificationRequest'
+              $ref: '#/components/schemas/CancelModificationRequest'
         description: Requested cancel modification
       tags:
         - AdjustPayments
@@ -143,7 +143,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TransactionModificationRequest'
+              $ref: '#/components/schemas/CaptureModificationRequest'
         description: Requested capture modification
       tags:
         - AdjustPayments
@@ -172,7 +172,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TransactionModificationRequest'
+              $ref: '#/components/schemas/RefundModificationRequest'
         description: Requested refund modification
       tags:
         - AdjustPayments
@@ -372,8 +372,26 @@ components:
         - cancelledAmount
         - capturedAmount
         - refundedAmount
-    TransactionModificationRequest:
-      title: TransactionModificationRequest
+    CancelModificationRequest:
+      title: CancelModificationRequest
+      type: object
+      x-examples: {}
+      properties:
+        modificationReference:
+          $ref: '#/components/schemas/ReferenceType'
+    CaptureModificationRequest:
+      title: CaptureModificationRequest
+      type: object
+      x-examples: {}
+      properties:
+        modificationAmount:
+          $ref: '#/components/schemas/Amount'
+        modificationReference:
+          $ref: '#/components/schemas/ReferenceType'
+      required:
+        - modificationAmount
+    RefundModificationRequest:
+      title: RefundModificationRequest
       type: object
       x-examples: {}
       properties:
