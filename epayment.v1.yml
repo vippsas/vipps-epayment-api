@@ -95,7 +95,7 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
-    put:
+    post:
       summary: Cancel Payment
       operationId: cancelPayment
       responses:
@@ -607,6 +607,7 @@ components:
             - CREATE
             - ABORT
             - EXPIRE
+            - CANCEL
             - CAPTURE
             - REFUND
             - ADJUST_AUTHORISATION
@@ -617,6 +618,7 @@ components:
             - CREATE
             - ABORT
             - EXPIRE
+            - CANCEL
             - CAPTURE
             - REFUND
             - ADJUST_AUTHORISATION
