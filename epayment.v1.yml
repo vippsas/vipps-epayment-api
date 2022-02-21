@@ -559,7 +559,6 @@ components:
         - id
         - priority
         - brand
-        - id
         - product
         - default
     PaymentMethod:
@@ -605,22 +604,24 @@ components:
         paymentAction:
           type: string
           enum:
-            - CREATION
-            - CANCELLATION
+            - CREATE
+            - ABORT
+            - EXPIRE
             - CAPTURE
             - REFUND
-            - AUTHORISATION_ADJUSTMENT
-            - AUTHORISATION
-            - TERMINATED
-          example: AUTHORISATION
+            - ADJUST_AUTHORISATION
+            - AUTHORISE
+            - TERMINATE
+          example: AUTHORISE
           x-enum-varnames:
-            - CREATION
-            - CANCELLATION
+            - CREATE
+            - ABORT
+            - EXPIRE
             - CAPTURE
             - REFUND
-            - AUTHORISATION_ADJUSTMENT
-            - AUTHORISATION
-            - TERMINATED
+            - ADJUST_AUTHORISATION
+            - AUTHORISE
+            - TERMINATE
         amount:
           $ref: '#/components/schemas/Amount'
         authorisationType:
@@ -708,7 +709,7 @@ components:
         - ABORTED : User has aborted the payment before authorization
         - EXPIRED: User did not act on the payment within the payment expiration time
         - AUTHORISED : User has approved the payment
-        - TERMINATED : User has not reacted within the time period allowed or actively cancelled the payment.
+        - TERMINATED : Merchant has terminated the payment via the cancelPayment endpoint
       enum:
         - CREATED
         - ABORTED
