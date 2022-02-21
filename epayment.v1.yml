@@ -415,7 +415,6 @@ components:
       readOnly: true
       title: PspReferenceType
       description: Reference value for a payment defined by Vipps
-      format: uuid
     Address:
       title: Address
       type: object
