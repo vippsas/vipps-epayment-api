@@ -118,6 +118,29 @@ paths:
         description: Requested cancel modification
       tags:
         - AdjustPayments
+    put:
+      summary: Cancel Payment
+      operationId: cancelPayment
+      responses:
+        '202':
+          $ref: '#/components/responses/Adjust-Response'
+        '400':
+          $ref: '#/components/responses/Problem-Response'
+        '404':
+          $ref: '#/components/responses/Problem-Response'
+        '409':
+          $ref: '#/components/responses/Problem-Response'
+      description: Cancel the given payment
+      security:
+        - Bearer-Authorization: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelModificationRequest'
+        description: Requested cancel modification
+      tags:
+        - AdjustPayments
   '/v1/payments/{reference}/capture':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
