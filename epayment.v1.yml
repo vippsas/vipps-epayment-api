@@ -633,6 +633,7 @@ components:
         idempotencyKey:
           type: string
           description: The Idempotency key of the request.
+          nullable: true
         success:
           type: boolean
           description: The outcome of the event
@@ -642,7 +643,6 @@ components:
         - paymentAction
         - amount
         - processedAt
-        - idempotencyKey
     AuthorisationType:
       title: AuthorisationType
       type: string
