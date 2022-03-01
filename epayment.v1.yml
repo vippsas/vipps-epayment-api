@@ -207,6 +207,27 @@ paths:
         description: Payment adjustment body
 components:
   schemas:
+    Customer:
+      title: Customer
+      type: object
+      description: |-
+        Can be one of:
+          * The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
+          * Target users phone number in MSISDN format
+      properties:
+        phoneNumber:
+          type: string
+          description: >-
+            Mobile number in MSISDN format of the user who has to pay for the transation from
+            Vipps. Currently vipps supports only Norwegian Mobile Numbers
+          minLength: 10
+          maxLength: 15
+          example: 4791234567, 47 912 34 567
+          pattern: '^\d{8-15}$'
+        sub:
+          type: string
+          description: The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
+          example: 'c06c4afe-d9e1-4c5d-939a-177d752a0944'
     Amount:
       description: Amount Object
       type: object
@@ -520,13 +541,6 @@ components:
           example: 'https://example.com/shipping/123'
           pattern: '^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
           description: Callback url for dynamic Logistics Option calculation
-    Customer:
-      title: Customer
-      type: string
-      description: |-
-        Can be one of:
-          * The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
-          * Target users phone number in MSISDN format
     LogisticsOption:
       title: LogisticsOption
       type: object
