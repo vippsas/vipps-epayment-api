@@ -222,7 +222,7 @@ components:
             Vipps. Currently vipps supports only Norwegian Mobile Numbers
           minLength: 10
           maxLength: 15
-          example: 4791234567, 47 912 34 567
+          example: 4791234567
           pattern: '^\d{8-15}$'
         sub:
           type: string
