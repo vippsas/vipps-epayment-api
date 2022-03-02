@@ -223,7 +223,7 @@ components:
           minLength: 10
           maxLength: 15
           example: 4791234567
-          pattern: '^\d{8-15}$'
+          pattern: '^[0-9-]{10,15}$'
         sub:
           type: string
           description: The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
