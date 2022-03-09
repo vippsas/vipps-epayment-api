@@ -1,5 +1,7 @@
 # Vipps ePayment API
 
+💥 DRAFT! Unfinished work in progress. Close to useless except for discussions in and with Vipps. 💥
+
 This repository contains developer resources for the Vipps ePayment API.
 For more information about this product, please see
 [Vipps på Nett](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/ta-betalt-paa-nett/).
