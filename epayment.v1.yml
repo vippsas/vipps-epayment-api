@@ -762,8 +762,8 @@ components:
       required: true
       schema:
         type: string
-        pattern: '^[a-zA-Z0-9-]{8,50}$'
-        minLength: 8
+        pattern: '^[a-zA-Z0-9-]{1,50}$'
+        minLength: 1
         maxLength: 50
       description: Given primary reference when creating the payment
     Idempotency-Key:
