@@ -681,13 +681,14 @@ components:
         detail:
           type: string
           description: A human-readable explanation specific to this occurrence of the problem.
-        traceId:
-          type: string
-          description: An id that can be used to facilitate in tracing the error.
+        status:
+          type: int
+          description: HTTP Status code of the problem response.
       required:
         - type
         - title
-        - traceId
+        - status
+        - detail
     OrderInformation:
       title: OrderInformation
       type: object
