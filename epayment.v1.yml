@@ -684,11 +684,15 @@ components:
         status:
           type: int
           description: HTTP Status code of the problem response.
+        instance:
+          type: string
+          description: A URI reference that identifies the specific occurrence of the problem.
       required:
         - type
         - title
         - status
         - detail
+        - instance
     OrderInformation:
       title: OrderInformation
       type: object
