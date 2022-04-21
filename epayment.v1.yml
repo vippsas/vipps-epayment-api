@@ -687,12 +687,16 @@ components:
         instance:
           type: string
           description: A URI reference that identifies the specific occurrence of the problem.
+        traceId:
+          type: string
+          description: An id that can be used to facilitate in tracing the error.
       required:
         - type
         - title
-        - status
         - detail
+        - status
         - instance
+        - traceId
     OrderInformation:
       title: OrderInformation
       type: object
