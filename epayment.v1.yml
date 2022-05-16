@@ -205,6 +205,28 @@ paths:
             schema:
               $ref: '#/components/schemas/PaymentAdjustment'
         description: Payment adjustment body
+  '/v1/test/payments/{reference}/approve':
+    parameters:
+      - $ref: '#/components/parameters/Payment-Reference-ID'
+      - $ref: '#/components/parameters/Merchant-Serial-Number'
+      - $ref: '#/components/parameters/APIM-Subscription-Key'
+    post:
+      summary: Force Approve Payment
+      tags:
+        - ForceApprove
+      responses:
+        '200':
+          description: OK
+      operationId: forceApprove
+      description: 'This endpoint allows developers to approve a payment through the Vipps eCom API without the use of the Vipps app. This is useful for automated testing. Express checkout is not supported for this endpoint. The endpoint is only available in our Test environment. Attempted use of the endpoint in production is not allowed, and will fail. Important: All test users must manually approve at least one payment in Vipps (using the app) before this endpoint can be used for that user.'
+      security:
+        - Bearer-Authorization: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForceApprove'
+        description: Force approve request body
 components:
   schemas:
     Customer:
@@ -217,9 +239,7 @@ components:
       properties:
         phoneNumber:
           type: string
-          description: >-
-            Mobile number in MSISDN format of the user who has to pay for the transation from
-            Vipps. Currently vipps supports only Norwegian Mobile Numbers
+          description: Mobile number in MSISDN format of the user who has to pay for the transation from Vipps. Currently vipps supports only Norwegian Mobile Numbers
           minLength: 10
           maxLength: 15
           example: 4791234567
@@ -227,7 +247,7 @@ components:
         sub:
           type: string
           description: The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
-          example: 'c06c4afe-d9e1-4c5d-939a-177d752a0944'
+          example: c06c4afe-d9e1-4c5d-939a-177d752a0944
     Amount:
       description: Amount Object
       type: object
@@ -326,7 +346,7 @@ components:
             If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
         paymentDescription:
           type: string
-          description: message to user that will appear in the app, in the merchant portal and settlement files.
+          description: 'message to user that will appear in the app, in the merchant portal and settlement files.'
         callbackUrl:
           type: string
           description: 'This is an URL for Vipps to call at the merchant''s server to provide updated information about the order after the payment request. Domain name and context path should be provided by merchant as the value for this parameter. Vipps will add `/payments/{reference}` to the end of this URL.'
@@ -736,6 +756,14 @@ components:
         - AUTHORISED
         - TERMINATED
       readOnly: true
+    ForceApprove:
+      title: ForceApprove
+      type: object
+      properties:
+        customer:
+          $ref: '#/components/schemas/Customer'
+        token:
+          type: string
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
