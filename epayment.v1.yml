@@ -280,7 +280,15 @@ components:
         amount:
           $ref: '#/components/schemas/Amount'
         authorisationType:
-          $ref: '#/components/schemas/AuthorisationType'
+          title: AuthorisationType
+          type: string
+          enum:
+            - FINAL_AUTH
+          x-enum-varnames:
+            - FINAL_AUTH
+          example: FINAL_AUTH
+          default: FINAL_AUTH
+          description: Flags a card payment request for final authorisation.
         state:
           $ref: '#/components/schemas/State'
         directCapture:
@@ -617,7 +625,15 @@ components:
       type: object
       properties:
         authorisationType:
-          $ref: '#/components/schemas/AuthorisationType'
+          title: AuthorisationType
+          type: string
+          enum:
+            - FINAL_AUTH
+          x-enum-varnames:
+            - FINAL_AUTH
+          example: FINAL_AUTH
+          default: FINAL_AUTH
+          description: Flags a card payment request for final authorisation.
         modificationAmount:
           $ref: '#/components/schemas/Amount'
         modificationReference:
@@ -660,7 +676,15 @@ components:
         amount:
           $ref: '#/components/schemas/Amount'
         authorisationType:
-          $ref: '#/components/schemas/AuthorisationType'
+          title: AuthorisationType
+          type: string
+          enum:
+            - FINAL_AUTH
+          x-enum-varnames:
+            - FINAL_AUTH
+          example: FINAL_AUTH
+          default: FINAL_AUTH
+          description: Flags a card payment request for final authorisation.
         processedAt:
           type: string
           format: date-time
@@ -677,16 +701,6 @@ components:
         - paymentAction
         - amount
         - processedAt
-    AuthorisationType:
-      title: AuthorisationType
-      type: string
-      enum:
-        - FINAL_AUTH
-      x-enum-varnames:
-        - FINAL_AUTH
-      example: FINAL_AUTH
-      default: FINAL_AUTH
-      description: Flags a card payment request for final authorisation.
     Problem:
       title: Problem
       type: object
