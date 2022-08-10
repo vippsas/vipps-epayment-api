@@ -8,7 +8,7 @@ tags: [api]
 
 This document covers the quick steps for getting started with the Vipps Merchant Payments API. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the [Merchant Portal](./Merchant-Portal.md).
 
-Once your merchant account is setup for Merchant Payments you should look at our [Configure Merchant Account]() page for available configuration options such as our [Notifications Webhooks](./How-to-setup-Notification-Webhooks.md).
+Once your merchant account is setup for Merchant Payments, you should look at our [Configure Merchant Account]() page for available configuration options such as our [Notifications Webhooks](./How-to-setup-Notification-Webhooks.md).
 
 ## Your first Vipps Payment
 
@@ -310,7 +310,7 @@ In this case the `aggregate` property will be updated as such:
 }
 ```
 
-# Next Steps
+## Next Steps
 
 Now that you have completed your first payment we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
 
