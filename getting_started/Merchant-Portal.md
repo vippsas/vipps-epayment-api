@@ -7,4 +7,3 @@ END_METADATA -->
 
 The beginning of an awesome article...
 
-<!-- Might put this into a common area in the doco website.>
