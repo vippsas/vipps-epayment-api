@@ -249,10 +249,10 @@ Once the good or services are delivered or on their way to the customer it is ti
 This can be done through the [Capture Payment](https://vippsas.github.io/vipps-developer-docs/api/epayment).
 This endpoint take the following properties in the body of the request
 
-| Parameter               | Type     | Required | Description                                                                                                                                 |
-| ----------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `modificationAmount`    | `Object` | Y        | The `currency` and `value` of the modification in minor units. Must not be the entire amount, but cannot be more than the remaining amount. |
-| `modificationReference` | `string` | N        | Your unique reference to this modification                                                                                                  |
+| Parameter | Type     | Required | Description |
+| --------- | -------- | -------- | ----------- |
+| `modificationAmount`    | `Object` | Y | The `currency` and `value` of the modification in minor units. Must not be the entire amount, but cannot be more than the remaining amount. |
+| `modificationReference` | `string` | N | Your unique reference to this modification. |
 
 An example capture would look like:
 
@@ -274,7 +274,11 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capt
 }'
 ```
 
-Adjustments to a payment (capture, refund etc) as async. You will get a `202 Accepted` response with no body if the action is valid. A callback will be sent once the capture is completed. Additionally polling on [Get Payment](https://vippsas.github.io/vipps-developer-docs/api/epayment) can be done. Once capture is completed the `Payment` object will be updated to reflect this.
+Adjustments to a payment (capture, refund etc) as async.
+You will get a `202 Accepted` response with no body if the action is valid.
+A callback will be sent once the capture is completed.
+Additionally, polling on [Get Payment](https://vippsas.github.io/vipps-developer-docs/api/epayment) can be done.
+Once capture is completed the `Payment` object will be updated to reflect this.
 
 In this case the `aggregate` property will be updated as such:
 
@@ -307,7 +311,8 @@ In this case the `aggregate` property will be updated as such:
 
 ## Next Steps
 
-Now that you have completed your first payment we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
+Now that you have completed your first payment,
+we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
 
 - [How to setup Notification Webhooks](How-to-setup-Notification-Webhooks.md)
 - [Payment modification, how to use cancel, capture and refund?](Payment-Modification.md)
