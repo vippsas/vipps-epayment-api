@@ -6,9 +6,9 @@ tags: [api]
 
 ## Before you begin
 
-This document covers the quick steps for getting started with the Vipps Merchant Payments API. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the [Merchant Portal](./Merchant-Portal.md).
+This document covers the quick steps for getting started with the Vipps Merchant Payments API. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the [Merchant Portal](Merchant-Portal.md).
 
-Once your merchant account is setup for Merchant Payments, you should look at our [Configure Merchant Account]() page for available configuration options such as our [Notifications Webhooks](./How-to-setup-Notification-Webhooks.md).
+Once your merchant account is setup for Merchant Payments, you should look at our [Configure Merchant Account](https://vippsas.github.io/vipps-developer-docs/api/epayment) page for available configuration options such as our [Notifications Webhooks](./How-to-setup-Notification-Webhooks.md).
 
 ## Your first Vipps Payment
 
@@ -136,12 +136,14 @@ The user will be presented with the payment in the Vipps app where theyt can com
 
 To receive the result of the users action you may either:
 
-1. Poll the status of the payment view the [Get Payment]() and [Get Payment Event Log]() endpoints.
+1. Poll the status of the payment view the
+   [Get Payment](https://vippsas.github.io/vipps-developer-docs/api/epayment) and
+   [Get Payment Event Log](https://vippsas.github.io/vipps-developer-docs/api/epayment) endpoints.
 2. Receive status updates over our [Notification Webhooks](./How-to-setup-Notification-Webhooks.md) service
 
 ### Polling
 
-A request to the [Get Payment]() URL will yield a response in the same structure as [Create Payment]() specified above in [Step 2](#Step-2---Create-a-payment).
+A request to the [Get Payment](https://vippsas.github.io/vipps-developer-docs/api/epayment) URL will yield a response in the same structure as [Create Payment](https://vippsas.github.io/vipps-developer-docs/api/epayment) specified above in [Step 2](#step-2---create-a-payment).
 
 Example request:
 
@@ -199,11 +201,11 @@ In the case the payment has been completed this will yield an array of events li
 
 ### Notification Events
 
-If you are not dependent on getting the payment result immediately you may also use notification events to recieve the payment status update via our [Notification Webhooks](./How-to-setup-Notification-Webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than imediate delivery.
+If you are not dependent on getting the payment result immediately you may also use notification events to recieve the payment status update via our [Notification Webhooks](How-to-setup-Notification-Webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than imediate delivery.
 
 > Note: this means we may deliver the same message several times to verify succesful delivery, use the `pspReference` field for duplicate delivery checking.
 
-If you use the notification service you will recieve events in the same format as those in the array list returned from the [Get Payment Events]() endpoint.
+If you use the notification service you will recieve events in the same format as those in the array list returned from the [Get Payment Events](https://vippsas.github.io/vipps-developer-docs/api/epayment) endpoint.
 
 For example a succeful authentication event would look like
 
@@ -244,7 +246,7 @@ If the user had rejected or not acted upon the payment the event would look like
 ## Step 4 - Capture the payment
 
 Once the good or services are delivered or on their way to the customer it is time to capture the payment.
-This can be done through the [Capture Payment]().
+This can be done through the [Capture Payment](https://vippsas.github.io/vipps-developer-docs/api/epayment).
 This endpoint take the following properties in the body of the request
 
 | Parameter               | Type     | Required | Description                                                                                                                                 |
@@ -272,7 +274,7 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capt
 }'
 ```
 
-Adjustments to a payment (capture, refund etc) as async. You will get a `202 Accepted` response with no body if the action is valid. A callback will be sent once the capture is completed. Additionally polling on [Get Payment]() can be done. Once capture is completed the `Payment` object will be updated to reflect this.
+Adjustments to a payment (capture, refund etc) as async. You will get a `202 Accepted` response with no body if the action is valid. A callback will be sent once the capture is completed. Additionally polling on [Get Payment](https://vippsas.github.io/vipps-developer-docs/api/epayment) can be done. Once capture is completed the `Payment` object will be updated to reflect this.
 
 In this case the `aggregate` property will be updated as such:
 
