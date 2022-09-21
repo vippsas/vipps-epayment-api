@@ -23,7 +23,7 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 ## ePayment API
 
-* [API guide](./getting_started/README.md): Developer guide for Vipps ePayment API.
+* [API guide](getting_started/README.md): Developer guide for Vipps ePayment API.
 <!--
 * [Vipps ePayment API guide](vipps-epayment-api.md): Developer guide for Vipps ePayment API.
 * [Vipps ePayment API Checklist](vipps-epayment-api-checklist.md): For direct and POS integrations.

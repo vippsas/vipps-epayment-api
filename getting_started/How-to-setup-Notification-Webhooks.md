@@ -1,13 +1,20 @@
+<!-- START_METADATA
+---
+title: Notification Webhooks
+sidebar_position: 110
+---
+END_METADATA -->
+
 # How to setup Notification Webhooks
 
 Notification webhooks can be setup in the Merchant Portal.
 
-TODO
+<!-- TODO -->
 
 ## Understanding Notification Webhooks
 
-
 Notifications will be sent to the defined webhook URL after every adjustment to a payment. This includes:
+
 - `CREATION`
 - `AUTHORISATION`
 - `CANCELLATION`
@@ -33,7 +40,8 @@ A notification will look something like this;
   "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
 }
 ```
-Where the properties are:  
+
+Where the properties are:
 
 Parameter | Type | Required | Description
 ----------|------|----------|------------
@@ -44,6 +52,7 @@ Parameter | Type | Required | Description
 `amount` | `Object` | Y | The `currency` and `value` of the payment in minor units
 `processedAt` | `string` | Y | The timestamp the `paymentAction` was completed at
 `idempotencyKey` | `string` | Y | The `idempotencyKey` of the triggering payment api request. Note: The `idempotencyKey` provided during `createPayment` will then be used for `CREATION`, `AUTHORISATION` and `TERMINATION` as they are the result of a single api request.
+
 
 
 Delivery of notifications should be handled idempotently, as Vipps will operate this service under a "at least once" delivery mechanism. Idempotent handling should be base on the `pspReference` which will be unique per event.

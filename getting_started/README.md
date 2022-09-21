@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
 title: Introduction
-sidebar_position: 10
+sidebar_position: 100
 tags: [api]
 ---
 END_METADATA -->
@@ -10,7 +10,9 @@ END_METADATA -->
 
 ## Before you begin
 
-This document covers the quick steps for getting started with the Vipps Merchant Payments API. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the [Merchant Portal](Merchant-Portal.md).
+This document covers the quick steps for getting started with the Vipps Merchant Payments API.
+You must have already signed up as a organisation with Vipps and have your test credentials from the merchant portal, as described in the
+[Getting Started guide](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#requirements).
 
 Once your merchant account is setup for Merchant Payments, you should look at our [Configure Merchant Account](https://vippsas.github.io/vipps-developer-docs/api/epayment) page for available configuration options such as our [Notifications Webhooks](./How-to-setup-Notification-Webhooks.md).
 
@@ -320,6 +322,6 @@ we recommend you read further to better understand the full range of possibiliti
 
 - [How to setup Notification Webhooks](How-to-setup-Notification-Webhooks.md)
 - [Payment modification, how to use cancel, capture and refund?](Payment-Modification.md)
-- [Profile sharing, requesting the users personal information](Profile-Sharing.md)
-- [Logistics, how can I enable express checkout?](Logistics.md)
 - [Using Vipps Merchant Payments in a shopper present context](Customer-Present-Payments.md)
+<!--- TODO [Profile sharing, requesting the users personal information](Profile-Sharing.md)-->
+<!--- TODO [Logistics, how can I enable express checkout?](Logistics.md)-->
