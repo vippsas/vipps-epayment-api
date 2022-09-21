@@ -22,10 +22,6 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 ## ePayment API
 
 * [API guide](getting_started/README.md): Developer guide for Vipps ePayment API.
-<!--
-* [Vipps ePayment API guide](vipps-epayment-api.md): Developer guide for Vipps ePayment API.
-* [Vipps ePayment API Checklist](vipps-epayment-api-checklist.md): For direct and POS integrations.
--->
 * [API Reference](https://vippsas.github.io/vipps-epayment-api/redoc.html): ePayment API Reference Specifications.
 
 ## Questions?
@@ -34,8 +30,6 @@ For more information, see:
 
 * [Vipps plugins](https://github.com/vippsas/vipps-plugins): Open source plugins for various web solutions.
 * [Settlements](https://github.com/vippsas/vipps-developers/tree/master/settlements): The flow of settlements and how to retrieve them.
-
-<!-- * [Frequently Asked Questions](vipps-epayment-api-faq.md): Questions and answers. -->
 
 We're always happy to help with code or other questions you might have!
 Please create an [issue](https://github.com/vippsas/vipps-epayment-api/issues),
