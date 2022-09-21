@@ -7,8 +7,6 @@ END_METADATA -->
 
 # Vipps ePayment API
 
-💥 DRAFT! Unfinished work in progress. Close to useless except for discussions in and with Vipps. 💥
-
 This repository contains developer resources for the Vipps ePayment API.
 
 The Vipps eCom API is used by
@@ -32,7 +30,10 @@ for contact information, contribution guidelines, etc.
 
 For more information, see:
 
-* [Vipps eCommerce API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md): Developer guide for Vipps ePayment API.
+<!-- START_COMMENT -->
+* [API guide](docs/api/Getting-Started.md): Developer guide for Vipps ePayment API.
+<!-- END_COMMENT -->
+
 * [Vipps plugins](https://github.com/vippsas/vipps-plugins): Open source plugins for various web solutions.
 * [Settlements](https://github.com/vippsas/vipps-developers/tree/master/settlements): The flow of settlements and how to retrieve them.
 
