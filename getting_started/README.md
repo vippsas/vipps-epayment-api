@@ -322,6 +322,6 @@ we recommend you read further to better understand the full range of possibiliti
 
 - [How to setup Notification Webhooks](How-to-setup-Notification-Webhooks.md)
 - [Payment modification, how to use cancel, capture and refund?](Payment-Modification.md)
+- [Profile sharing, requesting the users personal information](Profile-Sharing.md)
+- [Logistics, how can I enable express checkout?](Logistics.md)
 - [Using Vipps Merchant Payments in a shopper present context](Customer-Present-Payments.md)
-<!--- TODO [Profile sharing, requesting the users personal information](Profile-Sharing.md)-->
-<!--- TODO [Logistics, how can I enable express checkout?](Logistics.md)-->
