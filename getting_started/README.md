@@ -1,6 +1,10 @@
+<!-- START_METADATA
 ---
+title: Introduction
+sidebar_position: 10
 tags: [api]
 ---
+END_METADATA -->
 
 # Getting Started with the Vipps Merchant Payments API
 
