@@ -314,8 +314,8 @@ In this case the `aggregate` property will be updated as such:
 
 Now that you have completed your first payment we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
 
-- [How to setup Notification Webhooks](./How-to-setup-Notification-Webhooks.md)
-- [Payment modification, how to use cancel, capture and refund?](./Payment-Modification.md)
-- [Profile sharing, requesting the users personal information](./Profile-Sharing.md)
-- [Logistics, how can I enable express checkout?](./Logistics.md)
-- [Using Vipps Merchant Payments in a shopper present context](./Customer-Present-Payments.md)
+- [How to setup Notification Webhooks](How-to-setup-Notification-Webhooks.md)
+- [Payment modification, how to use cancel, capture and refund?](Payment-Modification.md)
+- [Profile sharing, requesting the users personal information](Profile-Sharing.md)
+- [Logistics, how can I enable express checkout?](Logistics.md)
+- [Using Vipps Merchant Payments in a shopper present context](Customer-Present-Payments.md)
