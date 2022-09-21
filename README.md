@@ -21,6 +21,10 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 ## ePayment API
 
+<!-- START_COMMENT -->
+* [API guide](docs/api/Getting-Started.md): Developer guide for Vipps ePayment API.
+<!-- END_COMMENT -->
+
 * [API Reference](https://vippsas.github.io/vipps-epayment-api/redoc.html): ePayment API Reference Specifications.
 
 See the [Vipps Developers repository](https://github.com/vippsas/vipps-developers)
@@ -29,10 +33,6 @@ for contact information, contribution guidelines, etc.
 ## Questions?
 
 For more information, see:
-
-<!-- START_COMMENT -->
-* [API guide](docs/api/Getting-Started.md): Developer guide for Vipps ePayment API.
-<!-- END_COMMENT -->
 
 * [Vipps plugins](https://github.com/vippsas/vipps-plugins): Open source plugins for various web solutions.
 * [Settlements](https://github.com/vippsas/vipps-developers/tree/master/settlements): The flow of settlements and how to retrieve them.
