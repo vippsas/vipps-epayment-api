@@ -7,15 +7,8 @@ END_METADATA -->
 
 # Vipps ePayment API
 
--💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
+💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
 
-This repository contains developer resources for the Vipps ePayment API.
-
-The Vipps eCom API is used by
-[Vipps på nett](https://vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/ta-betalt-paa-nett/),
-[Vipps Checkout](https://vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/vipps-checkout/),
-[Vipps i kassa (POS)](https://vipps.no/produkter-og-tjenester/bedrift/ta-betalt-i-butikk/vipps-i-kassa/),
-native apps and other solutions.
 
 ## Getting started
 
@@ -27,7 +20,7 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 * [API guide](docs/api/Getting-Started.md): Developer guide for Vipps ePayment API.
 <!-- END_COMMENT -->
 
-* [API Reference](https://vippsas.github.io/vipps-epayment-api/redoc.html): ePayment API Reference Specifications.
+[API Reference](https://vippsas.github.io/vipps-epayment-api/redoc.html): ePayment API Reference Specifications.
 
 See the [Vipps Developers repository](https://github.com/vippsas/vipps-developers)
 for contact information, contribution guidelines, etc.
