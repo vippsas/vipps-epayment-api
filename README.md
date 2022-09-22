@@ -7,8 +7,6 @@ END_METADATA -->
 
 # Vipps ePayment API
 
-💥 DRAFT! Unfinished work in progress. Close to useless except for discussions in and with Vipps. 💥
-
 This repository contains developer resources for the Vipps ePayment API.
 
 The Vipps eCom API is used by
@@ -23,11 +21,11 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 ## ePayment API
 
-<!--
-* [Vipps ePayment API guide](vipps-epayment-api.md): Developer guide for Vipps ePayment API.
-* [Vipps ePayment API Checklist](vipps-epayment-api-checklist.md): For direct and POS integrations.
--->
-* [Swagger](https://vippsas.github.io/vipps-epayment-api/) or [ReDoc](https://vippsas.github.io/vipps-epayment-api/redoc.html): ePayment API Reference Specifications.
+<!-- START_COMMENT -->
+* [API guide](docs/api/Getting-Started.md): Developer guide for Vipps ePayment API.
+<!-- END_COMMENT -->
+
+* [API Reference](https://vippsas.github.io/vipps-epayment-api/redoc.html): ePayment API Reference Specifications.
 
 See the [Vipps Developers repository](https://github.com/vippsas/vipps-developers)
 for contact information, contribution guidelines, etc.
@@ -36,11 +34,8 @@ for contact information, contribution guidelines, etc.
 
 For more information, see:
 
-* [Vipps eCommerce API guide](./docs/api/Getting-Started.md): Developer guide for Vipps ePayment API.
 * [Vipps plugins](https://github.com/vippsas/vipps-plugins): Open source plugins for various web solutions.
 * [Settlements](https://github.com/vippsas/vipps-developers/tree/master/settlements): The flow of settlements and how to retrieve them.
-
-<!-- * [Frequently Asked Questions](vipps-epayment-api-faq.md): Questions and answers. -->
 
 We're always happy to help with code or other questions you might have!
 Please create an [issue](https://github.com/vippsas/vipps-epayment-api/issues),
