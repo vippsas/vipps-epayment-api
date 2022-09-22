@@ -7,6 +7,8 @@ END_METADATA -->
 
 # Vipps ePayment API
 
+-💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
+
 This repository contains developer resources for the Vipps ePayment API.
 
 The Vipps eCom API is used by
