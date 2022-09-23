@@ -3,7 +3,7 @@ servers:
   - url: 'https://api.vipps.no/epayment'
     description: Production source URL for the Vipps ePayment api
 info:
-  description: The Vipps ePayment api
+  description: The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information. 
   version: 0.9.0
   title: Vipps ePayment API
   contact:

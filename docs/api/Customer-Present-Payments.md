@@ -1,8 +1,12 @@
-# Customer-Present-Payments
+<!-- START_METADATA
+---
+title: Customer Preset Payments
+sidebar_position: 150
+---
+END_METADATA -->
 
-When using the ePayments API to process payments in a physical setting, from a POS device, or in a restaurant for example, the payment must be flagged with `$.customerInteraction=CUSTOMER_PRESENT`. 
+# Customer-Present Payments
 
-`CUSTOMER_PRESENT` marking is required for compliance and reporting reasons. 
+When using the ePayments API to process payments in a physical setting, from a POS device, or in a restaurant for example, the payment must be flagged with `"customerInteraction": "CUSTOMER_PRESENT"`.
 
-
-
+`CUSTOMER_PRESENT` marking is required for compliance and reporting reasons.

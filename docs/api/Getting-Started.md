@@ -1,14 +1,21 @@
+<!-- START_METADATA
 ---
-tags: [api]
+title: Introduction
+sidebar_position: 100
 ---
+END_METADATA -->
 
 # Getting Started with the Vipps Merchant Payments API
 
+💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
+
 ## Before you begin
 
-This document covers the quick steps for getting started with the Vipps Merchant Payments API. This document assumes you have signed up as a organisation with Vipps and have your test credentials from the [Merchant Portal](./Merchant-Portal.md).
+This document covers the quick steps for getting started with the Vipps Merchant Payments API.
+You must have already signed up as a organisation with Vipps and have your test credentials from the merchant portal, as described in the
+[Getting Started guide](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#requirements).
 
-Once your merchant account is setup for Merchant Payments, you should look at our [Configure Merchant Account]() page for available configuration options such as our [Notifications Webhooks](./How-to-setup-Notification-Webhooks.md).
+Once your merchant account is setup for Merchant Payments, you should look at our [Configure Merchant Account](../TODO.md) page for available configuration options, such as our [Notifications Webhooks](How-to-setup-Notification-Webhooks.md).
 
 ## Your first Vipps Payment
 
@@ -31,21 +38,14 @@ The property `access_token` should be used for all other API requests in the `Au
 
 ```json
 {
-  "token_type": "Bearer"
-  },
-  "expires_in": "3599"
-  },
-  "ext_expires_in": "3599"
-  },
-  "expires_on": "1614116654"
-  },
-  "not_before": "1614112754"
-  },
-  "resource": "00000002-0000-0000-c000-000000000000"
-  },
+  "token_type": "Bearer",
+  "expires_in": "3599",
+  "ext_expires_in": "3599",
+  "expires_on": "1614116654",
+  "not_before": "1614112754",
+  "resource": "00000002-0000-0000-c000-000000000000",
   "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiIwMDAwMDAwMi0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lNTExNjUyNi01MWRjLTRjMTQtYjA4Ni1hNWNiNDcxNmJjNGIvIiwiaWF0IjoxNjE0MTEyNzU0LCJuYmYiOjE2MTQxMTI3NTQsImV4cCI6MTYxNDExNjY1NCwiYWlvIjoiRTJaZ1lMQmF1V25qcG12c2NhYlhJOTliSmt3c0FRQT0iLCJhcHBpZCI6IjIyNWVmMTU5LWFjZjAtNGRiNy04OGU0LWNlNDMyODYxOWM3MyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2U1MTE2NTI2LTUxZGMtNGMxNC1iMDg2LWE1Y2I0NzE2YmM0Yi8iLCJyaCI6IjAuQVNBQUptVVI1ZHhSRkV5d2hxWExSeGE4UzFueFhpTHdyTGROaU9UT1F5aGhuSE1nQUFBLiIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJFVSIsInRpZCI6ImU1MTE2NTI2LTUxZGMtNGMxNC1iMDg2LWE1Y2I0NzE2YmM0YiIsInV0aSI6Imo4bHRFZER5R2tDeURtdXR3QVVNQUEiLCJ2ZXIiOiIxLjAifQ.IeLADJiz5WRdQgf-3LfnUCfiQpKNjRIJjvDfYzoG9xgOQwBhSKeDlelIx0_FMx3oHtvYkGWebDy0Y1HjdrbgzoA2RTeIzS8IjylZcGfSuhA6kUvBa4JUPLW4Irefp3Bv77gUfS0dVzHVILADV-8VSCjivld7ovEANQagupsi4zhAyVWuNuHurDOSSI33lxnes-FmphUfiUfwmye9B676lwaj28I1dP3JxqFDDf3SNkjNLvTZyiDaIprZrt4TC_t5eopzqCL4X1ymnWxzJzMMPQGVOvhNEJj1oI_5VbRtoYdo_b5bYU5ZS7JSGcuOpog7vEtVk6uJDDT0MfQIuOLaeA"
   }
-}
 ```
 
 ### Step 2 - Create a payment
@@ -143,12 +143,14 @@ The user will be presented with the payment in the Vipps app where theyt can com
 
 To receive the result of the users action you may either:
 
-1. Poll the status of the payment view the [Get Payment]() and [Get Payment Event Log]() endpoints.
-2. Receive status updates over our [Notification Webhooks](./How-to-setup-Notification-Webhooks.md) service
+1. Poll the status of the payment view the
+   [Get Payment][get-payment-endpoint] and
+   [Get Payment Event Log[get-payment-event-log-endpoint] endpoints.
+2. Receive status updates over our [Notification Webhooks](How-to-setup-Notification-Webhooks.md) service
 
 ### Polling
 
-A request to the [Get Payment]() URL will yield a response in the same structure as [Create Payment]() specified above in [Step 2](#Step-2---Create-a-payment).
+A request to the [Get Payment][get-payment-endpoint] URL will yield a response in the same structure as [Create Payment][create-payment-endpoint] specified above in [Step 2](#step-2---create-a-payment).
 
 Example request:
 
@@ -210,7 +212,7 @@ If you are not dependent on getting the payment result immediately you may also 
 
 > Note: this means we may deliver the same message several times to verify succesful delivery, use the `pspReference` field for duplicate delivery checking.
 
-If you use the notification service you will recieve events in the same format as those in the array list returned from the [Get Payment Events]() endpoint.
+If you use the notification service you will recieve events in the same format as those in the array list returned from the [Get Payment Events](../TODO.md) endpoint.
 
 For example a succeful authentication event would look like
 
@@ -251,7 +253,7 @@ If the user had rejected or not acted upon the payment the event would look like
 ## Step 4 - Capture the payment
 
 Once the good or services are delivered or on their way to the customer it is time to capture the payment.
-This can be done through the [Capture Payment]().
+This can be done through the [Capture Payment][capture-payment-endpoint].
 This endpoint take the following properties in the body of the request
 
 | Parameter               | Type     | Required | Description                                                                                                                                 |
@@ -279,7 +281,11 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capt
 }'
 ```
 
-Adjustments to a payment (capture, refund etc) as async. You will get a `202 Accepted` response with no body if the action is valid. A callback will be sent once the capture is completed. Additionally polling on [Get Payment]() can be done. Once capture is completed the `Payment` object will be updated to reflect this.
+Adjustments to a payment (capture, refund etc) as async.
+You will get a `HTTP 202 Accepted` response with no body if the action is valid.
+A callback will be sent once the capture is completed.
+Additionally, polling on [Get Payment][get-payment-endpoint] can be done.
+Once capture is completed the `Payment` object will be updated to reflect this.
 
 In this case the `aggregate` property will be updated as such:
 
@@ -312,10 +318,23 @@ In this case the `aggregate` property will be updated as such:
 
 ## Next Steps
 
-Now that you have completed your first payment we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
+Now that you have completed your first payment,
+we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
 
 - [How to setup Notification Webhooks](./How-to-setup-Notification-Webhooks.md)
 - [Payment modification, how to use cancel, capture and refund?](./Payment-Modification.md)
-- [Profile sharing, requesting the users personal information](./Profile-Sharing.md)
-- [Logistics, how can I enable express checkout?](./Logistics.md)
 - [Using Vipps Merchant Payments in a shopper present context](./Customer-Present-Payments.md)
+
+<!-- START_COMMENT -->
+- [Profile sharing, requesting the users personal information](Profile-Sharing.md)
+- [Logistics, how can I enable express checkout?](Logistics.md)
+<!-- END_COMMENT -->
+
+[create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
+[get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
+[get-payment-event-log-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
+[cancel-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/cancelPayment
+[capture-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/capturePayment
+[refund-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment
+[adjust-authorization-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/adjustAuthorization
+[force-approve-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/ForceApprove/operation/forceApprove
