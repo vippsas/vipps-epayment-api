@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-draft: True
+draft: true
 ---
 END_METADATA -->
 # Logistics
