@@ -282,7 +282,7 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capt
 ```
 
 Adjustments to a payment (capture, refund etc) as async.
-You will get a `202 Accepted` response with no body if the action is valid.
+You will get a `HTTP 202 Accepted` response with no body if the action is valid.
 A callback will be sent once the capture is completed.
 Additionally, polling on [Get Payment][get-payment-endpoint] can be done.
 Once capture is completed the `Payment` object will be updated to reflect this.
