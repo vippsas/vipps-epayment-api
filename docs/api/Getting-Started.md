@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: Introduction
+title: Getting started
 sidebar_position: 100
 ---
 END_METADATA -->
