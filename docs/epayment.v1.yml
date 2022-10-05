@@ -28,7 +28,6 @@ tags:
 paths:
   /v1/payments:
     parameters:
-      - $ref: '#/components/parameters/Idempotency-Key'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
     post:
@@ -43,7 +42,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Payment'
+              $ref: '#/components/schemas/PaymentRequest'
       responses:
         '201':
           $ref: '#/components/responses/Payment-Response'
@@ -176,35 +175,6 @@ paths:
         description: Requested refund modification
       tags:
         - AdjustPayments
-  '/v1/payments/{reference}/adjustAuthorization':
-    parameters:
-      - $ref: '#/components/parameters/Payment-Reference-ID'
-      - $ref: '#/components/parameters/Merchant-Serial-Number'
-      - $ref: '#/components/parameters/APIM-Subscription-Key'
-      - $ref: '#/components/parameters/Idempotency-Key'
-    put:
-      summary: Adjust Authorization
-      tags:
-        - AdjustPayments
-      responses:
-        '202':
-          $ref: '#/components/responses/Adjust-Response'
-        '400':
-          $ref: '#/components/responses/Problem-Response'
-        '404':
-          $ref: '#/components/responses/Problem-Response'
-        '409':
-          $ref: '#/components/responses/Problem-Response'
-      operationId: adjustAuthorization
-      description: Adjust the current authorisation
-      security:
-        - Bearer-Authorization: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PaymentAdjustment'
-        description: Payment adjustment body
   '/v1/test/payments/{reference}/approve':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
@@ -246,7 +216,10 @@ components:
           pattern: '^[0-9-]{10,15}$'
         sub:
           type: string
-          description: The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
+          description: |
+            TODO: Talk to Team Login regards to naming
+
+            The user subscription identifier received in `$.profile.sub` or from the Vipps Login API
           example: c06c4afe-d9e1-4c5d-939a-177d752a0944
     Amount:
       description: Amount Object
@@ -255,7 +228,6 @@ components:
         currency:
           $ref: '#/components/schemas/Currency'
         value:
-          nullable: true
           type: integer
           example: 1000
           format: int64
@@ -268,10 +240,86 @@ components:
       example: NOK
       enum:
         - NOK
-      description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian Kroner, Note, should this be using digit code? eg NOK = 578'
-    Payment:
-      title: Payment
-      description: Payment object
+      description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian Kroner.'
+    PaymentRequest:
+      title: PaymentRequest
+      description: Payment Request object
+      type: object
+      x-examples: {}
+      properties:
+        amount:
+          $ref: '#/components/schemas/Amount'
+        directCapture:
+          type: boolean
+          default: false
+          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
+        customer:
+          $ref: '#/components/schemas/Customer'
+        customerInteraction:
+          type: string
+          description: The form of customer interaction to trigger the purchase
+          enum:
+            - CUSTOMER_PRESENT
+            - CUSTOMER_NOT_PRESENT
+          x-enum-varnames:
+            - CUSTOMER_PRESENT
+            - CUSTOMER_NOT_PRESENT
+          example: CUSTOMER_NOT_PRESENT
+          required: true
+        industry:
+          description: Additional compliance data related to the transaction.
+          type: object
+          properties:
+            airline:
+              $ref: '#/components/schemas/Airline'
+        receipt:
+          $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.0/docs/swagger.yaml#/components/schemas/Receipt'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        profile:
+          $ref: '#/components/schemas/ProfileRequest'
+        reference:
+          $ref: '#/components/schemas/Reference'
+        returnUrl:
+          type: string
+          description: |
+            TODO needs regex for validation for https or custom app schema
+          example: 'https://example.io/redirect?orderId=abcc123'
+        userFlow:
+          type: string
+          enum:
+            - PUSH_MESSAGE
+            - NATIVE_REDIRECT
+            - WEB_REDIRECT
+          x-enum-varnames:
+            - PUSH_MESSAGE
+            - NATIVE_REDIRECT
+            - WEB_REDIRECT
+          example: NATIVE_REDIRECT
+          description: |-
+            The flow for bringing to user to the Vipps Wallet payment confirmation screen.
+
+            If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
+        description:
+          type: string
+          minLength: 3
+          maxLength: 100
+          description: 'The message to user that will appear in the app, in the merchant portal and settlement files.'
+        callbackUrl:
+          type: string
+          description: |
+            TODO add regex validation
+            NOTE temp stopgap until webhooks is implemented properly
+            'This is an URL for Vipps to call at the merchant''s server to provide updated information about the order after the payment request. Domain name and context path should be provided by merchant as the value for this parameter. Vipps will add `/payments/{reference}` to the end of this URL.'
+      required:
+        - amount
+        - paymentMethod
+        - reference
+        - returnUrl
+        - userFlow
+    PaymentResponse:
+      title: Payment Response
+      description: Payment Response object
       type: object
       x-examples: {}
       properties:
@@ -279,8 +327,6 @@ components:
           $ref: '#/components/schemas/TransactionAggregate'
         amount:
           $ref: '#/components/schemas/Amount'
-        authorisationType:
-          $ref: '#/components/schemas/AuthorisationType'
         state:
           $ref: '#/components/schemas/State'
         directCapture:
@@ -305,7 +351,7 @@ components:
           type: object
           properties:
             airline:
-              $ref: '#/components/schemas/AirlineData'
+              $ref: '#/components/schemas/Airline'
         logistics:
           $ref: '#/components/schemas/Logistics'
         orderInformation:
@@ -313,7 +359,7 @@ components:
         paymentMethod:
           $ref: '#/components/schemas/PaymentMethod'
         profile:
-          $ref: '#/components/schemas/Profile'
+          $ref: '#/components/schemas/ProfileResponse'
         pspReference:
           $ref: '#/components/schemas/PspReferenceType'
         redirectUrl:
@@ -321,14 +367,11 @@ components:
           format: uri
           example: 'https://landing.vipps.no?token=abc123'
           description: 'The url you should redirect the user to to continue with the payment. '
-          readOnly: true
         reference:
-          $ref: '#/components/schemas/ReferenceType'
+          $ref: '#/components/schemas/Reference'
         returnUrl:
           type: string
           example: 'https://example.io/redirect?orderId=abcc123'
-        subReference:
-          $ref: '#/components/schemas/ReferenceType'
         userFlow:
           type: string
           enum:
@@ -356,8 +399,8 @@ components:
         - reference
         - returnUrl
         - userFlow
-    AirlineData:
-      title: AirlineData
+    Airline:
+      title: Airline
       type: object
       description: |-
         Airline related data
@@ -398,7 +441,6 @@ components:
     TransactionAggregate:
       title: TransactionAggregate
       type: object
-      readOnly: true
       properties:
         authorizedAmount:
           $ref: '#/components/schemas/Amount'
@@ -419,7 +461,7 @@ components:
       x-examples: {}
       properties:
         modificationReference:
-          $ref: '#/components/schemas/ReferenceType'
+          $ref: '#/components/schemas/Reference'
     CaptureModificationRequest:
       title: CaptureModificationRequest
       type: object
@@ -428,7 +470,7 @@ components:
         modificationAmount:
           $ref: '#/components/schemas/Amount'
         modificationReference:
-          $ref: '#/components/schemas/ReferenceType'
+          $ref: '#/components/schemas/Reference'
       required:
         - modificationAmount
     RefundModificationRequest:
@@ -439,10 +481,10 @@ components:
         modificationAmount:
           $ref: '#/components/schemas/Amount'
         modificationReference:
-          $ref: '#/components/schemas/ReferenceType'
+          $ref: '#/components/schemas/Reference'
       required:
         - modificationAmount
-    ReferenceType:
+    Reference:
       type: string
       title: ReferenceType
       description: A reference
@@ -453,7 +495,6 @@ components:
       x-examples: {}
     PspReferenceType:
       type: string
-      readOnly: true
       title: PspReferenceType
       description: Reference value for a payment defined by Vipps
     Address:
@@ -531,7 +572,14 @@ components:
         - taxPercentage
         - discount
         - quantityUnit
-    Profile:
+    ProfileRequest:
+      title: Profile
+      type: object
+      properties:
+        scope:
+          type: string
+          description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
+    ProfileResponse:
       title: Profile
       type: object
       properties:
@@ -540,7 +588,6 @@ components:
           description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
         sub:
           type: string
-          readOnly: true
           description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.state` is `AUTHORISED`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
     Logistics:
       title: Logistics
@@ -616,12 +663,10 @@ components:
       title: PaymentAdjustment
       type: object
       properties:
-        authorisationType:
-          $ref: '#/components/schemas/AuthorisationType'
         modificationAmount:
           $ref: '#/components/schemas/Amount'
         modificationReference:
-          $ref: '#/components/schemas/ReferenceType'
+          $ref: '#/components/schemas/Reference'
       required:
         - modificationAmount
         - modificationReference
@@ -631,7 +676,7 @@ components:
       x-examples: {}
       properties:
         reference:
-          $ref: '#/components/schemas/ReferenceType'
+          $ref: '#/components/schemas/Reference'
         pspReference:
           $ref: '#/components/schemas/PspReferenceType'
         paymentAction:
@@ -643,7 +688,6 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - ADJUST_AUTHORISATION
             - AUTHORISE
             - TERMINATE
           example: AUTHORISE
@@ -654,13 +698,10 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - ADJUST_AUTHORISATION
             - AUTHORISE
             - TERMINATE
         amount:
           $ref: '#/components/schemas/Amount'
-        authorisationType:
-          $ref: '#/components/schemas/AuthorisationType'
         processedAt:
           type: string
           format: date-time
@@ -677,16 +718,6 @@ components:
         - paymentAction
         - amount
         - processedAt
-    AuthorisationType:
-      title: AuthorisationType
-      type: string
-      enum:
-        - FINAL_AUTH
-      x-enum-varnames:
-        - FINAL_AUTH
-      example: FINAL_AUTH
-      default: FINAL_AUTH
-      description: Flags a card payment request for final authorisation.
     Problem:
       title: Problem
       type: object
@@ -755,7 +786,6 @@ components:
         - EXPIRED
         - AUTHORISED
         - TERMINATED
-      readOnly: true
     ForceApprove:
       title: ForceApprove
       type: object
@@ -813,7 +843,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Payment'
+            $ref: '#/components/schemas/PaymentResponse'
     Adjust-Response:
       description: Adjustment response
     Problem-Response:
