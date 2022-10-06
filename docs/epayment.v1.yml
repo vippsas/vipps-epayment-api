@@ -98,7 +98,7 @@ paths:
       summary: Cancel Payment
       operationId: cancelPayment
       responses:
-        '202':
+        '200':
           $ref: '#/components/responses/Adjust-Response'
         '400':
           $ref: '#/components/responses/Problem-Response'
@@ -109,12 +109,6 @@ paths:
       description: Cancel the given payment
       security:
         - Bearer-Authorization: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CancelModificationRequest'
-        description: Requested cancel modification
       tags:
         - AdjustPayments
   '/v1/payments/{reference}/capture':
@@ -127,7 +121,7 @@ paths:
       summary: Capture Payment
       operationId: capturePayment
       responses:
-        '202':
+        '200':
           $ref: '#/components/responses/Adjust-Response'
         '400':
           $ref: '#/components/responses/Problem-Response'
@@ -156,7 +150,7 @@ paths:
       summary: Refund Payment
       operationId: refundPayment
       responses:
-        '202':
+        '200':
           $ref: '#/components/responses/Adjust-Response'
         '400':
           $ref: '#/components/responses/Problem-Response'
@@ -266,12 +260,12 @@ components:
             - CUSTOMER_NOT_PRESENT
           example: CUSTOMER_NOT_PRESENT
           required: true
-        industry:
+        industryData:
           description: Additional compliance data related to the transaction.
           type: object
           properties:
-            airline:
-              $ref: '#/components/schemas/Airline'
+            airlineData:
+              $ref: '#/components/schemas/AirlineData'
         receipt:
           $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.0/docs/swagger.yaml#/components/schemas/Receipt'
         paymentMethod:
@@ -323,41 +317,14 @@ components:
       type: object
       x-examples: {}
       properties:
-        aggregate:
-          $ref: '#/components/schemas/TransactionAggregate'
+        transactionSummary:
+          $ref: '#/components/schemas/TransactionSummary'
         amount:
           $ref: '#/components/schemas/Amount'
         state:
           $ref: '#/components/schemas/State'
-        directCapture:
-          type: boolean
-          default: false
-          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
-        customer:
-          $ref: '#/components/schemas/Customer'
-        customerInteraction:
-          type: string
-          description: The form of customer interaction to trigger the purchase
-          enum:
-            - CUSTOMER_PRESENT
-            - CUSTOMER_NOT_PRESENT
-          x-enum-varnames:
-            - CUSTOMER_PRESENT
-            - CUSTOMER_NOT_PRESENT
-          example: CUSTOMER_NOT_PRESENT
-          default: CUSTOMER_NOT_PRESENT
-        industryData:
-          description: Additional data related to the transaction.
-          type: object
-          properties:
-            airline:
-              $ref: '#/components/schemas/Airline'
-        logistics:
-          $ref: '#/components/schemas/Logistics'
-        orderInformation:
-          $ref: '#/components/schemas/OrderInformation'
         paymentMethod:
-          $ref: '#/components/schemas/PaymentMethod'
+          $ref: '#/components/schemas/PaymentMethodResponse'
         profile:
           $ref: '#/components/schemas/ProfileResponse'
         pspReference:
@@ -369,38 +336,17 @@ components:
           description: 'The url you should redirect the user to to continue with the payment. '
         reference:
           $ref: '#/components/schemas/Reference'
-        returnUrl:
-          type: string
-          example: 'https://example.io/redirect?orderId=abcc123'
-        userFlow:
-          type: string
-          enum:
-            - PUSH_MESSAGE
-            - NATIVE_REDIRECT
-            - WEB_REDIRECT
-          x-enum-varnames:
-            - PUSH_MESSAGE
-            - NATIVE_REDIRECT
-            - WEB_REDIRECT
-          example: NATIVE_REDIRECT
-          description: |-
-            The flow for bringing to user to the Vipps Wallet payment confirmation screen.
-
-            If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
-        paymentDescription:
-          type: string
-          description: 'message to user that will appear in the app, in the merchant portal and settlement files.'
-        callbackUrl:
-          type: string
-          description: 'This is an URL for Vipps to call at the merchant''s server to provide updated information about the order after the payment request. Domain name and context path should be provided by merchant as the value for this parameter. Vipps will add `/payments/{reference}` to the end of this URL.'
       required:
+        - transactionSummary
         - amount
+        - state
         - paymentMethod
+        - profile
+        - pspReference
+        - redirectUrl
         - reference
-        - returnUrl
-        - userFlow
-    Airline:
-      title: Airline
+    AirlineData:
+      title: AirlineData
       type: object
       description: |-
         Airline related data
@@ -438,8 +384,8 @@ components:
           description: The ticket's unique identifier.
           minLength: 1
           maxLength: 150
-    TransactionAggregate:
-      title: TransactionAggregate
+    TransactionSummary:
+      title: TransactionSummary
       type: object
       properties:
         authorizedAmount:
@@ -451,17 +397,10 @@ components:
         refundedAmount:
           $ref: '#/components/schemas/Amount'
       required:
-        - currentAuthorizedAmount
+        - authorizedAmount
         - cancelledAmount
         - capturedAmount
         - refundedAmount
-    CancelModificationRequest:
-      title: CancelModificationRequest
-      type: object
-      x-examples: {}
-      properties:
-        modificationReference:
-          $ref: '#/components/schemas/Reference'
     CaptureModificationRequest:
       title: CaptureModificationRequest
       type: object
@@ -469,8 +408,6 @@ components:
       properties:
         modificationAmount:
           $ref: '#/components/schemas/Amount'
-        modificationReference:
-          $ref: '#/components/schemas/Reference'
       required:
         - modificationAmount
     RefundModificationRequest:
@@ -480,10 +417,27 @@ components:
       properties:
         modificationAmount:
           $ref: '#/components/schemas/Amount'
-        modificationReference:
-          $ref: '#/components/schemas/Reference'
       required:
         - modificationAmount
+    ModificationResponse:
+      title: ModificationResponse
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Amount'
+        modificationAmount:
+          $ref: '#/components/schemas/Amount'
+        transactionSummary: 
+          $ref: '#/components/schemas/TransactionSummary'
+        pspReference:
+          $ref: '#/components/schemas/PspReferenceType'
+        reference:
+          $ref: '#/components/schemas/Reference'
+      required:
+        - amount
+        - transactionSummary
+        - pspReference
+        - reference
     Reference:
       type: string
       title: ReferenceType
@@ -535,43 +489,6 @@ components:
         - postCode
         - city
         - country
-    LineItem:
-      title: LineItem
-      type: object
-      description: A object describing a purchased product.
-      properties:
-        amountExcludingTax:
-          type: integer
-        amountIncludingTax:
-          type: integer
-        description:
-          type: string
-        id:
-          type: string
-          description: The product ID
-        productUrl:
-          type: string
-        quantity:
-          type: integer
-        taxAmount:
-          type: string
-        taxPercentage:
-          type: integer
-        discount:
-          type: integer
-          nullable: true
-        quantityUnit:
-          $ref: '#/components/schemas/QuantityUnitEnum'
-      required:
-        - amountExcludingTax
-        - amountIncludingTax
-        - description
-        - id
-        - quantity
-        - taxAmount
-        - taxPercentage
-        - discount
-        - quantityUnit
     ProfileRequest:
       title: Profile
       type: object
@@ -583,9 +500,6 @@ components:
       title: Profile
       type: object
       properties:
-        scope:
-          type: string
-          description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
         sub:
           type: string
           description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.state` is `AUTHORISED`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
@@ -649,6 +563,20 @@ components:
           $ref: '#/components/schemas/PaymentMethodType'
       required:
         - type
+    PaymentMethodResponse:
+      title: PaymentMethodResponse
+      type: object
+      description: |
+        TODO fill in with bin++
+      properties:
+        type:
+          $ref: '#/components/schemas/PaymentMethodType'
+        cardBin:
+          minLength: 6
+          maxLength: 6
+          type: string
+      required:
+        - type
     PaymentMethodType:
       type: string
       enum:
@@ -679,30 +607,30 @@ components:
           $ref: '#/components/schemas/Reference'
         pspReference:
           $ref: '#/components/schemas/PspReferenceType'
-        paymentAction:
+        name:
           type: string
           enum:
-            - CREATE
-            - ABORT
-            - EXPIRE
-            - CANCEL
-            - CAPTURE
-            - REFUND
-            - AUTHORISE
-            - TERMINATE
-          example: AUTHORISE
+            - CREATED
+            - ABORTED
+            - EXPIRED
+            - CANCELLED
+            - CAPTURED
+            - REFUNDED
+            - AUTHORISED
+            - TERMINATED
+          example: AUTHORISED
           x-enum-varnames:
-            - CREATE
-            - ABORT
-            - EXPIRE
-            - CANCEL
-            - CAPTURE
-            - REFUND
-            - AUTHORISE
-            - TERMINATE
+            - CREATED
+            - ABORTED
+            - EXPIRED
+            - CANCELLED
+            - CAPTURED
+            - REFUNDED
+            - AUTHORISED
+            - TERMINATED
         amount:
           $ref: '#/components/schemas/Amount'
-        processedAt:
+        timestamp:
           type: string
           format: date-time
         idempotencyKey:
@@ -717,7 +645,8 @@ components:
         - pspReference
         - paymentAction
         - amount
-        - processedAt
+        - timestamp
+        - success
     Problem:
       title: Problem
       type: object
@@ -739,29 +668,6 @@ components:
         - type
         - title
         - traceId
-    OrderInformation:
-      title: OrderInformation
-      type: object
-      properties:
-        lineItems:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/LineItem'
-        shippingAmount:
-          type: integer
-          nullable: true
-      required:
-        - lineItems
-        - shippingAmount
-    QuantityUnitEnum:
-      type: string
-      title: QuantityUnitEnum
-      enum:
-        - Unknown
-        - Kilogram
-        - Meter
-        - Liter
     State:
       type: string
       title: State
@@ -846,6 +752,11 @@ components:
             $ref: '#/components/schemas/PaymentResponse'
     Adjust-Response:
       description: Adjustment response
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ModificationResponse'
+      headers: {}
     Problem-Response:
       description: Standard problem response
       content:
