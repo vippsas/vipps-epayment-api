@@ -3,13 +3,13 @@ servers:
   - url: 'https://api.vipps.no/epayment'
     description: Production source URL for the Vipps ePayment api
 info:
-  description: The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information. 
+  description: The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.
   version: 0.9.0
   title: Vipps ePayment API
   contact:
     email: integration@vipps.no
     name: Vipps AS
-    url: 'http://github.com/vippsas'
+    url: 'https://vippsas.github.io/vipps-developer-docs/'
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -427,7 +427,7 @@ components:
           $ref: '#/components/schemas/Amount'
         modificationAmount:
           $ref: '#/components/schemas/Amount'
-        transactionSummary: 
+        transactionSummary:
           $ref: '#/components/schemas/TransactionSummary'
         pspReference:
           $ref: '#/components/schemas/PspReferenceType'
@@ -674,7 +674,7 @@ components:
       description: |-
         State of the Payment
 
-        One of: 
+        One of:
         - CREATED : User has not yet acted upon the payment
         - ABORTED : User has aborted the payment before authorization
         - EXPIRED: User did not act on the payment within the payment expiration time
