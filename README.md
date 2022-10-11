@@ -12,11 +12,18 @@ END_METADATA -->
 
 💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
 
+<!-- START_COMMENT -->
+
+ℹ️ Please use the new documentation:
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+
+<!-- END_COMMENT -->
+
 ## Getting started
 
-Review the
+See
 [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md)
-pages for information about API keys, product activation, contact information, contribution guidelines, etc.
+for information about API keys, product activation, how to make API calls, etc.
 
 ## ePayment API
 
