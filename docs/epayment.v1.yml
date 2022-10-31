@@ -355,10 +355,15 @@ components:
         - paymentMethod
         - reference
         - returnUrl
-        - userFlow
+        - userFlow      
     AirlineData:
       title: AirlineData
       type: object
+      required:
+        - agencyInvoiceNumber
+        - airlineCode
+        - airlineDesignatorCode
+        - passengerName      
       description: |-
         Airline related data
 
