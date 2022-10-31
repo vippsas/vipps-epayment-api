@@ -28,6 +28,7 @@ tags:
 paths:
   /v1/payments:
     parameters:
+      - $ref: '#/components/parameters/Idempotency-Key'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
     post:
@@ -291,7 +292,7 @@ components:
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
 
             If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
-        description:
+        paymentDescription:
           type: string
           minLength: 3
           maxLength: 100
@@ -315,8 +316,8 @@ components:
       type: object
       x-examples: {}
       properties:
-        transactionSummary:
-          $ref: '#/components/schemas/TransactionSummary'
+        aggregate:
+          $ref: '#/components/schemas/Aggregate'
         amount:
           $ref: '#/components/schemas/Amount'
         state:
@@ -335,7 +336,7 @@ components:
         reference:
           $ref: '#/components/schemas/Reference'
       required:
-        - transactionSummary
+        - aggregate
         - amount
         - state
         - paymentMethod
@@ -387,8 +388,8 @@ components:
           description: The ticket's unique identifier.
           minLength: 1
           maxLength: 150
-    TransactionSummary:
-      title: TransactionSummary
+    Aggregate:
+      title: Aggregate
       type: object
       properties:
         authorisedAmount:
@@ -430,15 +431,15 @@ components:
           $ref: '#/components/schemas/Amount'
         modificationAmount:
           $ref: '#/components/schemas/Amount'
-        transactionSummary: 
-          $ref: '#/components/schemas/TransactionSummary'
+        aggregate: 
+          $ref: '#/components/schemas/Aggregate'
         pspReference:
           $ref: '#/components/schemas/PspReference'
         reference:
           $ref: '#/components/schemas/Reference'
       required:
         - amount
-        - transactionSummary
+        - aggregate
         - pspReference
         - reference
     Reference:
