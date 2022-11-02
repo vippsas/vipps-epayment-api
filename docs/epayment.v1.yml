@@ -392,7 +392,7 @@ components:
       title: Aggregate
       type: object
       properties:
-        authorisedAmount:
+        authorizedAmount:
           $ref: '#/components/schemas/Amount'
         cancelledAmount:
           $ref: '#/components/schemas/Amount'
@@ -401,7 +401,7 @@ components:
         refundedAmount:
           $ref: '#/components/schemas/Amount'
       required:
-        - authorisedAmount
+        - authorizedAmount
         - cancelledAmount
         - capturedAmount
         - refundedAmount
@@ -506,7 +506,7 @@ components:
       properties:
         sub:
           type: string
-          description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.state` is `AUTHORISED`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
+          description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.state` is `AUTHORIZED`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
     
     PaymentMethod:
       title: PaymentMethod
@@ -567,9 +567,9 @@ components:
             - CANCELLED
             - CAPTURED
             - REFUNDED
-            - AUTHORISED
+            - AUTHORIZED
             - TERMINATED
-          example: AUTHORISED
+          example: AUTHORIZED
           x-enum-varnames:
             - CREATED
             - ABORTED
@@ -577,7 +577,7 @@ components:
             - CANCELLED
             - CAPTURED
             - REFUNDED
-            - AUTHORISED
+            - AUTHORIZED
             - TERMINATED
         paymentAction:
           deprecated: true
@@ -653,21 +653,21 @@ components:
 
         One of: 
         - CREATED : User has not yet acted upon the payment
-        - ABORTED : User has aborted the payment before authorization
+        - ABORTED : User has aborted the payment before authorisation
         - EXPIRED: User did not act on the payment within the payment expiration time
-        - AUTHORISED : User has approved the payment
+        - AUTHORIZED : User has approved the payment
         - TERMINATED : Merchant has terminated the payment via the cancelPayment endpoint
       enum:
         - CREATED
         - ABORTED
         - EXPIRED
-        - AUTHORISED
+        - AUTHORIZED
         - TERMINATED
       x-enum-varnames:
         - CREATED
         - ABORTED
         - EXPIRED
-        - AUTHORISED
+        - AUTHORIZED
         - TERMINATED
     ForceApprove:
       title: ForceApprove
