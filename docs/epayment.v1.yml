@@ -297,13 +297,6 @@ components:
           minLength: 3
           maxLength: 100
           description: 'The message to user that will appear in the app, in the merchant portal and settlement files.'
-        callbackUrl:
-          type: string
-          example: 'https://example.io/redirect?orderId=abcc123'
-          pattern: '^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
-          description: |
-            NOTE temp stopgap until webhooks is implemented properly
-            'This is an URL for Vipps to call at the merchant''s server to provide updated information about the order after the payment request. Domain name and context path should be provided by merchant as the value for this parameter. Vipps will add `/payments/{reference}` to the end of this URL.'
       required:
         - amount
         - paymentMethod
