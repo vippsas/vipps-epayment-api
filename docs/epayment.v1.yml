@@ -422,8 +422,8 @@ components:
       properties:
         amount:
           $ref: '#/components/schemas/Amount'
-        modificationAmount:
-          $ref: '#/components/schemas/Amount'
+        state: 
+          $ref: '#/components/schemas/State'
         aggregate: 
           $ref: '#/components/schemas/Aggregate'
         pspReference:
@@ -432,6 +432,7 @@ components:
           $ref: '#/components/schemas/Reference'
       required:
         - amount
+        - state
         - aggregate
         - pspReference
         - reference
