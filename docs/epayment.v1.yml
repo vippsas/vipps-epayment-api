@@ -233,7 +233,7 @@ components:
       example: NOK
       enum:
         - NOK
-      description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian Kroner.'
+      description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian kroner.'
     PaymentRequest:
       title: PaymentRequest
       description: Payment Request object
@@ -276,7 +276,7 @@ components:
         returnUrl:
           type: string
           pattern: '^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
-          example: 'https://example.io/redirect?orderId=abcc123'
+          example: 'https://example.com/redirect?orderId=acme-shop-123-order123abc'
         userFlow:
           type: string
           enum:
@@ -325,7 +325,7 @@ components:
           type: string
           format: uri
           example: 'https://landing.vipps.no?token=abc123'
-          description: 'The url you should redirect the user to to continue with the payment. '
+          description: 'The URL you should redirect the user to to continue with the payment. '
         reference:
           $ref: '#/components/schemas/Reference'
       required:
