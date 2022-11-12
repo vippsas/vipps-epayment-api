@@ -48,11 +48,11 @@ paths:
         '201':
           $ref: '#/components/responses/Payment-Response'
         '400':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
         '403':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
         '409':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
   '/v1/payments/{reference}':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
@@ -100,13 +100,13 @@ paths:
       operationId: cancelPayment
       responses:
         '200':
-          $ref: '#/components/responses/Adjust-Response'
+          $ref: '#/components/responses/AdjustResponse'
         '400':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
         '404':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
         '409':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
       description: Cancel the given payment
       security:
         - Bearer-Authorization: []
@@ -123,13 +123,13 @@ paths:
       operationId: capturePayment
       responses:
         '200':
-          $ref: '#/components/responses/Adjust-Response'
+          $ref: '#/components/responses/AdjustResponse'
         '400':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
         '404':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
         '409':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
       description: Capture the given payment
       security:
         - Bearer-Authorization: []
@@ -152,13 +152,13 @@ paths:
       operationId: refundPayment
       responses:
         '200':
-          $ref: '#/components/responses/Adjust-Response'
+          $ref: '#/components/responses/AdjustResponse'
         '400':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
         '404':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
         '409':
-          $ref: '#/components/responses/Problem-Response'
+          $ref: '#/components/responses/ProblemResponse'
       description: Refund the given payment
       security:
         - Bearer-Authorization: []
@@ -520,6 +520,7 @@ components:
           minLength: 6
           maxLength: 6
           type: string
+          example: '540185'
       required:
         - type
     PaymentMethodType:
@@ -721,14 +722,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/PaymentResponse'
-    Adjust-Response:
+    AdjustResponse:
       description: Adjustment response
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ModificationResponse'
       headers: {}
-    Problem-Response:
+    ProblemResponse:
       description: Standard problem response
       content:
         application/problem+json:
