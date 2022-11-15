@@ -46,7 +46,7 @@ paths:
               $ref: '#/components/schemas/PaymentRequest'
       responses:
         '201':
-          $ref: '#/components/responses/Payment-Response'
+          $ref: '#/components/responses/CreatePaymentResponse'
         '400':
           $ref: '#/components/responses/ProblemResponse'
         '403':
@@ -64,7 +64,7 @@ paths:
         - QueryPayments
       responses:
         '200':
-          $ref: '#/components/responses/Payment-Response'
+          $ref: '#/components/responses/GetPaymentResponse'
       operationId: getPayment
       description: Get a payment object by its reference ID
   '/v1/payments/{reference}/events':
@@ -313,7 +313,23 @@ components:
         - reference
         - returnUrl
         - userFlow
-    PaymentResponse:
+    CreatePaymentResponse:
+      title: Create Payment Response
+      description: Create Payment Response object
+      type: object
+      x-examples: {}
+      properties:
+        redirectUrl:
+          type: string
+          format: uri
+          example: 'https://landing.vipps.no?token=abc123'
+          description: 'The URL you should redirect the user to to continue with the payment. '
+        reference:
+          $ref: '#/components/schemas/Reference'
+      required:
+        - redirectUrl
+        - reference
+    GetPaymentResponse:
       title: Payment Response
       description: Payment Response object
       type: object
@@ -726,12 +742,18 @@ components:
       in: header
       description: Access bearer token
   responses:
-    Payment-Response:
-      description: Example response
+    GetPaymentResponse:
+      description: Get Payment response
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/PaymentResponse'
+            $ref: '#/components/schemas/GetPaymentResponse'
+    CreatePaymentResponse:
+      description: Create Payment response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreatePaymentResponse'
     AdjustResponse:
       description: Adjustment response
       content:
