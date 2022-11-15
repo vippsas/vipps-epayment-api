@@ -223,6 +223,7 @@ components:
         value:
           type: integer
           minimum: 0
+          maximum: 65000000
           example: 1000
           format: int64
           description: 'Integer value of price in the currencys monitary subunit (eg Norwegian Øre), or monitary unit where applicable (eg Japanese YEN). Type of monitary unit is defined in  ISO 4217.'
