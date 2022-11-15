@@ -43,7 +43,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PaymentRequest'
+              $ref: '#/components/schemas/CreatePaymentRequest'
       responses:
         '201':
           $ref: '#/components/responses/CreatePaymentResponse'
@@ -236,8 +236,8 @@ components:
       enum:
         - NOK
       description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian kroner.'
-    PaymentRequest:
-      title: PaymentRequest
+    CreatePaymentRequest:
+      title: Create Payment Request
       description: Payment Request object
       type: object
       x-examples: {}
