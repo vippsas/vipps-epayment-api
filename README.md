@@ -22,7 +22,7 @@ END_METADATA -->
 ## Getting started
 
 Review the
-[Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md)
+[Getting Started](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
 pages for information about API keys, product activation, contact information, contribution guidelines, etc.
 
 ## ePayment API
@@ -33,8 +33,8 @@ pages for information about API keys, product activation, contact information, c
 ## Questions?
 
 We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-epayment-api/issues),
-a [pull request](https://github.com/vippsas/vipps-epayment-api/pulls),
+Please create an [issue](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api//issues),
+a [pull request](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api//pulls),
 or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
 Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
