@@ -286,6 +286,7 @@ components:
             - PUSH_MESSAGE
             - NATIVE_REDIRECT
             - WEB_REDIRECT
+            - QR
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
@@ -299,6 +300,27 @@ components:
           description: >-
             Payment will be expired at the given date and time. Format must adhere to RFC 3339.
             Value must be greater than 10 minutes in the future, and less than 24h in the future
+
+            If flow is QR, the QR-image will be returned as SVG+XML if qrFormat is not set.
+        qrFormat:
+          type: object
+          description: 'Optional, to set the format for the QR. Only applicable if user_flow is set to QR.'
+          properties:
+            format:
+              type: string
+              enum:
+                - TARGET_URL
+                - SVG+XML
+                - PNG
+              example: SVG+XML
+            size:
+              type: integer
+              example: 1024
+              description: 'Eks: 200. Then 200x200 px is set at dimension for Qr. Only applicable when format is set to PNG. Defaults to 1024 if not set'
+              minimum: 100
+              maximum: 2000
+          required:
+            - format
         paymentDescription:
           type: string
           minLength: 3
@@ -738,18 +760,6 @@ components:
       schema:
         type: string
       description: 'Idempotency key for the request, ensures idempotent actions.'
-    QR-Format:
-      name: QR-format
-      in: header
-      required: false
-      schema:
-        type: string
-        enum:
-          - image/*
-          - image/png
-          - image/svg+xml
-          - text/targetUrl
-      description: 'When customerInteraction is set to QR, this header will control the format of the returned QR. If not set, svg will be returned. Supported values: {image/*,image/png, image/svg+xml, text/targetUrl}'
   securitySchemes:
     Bearer-Authorization:
       name: Authorization
