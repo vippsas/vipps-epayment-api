@@ -256,6 +256,7 @@ components:
           enum:
             - CUSTOMER_PRESENT
             - CUSTOMER_NOT_PRESENT
+            - QR
           x-enum-varnames:
             - CUSTOMER_PRESENT
             - CUSTOMER_NOT_PRESENT
@@ -372,7 +373,7 @@ components:
         - agencyInvoiceNumber
         - airlineCode
         - airlineDesignatorCode
-        - passengerName      
+        - passengerName
       description: |-
         Airline related data
 
@@ -737,6 +738,18 @@ components:
       schema:
         type: string
       description: 'Idempotency key for the request, ensures idempotent actions.'
+    QR-Format:
+      name: QR-format
+      in: header
+      required: false
+      schema:
+        type: string
+        enum:
+          - image/*
+          - image/png
+          - image/svg+xml
+          - text/targetUrl
+      description: 'When customerInteraction is set to QR, this header will control the format of the returned QR. If not set, svg will be returned. Supported values: {image/*,image/png, image/svg+xml, text/targetUrl}'
   securitySchemes:
     Bearer-Authorization:
       name: Authorization
