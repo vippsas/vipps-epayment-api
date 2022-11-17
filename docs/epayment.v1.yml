@@ -330,8 +330,8 @@ components:
         - redirectUrl
         - reference
     GetPaymentResponse:
-      title: Payment Response
-      description: Payment Response object
+      title: Get Payment Response
+      description: Get Payment Response object
       type: object
       x-examples: {}
       properties:
