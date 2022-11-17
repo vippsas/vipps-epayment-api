@@ -256,7 +256,6 @@ components:
           enum:
             - CUSTOMER_PRESENT
             - CUSTOMER_NOT_PRESENT
-            - QR
           x-enum-varnames:
             - CUSTOMER_PRESENT
             - CUSTOMER_NOT_PRESENT
@@ -282,6 +281,7 @@ components:
             - PUSH_MESSAGE
             - NATIVE_REDIRECT
             - WEB_REDIRECT
+            - QR
           x-enum-varnames:
             - PUSH_MESSAGE
             - NATIVE_REDIRECT
