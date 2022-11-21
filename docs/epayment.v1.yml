@@ -262,11 +262,7 @@ components:
           example: CUSTOMER_NOT_PRESENT
           default: CUSTOMER_NOT_PRESENT
         industryData:
-          description: Additional compliance data related to the transaction.
-          type: object
-          properties:
-            airlineData:
-              $ref: '#/components/schemas/AirlineData'
+          $ref: "#/components/schemas/IndustryData"
         receipt:
           $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.0/docs/swagger.yaml#/components/schemas/Receipt'
         paymentMethod:
@@ -363,6 +359,12 @@ components:
         - pspReference
         - redirectUrl
         - reference
+    IndustryData:
+      description: Additional compliance data related to the transaction.
+      type: object
+      properties:
+        airlineData:
+          $ref: '#/components/schemas/AirlineData'
     AirlineData:
       title: AirlineData
       type: object
