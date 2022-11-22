@@ -3,7 +3,7 @@ servers:
   - url: 'https://api.vipps.no/epayment'
     description: Production source URL for the Vipps ePayment api
 info:
-  description: The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information. 
+  description: 'The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.'
   version: 1.0.0
   title: Vipps ePayment API
   contact:
@@ -235,7 +235,7 @@ components:
       example: NOK
       enum:
         - NOK
-      description: 'Currency code as defined in  ISO 4217. eg NOK for Norwegian kroner.'
+      description: Currency code as defined in  ISO 4217. eg NOK for Norwegian kroner.
     CreatePaymentRequest:
       title: Create Payment Request
       description: Payment Request object
@@ -262,7 +262,7 @@ components:
           example: CUSTOMER_NOT_PRESENT
           default: CUSTOMER_NOT_PRESENT
         industryData:
-          $ref: "#/components/schemas/IndustryData"
+          $ref: '#/components/schemas/IndustryData'
         receipt:
           $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.0/docs/swagger.yaml#/components/schemas/Receipt'
         paymentMethod:
@@ -281,10 +281,12 @@ components:
             - PUSH_MESSAGE
             - NATIVE_REDIRECT
             - WEB_REDIRECT
+            - QR
           x-enum-varnames:
             - PUSH_MESSAGE
             - NATIVE_REDIRECT
             - WEB_REDIRECT
+            - QR
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
@@ -295,9 +297,28 @@ components:
           example: '2017-07-21T17:32:28Z'
           pattern: '^((?:(\d{4}-\d{2}-\d{2})(T|t)(\d{2}:\d{2}:\d{2}(?:\.\d+)?))(Z|z|([+-](?:2[0-3]|[01][0-9]):[0-5][0-9])))$'
           nullable: true
-          description: >-
-            Payment will be expired at the given date and time. Format must adhere to RFC 3339.
-            Value must be greater than 10 minutes in the future, and less than 24h in the future
+          description: |-
+            Payment will be expired at the given date and time. Format must adhere to RFC 3339. Value must be greater than 10 minutes in the future, and less than 24h in the future
+            If flow is QR, the QR-image will be returned as SVG+XML if qrFormat is not set.
+        qrFormat:
+          type: object
+          description: 'Optional, to set the format for the QR. Only applicable if user_flow is set to QR.'
+          properties:
+            format:
+              type: string
+              enum:
+                - TARGET_URL
+                - SVG+XML
+                - PNG
+              example: SVG+XML
+            size:
+              type: integer
+              example: 1024
+              description: 'Eks: 200. Then 200x200 px is set at dimension for Qr. Only applicable when format is set to PNG. Defaults to 1024 if not set'
+              minimum: 100
+              maximum: 2000
+          required:
+            - format
         paymentDescription:
           type: string
           minLength: 3
@@ -313,17 +334,30 @@ components:
       title: Create Payment Response
       description: Create Payment Response object
       type: object
-      x-examples: {}
+      x-examples:
+        UrlRedirect:
+          redirectUrl: 'https://landing.vipps.no?token=abc123'
+          reference: reference-string
+        QrImageUrl:
+          redirectUrl: 'https://qr-generator-prod-app-service.azurewebsites.net/qr-generator/v1?token=eyJhbGciOiJIUzI1'
+          reference: reference-string
+        QrTargetUrl:
+          redirectUrl: 'https://qr.vipps.no/c/abc123'
+          reference: reference-string
+        NativeRedirect:
+          redirectUrl: 'vipps://token=abc123'
+          reference: reference-string
+        PushFlow:
+          reference: reference-string
       properties:
         redirectUrl:
           type: string
           format: uri
           example: 'https://landing.vipps.no?token=abc123'
-          description: 'The URL you should redirect the user to to continue with the payment. '
+          description: 'The URL you should redirect the user to to continue with the payment for NATIVE_REDIRECT and WEB_REDIRECT. When user_flow is QR, a link to the QR-image (or the target url) will be returned. Nothing will be returned when user_flow is PUSH_MESSAGE'
         reference:
           $ref: '#/components/schemas/Reference'
       required:
-        - redirectUrl
         - reference
     GetPaymentResponse:
       title: Get Payment Response
@@ -372,7 +406,7 @@ components:
         - agencyInvoiceNumber
         - airlineCode
         - airlineDesignatorCode
-        - passengerName      
+        - passengerName
       description: |-
         Airline related data
 
@@ -450,9 +484,9 @@ components:
       properties:
         amount:
           $ref: '#/components/schemas/Amount'
-        state: 
+        state:
           $ref: '#/components/schemas/State'
-        aggregate: 
+        aggregate:
           $ref: '#/components/schemas/Aggregate'
         pspReference:
           $ref: '#/components/schemas/PspReference'
@@ -529,7 +563,6 @@ components:
         sub:
           type: string
           description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.state` is `AUTHORIZED`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
-    
     PaymentMethod:
       title: PaymentMethod
       type: object
@@ -756,6 +789,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/CreatePaymentResponse'
+          examples: {}
     AdjustResponse:
       description: Adjustment response
       content:
