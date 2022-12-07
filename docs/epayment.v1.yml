@@ -336,7 +336,7 @@ components:
       type: object
       x-examples:
         UrlRedirect:
-          redirectUrl: 'https://landing.vipps.no?token=abc123'
+          redirectUrl: 'https://landing.vipps.no?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni '
           reference: reference-string
         QrImageUrl:
           redirectUrl: 'https://qr-generator-prod-app-service.azurewebsites.net/qr-generator/v1?token=eyJhbGciOiJIUzI1'
