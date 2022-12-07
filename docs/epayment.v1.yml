@@ -199,7 +199,7 @@ components:
       type: object
       description: |-
         Can be one of:
-          * The user subscription identifier received in the `$.profile.sub` property from the response body or from the Vipps Login API
+          * The user subscription identifier received in the `profile.sub` property from the response body or from the Vipps Login API
           * Target users phone number in MSISDN format
       properties:
         phoneNumber:
