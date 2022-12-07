@@ -311,6 +311,7 @@ components:
                 - SVG+XML
                 - PNG
               example: SVG+XML
+              default: SVG+XML
             size:
               type: integer
               example: 1024
