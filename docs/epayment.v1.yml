@@ -212,7 +212,7 @@ components:
         sub:
           type: string
           description: |
-            The user subscription identifier received in the `$.profile.sub` property from the response body or from the Vipps Login API
+            The user subscription identifier received in the `profile.sub` property from the response body or from the Vipps Login API
           example: c06c4afe-d9e1-4c5d-939a-177d752a0944
     Amount:
       description: Amount Object
