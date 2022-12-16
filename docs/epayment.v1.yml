@@ -10,8 +10,8 @@ info:
     name: Vipps AS
     url: 'https://vippsas.github.io/vipps-developer-docs/'
   license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    name: MIT
+    url: 'https://choosealicense.com/licenses/mit/'
   termsOfService: 'https://www.vipps.no/vilkar/vilkar-bedrift/'
   x-logo:
     url: 'https://vipps.no/static/vipps_frontend/311340/media/extra-images/vipps-logo.svg'
