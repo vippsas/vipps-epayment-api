@@ -7,9 +7,8 @@ info:
   version: 1.0.0
   title: Vipps ePayment API
   contact:
-    email: integration@vipps.no
     name: Vipps AS
-    url: 'http://github.com/vippsas'
+    url: 'https://vippsas.github.io/vipps-developer-docs/'
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
