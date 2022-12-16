@@ -744,7 +744,7 @@ components:
         minLength: 4
         maxLength: 6
         example: '123456'
-      description: Serial number for the merchant performing the payments
+      description: "The Sale unit's MSN: The unique iddentifier for the sale unit."
     APIM-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
