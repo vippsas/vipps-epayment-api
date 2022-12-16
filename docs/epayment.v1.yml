@@ -762,7 +762,7 @@ components:
         pattern: '^[a-zA-Z0-9-]{8,50}$'
         minLength: 1
         maxLength: 50
-      description: Given primary reference when creating the payment
+      description: The primary reference when creating the payment. Similar to orderId in the eCom API.
     Idempotency-Key:
       name: Idempotency-Key
       in: header
