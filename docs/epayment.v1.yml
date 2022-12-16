@@ -18,11 +18,11 @@ info:
     backgroundColor: '#FFFFFF'
     altText: Vipps logo
 tags:
-  - description: "\tCreate Payments Endpoints"
+  - description: "Create Payments Endpoints"
     name: CreatePayments
-  - description: "\tQuery Payments Endpoints"
+  - description: "Query Payments Endpoints"
     name: QueryPayments
-  - description: "\tAdjust Payments Endpoints"
+  - description: "Adjust Payments Endpoints"
     name: AdjustPayments
 paths:
   /v1/payments:
