@@ -4,7 +4,7 @@ servers:
     description: Production source URL for the Vipps ePayment api
 info:
   description: 'The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.'
-  version: 1.0.0
+  version: 1.0.1
   title: Vipps ePayment API
   contact:
     name: Vipps AS
@@ -18,11 +18,11 @@ info:
     backgroundColor: '#FFFFFF'
     altText: Vipps logo
 tags:
-  - description: "Create Payments Endpoints"
+  - description: "Create payment endpoints"
     name: CreatePayments
-  - description: "Query Payments Endpoints"
+  - description: "Query payments endpoints"
     name: QueryPayments
-  - description: "Adjust Payments Endpoints"
+  - description: "Adjust payments endpoints"
     name: AdjustPayments
 paths:
   /v1/payments:
@@ -32,12 +32,12 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
     post:
       operationId: createPayment
-      summary: Create Payment
+      summary: Create payment
       tags:
         - CreatePayments
       description: Create a new payment
       requestBody:
-        description: New payment request body
+        description: New `PaymentRequest` body
         required: true
         content:
           application/json:
@@ -65,14 +65,14 @@ paths:
         '200':
           $ref: '#/components/responses/GetPaymentResponse'
       operationId: getPayment
-      description: Get a payment object by its reference ID
+      description: Get a payment object by its `reference` id.
   '/v1/payments/{reference}/events':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
     get:
-      summary: Get Payment Event Log
+      summary: Get payment event log
       tags:
         - QueryPayments
       responses:
@@ -87,7 +87,7 @@ paths:
       operationId: getPaymentEventLog
       security:
         - Bearer-Authorization: []
-      description: Get event log for the specified payment reference
+      description: Get event log for the specified payment `reference` id.
   '/v1/payments/{reference}/cancel':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
@@ -95,7 +95,7 @@ paths:
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
     post:
-      summary: Cancel Payment
+      summary: Cancel payment
       operationId: cancelPayment
       responses:
         '200':
@@ -106,7 +106,7 @@ paths:
           $ref: '#/components/responses/ProblemResponse'
         '409':
           $ref: '#/components/responses/ProblemResponse'
-      description: Cancel the given payment
+      description: Cancel the payment with the specified `reference` id.
       security:
         - Bearer-Authorization: []
       tags:
@@ -118,7 +118,7 @@ paths:
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
     post:
-      summary: Capture Payment
+      summary: Capture payment
       operationId: capturePayment
       responses:
         '200':
@@ -147,7 +147,7 @@ paths:
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
     post:
-      summary: Refund Payment
+      summary: Refund payment
       operationId: refundPayment
       responses:
         '200':
@@ -175,14 +175,20 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
     post:
-      summary: Force Approve Payment
+      summary: Force approve payment
       tags:
         - ForceApprove
       responses:
         '200':
           description: OK
       operationId: forceApprove
-      description: 'This endpoint allows developers to approve a payment through the Vipps eCom API without the use of the Vipps app. This is useful for automated testing. Express checkout is not supported for this endpoint. The endpoint is only available in our Test environment. Attempted use of the endpoint in production is not allowed, and will fail. Important: All test users must manually approve at least one payment in Vipps (using the app) before this endpoint can be used for that user.'
+      description: |-
+        This endpoint allows developers to approve a payment through the Vipps ePayment API
+        without the use of the Vipps app. This is useful for automated testing.
+        Express checkout is not supported for this endpoint. The endpoint is only available
+        in our test environment. Attempted use of the endpoint in production is not allowed,
+        and will fail. Important: All test users must manually approve at least one payment
+        in Vipps (using the app) before this endpoint can be used for that user.
       security:
         - Bearer-Authorization: []
       requestBody:
@@ -198,12 +204,15 @@ components:
       type: object
       description: |-
         Can be one of:
-          * The user subscription identifier received in the `profile.sub` property from the response body or from the Vipps Login API
+          * The user subscription identifier received in the `profile.sub` property from
+          the response body or from the Vipps Login API
           * Target users phone number in MSISDN format
       properties:
         phoneNumber:
           type: string
-          description: Mobile number in MSISDN format of the user who has to pay for the transation from Vipps. Currently vipps supports only Norwegian Mobile Numbers
+          description: |-
+            Mobile number in MSISDN format of the user who has to pay for the transation
+            from Vipps. Currently vipps supports only Norwegian mobile numbers.
           minLength: 10
           maxLength: 15
           example: 4791234567
@@ -211,10 +220,11 @@ components:
         sub:
           type: string
           description: |
-            The user subscription identifier received in the `profile.sub` property from the response body or from the Vipps Login API
+            The user subscription identifier received in the `profile.sub` property from
+            the response body or from the Vipps Login API.
           example: c06c4afe-d9e1-4c5d-939a-177d752a0944
     Amount:
-      description: Amount Object
+      description: Amount object
       type: object
       properties:
         currency:
@@ -225,7 +235,10 @@ components:
           maximum: 65000000
           example: 1000
           format: int64
-          description: 'Integer value of price in the currencys monitary subunit (eg Norwegian Øre), or monitary unit where applicable (eg Japanese YEN). Type of monitary unit is defined in  ISO 4217.'
+          description: |-
+            Integer value of price in the currencys monitary subunit (eg Norwegian øre),
+            or monitary unit where applicable (eg Japanese YEN). The type of the monitary
+            unit is defined in  ISO 4217.
       required:
         - value
         - currency
@@ -236,8 +249,8 @@ components:
         - NOK
       description: Currency code as defined in  ISO 4217. eg NOK for Norwegian kroner.
     CreatePaymentRequest:
-      title: Create Payment Request
-      description: Payment Request object
+      title: Create payment request
+      description: `PaymentRequest` object
       type: object
       x-examples: {}
       properties:
@@ -246,12 +259,18 @@ components:
         directCapture:
           type: boolean
           default: false
-          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
+          description: |-
+            For special cases. The sale unit must be configured by Vipps.
+            We strongly recommend using "reserve capture" in all situations.
+            Default is `false`.
         customer:
           $ref: '#/components/schemas/Customer'
         customerInteraction:
           type: string
-          description: The form of customer interaction to trigger the purchase
+          description: |-
+            The type of customer interaction that triggers the purchase.
+            `CUSTOMER_PRESENT` means that the customer is physically present at the
+            point of sale when the payment is made, tyøpically in a store.
           enum:
             - CUSTOMER_PRESENT
             - CUSTOMER_NOT_PRESENT
@@ -289,19 +308,20 @@ components:
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
-
-            If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
+            If flow is `PUSH_MESSAGE` then one of `profile.sub` or `profile.phoneNumber` must be valid and is required.
         expiresAt:
           type: string
           example: '2017-07-21T17:32:28Z'
           pattern: '^((?:(\d{4}-\d{2}-\d{2})(T|t)(\d{2}:\d{2}:\d{2}(?:\.\d+)?))(Z|z|([+-](?:2[0-3]|[01][0-9]):[0-5][0-9])))$'
           nullable: true
           description: |-
-            Payment will expire at the given date and time. Format must adhere to RFC 3339. Value must be greater than 10 minutes in the future, and less than 24h in the future
-            If flow is QR, the QR-image will be returned as SVG+XML if qrFormat is not set.
+            Payment will expire at the given date and time. 
+            The format must adhere to RFC 3339.
+            The value must be greater than 10 minutes in the future, and less than 24h in the future
+            If flow is `QR`, the QR code image will be returned as `SVG+XML` if `qrFormat` is not set.
         qrFormat:
           type: object
-          description: 'Optional, to set the format for the QR. Only applicable if user_flow is set to QR.'
+          description: 'Optional, to set the format for the QR code. Only applicable if user_flow is set to `QR`.'
           properties:
             format:
               type: string
@@ -323,7 +343,7 @@ components:
           type: string
           minLength: 3
           maxLength: 100
-          description: 'The message to user that will appear in the app, in the merchant portal and settlement files.'
+          description: 'The message to user that will appear in the app, in the merchant portal and in the settlement files.'
       required:
         - amount
         - paymentMethod
@@ -331,8 +351,8 @@ components:
         - returnUrl
         - userFlow
     CreatePaymentResponse:
-      title: Create Payment Response
-      description: Create Payment Response object
+      title: Create payment response
+      description: Create `PaymentResponse` object
       type: object
       x-examples:
         UrlRedirect:
@@ -360,8 +380,8 @@ components:
       required:
         - reference
     GetPaymentResponse:
-      title: Get Payment Response
-      description: Get Payment Response object
+      title: Get payment response
+      description: Get `PaymentResponse` object
       type: object
       x-examples: {}
       properties:
@@ -409,7 +429,6 @@ components:
         - passengerName
       description: |-
         Airline related data
-
         If present, `passengerName`, `airlineCode`, `airlineDesignatorCode` and `agencyInvoiceNumber` are all required.
       properties:
         agencyInvoiceNumber:
@@ -555,14 +574,17 @@ components:
       properties:
         scope:
           type: string
-          description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
+          description: A space-separated string list of requested user information in accordance with the OpenID Connect specification.
     ProfileResponse:
       title: Profile
       type: object
       properties:
         sub:
           type: string
-          description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.state` is `AUTHORIZED`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
+          description: |-
+            If `profile.scope` was requested in `createPayment` this value will populate once
+            `state` is `AUTHORIZED`. This can be used towards the Vipps Login Userinfo endpoint
+            to fetch requested user data.
     PaymentMethod:
       title: PaymentMethod
       type: object
@@ -592,8 +614,7 @@ components:
       example: WALLET
       description: |-
         The paymentMethod type to be performed.
-
-        `CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT`.
+        `CARD` has to be combined with a `userFlow` of `WEB_REDIRECT`.
     PaymentAdjustment:
       title: PaymentAdjustment
       type: object
@@ -705,8 +726,7 @@ components:
       type: string
       title: State
       description: |-
-        State of the Payment
-
+        State of the Payment.
         One of: 
         - CREATED : User has not yet acted upon the payment
         - ABORTED : User has aborted the payment before authorisation
@@ -744,7 +764,7 @@ components:
         minLength: 4
         maxLength: 6
         example: '123456'
-      description: "The Sale unit's MSN: The unique iddentifier for the sale unit."
+      description: "The Sale unit's MSN: The unique identifier for the sale unit."
     APIM-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
@@ -775,7 +795,7 @@ components:
       name: Authorization
       type: apiKey
       in: header
-      description: Access bearer token
+      description: Access bearer token (JWT)
   responses:
     GetPaymentResponse:
       description: Get Payment response
