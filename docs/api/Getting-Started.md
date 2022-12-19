@@ -33,7 +33,7 @@ curl https://apitest.vipps.no/accessToken/get \
 -X POST
 ```
 
-In response you will get a body whith the following schema.
+In response, you will get a body with the following schema.
 The property `access_token` should be used for all other API requests in the `Authorisation` header as the Bearer token.
 
 ```json
@@ -137,9 +137,9 @@ The `redirectUrl` property should be used to direct the user to the Vipps app fo
 
 ## Step 3 - Completing the payment
 
-The user will be presented with the payment in the Vipps app where theyt can complete or reject the payment. Once the user has acted upon the payment they will be redirected back to the specified `returnUrl` under a "best effort" policy.
+The user will be presented with the payment in the Vipps app, where they can complete or reject the payment. Once the user has acted upon the payment they will be redirected back to the specified `returnUrl` under a "best effort" policy.
 
-> Note: We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpreditable and the user may choose to fully close the Vipps app or browser.
+> Note: We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable and the user may choose to fully close the Vipps app or browser.
 
 To receive the result of the users action you may either:
 
@@ -161,7 +161,7 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE \
 -X GET
 ```
 
-To verify if a payment has been authorised by the user check if the `state` property is marked `AUTHORISED`. If the user has instead chosen to reject the payment or the user has instead chosen to click `cancel` on the landing page (card) the `state` property is marked `ABORTED`. If the user did not act within the payment expiration time then the `state` property is marked `EXPIRED`.
+To verify that a payment has been authorized by the user, check that the `state` property is marked `AUTHORISED`. If the user has instead chosen to reject the payment or chosen to click `cancel` on the landing page (card), the `state` property will be marked `ABORTED`. If the user did not act within the payment expiration time, the `state` property will be marked `EXPIRED`.
 
 The payment event log can be fetched as such:
 
@@ -208,13 +208,13 @@ In the case the payment has been completed this will yield an array of events li
 
 ### Notification Events
 
-If you are not dependent on getting the payment result immediately you may also use notification events to recieve the payment status update via our [Notification Webhooks](./How-to-setup-Notification-Webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than imediate delivery.
+If you are not dependent on getting the payment result immediately you may also use notification events to receive the payment status update via our [Notification Webhooks](./How-to-setup-Notification-Webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than immediate delivery.
 
-> Note: this means we may deliver the same message several times to verify succesful delivery, use the `pspReference` field for duplicate delivery checking.
+> Note: this means we may deliver the same message several times to verify successful delivery, use the `pspReference` field for duplicate delivery checking.
 
-If you use the notification service you will recieve events in the same format as those in the array list returned from the [Get Payment Events](../TODO.md) endpoint.
+If you use the notification service you will receive events in the same format as those in the array list returned from the [Get Payment Events](../TODO.md) endpoint.
 
-For example a succeful authentication event would look like
+For example a successful authentication event would look like
 
 ```json
 {
