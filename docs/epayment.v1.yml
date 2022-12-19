@@ -273,7 +273,6 @@ components:
           $ref: '#/components/schemas/Reference'
         returnUrl:
           type: string
-          pattern: '^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
           example: 'https://example.com/redirect?orderId=acme-shop-123-order123abc'
         userFlow:
           type: string
@@ -392,7 +391,6 @@ components:
         - paymentMethod
         - profile
         - pspReference
-        - redirectUrl
         - reference
     IndustryData:
       description: Additional compliance data related to the transaction.
