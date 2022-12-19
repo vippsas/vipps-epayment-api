@@ -328,7 +328,6 @@ components:
         - amount
         - paymentMethod
         - reference
-        - returnUrl
         - userFlow
     CreatePaymentResponse:
       title: Create Payment Response
