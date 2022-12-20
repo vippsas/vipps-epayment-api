@@ -275,11 +275,9 @@ components:
           type: string
           example: 'https://example.com/redirect?orderId=acme-shop-123-order123abc'
           description: |-
-            The URL the user is redirected to after the payment session.
+            The URL the user is returned to after the payment session.
             
-            If Userflow is `WEB_REDIRECT` the URL has to be `https://`.
-            
-            If Userflow is `NATIVE_REDIRECT` the URL has to be `https://` or a custom URL scheme.
+            The URL has to use the `https://` scheme or a custom URL scheme.
         userFlow:
           type: string
           enum:
