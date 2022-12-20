@@ -273,8 +273,11 @@ components:
           $ref: '#/components/schemas/Reference'
         returnUrl:
           type: string
-          pattern: '^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
           example: 'https://example.com/redirect?orderId=acme-shop-123-order123abc'
+          description: |-
+            The URL the user is returned to after the payment session.
+            
+            The URL has to use the `https://` scheme or a custom URL scheme.
         userFlow:
           type: string
           enum:
@@ -329,7 +332,6 @@ components:
         - amount
         - paymentMethod
         - reference
-        - returnUrl
         - userFlow
     CreatePaymentResponse:
       title: Create Payment Response
@@ -392,7 +394,6 @@ components:
         - paymentMethod
         - profile
         - pspReference
-        - redirectUrl
         - reference
     IndustryData:
       description: Additional compliance data related to the transaction.
