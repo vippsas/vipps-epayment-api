@@ -295,6 +295,8 @@ components:
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
 
             If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
+            
+            If flow is QR, the QR-image will be returned as `SVG+XML` if qrFormat is not set.
         expiresAt:
           type: string
           example: '2017-07-21T17:32:28Z'
