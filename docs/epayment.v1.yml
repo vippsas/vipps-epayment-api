@@ -311,7 +311,7 @@ components:
             format:
               type: string
               enum:
-                - TEXT/TARGET_URL
+                - TEXT/TARGETURL
                 - IMAGE/SVG+XML
                 - IMAGE/PNG
               example: IMAGE/SVG+XML
