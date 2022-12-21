@@ -250,7 +250,7 @@ components:
       description: Currency code as defined in  ISO 4217. eg NOK for Norwegian kroner.
     CreatePaymentRequest:
       title: Create payment request
-      description: `CreatePaymentRequest` object
+      description: The `CreatePaymentRequest` object.
       type: object
       x-examples: {}
       properties:
