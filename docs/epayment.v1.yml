@@ -352,7 +352,7 @@ components:
         - userFlow
     CreatePaymentResponse:
       title: Create payment response
-      description: Create `PaymentResponse` object
+      description: `CreatePaymentResponse` object
       type: object
       x-examples:
         UrlRedirect:
