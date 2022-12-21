@@ -381,7 +381,7 @@ components:
         - reference
     GetPaymentResponse:
       title: Get payment response
-      description: Get `PaymentResponse` object
+      description: `GetPaymentResponse` object
       type: object
       x-examples: {}
       properties:
