@@ -37,7 +37,7 @@ paths:
         - CreatePayments
       description: Create a new payment
       requestBody:
-        description: New `CreatePaymentRequest` body
+        description: New `CreatePaymentRequest` body.
         required: true
         content:
           application/json:
@@ -308,7 +308,7 @@ components:
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
-            If flow is `PUSH_MESSAGE` then one of `customer.sub` or `customer.phoneNumber` must be valid and is required.
+            If `userFlow` is `PUSH_MESSAGE`, a valid value for of either `customer.sub` or `customer.phoneNumber` is required.
         expiresAt:
           type: string
           example: '2017-07-21T17:32:28Z'
@@ -318,10 +318,11 @@ components:
             Payment will expire at the given date and time. 
             The format must adhere to RFC 3339.
             The value must be greater than 10 minutes in the future, and less than 24h in the future
-            If flow is `QR`, the QR code image will be returned as `SVG+XML` if `qrFormat` is not set.
         qrFormat:
           type: object
-          description: 'Optional, to set the format for the QR code. Only applicable if user_flow is set to `QR`.'
+          description: |-
+            Optional setting that is only applicable when `userFlow` is set to `QR`.
+            This is used to set the format for the QR code.
           properties:
             format:
               type: string
@@ -331,10 +332,14 @@ components:
                 - PNG
               example: SVG+XML
               default: SVG+XML
+              description: |-
+                If `userFlow` is `QR` and `qrFormat` is not set, the QR code image will be returned as `SVG+XML`, by default.
             size:
               type: integer
               example: 1024
-              description: 'Eks: 200. Then 200x200 px is set at dimension for Qr. Only applicable when format is set to PNG. Defaults to 1024 if not set'
+              description: |-
+                For example, if the value is 200, then 200x200 px is set as the dimension for the QR code.
+                This is only applicable when the format is set to `PNG`. If not set, the default is 1024.
               minimum: 100
               maximum: 2000
           required:
@@ -343,7 +348,7 @@ components:
           type: string
           minLength: 3
           maxLength: 100
-          description: 'The message to user that will appear in the app, in the merchant portal and in the settlement files.'
+          description: 'The payment description summary that will be provided to the user through the app, the merchant portal, and the settlement files.'
       required:
         - amount
         - paymentMethod
@@ -352,7 +357,7 @@ components:
         - userFlow
     CreatePaymentResponse:
       title: Create payment response
-      description: `CreatePaymentResponse` object
+      description: The `CreatePaymentResponse` object.
       type: object
       x-examples:
         UrlRedirect:
@@ -374,14 +379,17 @@ components:
           type: string
           format: uri
           example: 'https://landing.vipps.no?token=abc123'
-          description: 'The URL you should redirect the user to to continue with the payment for NATIVE_REDIRECT and WEB_REDIRECT. When user_flow is QR, a link to the QR-image (or the target url) will be returned. Nothing will be returned when user_flow is PUSH_MESSAGE'
+          description: |-
+                The URL to which the user is redirected when continuing the payment for NATIVE_REDIRECT and WEB_REDIRECT.
+                When `userFlow` is QR, a link to the QR-image (or the target url) will be returned.
+                Nothing will be returned when `userFlow` is `PUSH_MESSAGE`.
         reference:
           $ref: '#/components/schemas/Reference'
       required:
         - reference
     GetPaymentResponse:
       title: Get payment response
-      description: `GetPaymentResponse` object
+      description: The `GetPaymentResponse` object. 
       type: object
       x-examples: {}
       properties:
@@ -428,8 +436,8 @@ components:
         - airlineDesignatorCode
         - passengerName
       description: |-
-        Airline related data
-        If present, `passengerName`, `airlineCode`, `airlineDesignatorCode` and `agencyInvoiceNumber` are all required.
+        Airline related data.
+        If present, `passengerName`, `airlineCode`, `airlineDesignatorCode`, and `agencyInvoiceNumber` are all required.
       properties:
         agencyInvoiceNumber:
           type: string
@@ -529,7 +537,7 @@ components:
     PspReference:
       type: string
       title: PspReference
-      description: Reference value for a payment defined by Vipps
+      description: Reference value for a payment defined by Vipps.
     Address:
       title: Address
       type: object
@@ -548,20 +556,20 @@ components:
         country:
           type: string
           example: 'NO'
-          description: Country code according to ISO 3166
+          description: Country code according to ISO 3166.
         id:
           type: string
           format: uuid
-          description: 'Unique ID of the address, always provided in response from Vipps'
+          description: 'Unique ID of the address, always provided in response from Vipps.'
         lines:
           type: array
-          description: 'Array of addressLines, for example streetname, number etc'
+          description: 'Array of addressLines, for example street name, number, etc.'
           items:
             type: string
             example: Robert Levins gate 5
         postCode:
           type: string
-          description: Postcode of the address in local country format
+          description: Postcode of the address in local country format.
           example: '0154'
       required:
         - lines
@@ -666,9 +674,9 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - AUTHORISE
+            - AUTHORISE 
             - TERMINATE
-          example: AUTHORISE
+          example: CREATE
           x-enum-varnames:
             - CREATE
             - ABORT
@@ -676,7 +684,7 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - AUTHORISE
+            - AUTHORISE 
             - TERMINATE
         amount:
           $ref: '#/components/schemas/Amount'
@@ -711,7 +719,7 @@ components:
           description: A URI reference that identifies the problem type.
         title:
           type: string
-          description: 'A short, human-readable summary of the problem type.  It will not change from occurrence to occurrence of the problem.'
+          description: 'A short, human-readable summary of the problem type. It will not change from occurrence to occurrence of the problem.'
         detail:
           type: string
           description: A human-readable explanation specific to this occurrence of the problem.
