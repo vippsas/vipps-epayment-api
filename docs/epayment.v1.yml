@@ -729,7 +729,7 @@ components:
         State of the Payment.
         One of: 
         - CREATED : User has not yet acted upon the payment
-        - ABORTED : User has aborted the payment before authorisation
+        - ABORTED : User has aborted the payment before authorization
         - EXPIRED: User did not act on the payment within the payment expiration time
         - AUTHORIZED : User has approved the payment
         - TERMINATED : Merchant has terminated the payment via the cancelPayment endpoint
