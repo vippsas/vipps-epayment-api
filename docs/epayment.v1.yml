@@ -237,7 +237,7 @@ components:
           format: int64
           description: |-
             Integer value of price in the currency's monetary subunit (e.g., Norwegian øre),
-            or monitary unit where applicable (eg Japanese YEN). The type of the monitary
+            or monetary unit where applicable (e.g., Japanese YEN). The type of the monetary
             unit is defined in  ISO 4217.
       required:
         - value
