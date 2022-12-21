@@ -4,7 +4,7 @@ servers:
     description: Production source URL for the Vipps ePayment api
 info:
   description: 'The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.'
-  version: 1.0.1
+  version: 1.1.0
   title: Vipps ePayment API
   contact:
     name: Vipps AS
@@ -291,8 +291,11 @@ components:
           $ref: '#/components/schemas/Reference'
         returnUrl:
           type: string
-          pattern: '^(https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$'
           example: 'https://example.com/redirect?orderId=acme-shop-123-order123abc'
+          description: |-
+            The URL the user is returned to after the payment session.
+            
+            The URL has to use the `https://` scheme or a custom URL scheme.
         userFlow:
           type: string
           enum:
@@ -308,16 +311,16 @@ components:
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
-            If `userFlow` is `PUSH_MESSAGE`, a valid value for of either `customer.sub` or `customer.phoneNumber` is required.
+            If `userFlow` is `PUSH_MESSAGE`, a valide value for either `$.profile.sub` or `$.profile.phoneNumber` is required.
         expiresAt:
           type: string
           example: '2017-07-21T17:32:28Z'
           pattern: '^((?:(\d{4}-\d{2}-\d{2})(T|t)(\d{2}:\d{2}:\d{2}(?:\.\d+)?))(Z|z|([+-](?:2[0-3]|[01][0-9]):[0-5][0-9])))$'
           nullable: true
           description: |-
-            Payment will expire at the given date and time. 
+            The payment will expire at the given date and time. 
             The format must adhere to RFC 3339.
-            The value must be greater than 10 minutes in the future, and less than 24h in the future
+            The value must be more than 10 minutes and less than 24 hours in the future.
         qrFormat:
           type: object
           description: |-
@@ -327,13 +330,13 @@ components:
             format:
               type: string
               enum:
-                - TARGET_URL
-                - SVG+XML
-                - PNG
-              example: SVG+XML
-              default: SVG+XML
+                - TEXT/TARGETURL
+                - IMAGE/SVG+XML
+                - IMAGE/PNG
+              example: IMAGE/SVG+XML
               description: |-
                 If `userFlow` is `QR` and `qrFormat` is not set, the QR code image will be returned as `SVG+XML`, by default.
+              default: IMAGE/SVG+XML
             size:
               type: integer
               example: 1024
@@ -342,6 +345,7 @@ components:
                 This is only applicable when the format is set to `PNG`. If not set, the default is 1024.
               minimum: 100
               maximum: 2000
+              nullable: true
           required:
             - format
         paymentDescription:
@@ -353,7 +357,6 @@ components:
         - amount
         - paymentMethod
         - reference
-        - returnUrl
         - userFlow
     CreatePaymentResponse:
       title: Create payment response
@@ -419,7 +422,6 @@ components:
         - paymentMethod
         - profile
         - pspReference
-        - redirectUrl
         - reference
     IndustryData:
       description: Additional compliance data related to the transaction.
