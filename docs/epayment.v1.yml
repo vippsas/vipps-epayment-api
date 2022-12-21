@@ -204,7 +204,7 @@ components:
       properties:
         phoneNumber:
           type: string
-          description: Mobile number in MSISDN format of the user who has to pay for the transation from Vipps. Currently vipps supports only Norwegian Mobile Numbers
+          description: Mobile number in MSISDN format of the user who has to pay for the transaction from Vipps. Currently vipps supports only Norwegian Mobile Numbers
           minLength: 10
           maxLength: 15
           example: 4791234567
@@ -226,7 +226,7 @@ components:
           maximum: 65000000
           example: 1000
           format: int64
-          description: 'Integer value of price in the currencys monitary subunit (eg Norwegian Øre), or monitary unit where applicable (eg Japanese YEN). Type of monitary unit is defined in  ISO 4217.'
+          description: 'Integer value of price in the monetary subunit of the currency (eg Norwegian Øre), or monetary unit where applicable (eg Japanese YEN). Type of monetary unit is defined in ISO 4217.'
       required:
         - value
         - currency
