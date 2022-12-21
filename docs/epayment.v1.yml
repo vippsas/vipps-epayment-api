@@ -270,7 +270,7 @@ components:
           description: |-
             The type of customer interaction that triggers the purchase.
             `CUSTOMER_PRESENT` means that the customer is physically present at the
-            point of sale when the payment is made, tyøpically in a store.
+            point of sale when the payment is made, typically in a store.
           enum:
             - CUSTOMER_PRESENT
             - CUSTOMER_NOT_PRESENT
