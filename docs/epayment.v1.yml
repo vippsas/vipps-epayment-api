@@ -211,7 +211,7 @@ components:
         phoneNumber:
           type: string
           description: |-
-            Mobile number in MSISDN format of the user who has to pay for the transation
+            Mobile number in MSISDN format of the user who has to pay for the transaction
             from Vipps. Currently vipps supports only Norwegian mobile numbers.
           minLength: 10
           maxLength: 15
