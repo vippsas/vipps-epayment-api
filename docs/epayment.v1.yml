@@ -37,7 +37,7 @@ paths:
         - CreatePayments
       description: Create a new payment
       requestBody:
-        description: New `PaymentRequest` body
+        description: New `CreatePaymentRequest` body
         required: true
         content:
           application/json:
