@@ -308,7 +308,7 @@ components:
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
-            If flow is `PUSH_MESSAGE` then one of `profile.sub` or `profile.phoneNumber` must be valid and is required.
+            If flow is `PUSH_MESSAGE` then one of `customer.sub` or `customer.phoneNumber` must be valid and is required.
         expiresAt:
           type: string
           example: '2017-07-21T17:32:28Z'
