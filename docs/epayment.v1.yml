@@ -7,23 +7,22 @@ info:
   version: 1.1.0
   title: Vipps ePayment API
   contact:
-    email: integration@vipps.no
     name: Vipps AS
-    url: 'http://github.com/vippsas'
+    url: 'https://vippsas.github.io/vipps-developer-docs/'
   license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    name: MIT
+    url: 'https://choosealicense.com/licenses/mit/'
   termsOfService: 'https://www.vipps.no/vilkar/vilkar-bedrift/'
   x-logo:
     url: 'https://vipps.no/static/vipps_frontend/311340/media/extra-images/vipps-logo.svg'
     backgroundColor: '#FFFFFF'
     altText: Vipps logo
 tags:
-  - description: "\tCreate Payments Endpoints"
+  - description: "Create payment endpoints"
     name: CreatePayments
-  - description: "\tQuery Payments Endpoints"
+  - description: "Query payments endpoints"
     name: QueryPayments
-  - description: "\tAdjust Payments Endpoints"
+  - description: "Adjust payments endpoints"
     name: AdjustPayments
 paths:
   /v1/payments:
@@ -33,12 +32,12 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
     post:
       operationId: createPayment
-      summary: Create Payment
+      summary: Create payment
       tags:
         - CreatePayments
       description: Create a new payment
       requestBody:
-        description: New payment request body
+        description: New `CreatePaymentRequest` body.
         required: true
         content:
           application/json:
@@ -66,14 +65,14 @@ paths:
         '200':
           $ref: '#/components/responses/GetPaymentResponse'
       operationId: getPayment
-      description: Get a payment object by its reference ID
+      description: Get a payment object by its `reference` id.
   '/v1/payments/{reference}/events':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
     get:
-      summary: Get Payment Event Log
+      summary: Get payment event log
       tags:
         - QueryPayments
       responses:
@@ -88,7 +87,7 @@ paths:
       operationId: getPaymentEventLog
       security:
         - Bearer-Authorization: []
-      description: Get event log for the specified payment reference
+      description: Get event log for the specified payment `reference` id.
   '/v1/payments/{reference}/cancel':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
@@ -96,7 +95,7 @@ paths:
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
     post:
-      summary: Cancel Payment
+      summary: Cancel payment
       operationId: cancelPayment
       responses:
         '200':
@@ -107,7 +106,7 @@ paths:
           $ref: '#/components/responses/ProblemResponse'
         '409':
           $ref: '#/components/responses/ProblemResponse'
-      description: Cancel the given payment
+      description: Cancel the payment with the specified `reference` id.
       security:
         - Bearer-Authorization: []
       tags:
@@ -119,7 +118,7 @@ paths:
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
     post:
-      summary: Capture Payment
+      summary: Capture payment
       operationId: capturePayment
       responses:
         '200':
@@ -148,7 +147,7 @@ paths:
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
     post:
-      summary: Refund Payment
+      summary: Refund payment
       operationId: refundPayment
       responses:
         '200':
@@ -176,14 +175,20 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
     post:
-      summary: Force Approve Payment
+      summary: Force approve payment
       tags:
         - ForceApprove
       responses:
         '200':
           description: OK
       operationId: forceApprove
-      description: 'This endpoint allows developers to approve a payment through the Vipps eCom API without the use of the Vipps app. This is useful for automated testing. Express checkout is not supported for this endpoint. The endpoint is only available in our Test environment. Attempted use of the endpoint in production is not allowed, and will fail. Important: All test users must manually approve at least one payment in Vipps (using the app) before this endpoint can be used for that user.'
+      description: |-
+        This endpoint allows developers to approve a payment through the Vipps ePayment API
+        without the use of the Vipps app. This is useful for automated testing.
+        Express checkout is not supported for this endpoint. The endpoint is only available
+        in our test environment. Attempted use of the endpoint in production is not allowed,
+        and will fail. Important: All test users must manually approve at least one payment
+        in Vipps (using the app) before this endpoint can be used for that user.
       security:
         - Bearer-Authorization: []
       requestBody:
@@ -199,12 +204,15 @@ components:
       type: object
       description: |-
         Can be one of:
-          * The user subscription identifier received in the `profile.sub` property from the response body or from the Vipps Login API
+          * The user subscription identifier received in the `profile.sub` property from
+          the response body or from the Vipps Login API
           * Target users phone number in MSISDN format
       properties:
         phoneNumber:
           type: string
-          description: Mobile number in MSISDN format of the user who has to pay for the transation from Vipps. Currently vipps supports only Norwegian Mobile Numbers
+          description: |-
+            Mobile number in MSISDN format of the user who has to pay for the transaction
+            from Vipps. Currently vipps supports only Norwegian mobile numbers.
           minLength: 10
           maxLength: 15
           example: 4791234567
@@ -212,10 +220,11 @@ components:
         sub:
           type: string
           description: |
-            The user subscription identifier received in the `profile.sub` property from the response body or from the Vipps Login API
+            The user subscription identifier received in the `profile.sub` property from
+            the response body or from the Vipps Login API.
           example: c06c4afe-d9e1-4c5d-939a-177d752a0944
     Amount:
-      description: Amount Object
+      description: Amount object
       type: object
       properties:
         currency:
@@ -226,7 +235,10 @@ components:
           maximum: 65000000
           example: 1000
           format: int64
-          description: 'Integer value of price in the currencys monitary subunit (eg Norwegian Øre), or monitary unit where applicable (eg Japanese YEN). Type of monitary unit is defined in  ISO 4217.'
+          description: |-
+            Integer value of price in the currency's monetary subunit (e.g., Norwegian øre),
+            or monetary unit where applicable (e.g., Japanese YEN). The type of the monetary
+            unit is defined in  ISO 4217.
       required:
         - value
         - currency
@@ -237,8 +249,8 @@ components:
         - NOK
       description: Currency code as defined in  ISO 4217. eg NOK for Norwegian kroner.
     CreatePaymentRequest:
-      title: Create Payment Request
-      description: Payment Request object
+      title: Create payment request
+      description: The `CreatePaymentRequest` object.
       type: object
       x-examples: {}
       properties:
@@ -247,12 +259,18 @@ components:
         directCapture:
           type: boolean
           default: false
-          description: Use direct capture instead of reserve capture if enabled for merchant account. Default is `false`.
+          description: |-
+            For special cases. The sale unit must be configured by Vipps.
+            We strongly recommend using "reserve capture" in all situations.
+            Default is `false`.
         customer:
           $ref: '#/components/schemas/Customer'
         customerInteraction:
           type: string
-          description: The form of customer interaction to trigger the purchase
+          description: |-
+            The type of customer interaction that triggers the purchase.
+            `CUSTOMER_PRESENT` means that the customer is physically present at the
+            point of sale when the payment is made, typically in a store.
           enum:
             - CUSTOMER_PRESENT
             - CUSTOMER_NOT_PRESENT
@@ -293,20 +311,21 @@ components:
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
-
-            If flow is `PUSH_MESSAGE` then one of `$.profile.sub` or `$.profile.phoneNumber` must be valid and is required.
-            
-            If flow is QR, the QR-image will be returned as `SVG+XML` if qrFormat is not set.
+            If `userFlow` is `PUSH_MESSAGE`, a valide value for either `$.profile.sub` or `$.profile.phoneNumber` is required.
         expiresAt:
           type: string
           example: '2017-07-21T17:32:28Z'
           pattern: '^((?:(\d{4}-\d{2}-\d{2})(T|t)(\d{2}:\d{2}:\d{2}(?:\.\d+)?))(Z|z|([+-](?:2[0-3]|[01][0-9]):[0-5][0-9])))$'
           nullable: true
           description: |-
-            Payment will expire at the given date and time. Format must adhere to RFC 3339. Value must be greater than 10 minutes in the future, and less than 24h in the future
+            The payment will expire at the given date and time. 
+            The format must adhere to RFC 3339.
+            The value must be more than 10 minutes and less than 24 hours in the future.
         qrFormat:
           type: object
-          description: 'Optional, to set the format for the QR. Only applicable if user_flow is set to QR.'
+          description: |-
+            Optional setting that is only applicable when `userFlow` is set to `QR`.
+            This is used to set the format for the QR code.
           properties:
             format:
               type: string
@@ -315,11 +334,15 @@ components:
                 - IMAGE/SVG+XML
                 - IMAGE/PNG
               example: IMAGE/SVG+XML
+              description: |-
+                If `userFlow` is `QR` and `qrFormat` is not set, the QR code image will be returned as `SVG+XML`, by default.
               default: IMAGE/SVG+XML
             size:
               type: integer
               example: 1024
-              description: 'Eks: 200. Then 200x200 px is set at dimension for Qr. Only applicable when format is set to PNG. Defaults to 1024 if not set'
+              description: |-
+                For example, if the value is 200, then 200x200 px is set as the dimension for the QR code.
+                This is only applicable when the format is set to `PNG`. If not set, the default is 1024.
               minimum: 100
               maximum: 2000
               nullable: true
@@ -329,15 +352,15 @@ components:
           type: string
           minLength: 3
           maxLength: 100
-          description: 'The message to user that will appear in the app, in the merchant portal and settlement files.'
+          description: 'The payment description summary that will be provided to the user through the app, the merchant portal, and the settlement files.'
       required:
         - amount
         - paymentMethod
         - reference
         - userFlow
     CreatePaymentResponse:
-      title: Create Payment Response
-      description: Create Payment Response object
+      title: Create payment response
+      description: The `CreatePaymentResponse` object.
       type: object
       x-examples:
         UrlRedirect:
@@ -359,14 +382,17 @@ components:
           type: string
           format: uri
           example: 'https://landing.vipps.no?token=abc123'
-          description: 'The URL you should redirect the user to to continue with the payment for NATIVE_REDIRECT and WEB_REDIRECT. When user_flow is QR, a link to the QR-image (or the target url) will be returned. Nothing will be returned when user_flow is PUSH_MESSAGE'
+          description: |-
+                The URL to which the user is redirected when continuing the payment for NATIVE_REDIRECT and WEB_REDIRECT.
+                When `userFlow` is QR, a link to the QR-image (or the target url) will be returned.
+                Nothing will be returned when `userFlow` is `PUSH_MESSAGE`.
         reference:
           $ref: '#/components/schemas/Reference'
       required:
         - reference
     GetPaymentResponse:
-      title: Get Payment Response
-      description: Get Payment Response object
+      title: Get payment response
+      description: The `GetPaymentResponse` object. 
       type: object
       x-examples: {}
       properties:
@@ -412,9 +438,8 @@ components:
         - airlineDesignatorCode
         - passengerName
       description: |-
-        Airline related data
-
-        If present, `passengerName`, `airlineCode`, `airlineDesignatorCode` and `agencyInvoiceNumber` are all required.
+        Airline related data.
+        If present, `passengerName`, `airlineCode`, `airlineDesignatorCode`, and `agencyInvoiceNumber` are all required.
       properties:
         agencyInvoiceNumber:
           type: string
@@ -514,7 +539,7 @@ components:
     PspReference:
       type: string
       title: PspReference
-      description: Reference value for a payment defined by Vipps
+      description: Reference value for a payment defined by Vipps.
     Address:
       title: Address
       type: object
@@ -533,20 +558,20 @@ components:
         country:
           type: string
           example: 'NO'
-          description: Country code according to ISO 3166
+          description: Country code according to ISO 3166.
         id:
           type: string
           format: uuid
-          description: 'Unique ID of the address, always provided in response from Vipps'
+          description: 'Unique ID of the address, always provided in response from Vipps.'
         lines:
           type: array
-          description: 'Array of addressLines, for example streetname, number etc'
+          description: 'Array of addressLines, for example street name, number, etc.'
           items:
             type: string
             example: Robert Levins gate 5
         postCode:
           type: string
-          description: Postcode of the address in local country format
+          description: Postcode of the address in local country format.
           example: '0154'
       required:
         - lines
@@ -559,14 +584,17 @@ components:
       properties:
         scope:
           type: string
-          description: A space separated string list of requested user information in accordance with the OpenID Connect specification.
+          description: A space-separated string list of requested user information in accordance with the OpenID Connect specification.
     ProfileResponse:
       title: Profile
       type: object
       properties:
         sub:
           type: string
-          description: If `$.profile.scope` was requested in `createPayment` this value will populate once `$.state` is `AUTHORIZED`. This can be used towards the Vipps Login Userinfo endpoint to fetch requested user data.
+          description: |-
+            If `profile.scope` was requested in `createPayment` this value will populate once
+            `state` is `AUTHORIZED`. This can be used towards the Vipps Login Userinfo endpoint
+            to fetch requested user data.
     PaymentMethod:
       title: PaymentMethod
       type: object
@@ -596,8 +624,7 @@ components:
       example: WALLET
       description: |-
         The paymentMethod type to be performed.
-
-        `CARD` has to be combined with a `$.userFlow` of `WEB_REDIRECT`.
+        `CARD` has to be combined with a `userFlow` of `WEB_REDIRECT`.
     PaymentAdjustment:
       title: PaymentAdjustment
       type: object
@@ -649,9 +676,9 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - AUTHORISE
+            - AUTHORISE 
             - TERMINATE
-          example: AUTHORISE
+          example: CREATE
           x-enum-varnames:
             - CREATE
             - ABORT
@@ -659,7 +686,7 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - AUTHORISE
+            - AUTHORISE 
             - TERMINATE
         amount:
           $ref: '#/components/schemas/Amount'
@@ -694,7 +721,7 @@ components:
           description: A URI reference that identifies the problem type.
         title:
           type: string
-          description: 'A short, human-readable summary of the problem type.  It will not change from occurrence to occurrence of the problem.'
+          description: 'A short, human-readable summary of the problem type. It will not change from occurrence to occurrence of the problem.'
         detail:
           type: string
           description: A human-readable explanation specific to this occurrence of the problem.
@@ -709,11 +736,10 @@ components:
       type: string
       title: State
       description: |-
-        State of the Payment
-
+        State of the Payment.
         One of: 
         - CREATED : User has not yet acted upon the payment
-        - ABORTED : User has aborted the payment before authorisation
+        - ABORTED : User has aborted the payment before authorization
         - EXPIRED: User did not act on the payment within the payment expiration time
         - AUTHORIZED : User has approved the payment
         - TERMINATED : Merchant has terminated the payment via the cancelPayment endpoint
@@ -748,7 +774,7 @@ components:
         minLength: 4
         maxLength: 6
         example: '123456'
-      description: Serial number for the merchant performing the payments
+      description: "The Sale unit's MSN: The unique identifier for the sale unit."
     APIM-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
@@ -766,7 +792,7 @@ components:
         pattern: '^[a-zA-Z0-9-]{8,50}$'
         minLength: 1
         maxLength: 50
-      description: Given primary reference when creating the payment
+      description: The primary reference when creating the payment. Similar to orderId in the eCom API.
     Idempotency-Key:
       name: Idempotency-Key
       in: header
@@ -779,7 +805,7 @@ components:
       name: Authorization
       type: apiKey
       in: header
-      description: Access bearer token
+      description: Access bearer token (JWT)
   responses:
     GetPaymentResponse:
       description: Get Payment response
