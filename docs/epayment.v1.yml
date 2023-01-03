@@ -323,6 +323,7 @@ components:
             The value must be more than 10 minutes and less than 24 hours in the future.
         qrFormat:
           type: object
+          nullable: true
           description: |-
             Optional setting that is only applicable when `userFlow` is set to `QR`.
             This is used to set the format for the QR code.
