@@ -7,8 +7,6 @@ END_METADATA -->
 
 # Getting Started with the Vipps Merchant Payments API
 
-💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
-
 ## Before you begin
 
 This document covers the quick steps for getting started with the Vipps Merchant Payments API.
