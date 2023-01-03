@@ -203,10 +203,7 @@ components:
       title: Customer
       type: object
       description: |-
-        Can be one of:
-          * The user subscription identifier received in the `profile.sub` property from
-          the response body or from the Vipps Login API
-          * Target users phone number in MSISDN format
+        Target customer
       properties:
         phoneNumber:
           type: string
@@ -217,12 +214,6 @@ components:
           maxLength: 15
           example: 4791234567
           pattern: '^[0-9-]{10,15}$'
-        sub:
-          type: string
-          description: |
-            The user subscription identifier received in the `profile.sub` property from
-            the response body or from the Vipps Login API.
-          example: c06c4afe-d9e1-4c5d-939a-177d752a0944
     Amount:
       description: Amount object
       type: object
@@ -311,7 +302,7 @@ components:
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
-            If `userFlow` is `PUSH_MESSAGE`, a valid value for either `$.profile.sub` or `$.profile.phoneNumber` is required.
+            If `userFlow` is `PUSH_MESSAGE`, a valid value for `$.customer.phoneNumber` is required.
         expiresAt:
           type: string
           example: '2017-07-21T17:32:28Z'
@@ -322,6 +313,7 @@ components:
             The format must adhere to RFC 3339.
             The value must be more than 10 minutes and less than 24 hours in the future.
         qrFormat:
+          nullable: true
           type: object
           description: |-
             Optional setting that is only applicable when `userFlow` is set to `QR`.
