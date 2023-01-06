@@ -7,6 +7,17 @@ END_METADATA -->
 
 # Getting Started with the Vipps Merchant Payments API
 
+- [Getting Started with the Vipps Merchant Payments API](#getting-started-with-the-vipps-merchant-payments-api)
+  - [Before you begin](#before-you-begin)
+  - [Your first Vipps Payment](#your-first-vipps-payment)
+    - [Step 1 - Authentication](#step-1---authentication)
+    - [Step 2 - Create a payment](#step-2---create-a-payment)
+  - [Step 3 - Completing the payment](#step-3---completing-the-payment)
+    - [Polling](#polling)
+    - [Notification Events](#notification-events)
+  - [Step 4 - Capture the payment](#step-4---capture-the-payment)
+  - [Next Steps](#next-steps)
+
 ## Before you begin
 
 This document covers the quick steps for getting started with the Vipps Merchant Payments API.
@@ -317,7 +328,7 @@ In this case the `aggregate` property will be updated as such:
 ## Next Steps
 
 Now that you have completed your first payment,
-we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
+read further to see the full range of possibilities within the Vipps Merchant Payments API.
 
 - [How to setup Notification Webhooks](how-to-setup-notification-webhooks.md)
 - [Payment modification, how to use cancel, capture and refund?](payment-states.md)
