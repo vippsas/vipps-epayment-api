@@ -120,7 +120,7 @@ The flow of settlements and how to retrieve them are described in
 ## Quick start
 
 The normal "happy day" flow for a payment is documented in the
-[Getting guide](getting-started.md).
+[Getting guide](../getting-started.md).
 
 This API guide is extensive: We have done our best to document everything about
 this API, and you *should* have all information needed to integrate with Vipps.
@@ -132,16 +132,16 @@ Payments are supported in both web browsers and in native apps (via deep-linking
 
 Operation|Description| Endpoint
 :--- |:--- |:--- |
-[Initiate payment](api-guide/create-payment.md) | Payment sessions creation, the first **request** in the payment flow.| [`POST:/epayment/v1/payments`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment)
-[Get payment](./api-guide/queries/get-payment.md) | The current details of the payment.  | [`GET:/epayment/v1/payments/{reference}`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment)
-[Get payment event log](./api-guide/queries/get-payment-event-log.md) | The full history of event on the payment.  | [`GET:/epayment/v1/payments/{reference}/events`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog)
-[Capture payment](api-guide/modifications/capture.md) | When an amount has been reserved, and the goods are (about to be) shipped, the payment must be *captured*. | [`POST:/epayment/v1/payments/{reference}/capture`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/capturePaymentUsingPOST)
-[Cancel payment](api-guide/modifications/cancel.md) | The merchant may release reserved funds back to the consumer by cancelling the payment | [`PUT:/epayment/v1/payments/{reference}/cancel`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/cancelPaymentRequestUsingPUT)
-[Refund payment](api-guide/modifications/refund.md) | The merchant may refund a captured amount. | [`POST:/epayment/v1/payments/{reference}/refund`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/refundPaymentUsingPOST)
+[Initiate payment](create-payment.md) | Payment sessions creation, the first **request** in the payment flow.| [`POST:/epayment/v1/payments`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment)
+[Get payment](./queries/get-payment.md) | The current details of the payment.  | [`GET:/epayment/v1/payments/{reference}`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment)
+[Get payment event log](./queries/get-payment-event-log.md) | The full history of event on the payment.  | [`GET:/epayment/v1/payments/{reference}/events`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog)
+[Capture payment](modifications/capture.md) | When an amount has been reserved, and the goods are (about to be) shipped, the payment must be *captured*. | [`POST:/epayment/v1/payments/{reference}/capture`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/capturePaymentUsingPOST)
+[Cancel payment](modifications/cancel.md) | The merchant may release reserved funds back to the consumer by cancelling the payment | [`PUT:/epayment/v1/payments/{reference}/cancel`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/cancelPaymentRequestUsingPUT)
+[Refund payment](modifications/refund.md) | The merchant may refund a captured amount. | [`POST:/epayment/v1/payments/{reference}/refund`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/refundPaymentUsingPOST)
 [Access Token](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started#get-an-access-token) | Fetch the access token | [`POST:/accesstoken/get`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost)
 
 See the
-[ePayment API checklist](vipps-epyment-api-checklist.md).
+[ePayment API checklist](../vipps-epayment-api-checklist.md).
 
 ## Vipps HTTP headers
 
