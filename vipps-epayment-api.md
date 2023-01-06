@@ -120,7 +120,7 @@ The flow of settlements and how to retrieve them are described in
 ## Quick start
 
 The normal "happy day" flow for a payment is documented in the
-[Getting guide](Getting-Started.md).
+[Getting guide](getting-started.md).
 
 This API guide is extensive: We have done our best to document everything about
 this API, and you *should* have all information needed to integrate with Vipps.
