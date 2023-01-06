@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
 title: Getting started
-sidebar_position: 100
+sidebar_position: 10
 ---
 END_METADATA -->
 
@@ -206,11 +206,11 @@ In the case the payment has been completed this will yield an array of events li
 
 ### Notification Events
 
-If you are not dependent on getting the payment result immediately you may also use notification events to receive the payment status update via our [Notification Webhooks](./how-to-setup-notification-webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than immediate delivery.
+If you are not dependent on getting the payment result immediately you may also use notification events to receive the payment status update via our [Notification Webhooks](how-to-setup-notification-webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than immediate delivery.
 
 > Note: this means we may deliver the same message several times to verify successful delivery, use the `pspReference` field for duplicate delivery checking.
 
-If you use the notification service you will receive events in the same format as those in the array list returned from the [Get Payment Events](../TODO.md) endpoint.
+If you use the notification service you will receive events in the same format as those in the array list returned from the [Get Payment Events][get-payment-event-log-endpoint] endpoint.
 
 For example a successful authentication event would look like
 
@@ -319,13 +319,12 @@ In this case the `aggregate` property will be updated as such:
 Now that you have completed your first payment,
 we recommend you read further to better understand the full range of possibilities within the Vipps Merchant Payments API.
 
-- [How to setup Notification Webhooks](./how-to-setup-notification-webhooks.md)
-- [Payment modification, how to use cancel, capture and refund?](./api-guide/payment-states.md)
-- [Using Vipps Merchant Payments in a shopper present context](./api-guide/features/customer-preset-payments.md)
+- [How to setup Notification Webhooks](how-to-setup-notification-webhooks.md)
+- [Payment modification, how to use cancel, capture and refund?](payment-states.md)
+- [Using Vipps Merchant Payments in a shopper present context](.features/customer-preset-payments.md)
 
 <!-- START_COMMENT -->
-- [Profile sharing, requesting the users personal information](./api-guide/features/profile-sharing.md)
-- [Logistics, how can I enable express checkout?](Logistics.md)
+- [Profile sharing, requesting the users personal information](features/profile-sharing.md)
 <!-- END_COMMENT -->
 
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
