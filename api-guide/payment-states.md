@@ -5,4 +5,4 @@ Once a payment is `CREATED`, several modification actions can be made. Modificat
 
 
 The following flow diagram describes when each modification action is applicable.
-![Payment flow diagram](../diagrams/payment-modification.svg "Payment Flow Diagram")
+![Payment flow diagram](../images/payment-modification.svg)
