@@ -1,9 +1,6 @@
-<!-- START_METADATA
 ---
-title: Customer Preset Payments
-sidebar_position: 150
+title: Customer Present Payments
 ---
-END_METADATA -->
 
 # Customer-Present Payments
 

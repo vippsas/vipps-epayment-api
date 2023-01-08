@@ -1,22 +1,16 @@
-<!-- START_METADATA
 ---
 title: Getting started
+id: getting-started
 sidebar_position: 10
+toc_min_heading_level: 2
+toc_max_heading_level: 5
+pagination_next: null
+pagination_prev: null
 ---
-END_METADATA -->
+
+import ApiSchema from '@theme/ApiSchema';
 
 # Getting Started with the Vipps Merchant Payments API
-
-- [Getting Started with the Vipps Merchant Payments API](#getting-started-with-the-vipps-merchant-payments-api)
-  - [Before you begin](#before-you-begin)
-  - [Your first Vipps Payment](#your-first-vipps-payment)
-    - [Step 1 - Authentication](#step-1---authentication)
-    - [Step 2 - Create a payment](#step-2---create-a-payment)
-  - [Step 3 - Completing the payment](#step-3---completing-the-payment)
-    - [Polling](#polling)
-    - [Notification Events](#notification-events)
-  - [Step 4 - Capture the payment](#step-4---capture-the-payment)
-  - [Next Steps](#next-steps)
 
 ## Before you begin
 
@@ -45,41 +39,23 @@ curl https://apitest.vipps.no/accessToken/get \
 In response, you will get a body with the following schema.
 The property `access_token` should be used for all other API requests in the `Authorisation` header as the Bearer token.
 
-```json
-{
-  "token_type": "Bearer",
-  "expires_in": "3599",
-  "ext_expires_in": "3599",
-  "expires_on": "1614116654",
-  "not_before": "1614112754",
-  "resource": "00000002-0000-0000-c000-000000000000",
-  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiIwMDAwMDAwMi0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9lNTExNjUyNi01MWRjLTRjMTQtYjA4Ni1hNWNiNDcxNmJjNGIvIiwiaWF0IjoxNjE0MTEyNzU0LCJuYmYiOjE2MTQxMTI3NTQsImV4cCI6MTYxNDExNjY1NCwiYWlvIjoiRTJaZ1lMQmF1V25qcG12c2NhYlhJOTliSmt3c0FRQT0iLCJhcHBpZCI6IjIyNWVmMTU5LWFjZjAtNGRiNy04OGU0LWNlNDMyODYxOWM3MyIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2U1MTE2NTI2LTUxZGMtNGMxNC1iMDg2LWE1Y2I0NzE2YmM0Yi8iLCJyaCI6IjAuQVNBQUptVVI1ZHhSRkV5d2hxWExSeGE4UzFueFhpTHdyTGROaU9UT1F5aGhuSE1nQUFBLiIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJFVSIsInRpZCI6ImU1MTE2NTI2LTUxZGMtNGMxNC1iMDg2LWE1Y2I0NzE2YmM0YiIsInV0aSI6Imo4bHRFZER5R2tDeURtdXR3QVVNQUEiLCJ2ZXIiOiIxLjAifQ.IeLADJiz5WRdQgf-3LfnUCfiQpKNjRIJjvDfYzoG9xgOQwBhSKeDlelIx0_FMx3oHtvYkGWebDy0Y1HjdrbgzoA2RTeIzS8IjylZcGfSuhA6kUvBa4JUPLW4Irefp3Bv77gUfS0dVzHVILADV-8VSCjivld7ovEANQagupsi4zhAyVWuNuHurDOSSI33lxnes-FmphUfiUfwmye9B676lwaj28I1dP3JxqFDDf3SNkjNLvTZyiDaIprZrt4TC_t5eopzqCL4X1ymnWxzJzMMPQGVOvhNEJj1oI_5VbRtoYdo_b5bYU5ZS7JSGcuOpog7vEtVk6uJDDT0MfQIuOLaeA"
-  }
-```
+
+<ApiSchema id="ecom-swagger-id" pointer="#/components/schemas/AuthorizationTokenResponse" example />
 
 ### Step 2 - Create a payment
 
-To create a payment you need to send the specifications of that payment to Vipps, there is an extensive selection of options available which you can combine to make your custom payment experience. The required fields for a simple payment are:
-
-| Parameter            | Type     | Required | Description                                                                   |
-| -------------------- | -------- | -------- | ----------------------------------------------------------------------------- |
-| `amount`             | `Object` | Y        | The `currency` and `value` of the payment in minor units                      |
-| `paymentMethod`      | `Object` | Y        | The `type` of payment method you wish to process with                         |
-| `reference`          | `string` | Y        | Your unique reference to this payment                                         |
-| `returnUrl`          | `string` | Y        | The URL the user should be returned to after acting upon the payment          |
-| `userFlow`           | `string` | Y        | The method to direct the user into the Vipps app to interact with the payment |
-| `paymentDescription` | `string` | N        | The text shown to the user in the Vipps app with the payment                  |
+To create a payment session you need to send the specifications of that payment to Vipps, there is an extensive selection of options available which you can combine to make your custom payment experience.
 
 To create a payment of 10 Norwegian Kroner send a request like the one below:
 
 ```bash
-curl https://apitest.vipps.no/epayment/v1/payments\
+curl https://apitest.vipps.no/epayment/v1/payments \
 -H "Authorization: Bearer <TOKEN>" \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
 -H "Idempotency-Key: UNIQUE-ID" \
 -H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
--X POST
+-X POST \
 -d '{
   "amount": {
     "currency": "NOK",
@@ -95,52 +71,18 @@ curl https://apitest.vipps.no/epayment/v1/payments\
 }'
 ```
 
+The full list of payment options are: 
+
+<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/CreatePaymentRequest" />
+
+
+
+
 A valid request like the one above will result in a response with the following structure.
 
-```json
-{
-  "aggregate": {
-    "authorizedAmount": {
-      "currency": "NOK",
-      "type": "PURCHASE",
-      "value": 0
-    },
-    "cancelledAmount": {
-      "currency": "NOK",
-      "type": "PURCHASE",
-      "value": 0
-    },
-    "capturedAmount": {
-      "currency": "NOK",
-      "type": "PURCHASE",
-      "value": 0
-    },
-    "refundedAmount": {
-      "currency": "NOK",
-      "type": "PURCHASE",
-      "value": 0
-    }
-  },
-  "amount": {
-    "currency": "NOK",
-    "type": "PURCHASE",
-    "value": 1000
-  },
-  "authorisationType": "FINAL_AUTH",
-  "state": "CREATED",
-  "directCapture": false,
-  "customerInteraction": "CUSTOMER_NOT_PRESENT",
-  "paymentMethod": {
-    "type": "WALLET"
-  },
-  "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-  "redirectUrl": "https://landing.vipps.no?token=abc123",
-  "reference": "UNIQUE-PAYMENT-REFERENCE",
-  "returnUrl": "https://yourwebsite.come/redirect?orderId=abcc123",
-  "userFlow": "NATIVE_REDIRECT",
-  "paymentDescription": "A simple payment"
-}
-```
+
+<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/CreatePaymentResponse" example />
+
 
 The `redirectUrl` property should be used to direct the user to the Vipps app for completing the payment.
 
@@ -148,7 +90,9 @@ The `redirectUrl` property should be used to direct the user to the Vipps app fo
 
 The user will be presented with the payment in the Vipps app, where they can complete or reject the payment. Once the user has acted upon the payment they will be redirected back to the specified `returnUrl` under a "best effort" policy.
 
-> Note: We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable and the user may choose to fully close the Vipps app or browser.
+:::note
+We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable and the user may choose to fully close the Vipps app or browser.
+:::
 
 To receive the result of the users action you may either:
 
@@ -159,7 +103,7 @@ To receive the result of the users action you may either:
 
 ### Polling
 
-A request to the [Get Payment][get-payment-endpoint] URL will yield a response in the same structure as [Create Payment][create-payment-endpoint] specified above in [Step 2](#step-2---create-a-payment).
+A request to the [Get Payment][get-payment-endpoint] URL will provide the current status of the payment and an aggregate of the captured and refunded amounts.
 
 Example request:
 
@@ -170,9 +114,13 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE \
 -X GET
 ```
 
-To verify that a payment has been authorized by the user, check that the `state` property is marked `AUTHORISED`. If the user has instead chosen to reject the payment or chosen to click `cancel` on the landing page (card), the `state` property will be marked `ABORTED`. If the user did not act within the payment expiration time, the `state` property will be marked `EXPIRED`.
+Response:
 
-The payment event log can be fetched as such:
+<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/GetPaymentResponse" example />
+
+To verify that a payment has been authorized by the user, check that the `state` property is marked `AUTHORIZED`. If the user has instead chosen to reject the payment or chosen to click `cancel` on the landing page or in the Vipps App, the `state` property will be marked `ABORTED`. If the user did not act within the payment expiration time, the `state` property will be marked `EXPIRED`.
+
+For more details of the lifecycle of the payment session the Event Log endoint can be used
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/events \
@@ -181,6 +129,10 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/even
 -X GET
 ```
 
+Response is a list of 
+
+<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/PaymentEvent" example />
+
 In the case the payment has been completed this will yield an array of events like such:
 
 ```json
@@ -188,29 +140,25 @@ In the case the payment has been completed this will yield an array of events li
   {
     "reference": "UNIQUE-PAYMENT-REFERENCE",
     "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-    "paymentAction": "CREATION",
+    "name": "CREATED",
     "success": true,
     "amount": {
       "currency": "NOK",
-      "type": "PURCHASE",
       "value": 1000
     },
-    "processedAt": "2021-02-24T14:15:22Z",
+    "timestamp": "2021-02-24T14:15:22Z",
     "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
   },
   {
     "reference": "UNIQUE-PAYMENT-REFERENCE",
     "pspReference": "6037fc94-0205-4274-8b09-79cbb459658d",
-    "paymentAction": "AUTHORISATION",
+    "name": "AUTHORIZED",
     "success": true,
     "amount": {
       "currency": "NOK",
-      "type": "PURCHASE",
       "value": 1000
     },
-    "authorisationType": "FINAL_AUTH",
-    "processedAt": "2021-02-24T14:16:22Z",
-    "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
+    "timestamp": "2021-02-24T14:16:22Z"
   }
 ]
 ```
@@ -219,7 +167,9 @@ In the case the payment has been completed this will yield an array of events li
 
 If you are not dependent on getting the payment result immediately you may also use notification events to receive the payment status update via our [Notification Webhooks](how-to-setup-notification-webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than immediate delivery.
 
-> Note: this means we may deliver the same message several times to verify successful delivery, use the `pspReference` field for duplicate delivery checking.
+:::info
+This means we may deliver the same message several times to verify successful delivery, use the `pspReference` field for duplicate delivery checking.
+:::
 
 If you use the notification service you will receive events in the same format as those in the array list returned from the [Get Payment Events][get-payment-event-log-endpoint] endpoint.
 
@@ -227,101 +177,32 @@ For example a successful authentication event would look like
 
 ```json
 {
-  "reference": "UNIQUE-PAYMENT-REFERENCE",
-  "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-  "paymentAction": "CREATION",
-  "success": true,
-  "amount": {
-    "currency": "NOK",
-    "type": "PURCHASE",
-    "value": 1000
-  },
-  "processedAt": "2021-02-24T14:15:22Z",
-  "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
+ "reference": "UNIQUE-PAYMENT-REFERENCE",
+ "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+ "name": "CREATED",
+ "success": true,
+ "amount": {
+   "currency": "NOK",
+   "value": 1000
+ },
+ "timestamp": "2021-02-24T14:15:22Z",
+ "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
 }
 ```
 
-If the user had rejected or not acted upon the payment the event would look like
+If the user had rejected the payment the event would look like
 
 ```json
 {
   "reference": "UNIQUE-PAYMENT-REFERENCE",
   "pspReference": "38ab3a93-a819-4982-912d-089f3177e6c8",
-  "paymentAction": "TERMINATION",
+  "name": "TERMINATED",
   "success": true,
   "amount": {
     "currency": "NOK",
-    "type": "PURCHASE",
     "value": 1000
   },
-  "processedAt": "2021-02-24T14:15:12Z",
-  "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
-}
-```
-
-## Step 4 - Capture the payment
-
-Once the good or services are delivered or on their way to the customer it is time to capture the payment.
-This can be done through the [Capture Payment][capture-payment-endpoint].
-This endpoint take the following properties in the body of the request
-
-| Parameter               | Type     | Required | Description                                                                                                                                 |
-| ----------------------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `modificationAmount`    | `Object` | Y        | The `currency` and `value` of the modification in minor units. Must not be the entire amount, but cannot be more than the remaining amount. |
-| `modificationReference` | `string` | N        | Your unique reference to this modification                                                                                                  |
-
-An example capture would look like:
-
-```bash
-curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capture \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
--H "Content-Type: application/json" \
--H "Idempotency-Key: UNIQUE-ID" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
--X POST
--d '{
-  "modificationAmount": {
-    "currency": "NOK",
-    "type": "PURCHASE",
-    "value": 1000
-  },
-  "modificationReference": "UNIQUE-MODIFICATION-REFERENCE"
-}'
-```
-
-Adjustments to a payment (capture, refund etc) as async.
-You will get a `HTTP 202 Accepted` response with no body if the action is valid.
-A callback will be sent once the capture is completed.
-Additionally, polling on [Get Payment][get-payment-endpoint] can be done.
-Once capture is completed the `Payment` object will be updated to reflect this.
-
-In this case the `aggregate` property will be updated as such:
-
-```json
-{
-  "aggregate": {
-    "authorizedAmount": {
-      "currency": "NOK",
-      "type": "PURCHASE",
-      "value": 1000
-    },
-    "cancelledAmount": {
-      "currency": "NOK",
-      "type": "PURCHASE",
-      "value": 0
-    },
-    "capturedAmount": {
-      "currency": "NOK",
-      "type": "PURCHASE",
-      "value": 1000
-    },
-    "refundedAmount": {
-      "currency": "NOK",
-      "type": "PURCHASE",
-      "value": 0
-    }
-  }
+  "timestamp": "2021-02-24T14:15:12Z"
 }
 ```
 
@@ -330,13 +211,12 @@ In this case the `aggregate` property will be updated as such:
 Now that you have completed your first payment,
 read further to see the full range of possibilities within the Vipps Merchant Payments API.
 
+- [Capture the payment](modifications/capture.md)
 - [How to setup Notification Webhooks](how-to-setup-notification-webhooks.md)
-- [Payment modification, how to use cancel, capture and refund?](payment-states.md)
-- [Using Vipps Merchant Payments in a shopper present context](.features/customer-preset-payments.md)
-
-<!-- START_COMMENT -->
+- [Payment modification, how to use cancel, capture and refund?](modifications/payment-states.md)
+- [Using Vipps Merchant Payments in a shopper present context](features/customer-present-payments.md)
 - [Profile sharing, requesting the users personal information](features/profile-sharing.md)
-<!-- END_COMMENT -->
+
 
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment

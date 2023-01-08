@@ -108,7 +108,7 @@ There are many ways to use the Vipps eCom API. For example:
 
 This diagram shows a simplified payment flow:
 
-![Vipps payment flow chart](images/flow-diagram.png)
+![Vipps payment flow chart](../images/flow-diagram.png)
 
 See [Get payment details](#get-payment-details) for more information about
 the detailed flow and [Payment states](#payment-states) for the corresponding

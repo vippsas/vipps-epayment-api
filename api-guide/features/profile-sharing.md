@@ -1,8 +1,6 @@
-<!-- START_METADATA
 ---
-draft: true
+title: Profile Sharing
 ---
-END_METADATA -->
 
 # Profile Sharing
 
