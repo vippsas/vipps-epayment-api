@@ -48,9 +48,9 @@ The property `access_token` should be used for all other API requests in the `Au
 
 ### Step 2 - Create a payment
 
-To create a payment session you need to send the specifications of that payment to Vipps, there is an extensive selection of options available which you can combine to make your custom payment experience.
+To create a payment session, you need to send the specifications of that payment to Vipps. There is an extensive selection of options available which you can combine to make your custom payment experience.
 
-To create a payment of 10 Norwegian Kroner send a request like the one below:
+To create a payment of 10 Norwegian Kroner, send a request like the one below:
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments \
@@ -69,7 +69,7 @@ curl https://apitest.vipps.no/epayment/v1/payments \
     "type": "WALLET"
   },
   "reference": "UNIQUE-PAYMENT-REFERENCE",
-  "returnUrl": "https://yourwebsite.come/redirect?orderId=abcc123",
+  "returnUrl": "https://yourwebsite.come/redirect?reference=abcc123",
   "userFlow": "NATIVE_REDIRECT",
   "paymentDescription": "A simple payment"
 }'
