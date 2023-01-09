@@ -21,9 +21,8 @@ This document covers the quick steps for getting started with the Vipps Merchant
 You must have already signed up as a organisation with Vipps and have your test credentials from the merchant portal, as described in the
 [Getting Started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started).
 
-<!--
-Once your merchant account is setup for Merchant Payments, you should look at our [Configure Merchant Account](../TODO.md) page for available configuration options, such as our [Notifications Webhooks](how-to-setup-notification-webhooks.md).
--->
+Once your merchant account is setup for Merchant Payments, you should look at available configuration options, such as [Notifications Webhooks](how-to-setup-notification-webhooks.md).
+
 
 ## Your first Vipps Payment
 
