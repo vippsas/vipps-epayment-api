@@ -2,6 +2,7 @@
 ---
 title: Refunding a Payment
 id: refund
+sidebar_position: 30
 pagination_prev: APIs/epayment-api/api-guide/getting-started
 pagination_next: Null
 ---
@@ -10,7 +11,7 @@ import ApiSchema from '@theme/ApiSchema';
 
 END_METADATA -->
 
-# Refund
+# Refunding a payment
 
 A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the Merchant back to the customer.
 

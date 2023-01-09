@@ -2,6 +2,7 @@
 ---
 title: Cancelling a Payment
 id: cancel
+sidebar_position: 20
 pagination_prev: APIs/epayment-api/api-guide/getting-started
 pagination_next: null
 ---
@@ -10,7 +11,7 @@ import ApiSchema from '@theme/ApiSchema';
 
 END_METADATA -->
 
-# Cancelling a Payment
+# Cancelling a payment
 
 If you no longer wish to initiate settlement of the remaining funds on a payment then you should [Cancel][cancel-payment-endpoint] the payment. Cancelling a payment provides a good user experience and synchronizes the users bank statement and Vipps payment overview with their expectations from a merchant.
 

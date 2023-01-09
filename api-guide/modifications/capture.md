@@ -2,6 +2,7 @@
 ---
 title: Capturing a Payment
 id: capture
+sidebar_position: 10
 pagination_prev: APIs/epayment-api/api-guide/getting-started
 pagination_next: APIs/epayment-api/api-guide/modifications/refund
 ---
@@ -9,7 +10,7 @@ import ApiSchema from '@theme/ApiSchema';
 
 END_METADATA -->
 
-# Capture
+# Capturing a payment
 
 When a payment is initiated with `$.directCapture = false` you must [Capture][capture-payment-endpoint] a payment in order to initiate settlement of the authorised funds.
 

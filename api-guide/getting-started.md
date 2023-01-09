@@ -216,7 +216,7 @@ read further to see the full range of possibilities within the Vipps Merchant Pa
 
 - [Capture the payment](modifications/capture.md)
 - [How to setup Notification Webhooks](how-to-setup-notification-webhooks.md)
-- [Payment modification, how to use cancel, capture and refund?](modifications/payment-states.md)
+- [Payment modification, how to use cancel, capture and refund?](modifications/README.md)
 - [Using Vipps Merchant Payments in a shopper present context](features/customer-present-payments.md)
 - [Profile sharing, requesting the users personal information](features/profile-sharing.md)
 
