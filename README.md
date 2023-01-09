@@ -27,7 +27,7 @@ pages for information about API keys, product activation, contact information, c
 
 ## ePayment API
 
-* [API guide](docs/api/Getting-Started.md): Developer guide for Vipps ePayment API.
+* [API guide](./api-guide/getting-started.md): Developer guide for Vipps ePayment API.
 * [API Reference](https://vippsas.github.io/vipps-developer-docs/api/epayment): ePayment API Reference Specifications.
 
 ## Questions?

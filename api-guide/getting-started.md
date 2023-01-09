@@ -1,3 +1,4 @@
+<!-- START_METADATA
 ---
 title: Getting started
 id: getting-started
@@ -10,6 +11,8 @@ pagination_prev: null
 
 import ApiSchema from '@theme/ApiSchema';
 
+END_METADATA -->
+
 # Getting Started with the Vipps Merchant Payments API
 
 ## Before you begin
@@ -18,7 +21,9 @@ This document covers the quick steps for getting started with the Vipps Merchant
 You must have already signed up as a organisation with Vipps and have your test credentials from the merchant portal, as described in the
 [Getting Started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started).
 
+<!--
 Once your merchant account is setup for Merchant Payments, you should look at our [Configure Merchant Account](../TODO.md) page for available configuration options, such as our [Notifications Webhooks](how-to-setup-notification-webhooks.md).
+-->
 
 ## Your first Vipps Payment
 
@@ -38,7 +43,6 @@ curl https://apitest.vipps.no/accessToken/get \
 
 In response, you will get a body with the following schema.
 The property `access_token` should be used for all other API requests in the `Authorisation` header as the Bearer token.
-
 
 <ApiSchema id="ecom-swagger-id" pointer="#/components/schemas/AuthorizationTokenResponse" example />
 
@@ -71,10 +75,9 @@ curl https://apitest.vipps.no/epayment/v1/payments \
 }'
 ```
 
-The full list of payment options are: 
+The full list of payment options are:
 
 <ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/CreatePaymentRequest" />
-
 
 
 
@@ -120,7 +123,7 @@ Response:
 
 To verify that a payment has been authorized by the user, check that the `state` property is marked `AUTHORIZED`. If the user has instead chosen to reject the payment or chosen to click `cancel` on the landing page or in the Vipps App, the `state` property will be marked `ABORTED`. If the user did not act within the payment expiration time, the `state` property will be marked `EXPIRED`.
 
-For more details of the lifecycle of the payment session the Event Log endoint can be used
+For more details of the lifecycle of the payment session the Event Log endpoint can be used
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/events \
@@ -129,7 +132,7 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/even
 -X GET
 ```
 
-Response is a list of 
+Response is a list of
 
 <ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/PaymentEvent" example />
 

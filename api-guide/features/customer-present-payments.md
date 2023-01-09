@@ -1,6 +1,8 @@
+<!-- START_METADATA
 ---
 title: Customer Present Payments
 ---
+END_METADATA -->
 
 # Customer-Present Payments
 

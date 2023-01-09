@@ -1,6 +1,8 @@
+<!-- START_METADATA
 ---
 title: Profile Sharing
 ---
+END_METADATA -->
 
 # Profile Sharing
 
@@ -13,12 +15,12 @@ See
 [User information](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/userinfo)
 in the Common topics.
 
-### Scope
+## Scope
 
 See [Scope](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/userinfo#scope)
 in Common topics for details.
 
-### Userinfo call-by-call guide
+## Userinfo call-by-call guide
 
 Scenario: You want to complete a payment and get the name and phone number of
 a customer. Details about each step are described in the sections below.
@@ -38,7 +40,7 @@ a customer. Details about each step are described in the sections below.
    Do not include the ``Ocp-Apim-Subscription-Key`` header. See more information under [Userinfo call](#userinfo-call).
 
 To test this out, see the step-by-step instructions in the
-[Getting Started](../../Getting-Started.md).
+[Getting Started](../getting-started.md).
 
 **Important note:** The API call to
 [`GET:/vipps-userinfo-api/userinfo/{sub}`](https://vippsas.github.io/vipps-developer-docs/api/recurring#tag/Userinfo-Endpoint/operation/getUserinfo)

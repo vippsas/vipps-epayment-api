@@ -1,13 +1,17 @@
+<!-- START_METADATA
 ---
 title: Capturing a Payment
 id: capture
 pagination_prev: APIs/epayment-api/api-guide/getting-started
 pagination_next: APIs/epayment-api/api-guide/modifications/refund
 ---
-
 import ApiSchema from '@theme/ApiSchema';
 
-When a payment is initiated with `$.directCapture = false` you must [Capture](capture-payment-endpoint) a payment in order to initiate settlement of the authorised funds.
+END_METADATA -->
+
+# Capture
+
+When a payment is initiated with `$.directCapture = false` you must [Capture][capture-payment-endpoint] a payment in order to initiate settlement of the authorised funds.
 
 Captured funds will be settled to the merchants settlement account after two business days. See [Settlement Information](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/settlements) for more details.
 
@@ -16,7 +20,7 @@ A capture can be made in full, or partially if desired. The capture amount must 
 ## Capture via the API
 
 Once the good or services are delivered or on their way to the customer it is time to capture the payment.
-This can be done through the [Capture Payment Enpoint][capture-payment-endpoint].
+This can be done through the [Capture Payment Endpoint][capture-payment-endpoint].
 This endpoint take the following properties in the body of the request
 
 <ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/CaptureModificationRequest" />

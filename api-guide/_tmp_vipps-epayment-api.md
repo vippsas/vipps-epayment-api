@@ -1,3 +1,12 @@
+<!-- START_METADATA
+---
+title: tmp file
+draft: true
+---
+END_METADATA -->
+
+# Old ecom Guide
+
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:

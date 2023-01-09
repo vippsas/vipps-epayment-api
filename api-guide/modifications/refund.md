@@ -1,3 +1,4 @@
+<!-- START_METADATA
 ---
 title: Refunding a Payment
 id: refund
@@ -7,7 +8,11 @@ pagination_next: null
 
 import ApiSchema from '@theme/ApiSchema';
 
-A [Refund](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment) will reverse the direction of a transaction and move money from the Merchant back to the customer.
+END_METADATA -->
+
+# Refund
+
+A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the Merchant back to the customer.
 
 Refunds can be made in full or partially as needed. The refund amount must be defined in the refund API request.
 
@@ -16,7 +21,7 @@ Refunded funds will be deducted from the merchants settlement account after two 
 ## Refund via the API
 
 If a customer has returned the goods or the service is not delivered you should refund the payment.
-This can be done through the [Refund Payment Enpoint][refund-payment-endpoint].
+This can be done through the [Refund Payment Endpoint][refund-payment-endpoint].
 This endpoint take the following properties in the body of the request
 
 <ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/RefundModificationRequest" />

@@ -1,3 +1,4 @@
+<!-- START_METADATA
 ---
 title: Cancelling a Payment
 id: cancel
@@ -7,7 +8,11 @@ pagination_next: null
 
 import ApiSchema from '@theme/ApiSchema';
 
-If you no longer wish to initiate settlement of the remaining funds on a payment then you should [Cancel](cancel-payment-endpoint) the payment. Cancelling a payment provides a good user experience and synchronizes the users bank statement and Vipps payment overview with their expectations from a merchant.
+END_METADATA -->
+
+# Cancelling a Payment
+
+If you no longer wish to initiate settlement of the remaining funds on a payment then you should [Cancel][cancel-payment-endpoint] the payment. Cancelling a payment provides a good user experience and synchronizes the users bank statement and Vipps payment overview with their expectations from a merchant.
 
 A payment can be cancelled via the api or merchant portal at any point until the payment is fully captured. A cancellation will release any remaining authorised funds on the customers bank account. If the payment has not yet reached the `AUTHORIZED` state a cancellation by the merchant via the api will result in `TERMINATED` state of the payment.
 
@@ -18,7 +23,7 @@ It is not possible to cancel a payment while a user is actively authorizing the 
 
 ## Cancelling via the API
 
-The payment can be cancelled through the [Cancel Payment Enpoint][cancel-payment-endpoint].
+The payment can be cancelled through the [Cancel Payment Endpoint][cancel-payment-endpoint].
 
 An example cancel would look like:
 
@@ -67,7 +72,7 @@ After cancellation the `aggregate` object will be updated to reflect this, for e
 
 If you have captured a partial amount of the authorised amount and will not capture the remaining amount you should release this. The cancel endpoint will do this for you when called.
 
-For exmaple we wish to release the remaining funds of a payment with the following aggregate state:
+For example we wish to release the remaining funds of a payment with the following aggregate state:
 
 ```json
 {
@@ -92,7 +97,7 @@ For exmaple we wish to release the remaining funds of a payment with the followi
 }
 ```
 
-We would then call [Cancel](cancel-payment-endpoint) as normal
+We would then call [Cancel][cancel-payment-endpoint] as normal
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/cancel \
@@ -130,8 +135,7 @@ The aggregate would then be updated to reflect the modification and the funds re
 ```
 
 :::note
-Cancelling a payment will always cancel the entire remaining not-captured amount, this is not reversable.
+Cancelling a payment will always cancel the entire remaining not-captured amount, this is not reversible.
 :::
-
 
 [cancel-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/cancelPayment
