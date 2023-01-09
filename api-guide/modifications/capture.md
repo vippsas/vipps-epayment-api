@@ -2,7 +2,7 @@
 ---
 title: Capturing a Payment
 id: capture
-pagination_prev: APIs/epayment-api/api-guide/modifications/payment-states
+pagination_prev: APIs/epayment-api/api-guide/getting-started
 pagination_next: APIs/epayment-api/api-guide/modifications/refund
 ---
 import ApiSchema from '@theme/ApiSchema';

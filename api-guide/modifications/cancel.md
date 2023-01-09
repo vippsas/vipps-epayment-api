@@ -2,7 +2,7 @@
 ---
 title: Cancelling a Payment
 id: cancel
-pagination_prev: APIs/epayment-api/api-guide/modifications/refund
+pagination_prev: APIs/epayment-api/api-guide/getting-started
 pagination_next: null
 ---
 

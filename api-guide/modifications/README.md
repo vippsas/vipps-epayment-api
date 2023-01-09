@@ -3,9 +3,9 @@
 title: Payment States
 id: payment-states
 pagination_prev: APIs/epayment-api/api-guide/getting-started
-pagination_next: APIs/epayment-api/api-guide/modifications/capture
+pagination_next: Null
 sidebar_label: Modifications
-sidebar_position: 1
+sidebar_position: 30
 ---
 END_METADATA -->
 
