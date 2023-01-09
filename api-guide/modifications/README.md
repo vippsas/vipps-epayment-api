@@ -1,9 +1,11 @@
 <!-- START_METADATA
 ---
-title: Payment States and Lifecycle
+title: Payment States
 id: payment-states
 pagination_prev: APIs/epayment-api/api-guide/getting-started
-pagination_next: null
+pagination_next: APIs/epayment-api/api-guide/modifications/capture
+sidebar_label: Modifications
+sidebar_position: 1
 ---
 END_METADATA -->
 
@@ -15,6 +17,3 @@ Once a payment is `CREATED`, several modification actions can be made. Modificat
 The following flow diagram describes when each modification action is applicable.
 ![Payment flow diagram](../../images/payment-modification.svg)
 
-## Payment Modification Lifecycle
-
-.....

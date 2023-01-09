@@ -3,7 +3,7 @@
 title: Refunding a Payment
 id: refund
 pagination_prev: APIs/epayment-api/api-guide/modifications/capture
-pagination_next: null
+pagination_next: APIs/epayment-api/api-guide/modifications/cancel
 ---
 
 import ApiSchema from '@theme/ApiSchema';
