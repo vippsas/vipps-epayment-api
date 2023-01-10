@@ -21,22 +21,19 @@ You can also perform express checkout payments and get access to user info.
 
 ## Table of Contents
 
-- [Quick start](#quick-start)
-  - [Table of Contents](#table-of-contents)
-  - [Postman](#postman)
-    - [Prerequisites](#prerequisites)
-    - [Step 1: Get the Vipps Postman collection and environment](#step-1-get-the-vipps-postman-collection-and-environment)
-    - [Step 2: Import the Vipps Postman files](#step-2-import-the-vipps-postman-files)
-    - [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
-  - [Make API calls](#make-api-calls)
-    - [A simple ePayment payment with web redirect](#a-simple-epayment-payment-with-web-redirect)
-    - [An ePayment payment which provides a QR code](#an-epayment-payment-which-provides-a-qr-code)
-    - [An ePayment payment which causes a push request](#an-epayment-payment-which-causes-a-push-request)
-    - [An ePayment payment which causes a native redirect](#an-epayment-payment-which-causes-a-native-redirect)
-    - [Getting access to user info](#getting-access-to-user-info)
-    - [Test with Force Approve](#test-with-force-approve)
-  - [Questions?](#questions)
-
+* [Postman](#postman)
+  * [Prerequisites](#prerequisites)
+  * [Step 1: Get the Vipps Postman collection and environment](#step-1-get-the-vipps-postman-collection-and-environment)
+  * [Step 2: Import the Vipps Postman files](#step-2-import-the-vipps-postman-files)
+  * [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
+* [Make API calls](#make-api-calls)
+  * [A simple ePayment payment with web redirect](#a-simple-epayment-payment-with-web-redirect)
+  * [An ePayment payment which provides a QR code](#an-epayment-payment-which-provides-a-qr-code)
+  * [An ePayment payment which causes a push request](#an-epayment-payment-which-causes-a-push-request)
+  * [An ePayment payment which causes a native redirect](#an-epayment-payment-which-causes-a-native-redirect)
+  * [Getting access to user info](#getting-access-to-user-info)
+  * [Test with Force Approve](#test-with-force-approve)
+* [Questions?](#questions)
 
 <!-- END_TOC -->
 
@@ -123,8 +120,6 @@ is provided, it will be prefilled in the form.
 
 1. Send request `Refund payment` to refund this payment with
    [`POST:/epayment/v1/payments/{{reference}}/refund`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment).
-
-
 
 ### An ePayment payment which provides a QR code
 
