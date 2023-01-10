@@ -14,13 +14,15 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
-Use the ePayment API to initiate payments, get payment details, get user info, capture payments, and refund payments.
-You are able to use one of the following user flows:
+Use the ePayment API to create payments using each of the following user flows:
 
-* WEB_REDIRECT - Open the Vipps landing page. 
+* WEB_REDIRECT - Open the [Vipps landing page](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/vipps-landing-page).
 * NATIVE_REDIRECT - Open the Vipps app on the user's mobile phone.
 * PUSH_MESSAGE - Cause a notification from the user's Vipps app.
 * QR - Generate a QR code that a user can scan to send the request to their Vipps app.
+
+You can also get payment details, get user info, capture payments, and refund payments.
+Request user consent to information and review information.
 
 <!-- START_TOC -->
 
