@@ -19,6 +19,10 @@ END_METADATA -->
 
 💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
 
+The ePayment API allows you to create various online payment flows using Vipps (e.g., express checkout).
+Extending upon the functionality of the eCom API, you can initiate payments, get payment details, capture payments, and refund payments.
+Additional features include the possibility of using international mobile numbers.
+
 ## Getting started
 
 Review the
