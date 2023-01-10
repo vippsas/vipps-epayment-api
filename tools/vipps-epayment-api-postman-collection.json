@@ -991,7 +991,7 @@
 					"script": {
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
-							"postman.setEnvironmentVariable(\"sub\", jsonData.profile.sub);"
+							"postman.setEnvironmentVariable(\"sub\", jsonData?.profile?.sub);"
 						],
 						"type": "text/javascript"
 					}
@@ -1072,6 +1072,9 @@
 		{
 			"name": "Get Userinfo",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
 				"header": [
 					{
