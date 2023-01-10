@@ -14,8 +14,13 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
-Use the ePayment API to initiate payments, get payment details, capture payments, and refund payments.
-You can also perform express checkout payments and get access to user info.
+Use the ePayment API to initiate payments, get payment details, get user info, capture payments, and refund payments.
+You are able to use one of the following user flows:
+
+* WEB_REDIRECT - Open the Vipps landing page. 
+* NATIVE_REDIRECT - Open the Vipps app on the user's mobile phone.
+* PUSH_MESSAGE - Cause a notification from the user's Vipps app.
+* QR - Generate a QR code that a user can scan to send the request to their Vipps app.
 
 <!-- START_TOC -->
 
@@ -142,7 +147,7 @@ This generates a QR code that a user can scan to initiate a Vipps authorization 
 ### An ePayment payment which causes a push request
 
 1. Send request `Initiate Payment - Push request`. This demonstrates the type
-   of payment where your sale unit can send a payment request to a user's mobile phone.
+   of payment where you cause a notification from the Vipps app on the user's mobile phone.
 
    You must provide your test mobile number *and*
    your sale unit must be configured for *skip landing page*.
@@ -151,7 +156,7 @@ This generates a QR code that a user can scan to initiate a Vipps authorization 
 
    The `reference` is set in the environment for use with subsequent calls.
 
-2. Send request `Get payment` for information about this payment.
+1. Send request `Get payment` for information about this payment.
 
 ### An ePayment payment which causes a native redirect
 
@@ -172,7 +177,7 @@ This generates a QR code that a user can scan to initiate a Vipps authorization 
    call. This contains the information types that you want access to, separated
    by spaces (e.g., "name address email phoneNumber birthDate").
 
-   This example uses, `userFlow` is set to `WEB_REDIRECT`, because it is easiest to test, but any flow should work.
+   This example uses, `userFlow` is set to `WEB_REDIRECT`.
 
    Ctrl+click on the link that appears and complete the authorization.
 
