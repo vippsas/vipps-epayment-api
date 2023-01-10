@@ -9,7 +9,7 @@ END_METADATA -->
 
 # Profile Sharing
 
-Vipps offers the possibility for merchants to ask for the user's profile information as part of the payment flow. We call this the userinfo flow.
+Vipps offers the possibility for merchants to ask for the user's profile information as part of the payment flow. We call this the `userinfo` flow.
 
 To enable the possibility to fetch profile information for a user, the merchant can add a `$.profile.scope`
 parameter to the initiate call:

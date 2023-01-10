@@ -16,8 +16,8 @@ Notification webhooks can be setup in the Merchant Portal.
 
 ## Understanding Notification Webhooks
 
-
 Notifications will be sent to the defined webhook URL after every adjustment to a payment. This includes:
+
 - `CREATION`
 - `AUTHORISATION`
 - `CANCELLATION`
