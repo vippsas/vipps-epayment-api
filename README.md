@@ -19,9 +19,14 @@ END_METADATA -->
 
 💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
 
-The ePayment API allows you to create various online payment flows using Vipps (e.g., express checkout).
-Extending upon the functionality of the eCom API, you can initiate payments, get payment details, capture payments, and refund payments.
-Additional features include the possibility of using international mobile numbers.
+The ePayment API allows you to create payments using the following user flows:
+
+* Open the [Vipps landing page](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/vipps-landing-page).
+* Open the Vipps app on the user's mobile phone.
+* Cause a notification from the user's Vipps app.
+* Generate a QR code that a user can scan to send the request to their Vipps app.
+
+You can also get payment details, get user info, capture payments, and refund payments.
 
 ## Getting started
 
