@@ -17,8 +17,6 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
-💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
-
 The ePayment API allows you to create payments using the following user flows:
 
 * Open the [Vipps landing page](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/vipps-landing-page).

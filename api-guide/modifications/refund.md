@@ -3,7 +3,7 @@
 title: Refunding a Payment
 id: refund
 sidebar_position: 30
-pagination_prev: APIs/epayment-api/api-guide/getting-started
+pagination_prev: APIs/epayment-api/api-guide/modifications/capture
 pagination_next: Null
 ---
 

@@ -3,7 +3,7 @@
 title: Customer Present Payments
 hide_table_of_contents: true
 pagination_next: null
-pagination_prev: null
+pagination_prev: APIs/epayment-api/api-guide/getting-started
 ---
 END_METADATA -->
 
