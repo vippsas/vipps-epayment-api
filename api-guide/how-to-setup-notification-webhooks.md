@@ -11,9 +11,6 @@ END_METADATA -->
 
 Notification webhooks can be setup in the Merchant Portal.
 
-
-💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
-
 ## Understanding Notification Webhooks
 
 Notifications will be sent to the defined webhook URL after every adjustment to a payment. This includes:
