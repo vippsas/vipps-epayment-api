@@ -1,0 +1,1153 @@
+{
+	"info": {
+		"_postman_id": "1774363b-437c-49d7-a2fd-00ab8aa9af0b",
+		"name": "ePayment API v1 - Collection",
+		"description": "The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.\n\nContact Support:\n Name: Vipps AS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"access_token\", pm.response.json().access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}"
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url}}/accessToken/get",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"accessToken",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create payment - Web redirect",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid')\r",
+							"pm.environment.set(\"idempotency_key\", uuid.v4())\r",
+							"pm.environment.set('reference',pm.environment.get('merchantSerialNumber') + (new Date()).getTime());"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200) { \r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set('vippsLandingPageURL', jsonData.url);\r",
+							"    var str = jsonData.url\r",
+							"    var str2 = str.split('=', 3)[2]\r",
+							"    pm.environment.set('payment_token', str2);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"description": "(Required) Idempotency key for the request, ensures idempotent actions.",
+						"key": "Idempotency-Key",
+						"value": "{{idempotency_key}}"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"customer\": {\n    \"phoneNumber\": {{internationalMobileNumber}}\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"WEB_REDIRECT\",\n  \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments"
+					]
+				},
+				"description": "Create a new payment"
+			},
+			"response": []
+		},
+		{
+			"name": "Create payment - QR",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid')\r",
+							"pm.environment.set(\"idempotency_key\", uuid.v4())\r",
+							"pm.environment.set('reference',pm.environment.get('merchantSerialNumber') + (new Date()).getTime());"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200) { \r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set('vippsLandingPageURL', jsonData.url);\r",
+							"    var str = jsonData.url\r",
+							"    var str2 = str.split('=', 3)[2]\r",
+							"    pm.environment.set('payment_token', str2);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"description": "(Required) Idempotency key for the request, ensures idempotent actions.",
+						"key": "Idempotency-Key",
+						"value": "{{idempotency_key}}"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"QR\",\n  \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\",\n  \"qrFormat\": {\n    \"format\": \"IMAGE/SVG+XML\",\n    \"size\": 1024\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments"
+					]
+				},
+				"description": "Create a new payment"
+			},
+			"response": []
+		},
+		{
+			"name": "Create payment - Push request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid')\r",
+							"pm.environment.set(\"idempotency_key\", uuid.v4())\r",
+							"pm.environment.set('reference',pm.environment.get('merchantSerialNumber') + (new Date()).getTime());"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200) { \r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set('vippsLandingPageURL', jsonData.url);\r",
+							"    var str = jsonData.url\r",
+							"    var str2 = str.split('=', 3)[2]\r",
+							"    pm.environment.set('payment_token', str2);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"description": "(Required) Idempotency key for the request, ensures idempotent actions.",
+						"key": "Idempotency-Key",
+						"value": "{{idempotency_key}}"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"customer\": {\n    \"phoneNumber\": {{internationalMobileNumber}}\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"PUSH_MESSAGE\",\n  \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments"
+					]
+				},
+				"description": "Create a new payment"
+			},
+			"response": []
+		},
+		{
+			"name": "Create payment - Native redirect",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid')\r",
+							"pm.environment.set(\"idempotency_key\", uuid.v4())\r",
+							"pm.environment.set('reference',pm.environment.get('merchantSerialNumber') + (new Date()).getTime());"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200) { \r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set('vippsLandingPageURL', jsonData.url);\r",
+							"    var str = jsonData.url\r",
+							"    var str2 = str.split('=', 3)[2]\r",
+							"    pm.environment.set('payment_token', str2);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"description": "(Required) Idempotency key for the request, ensures idempotent actions.",
+						"key": "Idempotency-Key",
+						"value": "{{idempotency_key}}"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"NATIVE_REDIRECT\",\n  \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments"
+					]
+				},
+				"description": "Create a new payment"
+			},
+			"response": []
+		},
+		{
+			"name": "Create payment - User info",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid')\r",
+							"pm.environment.set(\"idempotency_key\", uuid.v4())\r",
+							"pm.environment.set('reference',pm.environment.get('merchantSerialNumber') + (new Date()).getTime());"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code === 200) { \r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.environment.set('vippsLandingPageURL', jsonData.url);\r",
+							"    var str = jsonData.url\r",
+							"    var str2 = str.split('=', 3)[2]\r",
+							"    pm.environment.set('payment_token', str2);\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"description": "(Required) Idempotency key for the request, ensures idempotent actions.",
+						"key": "Idempotency-Key",
+						"value": "{{idempotency_key}}"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": {\n        \"value\": {{amount}},\n        \"currency\": \"{{currency}}\"\n    },\n    \"paymentMethod\": {\n        \"type\": \"WALLET\"\n    },\n    \"customer\": {\n        \"phoneNumber\": {{internationalMobileNumber}}\n    },\n    \"reference\": {{reference}},\n    \"userFlow\": \"WEB_REDIRECT\",\n    \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n    \"paymentDescription\": \"Purchase of socks\",\n    \"profile\": {\n        \"scope\": \"name phoneNumber address birthDate\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments"
+					]
+				},
+				"description": "Create a new payment"
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel payment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"description": "(Required) Idempotency key for the request, ensures idempotent actions.",
+						"key": "Idempotency-Key",
+						"value": "{{idempotency_key}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/problem+json"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments/{{reference}}/cancel",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments",
+						"{{reference}}",
+						"cancel"
+					]
+				},
+				"description": "Cancel the payment with the specified `reference` id."
+			},
+			"response": []
+		},
+		{
+			"name": "Capture payment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"description": "(Required) Idempotency key for the request, ensures idempotent actions.",
+						"key": "Idempotency-Key",
+						"value": "{{idempotency_key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/problem+json"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"modificationAmount\": {\n    \"value\": 1000,\n    \"currency\": \"NOK\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments/{{reference}}/capture",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments",
+						"{{reference}}",
+						"capture"
+					]
+				},
+				"description": "Capture the given payment"
+			},
+			"response": []
+		},
+		{
+			"name": "Refund payment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"description": "(Required) Idempotency key for the request, ensures idempotent actions.",
+						"key": "Idempotency-Key",
+						"value": "{{idempotency_key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/problem+json"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"modificationAmount\": {\n    \"value\": 1000,\n    \"currency\": \"NOK\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments/{{reference}}/refund",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments",
+						"{{reference}}",
+						"refund"
+					]
+				},
+				"description": "Refund the given payment"
+			},
+			"response": []
+		},
+		{
+			"name": "Force approve payment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customer\": {\n    \"phoneNumber\": {{internationalMobileNumber}}\n  },\n  \"token\": \"{{payment_token}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/test/payments/{{reference}}/approve",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"test",
+						"payments",
+						"{{reference}}",
+						"approve"
+					]
+				},
+				"description": "This endpoint allows developers to approve a payment through the Vipps ePayment API\nwithout the use of the Vipps app. This is useful for automated testing.\nExpress checkout is not supported for this endpoint. The endpoint is only available\nin our test environment. Attempted use of the endpoint in production is not allowed,\nand will fail. Important: All test users must manually approve at least one payment\nin Vipps (using the app) before this endpoint can be used for that user."
+			},
+			"response": []
+		},
+		{
+			"name": "Get payment event log",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments/{{reference}}/events",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments",
+						"{{reference}}",
+						"events"
+					]
+				},
+				"description": "Get event log for the specified payment `reference` id."
+			},
+			"response": []
+		},
+		{
+			"name": "Get payment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"sub\", jsonData?.profile?.sub);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					},
+					{
+						"description": "(Required) The Sale unit's MSN: The unique identifier for the sale unit.",
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}"
+					},
+					{
+						"description": "(Required) APIM Subscription Key",
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/epayment/v1/payments/{{reference}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"epayment",
+						"v1",
+						"payments",
+						"{{reference}}"
+					]
+				},
+				"description": "Get a payment object by its `reference` id."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Userinfo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchantSerialNumber}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Name",
+						"value": "{{vipps_system_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Version",
+						"value": "{{vipps_system_version}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Name",
+						"value": "{{vipps_system_plugin_name}}",
+						"type": "default"
+					},
+					{
+						"key": "Vipps-System-Plugin-Version",
+						"value": "{{vipps_system_plugin_version}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/vipps-userinfo-api/userinfo/{{sub}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"vipps-userinfo-api",
+						"userinfo",
+						"{{sub}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "<API Key>",
+				"type": "string"
+			},
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.vipps.no/epayment",
+			"type": "string"
+		}
+	]
+}
