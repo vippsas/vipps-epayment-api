@@ -7,13 +7,6 @@ END_METADATA -->
 
 # Quick start
 
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
-
-<!-- END_COMMENT -->
-
 Use the ePayment API to create payments using each of the following user flows:
 
 * WEB_REDIRECT - Open the [Vipps landing page](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/vipps-landing-page).
@@ -24,7 +17,10 @@ Use the ePayment API to create payments using each of the following user flows:
 You can also get payment details, get user info, capture payments, and refund payments.
 Request user consent to information and review information.
 
-<!-- START_TOC -->
+<!-- START_COMMENT -->
+
+ℹ️ Please use the new documentation:
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
 
 ## Table of Contents
 
@@ -42,7 +38,7 @@ Request user consent to information and review information.
   * [Test with Force Approve](#test-with-force-approve)
 * [Questions?](#questions)
 
-<!-- END_TOC -->
+<!-- END_COMMENT -->
 
 ## Postman
 
