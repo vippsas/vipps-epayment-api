@@ -3,16 +3,16 @@ hide empty description
 [*] --> Created
 Created : Payment created via api
 Created --> Terminated
-Terminated : The merchant has stopped the process 
-Terminated: through the API
+Terminated : The merchant has stopped the 
+Terminated: process through the API
 Terminated --> [*]
 Created --> Aborted
-Aborted : The end user has actively stopped the process
-Aborted: by selecting Cancel or similar
+Aborted : The end user has actively stopped the
+Aborted: process by selecting Cancel or similar
 Aborted --> [*]
 Created --> Expired
-Expired : The process has stopped 
-Expired: because it took too long
+Expired : The payment session has
+Expired: expired due to inactivity
 Expired --> [*]
 Created --> Authorised
 Authorised : User has approved payment
@@ -24,7 +24,7 @@ Capture --> Refund
 Refund : Payment fully or partially refunded
 Refund : Defined by ""$.aggregate.refundedAmount"" object
 Refund --> [*] : Once payment is \nfully refunded
-Created --> Cancel : Not possible if user is actively \nauthorising the payment
+Created --> Cancel : Not possible if the user is \nactively authorising the \npayment
 Authorised --> Cancel 
 Capture --> Cancel : Not possible after \nfull capture
 Cancel : Cancels the remaining un-captured amount
