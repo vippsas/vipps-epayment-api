@@ -60,7 +60,7 @@ API version: 1.0.
   - [ ] Make sure your customer service, etc has all the tools and information they need
           available in _your_ system, through the APIs listed in the first item in this checklist,
           and that they do not need to visit
-          [portal.vipps.no](https://portal.vipps.no)
+          [portal.vipps.no][portal-url]
           for normal work.
 
 ## Flow to go live for direct integrations
@@ -70,7 +70,7 @@ API version: 1.0.
 2. Vipps completes customer control (KYC, PEP, AML, etc).
 3. The merchant receives an email from Vipps saying that they can log in with
    BankID on
-   [portal.vipps.no](https://portal.vipps.no)
+   [portal.vipps.no][portal-url]
    and retrieve API keys.
 4. The merchant completes all checklist items above.
    Please double check to avoid mistakes.
@@ -79,24 +79,20 @@ API version: 1.0.
    [Vipps test environment](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/test-environment),
    with the following states:
     - A complete order ending in `REFUND`
-      ([`/refund`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/refundPaymentUsingPOST)
-      request).
+      ([`/refund`][refund-payment-endpoint] request).
     - A complete order ending in `VOID`
-      ([`/cancel`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/cancelPaymentRequestUsingPUT)
-      request).
+      ([`/cancel`][cancel-payment-endpoint] request).
     - In the test environment this must be verified using the API itself.
 6. The Merchant verifies the integration in the production environment (similar to step 5):
     - A complete order ending in `REFUND`
-      ([`/refund`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/refundPaymentUsingPOST)
-      request).
-    - For *reserve capture*: A complete order ending in `VOID`
-      ([`/cancel`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/cancelPaymentRequestUsingPUT)
-      request after reserve).
+      ([`/refund`][refund-payment-endpoint]).
+    - For _reserve capture_: A complete order ending in `VOID`
+      ([`/cancel`][cancel-payment-endpoint] request after reserve).
     - We recommend checking this using both the API itself and the API Dashboard available under "Utvikler" on
-      [portal.vipps.no](https://portal.vipps.no).  
+      [portal.vipps.no][portal-url].
     - **Please note:** Vipps does not do any kind of activation or make any changes based on this checklist.
       The API keys for the production environment are made available on
-      [portal.vipps.no](https://portal.vipps.no)
+      [portal.vipps.no][portal-url]
       as soon as the customer control (see step 2) is completed, independently of this checklist.
 7. The Merchant goes live 🎉
 
@@ -105,7 +101,7 @@ API version: 1.0.
 See: [Vipps partners](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/).
 
 
-
+[portal-url]: https://portal.vipps.no
 [epayment-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/epayment
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
