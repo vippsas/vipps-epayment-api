@@ -78,7 +78,8 @@ You can update any of the other environment variables. Be aware of this:
 
 ## Make API calls
 
-For all of the following, you will start by sending request `Get Access Token`.
+For all of the following, you will start by sending request `Get Access Token` which uses
+[Get Access Token][access-token-endpoint].
 This provides you with access to the API.
 
 The access token is valid for 1 hour in the test environment
@@ -216,3 +217,5 @@ the test environment when using Vipps (the app), but not with "force approve".
 [adjust-authorization-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/adjustAuthorization
 [force-approve-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/ForceApprove/operation/forceApprove
 [get-user-info-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-Userinfo-API/operation/getUserinfo
+[access-token-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
+[portal-url]: https://portal.vipps.no
