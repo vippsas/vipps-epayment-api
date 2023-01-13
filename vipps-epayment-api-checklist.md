@@ -23,7 +23,7 @@ API version: 1.0.
   - [ ] Cancel [`POST:epayment/v1/{reference}cancel`][cancel-payment-endpoint]
   - [ ] Full and partial Refund [`POST:epayment/v1/{reference}refund`][refund-payment-endpoint]
   - [ ] Details [`GET:epayment/v1/{reference}`][get-payment-endpoint]
-  - For examples of requests and responses, see the [Postman collection](tools/vipps-epayment-api-postman-collection.json) and [environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json).
+    - For examples of requests and responses, see the [Postman collection](tools/vipps-epayment-api-postman-collection.json) and [environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json).
 - [ ] Send the [Vipps HTTP headers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers)
       in all API requests for better tracking and troubleshooting
       (mandatory for partners and platforms, who must send these headers as part of the checklist approval):
@@ -32,25 +32,15 @@ API version: 1.0.
   - [ ] `Vipps-System-Version`
   - [ ] `Vipps-System-Plugin-Name`
   - [ ] `Vipps-System-Plugin-Version`
-- [ ] Follow the [orderId recommendations](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid).
-- [ ] We recommend using Vipps Order management, as this is a massive benefit for the end user experience. It is mandatory for merchants using
+- [ ] Follow the [recommendations for specifying `reference`](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid).
+- [ ] We recommend using Vipps Order management to add receipts and/or images to the payment history. This is a great benefit for the end user experience. It is also mandatory for merchants using
       ["Vipps Assisted Content Monitoring"](https://vippsas.github.io/vipps-developer-docs/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring).
-
-
-- [ ] Correctly handle callbacks from Vipps, both for successful and unsuccessful payments.
-      See the API documentation for
-      [how callback URLs are built](vipps-ecom-api.md#callback-endpoints),
-      make test calls to make sure you handle the `POST` requests correctly.
-      Vipps does not have capacity to manually do this for you.
-
-
-  - [ ] Callback [`POST:[callbackPrefix]/v2/payments/{orderId}`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Merchant-Endpoints/operation/transactionUpdateCallbackForRegularPaymentUsingPOST)
 - [ ] Make sure to log and handle all errors.
        All integrations should to display errors in a way that the user can see and understand them.
 - [ ] Avoid Integration pitfalls
-  - [ ] The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll Payments Details [`GET:/epayment/v1/{reference}`][get-payment-endpoint].
+  - [ ] The Merchant _must not_ rely on `returnUrl` alone, and must poll Payments Details [`GET:/epayment/v1/{reference}`][get-payment-endpoint].
         as documented (this is part of the first item in this checklist, but it's still a common error). For pure payment status polling, the ePayment API is recommended.
-  - [ ] The merchant must handle that the `fallback` URL is opened in the default browser on the phone,
+  - [ ] The merchant must handle that the `returnUrl` URL is opened in the default browser on the phone,
           and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc.
           See the API guide:
           [Recommendations regarding handling redirects](vipps-ecom-api.md#recommendations-regarding-handling-redirects).
@@ -75,7 +65,7 @@ API version: 1.0.
 4. The merchant completes all checklist items above.
    Please double check to avoid mistakes.
 5. The merchant verifies the integration in the test environment by checking that
-   there are test IDs (`orderId`) in the
+   there are test IDs (`reference`) in the
    [Vipps test environment](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/test-environment),
    with the following states:
     - A complete order ending in `REFUND`
