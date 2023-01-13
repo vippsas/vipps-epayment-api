@@ -36,7 +36,6 @@ Request user consent to information and review information.
   * [An ePayment payment which causes a native redirect](#an-epayment-payment-which-causes-a-native-redirect)
   * [Getting access to user info](#getting-access-to-user-info)
   * [Test with Force Approve](#test-with-force-approve)
-* [Questions?](#questions)
 
 <!-- END_COMMENT -->
 
@@ -79,13 +78,14 @@ You can update any of the other environment variables. Be aware of this:
 
 ## Make API calls
 
-For all of the following, you will start by sending request `Get Access Token`.
+For all of the following, you will start by sending request `Get Access Token` which uses
+[Get Access Token][access-token-endpoint].
 This provides you with access to the API.
 
 The access token is valid for 1 hour in the test environment
 and 24 hours in the production environment.
 See the
-[API reference](https://vippsas.github.io/vipps-developer-docs/api/ecom)
+[API reference][epayment-api-reference-url]
 for details about the calls.
 
 ### A simple ePayment payment with web redirect
@@ -96,7 +96,7 @@ is provided, it will be prefilled in the form.
 1. Send request `Get Access Token`. This provides you with access to the API.
 
 1. Send request `Create Payment - Web redirect`. This is to demonstrate a simple payment by using
-   [`POST:/epayment/v1/payments`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment).
+   [`POST:/epayment/v1/payments`][create-payment-endpoint].
 
    For this payment type, `userFlow` is set to `WEB_REDIRECT`.
 
@@ -111,18 +111,18 @@ is provided, it will be prefilled in the form.
    You have now confirmed the payment in Vipps, setting the payment status to reserved.
 
 1. Send request `Get payment` for information about this payment by using
-   [`GET:/epayment/v1/payments`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment).
+   [`GET:/epayment/v1/payments`][get-payment-endpoint].
    The `reference` is set in the body of the request. You will see the details appear in the lower pane.
 
 1. Send request `Get payment event log` for information about this payment by using
-   [`GET:/epayment/v1/payments/{{reference}}/events`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog).
+   [`GET:/epayment/v1/payments/{{reference}}/events`][get-payment-event-log-endpoint].
    You will see the details appear in the lower pane.
 
 1. Send request `Capture payment` to capture this payment with
-   [`POST:/epayment/v1/payments/{{reference}}/capture`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/capturePayment).
+   [`POST:/epayment/v1/payments/{{reference}}/capture`][capture-payment-endpoint].
 
 1. Send request `Refund payment` to refund this payment with
-   [`POST:/epayment/v1/payments/{{reference}}/refund`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment).
+   [`POST:/epayment/v1/payments/{{reference}}/refund`][refund-payment-endpoint].
 
 ### An ePayment payment which provides a QR code
 
@@ -140,7 +140,7 @@ This generates a QR code that a user can scan to initiate a Vipps authorization 
 
 3. This time, instead of capturing the order, cancel it. Send request `Cancel Payment`
    to cancel this payment with
-   [`POST:/epayment/v1/payments/{{reference}}/cancel`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/cancelPayment).
+   [`POST:/epayment/v1/payments/{{reference}}/cancel`][cancel-payment-endpoint].
 
 ### An ePayment payment which causes a push request
 
@@ -171,7 +171,7 @@ This generates a QR code that a user can scan to initiate a Vipps authorization 
 ### Getting access to user info
 
 1. Send request `Initiate Payment - User info`. Provide the `scope` object in the
-   [`POST:/epayment/v1/payments`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments)
+   [`POST:/epayment/v1/payments`][create-payment-endpoint]
    call. This contains the information types that you want access to, separated
    by spaces (e.g., "name address email phoneNumber birthDate").
 
@@ -180,20 +180,20 @@ This generates a QR code that a user can scan to initiate a Vipps authorization 
    Ctrl+click on the link that appears and complete the authorization.
 
 1. Send request `Get payment` for information about this payment by using
-   [`GET:/epayment/v1/payments`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment).
+   [`GET:/epayment/v1/payments`][get-payment-endpoint].
    The `reference` is set in the body of the request.
 
    The user identifier, `sub`, is retrieved from the response and set as a variable.
 
 1. Send request `Get Userinfo`. This uses
-   [`GET:/vipps-userinfo-api/userinfo/{sub}`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-Userinfo-API/operation/getUserinfo)
+   [`GET:/vipps-userinfo-api/userinfo/{sub}`][get-user-info-endpoint]
    with the `sub` variable from the previous call.
 
 
 ### Test with Force Approve
 
 You can use the
-[`epayment/v1/test/payments/{{reference}}/approve`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/ForceApprove)
+[`epayment/v1/test/payments/{{reference}}/approve`][force-approve-endpoint]
 endpoint
 to approve an ePayment API payment without signing in to the Vipps MT app.
 The endpoint is only available in our test environment.
@@ -206,11 +206,16 @@ This is because the user needs to be registered as
 the test environment when using Vipps (the app), but not with "force approve".
 
 
-## Questions?
 
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-epayment-api/issues),
-a [pull request](https://github.com/vippsas/vipps-epayment-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
+[epayment-api-reference-url]: https://vippsas.github.io/vipps-developer-docs/api/epayment
+[create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
+[get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
+[get-payment-event-log-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
+[cancel-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/cancelPayment
+[capture-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/capturePayment
+[refund-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment
+[adjust-authorization-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/adjustAuthorization
+[force-approve-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/ForceApprove/operation/forceApprove
+[get-user-info-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-Userinfo-API/operation/getUserinfo
+[access-token-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
+[portal-url]: https://portal.vipps.no
