@@ -4,15 +4,13 @@ title: Notification Webhooks
 sidebar_position: 110
 pagination_next: null
 pagination_prev: null
+draft: true
 ---
 END_METADATA -->
 
 # How to setup Notification Webhooks
 
 Notification webhooks can be setup in the Merchant Portal.
-
-
-💥 DRAFT! Unfinished work in progress. API specification changes are still coming. 💥
 
 ## Understanding Notification Webhooks
 
