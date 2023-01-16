@@ -21,9 +21,10 @@ This document covers the quick steps for getting started with the Vipps Merchant
 You must have already signed up as a organisation with Vipps and have your test credentials from the merchant portal, as described in the
 [Vipps Getting Started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started).
 
+<!--
 Once your merchant account is setup for Merchant Payments, you should look at available configuration options, such as
 [Notifications Webhooks](how-to-setup-notification-webhooks.md).
-
+-->
 
 ## Your first Vipps Payment
 
@@ -89,7 +90,7 @@ A valid request like the one above will result in a response with the following 
 
 The `redirectUrl` property should be used to direct the user to the Vipps app for completing the payment.
 
-## Step 3 - Completing the payment
+### Step 3 - Completing the payment
 
 The user will be presented with the payment in the Vipps app, where they can complete or reject the payment. Once the user has acted upon the payment they will be redirected back to the specified `returnUrl` under a "best effort" policy.
 
@@ -97,13 +98,14 @@ The user will be presented with the payment in the Vipps app, where they can com
 We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable and the user may choose to fully close the Vipps app or browser.
 :::
 
-To receive the result of the users action you may either:
+To receive the result of the users action you may poll the status of the payment view the
+[Get Payment][get-payment-endpoint] and
+[Get Payment Event Log][get-payment-event-log-endpoint] endpoints.
 
-1. Poll the status of the payment view the
-   [Get Payment][get-payment-endpoint] and
-   [Get Payment Event Log[get-payment-event-log-endpoint] endpoints.
-2. Receive status updates over our [Notification Webhooks](how-to-setup-notification-webhooks.md) service
+<!--
+Alternatively, receive status updates over our [Notification Webhooks](how-to-setup-notification-webhooks.md) service
 
+-->
 ### Polling
 
 A request to the [Get Payment][get-payment-endpoint] URL will provide the current status of the payment and an aggregate of the captured and refunded amounts.
@@ -166,17 +168,18 @@ In the case the payment has been completed this will yield an array of events li
 ]
 ```
 
+<!--
 ### Notification Events
 
-If you are not dependent on getting the payment result immediately you may also use notification events to receive the payment status update via our [Notification Webhooks](how-to-setup-notification-webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment this service has an eventual delivery guarantee rather than immediate delivery.
+If you are not dependent on getting the payment result immediately, you may also use notification events to receive the payment status update via our [Notification Webhooks](how-to-setup-notification-webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment, this service has an eventual delivery guarantee rather than immediate delivery.
 
 :::info
 This means we may deliver the same message several times to verify successful delivery, use the `pspReference` field for duplicate delivery checking.
 :::
 
-If you use the notification service you will receive events in the same format as those in the array list returned from the [Get Payment Events][get-payment-event-log-endpoint] endpoint.
+If you use the notification service, you will receive events in the same format as those in the array list returned from the [Get Payment Events][get-payment-event-log-endpoint] endpoint.
 
-For example a successful authentication event would look like
+For example, a successful authentication event would look like
 
 ```json
 {
@@ -193,7 +196,7 @@ For example a successful authentication event would look like
 }
 ```
 
-If the user had rejected the payment the event would look like
+If the user had rejected the payment, the event would look like
 
 ```json
 {
@@ -208,6 +211,7 @@ If the user had rejected the payment the event would look like
   "timestamp": "2021-02-24T14:15:12Z"
 }
 ```
+-->
 
 ## Next Steps
 
@@ -215,11 +219,10 @@ Now that you have completed your first payment,
 read further to see the full range of possibilities within the Vipps Merchant Payments API.
 
 - [Capture the payment](modifications/capture.md)
-- [How to setup Notification Webhooks](how-to-setup-notification-webhooks.md)
 - [Payment modification, how to use cancel, capture and refund?](modifications/README.md)
 - [Using Vipps Merchant Payments in a shopper present context](features/customer-present-payments.md)
 - [Profile sharing, requesting the users personal information](features/profile-sharing.md)
-
+<!-- [How to setup Notification Webhooks](how-to-setup-notification-webhooks.md) -->
 
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
