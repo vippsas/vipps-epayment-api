@@ -2,7 +2,7 @@
 ---
 title: Introduction
 sidebar_label: API guide
-sidebar_position: 10
+sidebar_position: 30
 pagination_prev: Null
 pagination_next: Null
 ---
