@@ -24,7 +24,7 @@ Document version: 1.0.1.
 
 Integrate _all_ the [API endpoints](https://vippsas.github.io/vipps-developer-docs/api/epayment). For examples of requests and responses, see the [Postman collection and environment]().
 
-| Endoint | Comment |
+| Endpoint | Comment |
 |-----|-----------|
 |     Create payment| [`POST:/epayment/v1/payments`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment) |
 |     Get Payment| [`POST:/epayment/v1/payments/{reference}`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment)|
