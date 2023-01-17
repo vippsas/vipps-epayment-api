@@ -33,7 +33,7 @@ Integrate _all_ the [API endpoints](https://vippsas.github.io/vipps-developer-do
 |     Full and Partial capture payment| [`POST:/epayment/v1/payments/{reference}/capture`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/capturePayment)|
 |     Full and partial refund payment| [`POST:/epayment/v1/payments/{reference}/refund`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment)|
 
-### Quality ensurance
+### Quality assurance
 
 |  | Comment |
 |-----|-----------|
