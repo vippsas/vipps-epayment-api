@@ -20,7 +20,7 @@ Document version: 1.0.1.
 
 ## Checklist  
 
-### Endoints to integrate
+### Endpoints to integrate
 
 Integrate _all_ the [API endpoints](https://vippsas.github.io/vipps-developer-docs/api/epayment). For examples of requests and responses, see the [Postman collection and environment]().
 
