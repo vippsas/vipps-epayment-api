@@ -46,7 +46,7 @@ Integrate _all_ the [API endpoints](https://vippsas.github.io/vipps-developer-do
 
 |  | Comment |
 |-----|-----------|
-|     Reference recommendations| Follow our [reference recommendation](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid)|
+|     Reference recommendations| Follow our [reference recommendations](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid). |
 |     Polling recommendations| Follow our [polling recommendations](vipps-ecom-api.md#polling-guidelines)|
 |     Handle redirects| The merchant must handle that the `fallback` URL is opened in the default browser on the phone, and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc. See the API guide: [Recommendations regarding handling redirects](vipps-ecom-api.md#recommendations-regarding-handling-redirects). See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/common-problems-faq#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)|
 |     Follow design guidelines| The Vipps branding must be according to the [Vipps design guidelines](https://github.com/vippsas/vipps-design-guidelines).|
