@@ -13,7 +13,7 @@ END_METADATA -->
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
 
 <!-- END_COMMENT -->
 
@@ -36,12 +36,3 @@ pages for information about API keys, product activation, contact information, c
 
 * [API guide](./api-guide/getting-started.md): Developer guide for Vipps ePayment API.
 * [API Reference](https://vippsas.github.io/vipps-developer-docs/api/epayment): ePayment API Reference Specifications.
-
-## Questions?
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-epayment-api/issues),
-a [pull request](https://github.com/vippsas/vipps-epayment-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).

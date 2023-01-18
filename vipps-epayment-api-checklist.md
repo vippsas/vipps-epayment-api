@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
 title: Checklist
-sidebar_position: 10
+sidebar_position: 40
 ---
 END_METADATA -->
 
@@ -88,7 +88,7 @@ API version: 1.0.
 
 ## Flow to go live for direct integrations for partners
 
-See: [Vipps partners](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/).
+See: [Vipps partners](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner).
 
 
 [portal-url]: https://portal.vipps.no
