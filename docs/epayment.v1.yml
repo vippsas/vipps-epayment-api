@@ -668,7 +668,7 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - AUTHORISE 
+            - AUTHORIZE 
             - TERMINATE
           example: CREATE
           x-enum-varnames:
@@ -678,7 +678,7 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - AUTHORISE 
+            - AUTHORIZE 
             - TERMINATE
         amount:
           $ref: '#/components/schemas/Amount'
