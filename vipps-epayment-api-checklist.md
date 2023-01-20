@@ -5,7 +5,7 @@ sidebar_position: 40
 ---
 END_METADATA -->
 
-# Vipps ePayment API Checklist
+# Checklist
 
 <!-- START_COMMENT -->
 

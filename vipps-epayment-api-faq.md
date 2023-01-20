@@ -6,4 +6,4 @@ sidebar_position: 50
 ---
 END_METADATA -->
 
-# Vipps ePayment API: Frequently Asked Questions
+# Frequently asked questions
