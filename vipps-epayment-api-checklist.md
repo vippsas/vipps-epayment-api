@@ -5,7 +5,7 @@ sidebar_position: 40
 ---
 END_METADATA -->
 
-# Checklist
+# ePayment API Checklist
 
 <!-- START_COMMENT -->
 
