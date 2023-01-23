@@ -355,21 +355,6 @@ components:
       title: Create payment response
       description: The `CreatePaymentResponse` object.
       type: object
-      x-examples:
-        UrlRedirect:
-          redirectUrl: 'https://landing.vipps.no?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni '
-          reference: reference-string
-        QrImageUrl:
-          redirectUrl: 'https://qr-generator-prod-app-service.azurewebsites.net/qr-generator/v1?token=eyJhbGciOiJIUzI1'
-          reference: reference-string
-        QrTargetUrl:
-          redirectUrl: 'https://qr.vipps.no/c/abc123'
-          reference: reference-string
-        NativeRedirect:
-          redirectUrl: 'vipps://token=abc123'
-          reference: reference-string
-        PushFlow:
-          reference: reference-string
       properties:
         redirectUrl:
           type: string
@@ -812,7 +797,22 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/CreatePaymentResponse'
-          examples: {}
+          examples: 
+            UrlRedirect:
+              value:
+                redirectUrl: 'https://landing.vipps.no?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni '
+                reference: reference-string
+            QrImageUrl:
+              value:
+                redirectUrl: 'https://qr-image.vipps.no/v1?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni'
+                reference: reference-string
+            NativeRedirect:
+              value:
+                redirectUrl: 'vipps://token=abc123'
+                reference: reference-string
+            PushFlow:
+              value:
+                reference: reference-string
     AdjustResponse:
       description: Adjustment response
       content:
