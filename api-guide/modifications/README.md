@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: Payment States
+title: Payment states
 id: payment-states
 pagination_prev: APIs/epayment-api/api-guide/getting-started
 pagination_next: APIs/epayment-api/api-guide/modifications/capture
@@ -20,5 +20,5 @@ The following flow diagram describes when each modification action is applicable
 ## Modifications
 
 * [Capturing a payment](capture.md)
-* [Canceling a payment](cancel.md)
+* [Cancelling a payment](cancel.md)
 * [Refunding a payment](refund.md)

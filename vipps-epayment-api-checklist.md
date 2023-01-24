@@ -5,7 +5,7 @@ sidebar_position: 40
 ---
 END_METADATA -->
 
-# Vipps ePayment API Checklist
+# Checklist
 
 <!-- START_COMMENT -->
 
@@ -16,7 +16,7 @@ END_METADATA -->
 
 API version: 1.0.
 
-## Checklist
+## Checklist for full integration
 
 - [ ] Integrate _all_ the [API endpoints][epayment-api-reference-url]:
   - [ ] Full and partial Capture [`POST:epayment/v1/{reference}/capture`][capture-payment-endpoint]

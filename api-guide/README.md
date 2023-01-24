@@ -8,7 +8,7 @@ pagination_next: Null
 ---
 END_METADATA -->
 
-# Vipps Merchant Payments API
+# API guide
 
 - [Start with Getting Started](getting-started.md)
 - [Capture the payment](modifications/capture.md)
