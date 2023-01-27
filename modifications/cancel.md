@@ -3,7 +3,7 @@
 title: Cancel
 id: cancel
 sidebar_position: 20
-pagination_prev: APIs/epayment-api/api-guide/getting-started
+pagination_prev: APIs/epayment-api/getting-started
 pagination_next: null
 ---
 
