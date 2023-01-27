@@ -3,7 +3,7 @@
 title: Profile sharing
 hide_table_of_contents: true
 pagination_next: null
-pagination_prev: APIs/epayment-api/api-guide/getting-started
+pagination_prev: APIs/epayment-api/getting-started
 ---
 END_METADATA -->
 

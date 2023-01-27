@@ -1,36 +1,35 @@
 <!-- START_METADATA
 ---
-title: Refund
-id: refund
-sidebar_position: 30
-pagination_prev: APIs/epayment-api/api-guide/modifications/capture
-pagination_next: Null
+title: Capture
+id: capture
+sidebar_position: 10
+pagination_prev: APIs/epayment-api/getting-started
+pagination_next: APIs/epayment-api/modifications/refund
 ---
-
 import ApiSchema from '@theme/ApiSchema';
 
 END_METADATA -->
 
-# Refunding a payment
+# Capturing a payment
 
-A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the Merchant back to the customer.
+When a payment is initiated with `$.directCapture = false` you must [Capture][capture-payment-endpoint] a payment in order to initiate settlement of the authorised funds.
 
-Refunds can be made in full or partially as needed. The refund amount must be defined in the refund API request.
+Captured funds will be settled to the merchants settlement account after two business days. See [Settlement Information](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/settlements) for more details.
 
-Refunded funds will be deducted from the merchants settlement account after two business days. See [Settlement Information](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/settlements) for more details.
+A capture can be made in full, or partially if desired. The capture amount must be defined in capture API request.
 
-## Refund via the API
+## Capture via the API
 
-If a customer has returned the goods or the service is not delivered you should refund the payment.
-This can be done through the [Refund Payment Endpoint][refund-payment-endpoint].
+Once the good or services are delivered or on their way to the customer it is time to capture the payment.
+This can be done through the [Capture Payment Endpoint][capture-payment-endpoint].
 This endpoint take the following properties in the body of the request
 
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/RefundModificationRequest" />
+<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/CaptureModificationRequest" />
 
-An example refund would look like:
+An example capture would look like:
 
 ```bash
-curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refund \
+curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capture \
 -H "Authorization: Bearer <TOKEN>" \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
@@ -51,7 +50,7 @@ Response:
 
 A notification will also be sent once the modification is completed if a webhook is registered.
 
-After refund the `aggregate` object will be updated to reflect this, for example:
+After capture the `aggregate` object will be updated to reflect this, for example:
 
 ```json
 {
@@ -70,22 +69,22 @@ After refund the `aggregate` object will be updated to reflect this, for example
     },
     "refundedAmount": {
       "currency": "NOK",
-      "value": 1000
+      "value": 0
     }
   }
 }
 ```
 
-## Partial Refund
+## Partial Capture
 
-If you do not wish to refund the entire amount a smaller amount than captured can be refunded. This can be done multiple times.
+If you do not wish to capture the entire amount a smaller amount than authorised can be captured. This can be done multiple times.
 
 The `Idempotency-Key` header is there to help you ensure at most once operation where needed.
 
-An example partial refund would look like:
+An example partial capture would look like:
 
 ```bash
-curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refund \
+curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capture \
 -H "Authorization: Bearer <TOKEN>" \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
@@ -115,14 +114,16 @@ Once capture is completed the `aggregate` object will be updated to reflect this
     },
     "capturedAmount": {
       "currency": "NOK",
-      "value": 1000
+      "value": 250
     },
     "refundedAmount": {
       "currency": "NOK",
-      "value": 250
+      "value": 0
     }
   }
 }
 ```
 
-[refund-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment
+If you are not going to capture the rest of the authorized amount you should [cancel](cancel.md#cancel-after-a-partial-capture) the remaining amount.
+
+[capture-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/capturePayment

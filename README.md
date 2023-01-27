@@ -26,13 +26,4 @@ The ePayment API allows you to create payments using the following user flows:
 
 You can also get payment details, get user info, capture payments, and refund payments.
 
-## Next steps
-
-See
-[Getting Started](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
-for information about API keys, product activation, how to make API calls, etc.
-
-Review the detailed documentation found here:
-
-* [API guide](./api-guide/getting-started.md): Developer guide for Vipps ePayment API.
-* [API Reference](https://vippsas.github.io/vipps-developer-docs/api/epayment): ePayment API Reference Specifications.
+To get started, see the [ePayment getting started guide](getting-started.md).
