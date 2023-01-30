@@ -30,6 +30,10 @@ paths:
       - $ref: '#/components/parameters/Idempotency-Key'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
+      - $ref: '#/components/parameters/Vipps-System-Name'
+      - $ref: '#/components/parameters/Vipps-System-Version'
+      - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+      - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
     post:
       operationId: createPayment
       summary: Create payment
@@ -94,6 +98,10 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
+      - $ref: '#/components/parameters/Vipps-System-Name'
+      - $ref: '#/components/parameters/Vipps-System-Version'
+      - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+      - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
     post:
       summary: Cancel payment
       operationId: cancelPayment
@@ -117,6 +125,10 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
+      - $ref: '#/components/parameters/Vipps-System-Name'
+      - $ref: '#/components/parameters/Vipps-System-Version'
+      - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+      - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
     post:
       summary: Capture payment
       operationId: capturePayment
@@ -146,6 +158,10 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
       - $ref: '#/components/parameters/Idempotency-Key'
+      - $ref: '#/components/parameters/Vipps-System-Name'
+      - $ref: '#/components/parameters/Vipps-System-Version'
+      - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+      - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
     post:
       summary: Refund payment
       operationId: refundPayment
@@ -761,6 +777,34 @@ components:
         type: string
         example: da7d5b0e18a84aeda961c0c31b75c2a9
       description: APIM Subscription Key
+    Vipps-System-Name:
+      name: Vipps-System-Name
+      in: header
+      description: The name of the ecommerce solution. One word in lowercase letters is good.
+      schema:
+        type: string
+        example: woocommerce
+    Vipps-System-Version:
+      name: Vipps-System-Version
+      in: header
+      description: The version number of the ecommerce solution.
+      schema:
+        type: string
+        example: '5.4.0'
+    Vipps-System-Plugin-Name:
+      name: Vipps-System-Plugin-Name
+      in: header
+      description: The name of the ecommerce plugin (if applicable). One word in lowercase letters is good.
+      schema:
+        type: string
+      example: "vipps-woocommerce"
+    Vipps-System-Plugin-Version:
+      name: Vipps-System-Plugin-Version
+      in: header
+      description: The version number of the ecommerce plugin (if applicable).
+      schema:
+        type: string
+        example: "1.2.1"
     Payment-Reference-ID:
       name: reference
       in: path
