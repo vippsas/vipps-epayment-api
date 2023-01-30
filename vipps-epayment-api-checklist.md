@@ -1,11 +1,11 @@
 <!-- START_METADATA
 ---
 title: Checklist
-sidebar_position: 10
+sidebar_position: 100
 ---
 END_METADATA -->
 
-# Vipps ePayment API Checklist
+# Checklist
 
 <!-- START_COMMENT -->
 
@@ -15,8 +15,6 @@ END_METADATA -->
 [Vipps ePayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
 
 <!-- END_COMMENT -->
-
-Document version: 1.0.1.
 
 ## Checklist  
 
@@ -92,13 +90,5 @@ Integrate _all_ the [API endpoints](https://vippsas.github.io/vipps-developer-do
 
 ## Flow to go live for direct integrations for partners
 
-See: [Vipps partners](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner/).
+See: [Vipps partners](https://vippsas.github.io/vipps-developer-docs/docs/vipps-partner).
 
-## Questions?
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-epayment-api/issues),
-a [pull request](https://github.com/vippsas/vipps-epayment-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).

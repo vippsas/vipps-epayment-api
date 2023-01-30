@@ -1,7 +1,8 @@
 <!-- START_METADATA
 ---
-title: Quick start guide
+title: Quick start
 sidebar_position: 10
+draft: true
 ---
 END_METADATA -->
 

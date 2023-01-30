@@ -1,13 +1,13 @@
 <!-- START_METADATA
 ---
-title: Profile Sharing
+title: Profile sharing
 hide_table_of_contents: true
 pagination_next: null
-pagination_prev: APIs/epayment-api/api-guide/getting-started
+pagination_prev: APIs/epayment-api/getting-started
 ---
 END_METADATA -->
 
-# Profile Sharing
+# Profile sharing
 
 Vipps offers the possibility for merchants to ask for the user's profile information as part of the payment flow. We call this the `userinfo` flow.
 

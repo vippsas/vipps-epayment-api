@@ -1,10 +1,10 @@
 <!-- START_METADATA
 ---
-title: Capturing a Payment
+title: Capture
 id: capture
 sidebar_position: 10
-pagination_prev: APIs/epayment-api/api-guide/getting-started
-pagination_next: APIs/epayment-api/api-guide/modifications/refund
+pagination_prev: APIs/epayment-api/getting-started
+pagination_next: APIs/epayment-api/modifications/refund
 ---
 import ApiSchema from '@theme/ApiSchema';
 

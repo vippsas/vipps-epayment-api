@@ -2,7 +2,8 @@
 ---
 title: FAQs
 draft: true
+sidebar_position: 110
 ---
 END_METADATA -->
 
-# Vipps ePayment API: Frequently Asked Questions
+# Frequently asked questions

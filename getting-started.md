@@ -21,10 +21,12 @@ This document covers the quick steps for getting started with the Vipps Merchant
 You must have already signed up as a organisation with Vipps and have your test credentials from the merchant portal, as described in the
 [Vipps Getting Started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started).
 
+<!-- START_COMMENT -->
 <!--
 Once your merchant account is setup for Merchant Payments, you should look at available configuration options, such as
 [Notifications Webhooks](how-to-setup-notification-webhooks.md).
 -->
+<!-- END_COMMENT -->
 
 ## Your first Vipps Payment
 
@@ -102,10 +104,13 @@ To receive the result of the users action you may poll the status of the payment
 [Get Payment][get-payment-endpoint] and
 [Get Payment Event Log][get-payment-event-log-endpoint] endpoints.
 
+<!-- START_COMMENT -->
 <!--
 Alternatively, receive status updates over our [Notification Webhooks](how-to-setup-notification-webhooks.md) service
 
 -->
+<!-- END_COMMENT -->
+
 ### Polling
 
 A request to the [Get Payment][get-payment-endpoint] URL will provide the current status of the payment and an aggregate of the captured and refunded amounts.
@@ -167,7 +172,7 @@ In the case the payment has been completed this will yield an array of events li
   }
 ]
 ```
-
+<!-- START_COMMENT -->
 <!--
 ### Notification Events
 
@@ -212,6 +217,7 @@ If the user had rejected the payment, the event would look like
 }
 ```
 -->
+<!-- END_COMMENT -->
 
 ## Next Steps
 
@@ -222,7 +228,10 @@ read further to see the full range of possibilities within the Vipps Merchant Pa
 - [Payment modification, how to use cancel, capture and refund?](modifications/README.md)
 - [Using Vipps Merchant Payments in a shopper present context](features/customer-present-payments.md)
 - [Profile sharing, requesting the users personal information](features/profile-sharing.md)
+
+<!-- START_COMMENT -->
 <!-- [How to setup Notification Webhooks](how-to-setup-notification-webhooks.md) -->
+<!-- END_COMMENT -->
 
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
