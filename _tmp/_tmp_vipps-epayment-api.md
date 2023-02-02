@@ -143,7 +143,7 @@ Operation|Description| Endpoint
 [Capture payment](modifications/capture.md) | When an amount has been reserved, and the goods are (about to be) shipped, the payment must be *captured*. | [`POST:/epayment/v1/payments/{reference}/capture`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/capturePaymentUsingPOST)
 [Cancel payment](modifications/cancel.md) | The merchant may release reserved funds back to the consumer by cancelling the payment | [`PUT:/epayment/v1/payments/{reference}/cancel`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/cancelPaymentRequestUsingPUT)
 [Refund payment](modifications/refund.md) | The merchant may refund a captured amount. | [`POST:/epayment/v1/payments/{reference}/refund`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/refundPaymentUsingPOST)
-[Access Token](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started#get-an-access-token) | Fetch the access token | [`POST:/accesstoken/get`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost)
+[Access Token](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started#get-an-access-token) | Fetch the access token | [`POST:/accesstoken/get`](https://vippsas.github.io/vipps-developer-docs/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost)
 
 See the
 [ePayment API checklist](../vipps-epayment-api-checklist.md).
