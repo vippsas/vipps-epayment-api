@@ -47,7 +47,7 @@ curl https://apitest.vipps.no/accessToken/get \
 In response, you will get a body with the following schema.
 The property `access_token` should be used for all other API requests in the `Authorisation` header as the Bearer token.
 
-<ApiSchema id="ecom-swagger-id" pointer="#/components/schemas/AuthorizationTokenResponse" example />
+<ApiSchema id="access-token-swagger-id" pointer="#/components/schemas/AuthorizationTokenResponse" example />
 
 ### Step 2 - Create a payment
 
