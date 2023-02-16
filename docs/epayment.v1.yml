@@ -27,7 +27,7 @@ tags:
   - description: "Adjust payments endpoints"
     name: AdjustPayments
 paths:
-  /v1/payments:
+  /epayment/v1/payments:
     parameters:
       - $ref: '#/components/parameters/Idempotency-Key'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
@@ -58,7 +58,7 @@ paths:
           $ref: '#/components/responses/ProblemResponse'
         '409':
           $ref: '#/components/responses/ProblemResponse'
-  '/v1/payments/{reference}':
+  '/epayment/v1/payments/{reference}':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -72,7 +72,7 @@ paths:
           $ref: '#/components/responses/GetPaymentResponse'
       operationId: getPayment
       description: Get a payment object by its `reference` id.
-  '/v1/payments/{reference}/events':
+  '/epayment/v1/payments/{reference}/events':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -94,7 +94,7 @@ paths:
       security:
         - Bearer-Authorization: []
       description: Get event log for the specified payment `reference` id.
-  '/v1/payments/{reference}/cancel':
+  '/epayment/v1/payments/{reference}/cancel':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -121,7 +121,7 @@ paths:
         - Bearer-Authorization: []
       tags:
         - AdjustPayments
-  '/v1/payments/{reference}/capture':
+  '/epayment/v1/payments/{reference}/capture':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -154,7 +154,7 @@ paths:
         description: Requested capture modification
       tags:
         - AdjustPayments
-  '/v1/payments/{reference}/refund':
+  '/epayment/v1/payments/{reference}/refund':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -187,7 +187,7 @@ paths:
         description: Requested refund modification
       tags:
         - AdjustPayments
-  '/v1/test/payments/{reference}/approve':
+  '/epayment/v1/test/payments/{reference}/approve':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
