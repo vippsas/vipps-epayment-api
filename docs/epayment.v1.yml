@@ -1,10 +1,12 @@
 openapi: 3.0.0
 servers:
-  - url: 'https://api.vipps.no/epayment'
-    description: Production source URL for the Vipps ePayment api
+  - url: https://api.vipps.no
+    description: Production environment (uses the production API keys, the official app and live data)
+  - url: https://apitest.vipps.no
+    description: Test environment (uses the test API keys, the test app and test data)
 info:
   description: 'The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.'
-  version: 1.1.0
+  version: 1.1.1
   title: Vipps ePayment API
   contact:
     name: Vipps AS
@@ -301,7 +303,7 @@ components:
           example: 'https://example.com/redirect?orderId=acme-shop-123-order123abc'
           description: |-
             The URL the user is returned to after the payment session.
-            
+
             The URL has to use the `https://` scheme or a custom URL scheme.
         userFlow:
           type: string
@@ -325,10 +327,11 @@ components:
           pattern: '^((?:(\d{4}-\d{2}-\d{2})(T|t)(\d{2}:\d{2}:\d{2}(?:\.\d+)?))(Z|z|([+-](?:2[0-3]|[01][0-9]):[0-5][0-9])))$'
           nullable: true
           description: |-
-            The payment will expire at the given date and time. 
+            The payment will expire at the given date and time.
             The format must adhere to RFC 3339.
             The value must be more than 10 minutes and less than 28 days in the future.
             Can only be combined with `userFlow: PUSH_MESSAGE` or `userFlow: QR`
+            See: https://vippsas.github.io/vipps-developer-docs/docs/vipps-solutions/long-expiry-time-for-payments-to-merchants
         qrFormat:
           nullable: true
           type: object
@@ -386,7 +389,7 @@ components:
         - reference
     GetPaymentResponse:
       title: Get payment response
-      description: The `GetPaymentResponse` object. 
+      description: The `GetPaymentResponse` object.
       type: object
       x-examples: {}
       properties:
@@ -670,7 +673,7 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - AUTHORISE 
+            - AUTHORISE
             - TERMINATE
           example: CREATE
           x-enum-varnames:
@@ -680,7 +683,7 @@ components:
             - CANCEL
             - CAPTURE
             - REFUND
-            - AUTHORISE 
+            - AUTHORISE
             - TERMINATE
         amount:
           $ref: '#/components/schemas/Amount'
@@ -731,7 +734,7 @@ components:
       title: State
       description: |-
         State of the Payment.
-        One of: 
+        One of:
         - CREATED : User has not yet acted upon the payment
         - ABORTED : User has aborted the payment before authorization
         - EXPIRED: User did not act on the payment within the payment expiration time
@@ -841,7 +844,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/CreatePaymentResponse'
-          examples: 
+          examples:
             UrlRedirect:
               value:
                 redirectUrl: 'https://landing.vipps.no?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni '
