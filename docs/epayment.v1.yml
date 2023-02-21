@@ -559,7 +559,7 @@ components:
           type: string
           example: 'NO'
           pattern: '^[A-Z]{2}$'
-          description: Country code according to ISO 3166-2 (two captial letters).
+          description: Country code according to ISO 3166-2 (two capital letters).
         id:
           type: string
           format: uuid
