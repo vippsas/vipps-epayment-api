@@ -35,7 +35,7 @@ EXPIRED : The payment session has\nexpired due to inactivity
 EXPIRED --> [*]
 CREATED --> AUTHORIZED
 AUTHORIZED : AUTHORIZED
-AUTHORIZED : User has approved payment\nDefined by ""$.aggregate.authorisedAmount"" object
+AUTHORIZED : User has approved payment\nDefined by ""aggregate.authorisedAmount"" object
 AUTHORIZED --> CAPTURED
 CAPTURED : CAPTURED
 CAPTURED : Payment fully or partially captured\nDefined by ""$.aggregate.capturedAmount"" object
