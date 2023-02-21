@@ -47,6 +47,6 @@ CREATED --> CANCELLED : Not possible if the user is \nactively authorising the \
 AUTHORIZED --> CANCELLED 
 CAPTURED --> CANCELLED : Not possible after \nfull capture
 CANCELLED : CANCELLED
-CANCELLED : Cancel the remaining un-captured amount\nDefined by ""$.aggregate.cancelledAmount"" object
+CANCELLED : Cancel the remaining un-captured amount\nDefined by ""aggregate.cancelledAmount"" object
 CANCELLED --> [*]
 ```
