@@ -160,7 +160,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"customer\": {\n    \"phoneNumber\": {{internationalMobileNumber}}\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"WEB_REDIRECT\",\n  \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\"\n}",
+					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"customer\": {\n    \"phoneNumber\": {{internationalMobileNumber}}\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"WEB_REDIRECT\",\n  \"returnUrl\": \"https://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -265,7 +265,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"QR\",\n  \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\",\n  \"qrFormat\": {\n    \"format\": \"IMAGE/SVG+XML\",\n    \"size\": 1024\n  }\n}",
+					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"QR\",\n  \"returnUrl\": \"https://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\",\n  \"qrFormat\": {\n    \"format\": \"IMAGE/SVG+XML\",\n    \"size\": 1024\n  }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -370,7 +370,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"customer\": {\n    \"phoneNumber\": {{internationalMobileNumber}}\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"PUSH_MESSAGE\",\n  \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\"\n}",
+					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"customer\": {\n    \"phoneNumber\": {{internationalMobileNumber}}\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"PUSH_MESSAGE\",\n  \"returnUrl\": \"https://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -475,7 +475,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"NATIVE_REDIRECT\",\n  \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\"\n}",
+					"raw": "{\n  \"amount\": {\n    \"value\": {{amount}},\n    \"currency\": \"{{currency}}\"\n  },\n  \"paymentMethod\": {\n    \"type\": \"WALLET\"\n  },\n  \"reference\": {{reference}},\n  \"userFlow\": \"NATIVE_REDIRECT\",\n  \"returnUrl\": \"https://example.com/redirect?reference={{reference}}\",\n  \"paymentDescription\": \"Purchase of socks\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -580,7 +580,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"amount\": {\n        \"value\": {{amount}},\n        \"currency\": \"{{currency}}\"\n    },\n    \"paymentMethod\": {\n        \"type\": \"WALLET\"\n    },\n    \"customer\": {\n        \"phoneNumber\": {{internationalMobileNumber}}\n    },\n    \"reference\": {{reference}},\n    \"userFlow\": \"WEB_REDIRECT\",\n    \"returnUrl\": \"http://example.com/redirect?reference={{reference}}\",\n    \"paymentDescription\": \"Purchase of socks\",\n    \"profile\": {\n        \"scope\": \"name phoneNumber address birthDate\"\n    }\n}",
+					"raw": "{\n    \"amount\": {\n        \"value\": {{amount}},\n        \"currency\": \"{{currency}}\"\n    },\n    \"paymentMethod\": {\n        \"type\": \"WALLET\"\n    },\n    \"customer\": {\n        \"phoneNumber\": {{internationalMobileNumber}}\n    },\n    \"reference\": {{reference}},\n    \"userFlow\": \"WEB_REDIRECT\",\n    \"returnUrl\": \"https://example.com/redirect?reference={{reference}}\",\n    \"paymentDescription\": \"Purchase of socks\",\n    \"profile\": {\n        \"scope\": \"name phoneNumber address birthDate\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
