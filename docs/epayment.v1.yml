@@ -226,12 +226,16 @@ components:
         phoneNumber:
           type: string
           description: |-
-            Mobile number in MSISDN format of the user who has to pay for the transaction
-            from Vipps. Currently vipps supports only Norwegian mobile numbers.
+            The phone number of the user paying the transaction with Vipps.
+            Only Norwegian mobile numbers are supported (for now).
+            The format is MSISDN: Digits only: Country code and subscriber
+            number, but no prefix.
+
+            See: https://en.wikipedia.org/wiki/MSISDN
           minLength: 10
           maxLength: 15
           example: 4791234567
-          pattern: '^[0-9-]{10,15}$'
+          pattern: '^\d{10,15}$'
     Amount:
       description: Amount object
       type: object
@@ -247,7 +251,7 @@ components:
           description: |-
             Integer value of price in the currency's monetary subunit (e.g., Norwegian øre),
             or monetary unit where applicable (e.g., Japanese YEN). The type of the monetary
-            unit is defined in  ISO 4217.
+            unit is defined in ISO 4217.
       required:
         - value
         - currency
@@ -256,7 +260,7 @@ components:
       example: NOK
       enum:
         - NOK
-      description: Currency code as defined in  ISO 4217. eg NOK for Norwegian kroner.
+      description: Currency code as defined in ISO 4217. eg NOK for Norwegian kroner.
     CreatePaymentRequest:
       title: Create payment request
       description: The `CreatePaymentRequest` object.
@@ -303,7 +307,6 @@ components:
           example: 'https://example.com/redirect?orderId=acme-shop-123-order123abc'
           description: |-
             The URL the user is returned to after the payment session.
-
             The URL has to use the `https://` scheme or a custom URL scheme.
         userFlow:
           type: string
@@ -320,7 +323,7 @@ components:
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing to user to the Vipps Wallet payment confirmation screen.
-            If `userFlow` is `PUSH_MESSAGE`, a valid value for `$.customer.phoneNumber` is required.
+            If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required.
         expiresAt:
           type: string
           example: '2023-02-26T17:32:28Z'
@@ -380,8 +383,8 @@ components:
           format: uri
           example: 'https://landing.vipps.no?token=abc123'
           description: |-
-                The URL to which the user is redirected when continuing the payment for NATIVE_REDIRECT and WEB_REDIRECT.
-                When `userFlow` is QR, a link to the QR-image (or the target url) will be returned.
+                The URL to which the user is redirected when continuing the payment for `NATIVE_REDIRECT` and `WEB_REDIRECT`.
+                When `userFlow` is `QR`, a link to the QR image (or the target URL) will be returned.
                 Nothing will be returned when `userFlow` is `PUSH_MESSAGE`.
         reference:
           $ref: '#/components/schemas/Reference'
@@ -555,7 +558,8 @@ components:
         country:
           type: string
           example: 'NO'
-          description: Country code according to ISO 3166.
+          pattern: '^[A-Z]{2}$'
+          description: Country code according to ISO 3166-2 (two captial letters).
         id:
           type: string
           format: uuid
