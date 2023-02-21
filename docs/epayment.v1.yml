@@ -6,7 +6,7 @@ servers:
     description: Test environment (uses the test API keys, the test app and test data)
 info:
   description: 'The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.'
-  version: 1.1.1
+  version: 1.1.2
   title: Vipps ePayment API
   contact:
     name: Vipps AS
@@ -294,8 +294,6 @@ components:
           default: CUSTOMER_NOT_PRESENT
         industryData:
           $ref: '#/components/schemas/IndustryData'
-        receipt:
-          $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.0/docs/swagger.yaml#/components/schemas/Receipt'
         paymentMethod:
           $ref: '#/components/schemas/PaymentMethod'
         profile:
