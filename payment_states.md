@@ -38,7 +38,7 @@ AUTHORIZED : AUTHORIZED
 AUTHORIZED : User has approved payment\nDefined by ""aggregate.authorisedAmount"" object
 AUTHORIZED --> CAPTURED
 CAPTURED : CAPTURED
-CAPTURED : Payment fully or partially captured\nDefined by ""$.aggregate.capturedAmount"" object
+CAPTURED : Payment fully or partially captured\nDefined by ""aggregate.capturedAmount"" object
 CAPTURED --> REFUNDED
 REFUNDED : REFUNDED
 REFUNDED : Payment fully or partially refunded\nDefined by ""$.aggregate.refundedAmount"" object
