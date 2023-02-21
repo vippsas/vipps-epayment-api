@@ -18,34 +18,35 @@ The following flow diagram describes when each modification action is applicable
 
 ``` mermaid
 stateDiagram
-    [*] --> Created
-Created : Payment created via api
-Created --> Terminated
-Terminated : The merchant has stopped the 
-Terminated: process through the API
-Terminated --> [*]
-Created --> Aborted
-Aborted : The end user has actively stopped the
-Aborted: process by selecting Cancel or similar
-Aborted --> [*]
-Created --> Expired
-Expired : The payment session has
-Expired: expired due to inactivity
-Expired --> [*]
-Created --> Authorised
-Authorised : User has approved payment
-Authorised : Defined by ""$.aggregate.authorisedAmount"" object
-Authorised --> Capture
-Capture : Payment fully or partially captured
-Capture : Defined by ""$.aggregate.capturedAmount"" object
-Capture --> Refund
-Refund : Payment fully or partially refunded
-Refund : Defined by ""$.aggregate.refundedAmount"" object
-Refund --> [*] : Once payment is \nfully refunded
-Created --> Cancel : Not possible if the user is \nactively authorising the \npayment
-Authorised --> Cancel 
-Capture --> Cancel : Not possible after \nfull capture
-Cancel : Cancels the remaining un-captured amount
-Cancel : Defined by ""$.aggregate.cancelledAmount"" object
-Cancel --> [*]
+    [*] --> CREATED
+CREATED : CREATED
+CREATED : Payment created via API
+CREATED --> TERMINATED
+TERMINATED : TERMINATED
+TERMINATED : The merchant has stopped the\nprocess through the API
+TERMINATED --> [*]
+CREATED --> ABORTED
+ABORTED : ABORTED
+ABORTED : The end user has actively stopped the\nprocess by selecting Cancel or similar
+ABORTED --> [*]
+CREATED --> EXPIRED
+EXPIRED : EXPIRED
+EXPIRED : The payment session has\nexpired due to inactivity
+EXPIRED --> [*]
+CREATED --> AUTHORIZED
+AUTHORIZED : AUTHORIZED
+AUTHORIZED : User has approved payment\nDefined by ""$.aggregate.authorisedAmount"" object
+AUTHORIZED --> CAPTURED
+CAPTURED : CAPTURED
+CAPTURED : Payment fully or partially captured\nDefined by ""$.aggregate.capturedAmount"" object
+CAPTURED --> REFUNDED
+REFUNDED : REFUNDED
+REFUNDED : Payment fully or partially refunded\nDefined by ""$.aggregate.refundedAmount"" object
+REFUNDED --> [*] : Once payment is\nfully refunded
+CREATED --> CANCELLED : Not possible if the user is \nactively authorising the \npayment
+AUTHORIZED --> CANCELLED 
+CAPTURED --> CANCELLED : Not possible after \nfull capture
+CANCELLED : CANCELLED
+CANCELLED : Cancel the remaining un-captured amount\nDefined by ""$.aggregate.cancelledAmount"" object
+CANCELLED --> [*]
 ```
