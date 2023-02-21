@@ -1,7 +1,9 @@
 openapi: 3.0.0
 servers:
-  - url: 'https://api.vipps.no/epayment'
-    description: Production source URL for the Vipps ePayment api
+  - url: https://api.vipps.no
+    description: Production environment (uses the production API keys, the official app and live data)
+  - url: https://apitest.vipps.no
+    description: Test environment (uses the test API keys, the test app and test data)
 info:
   description: 'The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.'
   version: 1.1.1
@@ -25,7 +27,7 @@ tags:
   - description: "Adjust payments endpoints"
     name: AdjustPayments
 paths:
-  /v1/payments:
+  /epayment/v1/payments:
     parameters:
       - $ref: '#/components/parameters/Idempotency-Key'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
@@ -56,7 +58,7 @@ paths:
           $ref: '#/components/responses/ProblemResponse'
         '409':
           $ref: '#/components/responses/ProblemResponse'
-  '/v1/payments/{reference}':
+  '/epayment/v1/payments/{reference}':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -70,7 +72,7 @@ paths:
           $ref: '#/components/responses/GetPaymentResponse'
       operationId: getPayment
       description: Get a payment object by its `reference` id.
-  '/v1/payments/{reference}/events':
+  '/epayment/v1/payments/{reference}/events':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -92,7 +94,7 @@ paths:
       security:
         - Bearer-Authorization: []
       description: Get event log for the specified payment `reference` id.
-  '/v1/payments/{reference}/cancel':
+  '/epayment/v1/payments/{reference}/cancel':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -119,7 +121,7 @@ paths:
         - Bearer-Authorization: []
       tags:
         - AdjustPayments
-  '/v1/payments/{reference}/capture':
+  '/epayment/v1/payments/{reference}/capture':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -152,7 +154,7 @@ paths:
         description: Requested capture modification
       tags:
         - AdjustPayments
-  '/v1/payments/{reference}/refund':
+  '/epayment/v1/payments/{reference}/refund':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -185,7 +187,7 @@ paths:
         description: Requested refund modification
       tags:
         - AdjustPayments
-  '/v1/test/payments/{reference}/approve':
+  '/epayment/v1/test/payments/{reference}/approve':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
       - $ref: '#/components/parameters/Merchant-Serial-Number'
@@ -332,6 +334,7 @@ components:
             The format must adhere to RFC 3339.
             The value must be more than 10 minutes and less than 28 days in the future.
             Can only be combined with `userFlow: PUSH_MESSAGE` or `userFlow: QR`
+            See: https://vippsas.github.io/vipps-developer-docs/docs/vipps-solutions/long-expiry-time-for-payments-to-merchants
         qrFormat:
           nullable: true
           type: object
