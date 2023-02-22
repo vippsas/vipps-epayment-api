@@ -12,7 +12,7 @@ END_METADATA -->
 
 # Capturing a payment
 
-When a payment is initiated with `$.directCapture = false` you must [Capture][capture-payment-endpoint] a payment in order to initiate settlement of the authorised funds.
+When a payment is initiated with `$.directCapture = false` you must [Capture][capture-payment-endpoint] a payment in order to initiate settlement of the authorized funds.
 
 Captured funds will be settled to the merchants settlement account after two business days. See [Settlement Information](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/settlements) for more details.
 
@@ -77,7 +77,7 @@ After capture the `aggregate` object will be updated to reflect this, for exampl
 
 ## Partial Capture
 
-If you do not wish to capture the entire amount a smaller amount than authorised can be captured. This can be done multiple times.
+If you do not wish to capture the entire amount a smaller amount than authorized can be captured. This can be done multiple times.
 
 The `Idempotency-Key` header is there to help you ensure at most once operation where needed.
 

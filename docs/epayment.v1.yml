@@ -333,8 +333,7 @@ components:
             The payment will expire at the given date and time.
             The format must adhere to RFC 3339.
             The value must be more than 10 minutes and less than 28 days in the future.
-            Can only be combined with `userFlow: PUSH_MESSAGE` or `userFlow: QR`
-            See: https://vippsas.github.io/vipps-developer-docs/docs/vipps-solutions/long-expiry-time-for-payments-to-merchants
+            Can only be combined with `userFlow: PUSH_MESSAGE` or `userFlow: QR`.
         qrFormat:
           nullable: true
           type: object

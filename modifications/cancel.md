@@ -15,7 +15,7 @@ END_METADATA -->
 
 If you no longer wish to initiate settlement of the remaining funds on a payment then you should [Cancel][cancel-payment-endpoint] the payment. Cancelling a payment provides a good user experience and synchronizes the users bank statement and Vipps payment overview with their expectations from a merchant.
 
-A payment can be cancelled via the api or merchant portal at any point until the payment is fully captured. A cancellation will release any remaining authorised funds on the customers bank account. If the payment has not yet reached the `AUTHORIZED` state a cancellation by the merchant via the api will result in `TERMINATED` state of the payment.
+A payment can be cancelled via the api or merchant portal at any point until the payment is fully captured. A cancellation will release any remaining authorized funds on the customers bank account. If the payment has not yet reached the `AUTHORIZED` state a cancellation by the merchant via the api will result in `TERMINATED` state of the payment.
 
 :::info
 It is not possible to cancel a payment while a user is actively authorizing the payment. Eg: The payment is under processing with the payment scheme, or the user is in a 3DSecure session.
@@ -71,7 +71,7 @@ After cancellation the `aggregate` object will be updated to reflect this, for e
 
 ## Cancel after a partial capture
 
-If you have captured a partial amount of the authorised amount and will not capture the remaining amount you should release this. The cancel endpoint will do this for you when called.
+If you have captured a partial amount of the authorized amount and will not capture the remaining amount you should release this. The cancel endpoint will do this for you when called.
 
 For example we wish to release the remaining funds of a payment with the following aggregate state:
 
