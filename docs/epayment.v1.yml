@@ -5,8 +5,11 @@ servers:
   - url: https://apitest.vipps.no
     description: Test environment (uses the test API keys, the test app and test data)
 info:
-  description: 'The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.'
-  version: 1.1.1
+  description: |-
+    The Vipps ePayment API.
+    See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api)
+    for more information.
+  version: 1.1.2
   title: Vipps ePayment API
   contact:
     name: Vipps AS
@@ -38,7 +41,7 @@ paths:
       - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
     post:
       operationId: createPayment
-      summary: Create payment
+      summary: Create a payment
       tags:
         - CreatePayments
       description: Create a new payment
@@ -64,7 +67,7 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
     get:
-      summary: Get Payment
+      summary: Get a payment
       tags:
         - QueryPayments
       responses:
@@ -78,7 +81,7 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
     get:
-      summary: Get payment event log
+      summary: Get a payment's event log
       tags:
         - QueryPayments
       responses:
@@ -105,7 +108,7 @@ paths:
       - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
       - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
     post:
-      summary: Cancel payment
+      summary: Cancel a payment
       operationId: cancelPayment
       responses:
         '200':
@@ -132,7 +135,7 @@ paths:
       - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
       - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
     post:
-      summary: Capture payment
+      summary: Capture a payment
       operationId: capturePayment
       responses:
         '200':
@@ -165,7 +168,7 @@ paths:
       - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
       - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
     post:
-      summary: Refund payment
+      summary: Refund a payment
       operationId: refundPayment
       responses:
         '200':
@@ -193,7 +196,7 @@ paths:
       - $ref: '#/components/parameters/Merchant-Serial-Number'
       - $ref: '#/components/parameters/APIM-Subscription-Key'
     post:
-      summary: Force approve payment
+      summary: Force approve a payment
       tags:
         - ForceApprove
       responses:
@@ -714,6 +717,8 @@ components:
     Problem:
       title: Problem
       type: object
+      description: |-
+        See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/errors
       properties:
         type:
           type: string
@@ -738,11 +743,11 @@ components:
       description: |-
         State of the Payment.
         One of:
-        - CREATED : User has not yet acted upon the payment
-        - ABORTED : User has aborted the payment before authorization
+        - CREATED: User has not yet acted upon the payment
+        - ABORTED: User has aborted the payment before authorization
         - EXPIRED: User did not act on the payment within the payment expiration time
-        - AUTHORIZED : User has approved the payment
-        - TERMINATED : Merchant has terminated the payment via the cancelPayment endpoint
+        - AUTHORIZED: User has approved the payment
+        - TERMINATED: Merchant has terminated the payment via the cancelPayment endpoint
       enum:
         - CREATED
         - ABORTED
@@ -851,7 +856,9 @@ components:
       name: Authorization
       type: apiKey
       in: header
-      description: Access bearer token (JWT)
+      description: |-
+        Access bearer token (JWT).
+        See https://vippsas.github.io/vipps-developer-docs/docs/APIs/access-token-api
   responses:
     GetPaymentResponse:
       description: Get Payment response
@@ -889,7 +896,7 @@ components:
             $ref: '#/components/schemas/ModificationResponse'
       headers: {}
     ProblemResponse:
-      description: Standard problem response
+      description: Standard problem response.
       content:
         application/problem+json:
           schema:
