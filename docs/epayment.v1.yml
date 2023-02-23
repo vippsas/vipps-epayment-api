@@ -234,7 +234,7 @@ components:
             See: https://en.wikipedia.org/wiki/MSISDN
           minLength: 10
           maxLength: 15
-          example: 4791234567
+          example: "4791234567"
           pattern: '^\d{10,15}$'
     Amount:
       description: Amount object
