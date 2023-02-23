@@ -800,6 +800,7 @@ components:
         See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers
       schema:
         type: string
+        maxLength: 30
         example: woocommerce
     Vipps-System-Version:
       name: Vipps-System-Version
@@ -809,6 +810,7 @@ components:
         See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers
       schema:
         type: string
+        maxLength: 30
         example: '5.4.0'
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
@@ -819,6 +821,7 @@ components:
         See See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers
       schema:
         type: string
+        maxLength: 30
       example: "vipps-woocommerce"
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
@@ -828,6 +831,7 @@ components:
         See See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers
       schema:
         type: string
+        maxLength: 30
         example: "1.2.1"
     Payment-Reference-ID:
       name: reference
