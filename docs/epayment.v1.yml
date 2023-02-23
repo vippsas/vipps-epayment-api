@@ -774,7 +774,10 @@ components:
         minLength: 4
         maxLength: 6
         example: '123456'
-      description: "The Sale unit's MSN: The unique identifier for the sale unit."
+      description: |-
+        The Sale unit's MSN: The unique identifier for the sale unit.
+        MSN is short for "Merchant Serial Number", but identifies a sale unit,
+        not a merchant.
     APIM-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
@@ -786,28 +789,38 @@ components:
     Vipps-System-Name:
       name: Vipps-System-Name
       in: header
-      description: The name of the ecommerce solution. One word in lowercase letters is good.
+      description: |-
+        The name of the ecommerce solution.
+        One word in lowercase letters is good.
+        See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers
       schema:
         type: string
         example: woocommerce
     Vipps-System-Version:
       name: Vipps-System-Version
       in: header
-      description: The version number of the ecommerce solution.
+      description: |-
+        The version number of the ecommerce solution.
+        See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers
       schema:
         type: string
         example: '5.4.0'
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
       in: header
-      description: The name of the ecommerce plugin (if applicable). One word in lowercase letters is good.
+      description: |-
+        The name of the ecommerce plugin (if applicable).
+        One word in lowercase letters is good.
+        See See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers
       schema:
         type: string
       example: "vipps-woocommerce"
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
       in: header
-      description: The version number of the ecommerce plugin (if applicable).
+      description: |-
+        The version number of the ecommerce plugin (if applicable).
+        See See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers
       schema:
         type: string
         example: "1.2.1"
@@ -820,14 +833,19 @@ components:
         pattern: '^[a-zA-Z0-9-]{8,50}$'
         minLength: 1
         maxLength: 50
-      description: The primary reference when creating the payment. Similar to orderId in the eCom API.
+      description: |-
+        The primary reference when creating the payment.
+        Similar to orderId in the eCom API.
+        See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid
     Idempotency-Key:
       name: Idempotency-Key
       in: header
       required: true
       schema:
         type: string
-      description: 'Idempotency key for the request, ensures idempotent actions.'
+      description: |-
+        Idempotency key for the request, ensures idempotent actions.
+        See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers#idempotency
   securitySchemes:
     Bearer-Authorization:
       name: Authorization
