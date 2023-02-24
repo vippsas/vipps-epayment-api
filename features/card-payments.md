@@ -9,5 +9,5 @@ END_METADATA -->
 
 # Credit/Debit card payments
 
-Using epayments API merchants can also accept payments from users who do not have Vipps app by setting paymentMethod type as `CARD`.
+Using epayment API merchants can also accept payments from users who do not have Vipps app by setting paymentMethod type as `CARD`.
 

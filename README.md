@@ -17,7 +17,7 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
-Vipps ePayments API is the successor to the [Vipps eCommerce API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api).
+Vipps ePayment API is the successor to the [Vipps eCommerce API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api).
 The ePayment API allows merchants to accept payments using the following payment methods
 
 * [Credit/Debit cards](/features/card-payments.md)

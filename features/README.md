@@ -10,5 +10,8 @@ END_METADATA -->
 
 # Features
 
-* [Customer preset payments](customer-present-payments.md)
+* [Credit/Debit card payments](card-payments.md)
+* [Vipps wallet payments](user-flow.md)
+* [Customer present payments](customer-present-payments.md)
 * [Profile sharing](profile-sharing.md)
+* [Long living payments](long-living-payments.md)

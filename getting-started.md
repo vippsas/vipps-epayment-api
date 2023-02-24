@@ -13,17 +13,17 @@ import ApiSchema from '@theme/ApiSchema';
 
 END_METADATA -->
 
-# Getting Started with the Vipps ePayments API
+# Getting Started with the Vipps ePayment API
 
 ## Before you begin
 
-This document covers the quick steps for getting started with the Vipps ePayments API.
+This document covers the quick steps for getting started with the Vipps ePayment API.
 You must have already signed up as a organisation with Vipps and have your test credentials from the merchant portal, as described in the
 [Vipps Getting Started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started).
 
 <!-- START_COMMENT -->
 <!--
-Once your merchant account is setup for ePayments, you should look at available configuration options, such as
+Once your merchant account is setup for Merchant Payments, you should look at available configuration options, such as
 [Notifications Webhooks](how-to-setup-notification-webhooks.md).
 -->
 <!-- END_COMMENT -->
@@ -222,11 +222,11 @@ If the user had rejected the payment, the event would look like
 ## Next Steps
 
 Now that you have completed your first payment,
-read further to see the full range of possibilities within the Vipps ePayments API.
+read further to see the full range of possibilities within the Vipps ePayment API.
 
 - [Capture the payment](modifications/capture.md)
 - [Payment modification, how to use cancel, capture and refund?](modifications/README.md)
-- [Using Vipps ePayments in a shopper present context](features/customer-present-payments.md)
+- [Using Vipps ePayment API in a shopper present context](features/customer-present-payments.md)
 - [Profile sharing, requesting the users personal information](features/profile-sharing.md)
 
 <!-- START_COMMENT -->
