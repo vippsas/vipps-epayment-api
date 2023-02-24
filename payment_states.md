@@ -43,7 +43,7 @@ CAPTURED --> REFUNDED
 REFUNDED : REFUNDED
 REFUNDED : Payment fully or partially refunded\nDefined by ""aggregate.refundedAmount"" object
 REFUNDED --> [*] : Once payment is\nfully refunded
-CREATED --> CANCELLED : Not possible if the user is \nactively authorising the \npayment
+CREATED --> CANCELLED : Not possible if the user is \nactively authorizing the \npayment
 AUTHORIZED --> CANCELLED 
 CAPTURED --> CANCELLED : Not possible after \nfull capture
 CANCELLED : CANCELLED
