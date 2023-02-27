@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
-title: Payment states
-id: payment-states
+title: Modify Payment
+id: Modify Payment
 pagination_prev: APIs/epayment-api/getting-started
 pagination_next: APIs/epayment-api/modifications/capture
 sidebar_label: Modifications
