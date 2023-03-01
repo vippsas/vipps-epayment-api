@@ -149,7 +149,7 @@ This generates a QR code that a user can scan to initiate a Vipps authorization 
    of payment where you cause a notification from the Vipps app on the user's mobile phone.
 
    You must provide your test mobile number *and*
-   your sale unit must be configured for *skip landing page*.
+   your sales unit must be configured for *skip landing page*.
 
    For this payment type, `userFlow` is set to `PUSH_MESSAGE`.
 
