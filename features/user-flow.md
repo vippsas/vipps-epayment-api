@@ -15,6 +15,7 @@ Flag payment with `"userFlow": "WEB_REDIRECT"`.
 ### WEB_REDIRECT
 
 Default flow for payments, opening the Vipps Landing Page on desktop, and automatic redirect to Vipps on mobile devices. 
+Must be used when payment type is `CARD`.
 
 ### PUSH_MESSAGE
 
