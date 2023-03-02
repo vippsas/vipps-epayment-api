@@ -276,7 +276,7 @@ components:
           type: boolean
           default: false
           description: |-
-            For special cases. The sale unit must be configured by Vipps.
+            For special cases. The sales unit must be configured by Vipps.
             We strongly recommend using "reserve capture" in all situations.
             Default is `false`.
         customer:
@@ -297,8 +297,6 @@ components:
           default: CUSTOMER_NOT_PRESENT
         industryData:
           $ref: '#/components/schemas/IndustryData'
-        receipt:
-          $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.0/docs/swagger.yaml#/components/schemas/Receipt'
         paymentMethod:
           $ref: '#/components/schemas/PaymentMethod'
         profile:
@@ -780,7 +778,7 @@ components:
         maxLength: 6
         example: '123456'
       description: |-
-        The Sale unit's MSN: The unique identifier for the sale unit.
+        The Sales unit's MSN: The unique identifier for the sale unit.
         MSN is short for "Merchant Serial Number", but identifies a sale unit,
         not a merchant.
     APIM-Subscription-Key:
