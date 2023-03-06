@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: Queries
+title: Query Payment
 sidebar_label: Queries
 hide_table_of_contents: true
 pagination_next: null

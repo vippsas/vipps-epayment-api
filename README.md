@@ -17,13 +17,20 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
-The ePayment API allows you to create payments using the following user flows:
+Vipps ePayment API is the successor to the [Vipps eCommerce API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api).
+The ePayment API allows merchants to accept payments using the following payment methods
 
-* Open the [Vipps landing page](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/vipps-landing-page).
-* Open the Vipps app on the user's mobile phone.
-* Cause a notification from the user's Vipps app.
-* Generate a QR code that a user can scan to send the request to their Vipps app.
+* [Vipps Wallet](/features/user-flow.md)
+* [Credit/Debit cards](/features/card-payments.md)
 
-You can also get payment details, get user info, capture payments, and refund payments.
+Merchant can 
+* [create the payment](/create/README.md)
+* [query the payment](/queries/README.md)
+* [capture/refund/cancel payment](/modifications/README.md)
+
+## How it works
+
+* [Vipps ePayment API: How It Works](vipps-epayment-api-how-it-works-online.md):  Let your customers pay with Vipps online or in your app.
+* [Vipps In Store](vipps-epayment-api-how-it-works-in-store.md): How the Vipps eCom API can be integrated in your Point Of Sale (POS) system.
 
 To get started, see the [ePayment getting started guide](getting-started.md).

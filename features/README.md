@@ -10,5 +10,14 @@ END_METADATA -->
 
 # Features
 
-* [Customer preset payments](customer-present-payments.md)
+| Features    | Wallet | Card |
+| -------- | ------- | -------|
+| Profile sharing  | :white_check_mark:    | :x: |
+| Extended expiration payments    | :white_check_mark:    | :x: |
+| Customer present payments    | :white_check_mark:    | :white_check_mark: |
+| Native app switch | :white_check_mark:     | :x: |
+
+More information abour the features
 * [Profile sharing](profile-sharing.md)
+* [Long living payments](long-living-payments.md)
+* [Customer present payments](customer-present-payments.md)
