@@ -20,13 +20,15 @@ END_METADATA -->
 Vipps ePayment API is the successor to the [Vipps eCommerce API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api).
 The ePayment API allows merchants to accept payments using the following payment methods
 
-* [Vipps Wallet](/features/user-flow.md)
-* [Credit/Debit cards](/features/card-payments.md)
+* [Vipps Wallet]
+* [Credit/Debit cards]
 
 Merchant can 
-* [create the payment](/create/README.md)
-* [query the payment](/queries/README.md)
-* [capture/refund/cancel payment](/modifications/README.md)
+* [create the payment](create/README.md)
+<!-- START_COMMENT --
+* [query the payment](queries/README.md)
+<!-- END_COMMENT -->
+* [capture/refund/cancel payment](modifications/README.md)
 
 ## How it works
 
