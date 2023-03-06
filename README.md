@@ -25,7 +25,7 @@ The ePayment API allows merchants to accept payments using the following payment
 
 Merchant can 
 * [create the payment](create/README.md)
-<!-- START_COMMENT --
+<!-- START_COMMENT -->
 * [query the payment](queries/README.md)
 <!-- END_COMMENT -->
 * [capture/refund/cancel payment](modifications/README.md)
