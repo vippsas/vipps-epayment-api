@@ -4,6 +4,7 @@ title: Profile sharing
 hide_table_of_contents: true
 pagination_next: null
 pagination_prev: APIs/epayment-api/getting-started
+sidebar_position: 10
 ---
 END_METADATA -->
 

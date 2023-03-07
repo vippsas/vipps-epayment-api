@@ -1,15 +1,15 @@
 <!-- START_METADATA
 ---
-title: Create Payment
-sidebar_label: Create
+title: Create payment
+sidebar_label: Create payment
 hide_table_of_contents: true
 pagination_next: null
 pagination_prev: null
-sidebar_position: 76
+sidebar_position: 20
 ---
 END_METADATA -->
 
-# Create Payment
+# Create payment
 
 The first step in the payment flow is creating a payment by calling [CreatePayment](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments) endpoint. This endpoint supports card and wallet as payment methods and different user flows for each.
 
@@ -29,7 +29,8 @@ flowchart TD
 
 ### WEB_REDIRECT
 
-Default flow for
+Default flow for:
+
 - wallet payments
     - Opening the Vipps Landing Page on desktop, and automatic redirect to Vipps on mobile devices. More information at [Vipps landing page](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/vipps-landing-page)
 - card payments

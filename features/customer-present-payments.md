@@ -1,9 +1,10 @@
 <!-- START_METADATA
 ---
-title: Customer present payments
+title: Customer-present payments
 hide_table_of_contents: true
 pagination_next: null
 pagination_prev: APIs/epayment-api/getting-started
+sidebar_position: 30
 ---
 END_METADATA -->
 

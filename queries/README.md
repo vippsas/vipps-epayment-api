@@ -15,4 +15,4 @@ END_METADATA -->
 Types of queries:
 
 * [Get payment](get-payment.md)
-* [Get payment event log](./get-payment-event-log.md)
+* [Get payment event log](get-payment-event-log.md)
