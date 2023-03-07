@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
 title: How it works in the store
-sidebar_position: 9
+sidebar_position: 20
 ---
 END_METADATA -->
 
@@ -10,7 +10,7 @@ END_METADATA -->
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
 
 <!-- END_COMMENT -->
 
@@ -20,31 +20,30 @@ It is also possible to use our simpler solution Vippsnummer, but then the amount
 
 ## The payment process in store
 
-![In store process](images/vipps-in-store-process.svg)
+![In store process](../images/vipps-in-store-process.svg)
 
 ## 1. Add products to sell
 
 Add the products that the customer wants to buy in the POS system.
 
-![The POS system](images/vipps-in-store-step1.svg)
+![The POS system](../images/vipps-in-store-step1.svg)
 
 ## 2. Enter the customer's phone number
 
 When the customer is ready to pay, choose “Pay with Vipps”, and enter the customer’s phone number.
 
-![Enter phone number](images/vipps-in-store-step2.svg)
+![Enter phone number](../images/vipps-in-store-step2.svg)
 
 ## 3. The customer confirms payment in Vipps
 
 The customer confirms the payment in Vipps on their phone.
 
-![Confirm payment](images/vipps-in-store-step3-2.svg)
+![Confirm payment](../images/vipps-in-store-step3-2.svg)
 
 ## 4. Payment is registered
 
 The payment is registered in the POS system.
 
-![Payment confirmation](images/vipps-in-store-step4.svg)
+![Payment confirmation](../images/vipps-in-store-step4.svg)
 
-## Great! Now you know how the Vipps in store payment process works.
-
+Great! Now you know how the Vipps in store payment process works.

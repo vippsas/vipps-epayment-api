@@ -1,13 +1,16 @@
 <!-- START_METADATA
 ---
-title: Long living payments
+title: Long-living payments
 hide_table_of_contents: true
 pagination_next: null
 pagination_prev: APIs/epayment-api/getting-started
+sidebar_position: 20
 ---
 END_METADATA -->
 
-The ePayment API supports long-living payments for paymentMethod type as `WALLET`, where the merchant can specify the expiration time when initiating the payment with POST:/epayment/v1/payments.
+# Long-living payments
+
+The ePayment API supports long-living payments for paymentMethod type as `WALLET`, where the merchant can specify the expiration time when initiating the payment with [`POST:/epayment/v1/payments`](https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments).
 
 **Please note:** Sales units (i.e., Merchant Serial Numbers (MSNs)) must be especially approved to use this feature.
 Vipps wants the user experience, including the standard timeout, to be as
