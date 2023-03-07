@@ -17,7 +17,7 @@ END_METADATA -->
 | Customer present payments    | :white_check_mark:    | :white_check_mark: |
 | Native app switch | :white_check_mark:     | :x: |
 
-More information abour the features
+More information about the features
 * [Profile sharing](profile-sharing.md)
 * [Long living payments](long-living-payments.md)
 * [Customer present payments](customer-present-payments.md)

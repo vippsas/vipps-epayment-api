@@ -28,15 +28,18 @@ flowchart TD
 ## User flow alternatives
 
 ### WEB_REDIRECT
+
 Default flow for
 - wallet payments
     - Opening the Vipps Landing Page on desktop, and automatic redirect to Vipps on mobile devices. More information at [Vipps landing page](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/vipps-landing-page)
-- card paymemts
+- card payments
     - Opening the Vipps card entry page on both desktop/mobile. More information at [Card payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-api-faq#card-payments)
 
 ### PUSH_MESSAGE
+
 Applicable only for Wallet payments. This will skip the Vipps landing page and is only allowed if user is not starting the payment from own device (e.g., from a Point Of Sale device, automates and similar). 
 If userFlow is `PUSH_MESSAGE`, a valid value for `$.customer.phoneNumber` is required.
 
 ### QR
+
 Applicable only for Wallet payments. For customer facing screens where payment can be initiated with [Vipps One Time Payment QR](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api/vipps-qr-one-time-payment-api-howitworks).
