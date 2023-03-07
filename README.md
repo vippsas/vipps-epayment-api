@@ -32,7 +32,7 @@ Merchant can
 
 ## How it works
 
-* [Vipps ePayment API: How It Works](vipps-epayment-api-how-it-works-online.md):  Let your customers pay with Vipps online or in your app.
-* [Vipps In Store](vipps-epayment-api-how-it-works-in-store.md): How the Vipps eCom API can be integrated in your Point Of Sale (POS) system.
+* [Vipps ePayment API: How It Works](./how-it-works/vipps-epayment-api-how-it-works-online.md): Let your customers pay with Vipps online or in your app.
+* [Vipps In Store](./how-it-works/vipps-epayment-api-how-it-works-in-store.md): How the Vipps eCom API can be integrated in your Point Of Sale (POS) system.
 
 To get started, see the [ePayment getting started guide](getting-started.md).
