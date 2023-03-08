@@ -23,7 +23,7 @@ flowchart TD
     Card --> CARD_WEB_REDIRECT[fa:fa-desktop userFlow: WEB_REDIRECT]
 ```
 
-`paymentMethod.type` in the request determines the type of payment. Allowed values are `CARD` and `WALLET`
+`paymentMethod.type` in the request determines the type of payment. Allowed values are `CARD` and `WALLET`. Please note that Card payment is not available in our test environment, but works in production. 
 
 ## User flow alternatives
 
