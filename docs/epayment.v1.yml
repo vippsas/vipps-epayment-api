@@ -307,6 +307,8 @@ components:
       example: NOK
       enum:
         - NOK
+        - DKK
+        - EUR
       description: Currency code as defined in ISO 4217. eg NOK for Norwegian kroner.
     Metadata:
       type: object
