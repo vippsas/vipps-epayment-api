@@ -9,10 +9,9 @@ END_METADATA -->
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the new documentation:
+ℹ️ Please use the website:
 
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/)
-[Vipps ePayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api)
+[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api)
 
 <!-- END_COMMENT -->
 
