@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
-title: Modify Payment
-sidebar_label: Modify Payment
+title: Modify payment with the ePayment API
+sidebar_label: Modify payment
 id: Modify Payment
 pagination_prev: APIs/epayment-api/getting-started
 pagination_next: APIs/epayment-api/modifications/capture

@@ -1,8 +1,10 @@
 <!-- START_METADATA
 ---
-title: Cancel
+title: Cancel the payment with the ePayment API
+sidebar_label: Cancel
 id: cancel
 sidebar_position: 20
+description: Get payment event log with the ePayment API.
 pagination_prev: APIs/epayment-api/getting-started
 pagination_next: null
 ---

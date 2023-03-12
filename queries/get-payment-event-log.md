@@ -1,12 +1,13 @@
 <!-- START_METADATA
 ---
-title: Get payment event log
-hide_table_of_contents: true
+title: Get payment event log with the ePayment API
+sidebar_label: Get payment event log
+sidebar_position: 20
+description: Get payment event log with the ePayment API.
 pagination_next: null
 pagination_prev: null
 draft: true
 ---
 END_METADATA -->
-
 
 # Get payment event log

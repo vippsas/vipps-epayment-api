@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: Create payment
+title: Create payment with the ePayment API
 sidebar_label: Create payment
 hide_table_of_contents: true
 pagination_next: null
