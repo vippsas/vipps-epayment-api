@@ -1,6 +1,7 @@
 <!-- START_METADATA
 ---
-title: Refund
+title: Refund the payment with the ePayment API
+sidebar_label: Refund
 id: refund
 sidebar_position: 30
 pagination_prev: APIs/epayment-api/modifications/capture

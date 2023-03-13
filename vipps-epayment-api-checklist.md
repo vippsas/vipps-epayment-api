@@ -1,7 +1,11 @@
 <!-- START_METADATA
 ---
-title: Checklist
+title: eCom API checklist
+sidebar_label: Checklist
 sidebar_position: 100
+description: Checklist for full integration with the ePayment API.
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
@@ -9,10 +13,9 @@ END_METADATA -->
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the new documentation:
+ℹ️ Please use the website:
 
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/)
-[Vipps ePayment API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api)
+[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api)
 
 <!-- END_COMMENT -->
 

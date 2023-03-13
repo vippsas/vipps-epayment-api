@@ -20,23 +20,8 @@ Request user consent to information and review information.
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
-
-## Table of Contents
-
-* [Postman](#postman)
-  * [Prerequisites](#prerequisites)
-  * [Step 1: Get the Vipps Postman collection and environment](#step-1-get-the-vipps-postman-collection-and-environment)
-  * [Step 2: Import the Vipps Postman files](#step-2-import-the-vipps-postman-files)
-  * [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
-* [Make API calls](#make-api-calls)
-  * [A simple ePayment payment with web redirect](#a-simple-epayment-payment-with-web-redirect)
-  * [An ePayment payment which provides a QR code](#an-epayment-payment-which-provides-a-qr-code)
-  * [An ePayment payment which causes a push request](#an-epayment-payment-which-causes-a-push-request)
-  * [An ePayment payment which causes a native redirect](#an-epayment-payment-which-causes-a-native-redirect)
-  * [Getting access to user info](#getting-access-to-user-info)
-  * [Test with Force Approve](#test-with-force-approve)
+ℹ️ Please use the website:
+[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
 
 <!-- END_COMMENT -->
 
@@ -47,14 +32,14 @@ Request user consent to information and review information.
 Review
 [Vipps quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/quick-start-guides) for information about getting your test environment set up.
 
-### Step 1: Get the Vipps Postman collection and environment
+### Step 1: Get the Postman collection and environment
 
 Save the following files to your computer:
 
-* [Vipps ePayment API Postman collection](tools/vipps-epayment-api-postman-collection.json)
-* [Vipps API Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
+* [ePayment API Postman collection](tools/vipps-epayment-api-postman-collection.json)
+* [Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
-### Step 2: Import the Vipps Postman files
+### Step 2: Import the Postman files
 
 1. In Postman, click *Import* in the upper-left corner.
 1. In the dialog that opens, with *File* selected, click *Upload Files*.
