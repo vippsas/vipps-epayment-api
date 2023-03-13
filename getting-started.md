@@ -1,6 +1,5 @@
 <!-- START_METADATA
 ---
-title: Getting started
 title: Getting started with the ePayment API
 sidebar_label: Getting started
 id: getting-started

@@ -1,6 +1,7 @@
 <!-- START_METADATA
 ---
 title: Profile sharing
+sidebar_label: Profile sharing
 hide_table_of_contents: true
 pagination_next: null
 pagination_prev: APIs/epayment-api/getting-started

@@ -1,11 +1,12 @@
 <!-- START_METADATA
 ---
-title: How it works online
+title: How ePayment works online
+sidebar_label: How it works online
 sidebar_position: 10
 ---
 END_METADATA -->
 
-# How it works online
+# How ePayment works online
 
 <!-- START_COMMENT -->
 
