@@ -1,11 +1,12 @@
 <!-- START_METADATA
 ---
 title: How it works in the store
+sidebar_label: How ePayment works in the store
 sidebar_position: 20
 ---
 END_METADATA -->
 
-# How it works in the store
+# How ePayment works in the store
 
 <!-- START_COMMENT -->
 

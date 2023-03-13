@@ -1,6 +1,7 @@
 <!-- START_METADATA
 ---
-title: "How it works"
+title: How it works
+sidebar_label: How ePayment works
 sidebar_position: 5
 pagination_next: null
 pagination_prev: null
@@ -18,5 +19,5 @@ END_METADATA -->
 
 The following guides illustrate how the ePayment API works in different scenarios:
 
-* [How it works online](vipps-epayment-api-how-it-works-online.md)
-* [How it works in the store](vipps-epayment-api-how-it-works-in-store.md)
+* [How ePayment works online](vipps-epayment-api-how-it-works-online.md)
+* [How ePayment works in the store](vipps-epayment-api-how-it-works-in-store.md)
