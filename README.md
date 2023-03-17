@@ -25,7 +25,7 @@ The ePayment API is the successor to the [eCommerce API](https://vippsas.github.
 The ePayment API allows merchants to accept payments using the following payment methods:
 
 * Vipps Wallet
-* Credit and debit cards
+* Credit and debit cards (Please note card payment is not available in test environment at the moment)
 
 Merchants can do the following:
 
