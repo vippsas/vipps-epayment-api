@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
-title: How it works
-sidebar_label: How ePayment works
+title: How ePayment works
+sidebar_label: How it works
 sidebar_position: 5
 pagination_next: null
 pagination_prev: null

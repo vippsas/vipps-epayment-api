@@ -11,7 +11,14 @@ END_METADATA -->
 
 # Payment session states
 
-Once a payment is `CREATED`, several modification actions can be made. Modification actions are defined as separate endpoints in the api. These are:
+Once a payment is `CREATED`, several modification actions can be made.
+These are:
+
+- [Capture](./modifications/capture.md)
+- [Refund](./modifications/refund.md)
+- [Cancel](./modifications/cancel.md)
+
+Modification actions are defined as separate endpoints in the api.
 
 The following flow diagram describes when each modification action is applicable.
 
@@ -49,3 +56,4 @@ CANCELLED : CANCELLED
 CANCELLED : Cancel the remaining un-captured amount\nDefined by ""aggregate.cancelledAmount"" object
 CANCELLED --> [*]
 ```
+
