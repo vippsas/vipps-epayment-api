@@ -12,6 +12,9 @@ pagination_prev: null
 ---
 
 import ApiSchema from '@theme/ApiSchema';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 
 END_METADATA -->
 
@@ -32,30 +35,134 @@ Once your merchant account is setup for Merchant Payments, you should look at av
 
 ## Your first Vipps Payment
 
-This document targets the Test environment in Vipps which uses the domain `https://apitest.vipps.no`.
 
-Once your account is active in production use the domain `https://api.vipps.no`.
+### Step 1 - Setup
+<Tabs
+defaultValue="postman"
+groupId="sdk-choice"
+values={[
+{label: 'Postman', value: 'postman'},
+{label: 'curl', value: 'curl'},
+]}>
+<TabItem value="postman">
 
-### Step 1 - Authentication
+Save the following files to your computer:
+
+* [ePayment API Postman collection](tools/vipps-epayment-api-postman-collection.json)
+* [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
+
+Then, import the Postman files
+
+1. In Postman, click *Import* in the upper-left corner.
+1. In the dialog that opens, with *File* selected, click *Upload Files*.
+1. Select the two files you have just downloaded and click *Import*.
+
+Lastly, tweak the Postman environment with your own secrets
+
+1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.
+2. Click the "eye" icon and, in the dropdown window, click `Edit` in the top-right corner.
+3. Fill in the `Current Value` for the following fields to get started.
+   For the first keys, go to *Vipps Portal* > *Utvikler* ->  *Test Keys*.
+    * `client_id` - Merchant key is required for getting the access token.
+    * `client_secret` - Merchant key is required for getting the access token.
+    * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
+    * `merchantSerialNumber` - Merchant id.
+    * `internationalMobileNumber` - The MSISDN for the test app profile you have received or registered. This is your test mobile number *including* country code.
+
+</TabItem>
+<TabItem value="curl">
+
+No setup needed :)
+
+</TabItem>
+<TabItem value="csharp">
+
+Install the Vipps .NET SDK to your project
+
+```csharp
+dotnet add package vipps.net
+```
+
+</TabItem>
+</Tabs>
+
+
+### Step 2 - Authentication
+
+For all of the following, you will need an `access_token` from the [Get Access Token][access-token-endpoint] endpoint.
+This provides you with access to the API.
+
+<Tabs
+defaultValue="postman"
+groupId="sdk-choice"
+values={[
+{label: 'Postman', value: 'postman'},
+{label: 'curl', value: 'curl'},
+]}>
+<TabItem value="postman">
+
+```bash
+Send request Get Access Token
+```
+
+</TabItem>
+<TabItem value="curl">
 
 ```bash
 curl https://apitest.vipps.no/accessToken/get \
 -H "client_id: YOUR-CLIENT-ID" \
 -H "client_secret: YOUR-CLIENT-SECRET" \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
--X POST
+-X POST \
+--data ''
 ```
 
-In response, you will get a body with the following schema.
+</TabItem>
+<TabItem value="csharp">
+
+The Vipps-net SDK will handle Access Token fetching for you, all you need to do is to add the following configuration code
+
+```csharp
+var vippsConfigurationOptions = new VippsConfigurationOptions
+{
+    ClientId = YOUR-CLIENT-ID,
+    ClientSecret = YOUR-CLIENT-SECRET,
+    MerchantSerialNumber = YOUR-MERCHANT-SERIAL-NUMBER,
+    SubscriptionKey = YOUR-SUBSCRIPTION-KEY,
+    UseTestMode = true // TODO?
+};
+
+VippsConfiguration.ConfigureVipps(vippsConfigurationOptions);
+```
+
+</TabItem>
+</Tabs>
+
+
 The property `access_token` should be used for all other API requests in the `Authorization` header as the Bearer token.
 
-<ApiSchema id="access-token-swagger-id" pointer="#/components/schemas/AuthorizationTokenResponse" example />
+### Step 3 - A simple ePayment payment with web redirect
 
-### Step 2 - Create a payment
+Initiate a payment via the [Create Payment][create-payment-endpoint] endpoint.
+In this example, we use the default userflow, `WEB_REDIRECT`.
+This provides you with a link you can click to go to the landing page. When your test mobile number (with country code)
+is provided, it will be prefilled in the form.
 
-To create a payment session, you need to send the specifications of that payment to Vipps. There is an extensive selection of options available which you can combine to make your custom payment experience.
+<Tabs
+defaultValue="postman"
+groupId="sdk-choice"
+values={[
+{label: 'Postman', value: 'postman'},
+{label: 'curl', value: 'curl'},
+]}>
+<TabItem value="postman">
 
-To create a payment of 10 Norwegian Kroner, send a request like the one below:
+```bash
+Send request Create Payment - Web redirect
+```
+
+</TabItem>
+<TabItem value="curl">
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments \
@@ -73,51 +180,81 @@ curl https://apitest.vipps.no/epayment/v1/payments \
   "paymentMethod": {
     "type": "WALLET"
   },
+  "customer": {
+    "phoneNumber": "YOUR-TEST-PHONE-NUMBER (NB! MSISDN format)"
+  },
   "reference": "UNIQUE-PAYMENT-REFERENCE",
   "returnUrl": "https://yourwebsite.come/redirect?reference=abcc123",
-  "userFlow": "NATIVE_REDIRECT",
+  "userFlow": "WEB_REDIRECT",
   "paymentDescription": "A simple payment"
 }'
 ```
 
-The full list of payment options are:
+</TabItem>
+<TabItem value="csharp">
 
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/CreatePaymentRequest" />
+```csharp
+var reference = Guid.NewGuid().ToString();
+var customerPhoneNumber = "YOUR-TEST-PHONE-NUMBER (NB! MSISDN format)";
+var createPaymentRequest = new CreatePaymentRequest
+    {
+        Amount = new Amount
+        {
+            Currency = Currency.NOK,
+            Value = 1000 // 1000 øre = 10 KR
+        },
+        PaymentMethod = new PaymentMethod { Type = PaymentMethodType.WALLET },
+        UserFlow = CreatePaymentRequestUserFlow.WEB_REDIRECT,
+        Reference = reference,
+        PaymentDescription = "Two pair of socks and one coffee",
+        ReturnUrl = $"https://no.where.com/{reference}",
+        Customer = new Customer { PhoneNumber = customerPhoneNumber }
+    };
+var createPaymentResult = await EpaymentService.CreatePayment(createPaymentRequest);
+```
+
+</TabItem>
+</Tabs>
 
 
 
-A valid request like the one above will result in a response with the following structure.
+### Step 4 - Completing the payment
 
-
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/CreatePaymentResponse" example />
-
-
-The `redirectUrl` property should be used to direct the user to the Vipps app for completing the payment.
-
-### Step 3 - Completing the payment
-
-The user will be presented with the payment in the Vipps app, where they can complete or reject the payment. Once the user has acted upon the payment they will be redirected back to the specified `returnUrl` under a "best effort" policy.
+*Ctrl+click* (*Command-click* on macOS) on the link that appears and it will take you to the Vipps landing page.
+The phone number of your test user should already be filled in, so you only have to click "Next".
+You will be presented with the payment in the Vipps app, where you can complete or reject the payment.
+Once you have acted upon the payment you will be redirected back to the specified `returnUrl` under a "best effort" policy.
 
 :::note
 We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable and the user may choose to fully close the Vipps app or browser.
 :::
 
-To receive the result of the users action you may poll the status of the payment view the
-[Get Payment][get-payment-endpoint] and
-[Get Payment Event Log][get-payment-event-log-endpoint] endpoints.
+### Step 5 - Getting the status of the payment
 
 <!-- START_COMMENT -->
 <!--
-Alternatively, receive status updates over our [Notification Webhooks](how-to-setup-notification-webhooks.md) service
-
+The preferred way to receive status updates on a payment is to subscribe to Webhooks. Insert more info here
+[Notifications Webhooks](how-to-setup-notification-webhooks.md).
 -->
 <!-- END_COMMENT -->
 
-### Polling
+To receive the result of the user action you may poll the status of the payment via the [Get Payment][get-payment-endpoint].
 
-A request to the [Get Payment][get-payment-endpoint] URL will provide the current status of the payment and an aggregate of the captured and refunded amounts.
+<Tabs
+defaultValue="postman"
+groupId="sdk-choice"
+values={[
+{label: 'Postman', value: 'postman'},
+{label: 'curl', value: 'curl'},
+]}>
+<TabItem value="postman">
 
-Example request:
+```bash
+Send request Get payment
+```
+
+</TabItem>
+<TabItem value="curl">
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE \
@@ -126,13 +263,36 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE \
 -X GET
 ```
 
-Response:
+</TabItem>
+<TabItem value="csharp">
 
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/GetPaymentResponse" example />
+```csharp
+var payment = await EpaymentService.GetPayment(reference);
+```
+
+</TabItem>
+</Tabs>
+
 
 To verify that a payment has been authorized by the user, check that the `state` property is marked `AUTHORIZED`. If the user has instead chosen to reject the payment or chosen to click `cancel` on the landing page or in the Vipps App, the `state` property will be marked `ABORTED`. If the user did not act within the payment expiration time, the `state` property will be marked `EXPIRED`.
 
-For more details of the lifecycle of the payment session the Event Log endpoint can be used
+For more details of the lifecycle of the payment session the [Get Payment event log][get-payment-event-log-endpoint] endpoint.
+
+<Tabs
+defaultValue="postman"
+groupId="sdk-choice"
+values={[
+{label: 'Postman', value: 'postman'},
+{label: 'curl', value: 'curl'},
+]}>
+<TabItem value="postman">
+
+```bash
+Send request Get payment event log
+```
+
+</TabItem>
+<TabItem value="curl">
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/events \
@@ -141,85 +301,17 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/even
 -X GET
 ```
 
-Response is a list of
+</TabItem>
+<TabItem value="csharp">
 
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/PaymentEvent" example />
+```csharp
+var paymentEventLog = await EpaymentService.GetPaymentEventLog(reference);
+```
+
+</TabItem>
+</Tabs>
 
 In the case the payment has been completed this will yield an array of events like such:
-
-```json
-[
-  {
-    "reference": "UNIQUE-PAYMENT-REFERENCE",
-    "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-    "name": "CREATED",
-    "success": true,
-    "amount": {
-      "currency": "NOK",
-      "value": 1000
-    },
-    "timestamp": "2021-02-24T14:15:22Z",
-    "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
-  },
-  {
-    "reference": "UNIQUE-PAYMENT-REFERENCE",
-    "pspReference": "6037fc94-0205-4274-8b09-79cbb459658d",
-    "name": "AUTHORIZED",
-    "success": true,
-    "amount": {
-      "currency": "NOK",
-      "value": 1000
-    },
-    "timestamp": "2021-02-24T14:16:22Z"
-  }
-]
-```
-<!-- START_COMMENT -->
-<!--
-### Notification Events
-
-If you are not dependent on getting the payment result immediately, you may also use notification events to receive the payment status update via our [Notification Webhooks](how-to-setup-notification-webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment, this service has an eventual delivery guarantee rather than immediate delivery.
-
-:::info
-This means we may deliver the same message several times to verify successful delivery, use the `pspReference` field for duplicate delivery checking.
-:::
-
-If you use the notification service, you will receive events in the same format as those in the array list returned from the [Get Payment Events][get-payment-event-log-endpoint] endpoint.
-
-For example, a successful authentication event would look like
-
-```json
-{
- "reference": "UNIQUE-PAYMENT-REFERENCE",
- "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
- "name": "CREATED",
- "success": true,
- "amount": {
-   "currency": "NOK",
-   "value": 1000
- },
- "timestamp": "2021-02-24T14:15:22Z",
- "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
-}
-```
-
-If the user had rejected the payment, the event would look like
-
-```json
-{
-  "reference": "UNIQUE-PAYMENT-REFERENCE",
-  "pspReference": "38ab3a93-a819-4982-912d-089f3177e6c8",
-  "name": "TERMINATED",
-  "success": true,
-  "amount": {
-    "currency": "NOK",
-    "value": 1000
-  },
-  "timestamp": "2021-02-24T14:15:12Z"
-}
-```
--->
-<!-- END_COMMENT -->
 
 ## Next Steps
 
@@ -231,10 +323,9 @@ read further to see the full range of possibilities within the Vipps ePayment AP
 - [Using Vipps ePayment API in a shopper present context](features/customer-present-payments.md)
 - [Profile sharing, requesting the users personal information](features/profile-sharing.md)
 
-<!-- START_COMMENT -->
-<!-- [How to setup Notification Webhooks](how-to-setup-notification-webhooks.md) -->
-<!-- END_COMMENT -->
 
+
+[access-token-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
 [get-payment-event-log-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
