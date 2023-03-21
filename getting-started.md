@@ -235,6 +235,44 @@ We cannot guarantee the user will be redirected back to the same browser or sess
 <!--
 The preferred way to receive status updates on a payment is to subscribe to Webhooks. Insert more info here
 [Notifications Webhooks](how-to-setup-notification-webhooks.md).
+
+### Notification Events
+
+If you are not dependent on getting the payment result immediately, you may also use notification events to receive the payment status update via our [Notification Webhooks](how-to-setup-notification-webhooks.md) service. While we aim to deliver these event updates within a few seconds of the user completing the payment, this service has an eventual delivery guarantee rather than immediate delivery.
+:::info
+This means we may deliver the same message several times to verify successful delivery, use the `pspReference` field for duplicate delivery checking.
+:::
+
+If you use the notification service, you will receive events in the same format as those in the array list returned from the [Get Payment Events][get-payment-event-log-endpoint] endpoint.
+For example, a successful authentication event would look like
+```json
+{
+ "reference": "UNIQUE-PAYMENT-REFERENCE",
+ "pspReference": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+ "name": "CREATED",
+ "success": true,
+ "amount": {
+   "currency": "NOK",
+   "value": 1000
+ },
+ "timestamp": "2021-02-24T14:15:22Z",
+ "idempotencyKey": "IDEMPOTENCY-KEY-OF-REQUEST"
+}
+```
+If the user had rejected the payment, the event would look like
+```json
+{
+  "reference": "UNIQUE-PAYMENT-REFERENCE",
+  "pspReference": "38ab3a93-a819-4982-912d-089f3177e6c8",
+  "name": "TERMINATED",
+  "success": true,
+  "amount": {
+    "currency": "NOK",
+    "value": 1000
+  },
+  "timestamp": "2021-02-24T14:15:12Z"
+}
+```
 -->
 <!-- END_COMMENT -->
 
