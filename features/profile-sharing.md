@@ -4,7 +4,7 @@ title: Profile sharing
 sidebar_label: Profile sharing
 hide_table_of_contents: true
 pagination_next: null
-pagination_prev: APIs/epayment-api/getting-started
+pagination_prev: APIs/epayment-api/quick-start
 sidebar_position: 10
 ---
 END_METADATA -->
@@ -40,7 +40,7 @@ a customer. Details about each step are described in the sections below.
    Do not include the ``Ocp-Apim-Subscription-Key`` header. See more information under [Userinfo call](#userinfo-call).
 
 To test this out, see the step-by-step instructions in the
-[Getting Started](../getting-started.md).
+[Quick start](../quick-start.md).
 
 **Important note:** The API call to
 [`GET:/vipps-userinfo-api/userinfo/{sub}`](https://vippsas.github.io/vipps-developer-docs/api/userinfo#operation/getUserinfo)

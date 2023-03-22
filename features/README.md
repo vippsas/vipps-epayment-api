@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
 title: Features
-pagination_prev: APIs/epayment-api/getting-started
+pagination_prev: APIs/epayment-api/quick-start
 pagination_next: Null
 sidebar_label: Features
 sidebar_position: 40

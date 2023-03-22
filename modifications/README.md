@@ -3,7 +3,7 @@
 title: Modify payment with the ePayment API
 sidebar_label: Modify payment
 id: Modify Payment
-pagination_prev: APIs/epayment-api/getting-started
+pagination_prev: APIs/epayment-api/quick-start
 pagination_next: APIs/epayment-api/modifications/capture
 sidebar_position: 30
 ---
