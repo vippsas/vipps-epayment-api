@@ -5,7 +5,7 @@ sidebar_label: Cancel
 id: cancel
 sidebar_position: 20
 description: Get payment event log with the ePayment API.
-pagination_prev: APIs/epayment-api/getting-started
+pagination_prev: APIs/epayment-api/quick-start
 pagination_next: null
 ---
 

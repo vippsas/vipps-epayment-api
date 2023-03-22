@@ -4,7 +4,7 @@ title: Capture the payment with the ePayment API
 sidebar_label: Capture
 id: capture
 sidebar_position: 10
-pagination_prev: APIs/epayment-api/getting-started
+pagination_prev: APIs/epayment-api/quick-start
 pagination_next: APIs/epayment-api/modifications/refund
 ---
 import ApiSchema from '@theme/ApiSchema';

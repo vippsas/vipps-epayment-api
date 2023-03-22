@@ -1,8 +1,8 @@
 <!-- START_METADATA
 ---
-title: Getting started with the ePayment API
-sidebar_label: Getting started
-id: getting-started
+title: Quick start
+sidebar_label: Quick start
+id: quick-start
 sidebar_position: 10
 description: Quick steps for getting started with the ePayment API.
 toc_min_heading_level: 2
@@ -18,13 +18,13 @@ import TabItem from '@theme/TabItem';
 
 END_METADATA -->
 
-# Getting Started with the ePayment API
+# Quick start
 
 ## Before you begin
 
 This document covers the quick steps for getting started with the ePayment API.
 You must have already signed up as a organisation with Vipps MobilePay and have your test credentials from the merchant portal, as described in the
-[Vipps Getting Started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/getting-started).
+[Vipps Quick start guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/quick-start).
 
 <!-- START_COMMENT -->
 <!--

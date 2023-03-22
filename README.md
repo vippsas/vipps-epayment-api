@@ -40,4 +40,4 @@ Merchants can do the following:
 * [ePayment API: How It Works](./how-it-works/vipps-epayment-api-how-it-works-online.md): Let your customers pay with Vipps MobilePay online or in your app.
 * [ePayment API: How it works in the store](./how-it-works/vipps-epayment-api-how-it-works-in-store.md): How the ePayment API can be integrated in your Point Of Sale (POS) system.
 
-To get started, see the [ePayment getting started guide](getting-started.md).
+To get started, see the [ePayment getting started guide](quick-start.md).
