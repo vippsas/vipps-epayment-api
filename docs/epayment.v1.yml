@@ -591,7 +591,8 @@ components:
           type: string
           description: |-
             If `profile.scope` was requested in `createPayment` this value will populate once
-            `state` is `AUTHORIZED`. This can be used towards the Vipps Login Userinfo endpoint
+            `state` is `AUTHORIZED`. This can be used towards the
+            [Userinfo endpoint](https://vippsas.github.io/vipps-developer-docs/api/userinfo#operation/getUserinfo)
             to fetch requested user data.
     PaymentMethod:
       title: PaymentMethod
