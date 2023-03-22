@@ -144,7 +144,7 @@ The property `access_token` should be used for all other API requests in the `Au
 ### Step 3 - A simple ePayment payment with web redirect
 
 Initiate a payment via the [Create Payment][create-payment-endpoint] endpoint.
-In this example, we use the default userflow, `WEB_REDIRECT`.
+In this example, we use the default user flow, `WEB_REDIRECT`.
 This provides you with a link you can click to go to the landing page. When your test mobile number (with country code)
 is provided, it will be prefilled in the form.
 
