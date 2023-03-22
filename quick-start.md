@@ -349,7 +349,155 @@ var paymentEventLog = await EpaymentService.GetPaymentEventLog(reference);
 </TabItem>
 </Tabs>
 
-In the case the payment has been completed this will yield an array of events like such:
+### Step 6 - Capture the payment
+
+After the goods or services have been delivered, you can capture the authorized amount either partially or fully. Send a [Capture Request][capture-payment-endpoint].
+
+<Tabs
+defaultValue="postman"
+groupId="sdk-choice"
+values={[
+{label: 'Postman', value: 'postman'},
+{label: 'curl', value: 'curl'},
+]}>
+<TabItem value="postman">
+
+```bash
+Send request Capture payment
+```
+
+</TabItem>
+<TabItem value="curl">
+
+```bash
+curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capture \
+-H "Authorization: Bearer <TOKEN>" \
+-H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Content-Type: application/json" \
+-H "Idempotency-Key: UNIQUE-ID" \
+-H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-X POST \
+-d '{
+  "modificationAmount": {
+    "currency": "NOK",
+    "value": 1000
+  }
+}'
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+var captureAmount = new Amount() { Value = 1000, Currency = Currency.NOK };
+var captureResult = await EpaymentService.CapturePayment(
+reference,
+new CaptureModificationRequest { ModificationAmount = captureAmount });
+```
+
+</TabItem>
+</Tabs>
+
+See
+[Common topics: capture](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/reserve-and-capture#capture)
+for more details about the types of captures.
+
+### (Optional) Step 7 - Refund the payment
+
+To refund the captured amount, either partially or fully, send a [Refund Request][refund-payment-endpoint].
+
+<Tabs
+defaultValue="postman"
+groupId="sdk-choice"
+values={[
+{label: 'Postman', value: 'postman'},
+{label: 'curl', value: 'curl'},
+]}>
+<TabItem value="postman">
+
+```bash
+Send request Refund payment
+```
+
+</TabItem>
+<TabItem value="curl">
+
+```bash
+curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refund \
+-H "Authorization: Bearer <TOKEN>" \
+-H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Content-Type: application/json" \
+-H "Idempotency-Key: UNIQUE-ID" \
+-H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-X POST \
+-d '{
+  "modificationAmount": {
+    "currency": "NOK",
+    "value": 1000
+  }
+}'
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+```csharp
+var refundAmount = new Amount() { Value = 1000, Currency = Currency.NOK };
+var refundResult = await EpaymentService.RefundPayment(
+reference,
+new RefundModificationRequest { ModificationAmount = refundAmount });
+```
+
+</TabItem>
+</Tabs>
+
+See
+[Common topics: refund](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/refund)
+for more details about refunds.
+
+### (Optional) Step 8 - Cancel the payment
+
+To cancel the payment, either fully or after a partial capture, send a [Cancel Request][cancel-payment-endpoint].
+
+<Tabs
+defaultValue="postman"
+groupId="sdk-choice"
+values={[
+{label: 'Postman', value: 'postman'},
+{label: 'curl', value: 'curl'},
+]}>
+<TabItem value="postman">
+
+```bash
+Send request Cancel payment
+```
+
+</TabItem>
+<TabItem value="curl">
+
+```bash
+curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/cancel \
+-H "Authorization: Bearer <TOKEN>" \
+-H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Content-Type: application/json" \
+-H "Idempotency-Key: UNIQUE-ID" \
+-H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-X POST
+```
+
+</TabItem>
+<TabItem value="csharp">
+
+``` csharp
+var cancelResult = await EpaymentService.CancelPayment(reference);
+```
+
+</TabItem>
+</Tabs>
+
+See
+[Common topics: cancel](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/cancel)
+for more details about cancel.
 
 ## Next Steps
 
