@@ -77,7 +77,7 @@ var createPaymentRequest = new CreatePaymentRequest
         PaymentMethod = new PaymentMethod { Type = PaymentMethodType.CARD },
         UserFlow = CreatePaymentRequestUserFlow.WEB_REDIRECT,
         Reference = reference,
-        PaymentDescription = "Two pair of socks and one coffee",
+        PaymentDescription = "A simple free standing card payment",
         ReturnUrl = $"https://no.where.com/{reference}"
     };
 var createPaymentResult = await EpaymentService.CreatePayment(createPaymentRequest);
