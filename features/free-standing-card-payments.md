@@ -19,7 +19,7 @@ ePayments API supports Free Standing Card Payments, where any user can pay regar
 
 ## Create a Free Standing Card Payment
 Remember to have a fresh access token, see 
-[Setup and Authorize][setup-and-authorize].
+[Setup and Authorize](../quick-start.md#step-1---setup).
 Then, call the [Create Payment][create-payment-endpoint] endpoint with `paymentMethod.type = "CARD"`.
 
 
@@ -92,7 +92,7 @@ var createPaymentResult = await EpaymentService.CreatePayment(createPaymentReque
 The result of this request will contain a `redirectUrl` pointing to the card entry page.
 
 :::note
-The card entry page currently is not currently available in the test environment
+The card entry page currently is not currently available in the test environment.
 :::
 
 ![Enter card details](../images/vipps-ecom-pay-by-card-step2.png)
@@ -101,5 +101,4 @@ On successful payment, the user is redirected back to the merchant’s store, an
 
 
 
-[setup-and-authorize][../quick-start.md#step-1---setup]
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
