@@ -29,7 +29,7 @@ values={[
 <TabItem value="postman">
 
 ```bash
-Send request Create Payment - QR Payment
+Send request Create Payment - QR
 ```
 
 </TabItem>
