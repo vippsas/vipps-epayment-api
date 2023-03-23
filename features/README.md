@@ -10,14 +10,9 @@ END_METADATA -->
 
 # Features
 
-| Features    | Wallet | Card |
-| -------- | ------- | -------|
-| Profile sharing  | :white_check_mark:    | :x: |
-| Extended expiration payments    | :white_check_mark:    | :x: |
-| Customer present payments    | :white_check_mark:    | :white_check_mark: |
-| Native app switch | :white_check_mark:     | :x: |
-
-More information about the features
-* [Profile sharing](profile-sharing.md)
-* [Long living payments](long-living-payments.md)
-* [Customer present payments](customer-present-payments.md)
+## [Profile sharing](profile-sharing.md)
+## [Long living payments](long-living-payments.md)
+## [Customer present payments](customer-present-payments.md)
+## [Free Standing Card Payments](free-standing-card-payments.md)
+## [QR Payments](qr-payments.md)
+## [Webhooks](webhooks.md)
