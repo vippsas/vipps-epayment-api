@@ -29,7 +29,7 @@ values={[
 <TabItem value="postman">
 
 ```bash
-Send request Create Payment - Card Payment
+Send request Create Payment - QR Payment
 ```
 
 </TabItem>
@@ -77,7 +77,7 @@ var createPaymentRequest = new CreatePaymentRequest
         PaymentMethod = new PaymentMethod { Type = PaymentMethodType.WALLET },
         UserFlow = CreatePaymentRequestUserFlow.QR,
         Reference = reference,
-        PaymentDescription = "A simple free standing card payment",
+        PaymentDescription = "A QR payment",
         ReturnUrl = $"https://no.where.com/{reference}"
     };
 var createPaymentResult = await EpaymentService.CreatePayment(createPaymentRequest);
@@ -90,6 +90,6 @@ var createPaymentResult = await EpaymentService.CreatePayment(createPaymentReque
 ## Complete the payment
 
 The result of this request will contain a `redirectUrl` pointing to a link where you can download the QR image.
-Simply scan the image on your device, and the Vipps app will automatically open, where you can approve the payment.
+Simply scan the image with your mobile device, and the Vipps app will automatically open, where you can approve the payment.
 
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
