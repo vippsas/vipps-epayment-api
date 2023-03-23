@@ -14,7 +14,9 @@ END_METADATA -->
 
 # Webhooks
 
-💥 Work in progress 💥
+:::note
+Webhooks will be released early Q2.
+:::
 
 
 <!-- START_COMMENT -->
@@ -28,7 +30,7 @@ Add some nice text about getting started with Webhooks
 ePayments API offers the possibility to subscribe to webhooks for any number of events.
 For any webhook you will receive the following payload, where the only property changing is the `NAME`, which will reflect the event type you subscribed on.
 
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/PaymentEvent" />
+<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/PaymentEventv2" />
 
 <!-- START_COMMENT -->
 <!--

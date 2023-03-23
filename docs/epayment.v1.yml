@@ -635,6 +635,55 @@ components:
       required:
         - modificationAmount
         - modificationReference
+    PaymentEventv2:
+      title: PaymentEventV2
+      type: object
+      x-examples: {}
+      properties:
+        reference:
+          $ref: '#/components/schemas/Reference'
+        pspReference:
+          $ref: '#/components/schemas/PspReference'
+        name:
+          type: string
+          enum:
+            - CREATED
+            - ABORTED
+            - EXPIRED
+            - CANCELLED
+            - CAPTURED
+            - REFUNDED
+            - AUTHORIZED
+            - TERMINATED
+          example: AUTHORIZED
+          x-enum-varnames:
+            - CREATED
+            - ABORTED
+            - EXPIRED
+            - CANCELLED
+            - CAPTURED
+            - REFUNDED
+            - AUTHORIZED
+            - TERMINATED
+        amount:
+          $ref: '#/components/schemas/Amount'
+        timestamp:
+          type: string
+          format: date-time
+        idempotencyKey:
+          type: string
+          description: The Idempotency key of the request.
+          nullable: true
+        success:
+          type: boolean
+          description: The outcome of the event
+      required:
+        - reference
+        - pspReference
+        - name
+        - amount
+        - timestamp
+        - success
     PaymentEvent:
       title: PaymentEvent
       type: object
