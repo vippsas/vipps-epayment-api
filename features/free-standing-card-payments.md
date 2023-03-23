@@ -2,8 +2,6 @@
 ---
 title: Free Standing Card Payments
 hide_table_of_contents: true
-pagination_next: null
-pagination_prev: APIs/epayment-api/quick-start
 sidebar_position: 40
 ---
 
