@@ -12,8 +12,6 @@ END_METADATA -->
 
 # ePayment API
 
-💥 Work in progress 💥
-
 <!-- START_COMMENT -->
 
 ℹ️ Please use the website:
@@ -24,20 +22,23 @@ END_METADATA -->
 The ePayment API is the successor to the [eCommerce API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api).
 The ePayment API allows merchants to accept payments using the following payment methods:
 
-* Vipps Wallet
-* Credit and debit cards (Please note card payment is not available in test environment at the moment)
-
-Merchants can do the following:
-
-* [Create the payment](create/README.md)
-<!-- START_COMMENT -->
-* [Query the payment](queries/README.md)
-<!-- END_COMMENT -->
-* [Capture, refund, and cancel payment](modifications/README.md)
+* [Vipps Wallet](how-it-works/vipps-epayment-api-how-it-works-online.md#1-pay-with-vipps)
+* [Credit and debit cards](features/free-standing-card-payments.md) (Please note card payment is not available in test environment at the moment)
 
 ## How it works
 
 * [ePayment API: How It Works](./how-it-works/vipps-epayment-api-how-it-works-online.md): Let your customers pay with Vipps MobilePay online or in your app.
 * [ePayment API: How it works in the store](./how-it-works/vipps-epayment-api-how-it-works-in-store.md): How the ePayment API can be integrated in your Point Of Sale (POS) system.
 
-To get started, see the [ePayment getting started guide](quick-start.md).
+## Next steps
+
+See
+[Getting Started](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
+for information about API keys, product activation, how to make API calls, etc.
+
+Review the detailed documentation found here:
+
+* [Quick start](quick-start.md)
+* [Features](features/README.md): Developer guide for Vipps eCom API.
+* [Checklist](vipps-epayment-api-checklist.md): For direct and POS integrations.
+* [Reference](https://vippsas.github.io/vipps-developer-docs/api/epayment): ePayments API reference specifications.
