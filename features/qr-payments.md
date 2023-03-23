@@ -6,6 +6,10 @@ pagination_next: null
 pagination_prev: APIs/epayment-api/quick-start
 sidebar_position: 50
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 END_METADATA -->
 
 # QR Payments
