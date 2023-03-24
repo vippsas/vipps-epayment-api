@@ -10,9 +10,9 @@ END_METADATA -->
 
 # Features
 
-## [Profile sharing](profile-sharing.md)
-## [Long living payments](long-living-payments.md)
-## [Customer present payments](customer-present-payments.md)
-## [Free Standing Card Payments](free-standing-card-payments.md)
-## [QR Payments](qr-payments.md)
-## [Webhooks](webhooks.md)
+* ### [Profile sharing](profile-sharing.md)
+* ### [Long living payments](long-living-payments.md)
+* ### [Customer present payments](customer-present-payments.md)
+* ### [Free Standing Card Payments](free-standing-card-payments.md)
+* ### [QR Payments](qr-payments.md)
+* ### [Webhooks](webhooks.md)

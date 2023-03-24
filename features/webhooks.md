@@ -3,8 +3,6 @@
 title: Webhooks
 sidebar_label: Webhooks
 hide_table_of_contents: true
-pagination_next: null
-pagination_prev: APIs/epayment-api/quick-start
 sidebar_position: 60
 ---
 

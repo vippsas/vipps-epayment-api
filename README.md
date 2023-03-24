@@ -40,5 +40,5 @@ Review the detailed documentation found here:
 
 * [Quick start](quick-start.md)
 * [Features](features/README.md): Developer guide for Vipps eCom API.
-* [Checklist](vipps-epayment-api-checklist.md): For direct and POS integrations.
+* [Checklist](checklist.md): For direct and POS integrations.
 * [Reference](https://vippsas.github.io/vipps-developer-docs/api/epayment): ePayments API reference specifications.
