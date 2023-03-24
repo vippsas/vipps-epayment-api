@@ -12,7 +12,7 @@ END_METADATA -->
 
 # QR Payments
 
-ePayments API supports QR payments directly, making it even easier to provide
+ePayment API supports QR payments directly, making it even easier to provide
 [One-Time payment QR](https://vippsas.github.io/vipps-developer-docs/docs/vipps-solutions/qr-code-print).
 
 

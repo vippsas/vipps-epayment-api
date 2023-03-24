@@ -12,7 +12,7 @@ END_METADATA -->
 
 # Free Standing Card Payments
 
-ePayments API supports Free Standing Card Payments, where any user can pay regardless of having the Vipps app installed.
+ePayment API supports Free Standing Card Payments, where any user can pay regardless of having the Vipps app installed.
 
 
 ## Create a Free Standing Card Payment
