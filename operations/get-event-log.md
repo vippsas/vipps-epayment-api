@@ -8,7 +8,7 @@ description: Get payment events with the ePayment API.
 END_METADATA -->
 
 # Get payment event log
-A [Get payment event log][get-payment-endpoint] request will return a list of all events for a given payment.
+A [Get payment event log][get-payment-event-log-endpoint] request will return a list of all events for a given payment.
 
 An example request would look like:
 
