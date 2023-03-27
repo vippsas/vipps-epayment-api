@@ -14,9 +14,9 @@ END_METADATA -->
 Once a payment is `CREATED`, several modification actions can be made.
 These are:
 
-- [Capture](./modifications/capture.md)
-- [Refund](./modifications/refund.md)
-- [Cancel](./modifications/cancel.md)
+- [Capture](./operations/capture.md)
+- [Refund](./operations/refund.md)
+- [Cancel](./operations/cancel.md)
 
 Modification actions are defined as separate endpoints in the api.
 
@@ -56,4 +56,3 @@ CANCELLED : CANCELLED
 CANCELLED : Cancel the remaining un-captured amount\nDefined by ""aggregate.cancelledAmount"" object
 CANCELLED --> [*]
 ```
-

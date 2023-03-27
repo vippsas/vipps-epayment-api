@@ -504,8 +504,8 @@ for more details about cancel.
 Now that you have completed your first payment,
 read further to see the full range of possibilities within the Vipps ePayment API.
 
-- [Capture the payment](modifications/capture.md)
-- [Payment modification, how to use cancel, capture and refund?](modifications/README.md)
+- [Capture the payment](operations/capture.md)
+- [Payment modification, how to use cancel, capture and refund?](operations/README.md)
 - [Using Vipps ePayment API in a shopper present context](features/customer-present-payments.md)
 - [Profile sharing, requesting the users personal information](features/profile-sharing.md)
 

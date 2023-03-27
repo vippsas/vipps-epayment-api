@@ -7,13 +7,16 @@ sidebar_position: 30
 pagination_next: Null
 ---
 
-import ApiSchema from '@theme/ApiSchema';
-
 END_METADATA -->
 
-# Refunding a payment
+# Refund a payment
 
-A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the Merchant back to the customer.
+See
+[Common API topics - Refunds](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/refund)
+for a general introduction to refunds.
+
+
+A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the Merchant back to the customer. 
 
 Refunds can be made in full or partially as needed. The refund amount must be defined in the refund API request.
 
@@ -23,9 +26,6 @@ Refunded funds will be deducted from the merchants settlement account after two 
 
 If a customer has returned the goods or the service is not delivered you should refund the payment.
 This can be done through the [Refund Payment Endpoint][refund-payment-endpoint].
-This endpoint take the following properties in the body of the request
-
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/RefundModificationRequest" />
 
 An example refund would look like:
 
@@ -45,13 +45,9 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refu
 }'
 ```
 
-Response:
 
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/ModificationResponse" />
 
-A notification will also be sent once the modification is completed if a webhook is registered.
-
-After refund the `aggregate` object will be updated to reflect this, for example:
+In the response, the `aggregate` object will be updated to reflect the refunded amount, for example:
 
 ```json
 {
@@ -75,6 +71,8 @@ After refund the `aggregate` object will be updated to reflect this, for example
   }
 }
 ```
+
+A notification will also be sent once the refund is completed if a [webhook](../features/webhooks.md) is registered for the event `epayments.payment.refunded.v1`.
 
 ## Partial Refund
 
@@ -100,7 +98,7 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refu
 }'
 ```
 
-Once capture is completed the `aggregate` object will be updated to reflect this, for example:
+Once refund is completed the `aggregate` object will be updated to reflect the partial refund, for example:
 
 ```json
 {
