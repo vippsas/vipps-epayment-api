@@ -69,7 +69,7 @@ The ePayment API also supports a new flow, [the `QR` flow](https://vippsas.githu
 The ePayment API supports [Free standing Card Payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/free-standing-card-payments). Merchants are required to provide a value to the paymentMethod field to decide if this should be used.
 
 :::note
-The Wallet PaymentMethod means the user will use the Vipps app to pay. _The Card PaymentMethod is intended for users who don't want to use the app to pay._
+The `WALLET` payment method means the user will use the Vipps app to pay.  The `CARD` payment method is intended for users who are not able to (or don't want to) use the app to pay.
 :::
 ### Express Payments
 
