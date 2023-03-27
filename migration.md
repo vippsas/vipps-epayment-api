@@ -15,14 +15,14 @@ END_METADATA -->
 
 ## Why migrate to the ePayment API?
 
-The Vipps MobilePay ePayment API serves as the replacement for both the existing [eCom API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api) and the [App Payments API](https://developer.mobilepay.dk/docs/app-payments). The ePayment API will receive future updates and features, while the other APIs will only receive maintenance support. Merchants are therefore advised to migrate to the ePayment API.
+The Vipps MobilePay ePayment API serves as the replacement for both the existing [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) and the [App Payments API](https://developer.mobilepay.dk/docs/app-payments). The ePayment API will receive future updates and features, while the other APIs will only receive maintenance support. Merchants are therefore advised to migrate to the ePayment API.
 
 Features of the ePayment API include:
-* [Profile Sharing](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/profile-sharing)
-* [Long-Living transactions](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/long-living-payments)
-* [Free-standing Card Payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/free-standing-card-payments)
-* [QR Payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/qr-payments)
-* [Webhooks](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/webhooks)
+* [Profile Sharing](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/profile-sharing)
+* [Long-Living transactions](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/long-living-payments)
+* [Free-standing Card Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments)
+* [QR Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments)
+* [Webhooks](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks)
 
 
 ## Migrating from the eCom API
@@ -39,9 +39,9 @@ Merchants are advised to fully migrate over to the ePayment API. However, it is 
 
 ### Callbacks
 
-For payment callbacks, you no longer have to submit the `callbackPrefix` as part of the Initiate Payment request. Instead, you can use the [Webhooks API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/webhooks) to register URLs that will receive callbacks whenever various events occur for your payments.
+For payment callbacks, you no longer have to submit the `callbackPrefix` as part of the Initiate Payment request. Instead, you can use the [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks) to register URLs that will receive callbacks whenever various events occur for your payments.
 
-The Webhooks API provides _guaranteed delivery_ callbacks. If the callback is not successfully received on your end, we will retry sending it for several days. In addition, you can now receive callbacks for _all_ adjustments to your payment. Head over to the [Webhooks documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/webhooks) to read more.
+The Webhooks API provides _guaranteed delivery_ callbacks. If the callback is not successfully received on your end, we will retry sending it for several days. In addition, you can now receive callbacks for _all_ adjustments to your payment. Head over to the [Webhooks documentation](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks) to read more.
 
 ### Payment flows
 
@@ -51,7 +51,7 @@ In the eCom API, merchants could choose between three flows by specifying the pa
 * `isApp: true` and `skipLandingPage: false`  -> `NATIVE_REDIRECT`
 * `skipLandingPage: true`                     -> `PUSH_MESSAGE`
 
-The ePayment API also supports a new flow, [the `QR` flow](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/qr-payments). The QR flow provides you with a direct link to a one-time payment QR code that the user can scan and pay from their app.
+The ePayment API also supports a new flow, [the `QR` flow](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments). The QR flow provides you with a direct link to a one-time payment QR code that the user can scan and pay from their app.
 
 ### Renamed and altered fields
 
@@ -64,7 +64,7 @@ The ePayment API also supports a new flow, [the `QR` flow](https://vippsas.githu
 
 ### Payment Method
 
-The ePayment API supports [free-standing card payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/free-standing-card-payments). Merchants are required to provide a value to the paymentMethod field to decide if this should be used.
+The ePayment API supports [free-standing card payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments). Merchants are required to provide a value to the paymentMethod field to decide if this should be used.
 
 :::note
 The `WALLET` payment method means the user will use the Vipps app to pay.  The `CARD` payment method is intended for users who are not able to (or don't want to) use the app to pay.
@@ -88,4 +88,4 @@ In the ePayment API, this behavior works by default.
 
 ### Customer Present Payments
 
-See [Customer-Present Payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/customer-present-payments).
+See [Customer-Present Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/customer-present-payments).

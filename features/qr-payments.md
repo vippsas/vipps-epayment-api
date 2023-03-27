@@ -10,7 +10,7 @@ END_METADATA -->
 # QR Payments
 
 The ePayment API supports QR payments directly, making it easy to provide
-[One-Time payment QR](https://vippsas.github.io/vipps-developer-docs/docs/vipps-solutions/qr-code-print).
+[One-Time payment QR](https://developer.vippsmobilepay.com/docs/vipps-solutions/qr-code-print).
 
 
 ## Create a QR Payment
@@ -51,4 +51,4 @@ curl https://apitest.vipps.no/epayment/v1/payments \
 The result of this request will contain a `redirectUrl` pointing to a link where you can download the QR image.
 Simply scan the image with your mobile device, and the Vipps app will automatically open, where you can approve the payment.
 
-[create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
+[create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment

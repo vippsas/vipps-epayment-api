@@ -15,11 +15,11 @@ END_METADATA -->
 <!-- START_COMMENT -->
 
 ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api).
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
 
 <!-- END_COMMENT -->
 
-The ePayment API is the successor to the [eCommerce API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api).
+The ePayment API is the successor to the [eCommerce API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api).
 The ePayment API allows merchants to accept payments using the following payment methods:
 
 * [Vipps Wallet](how-it-works/vipps-epayment-api-how-it-works-online.md#1-pay-with-vipps)
@@ -33,7 +33,7 @@ The ePayment API allows merchants to accept payments using the following payment
 ## Next steps
 
 See
-[Getting Started](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
+[Getting Started](https://developer.vippsmobilepay.com/docs/vipps-developers/vipps-getting-started)
 for information about API keys, product activation, how to make API calls, etc.
 
 Review the detailed documentation found here:
@@ -41,4 +41,4 @@ Review the detailed documentation found here:
 * [Quick start](quick-start.md)
 * [Features](features/README.md): Developer guide for Vipps eCom API.
 * [Checklist](checklist.md): For direct and POS integrations.
-* [Reference](https://vippsas.github.io/vipps-developer-docs/api/epayment): ePayment API reference specifications.
+* [Reference](https://developer.vippsmobilepay.com/api/epayment): ePayment API reference specifications.
