@@ -5,8 +5,6 @@ hide_table_of_contents: true
 sidebar_position: 40
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 END_METADATA -->
 
@@ -20,22 +18,6 @@ Remember to have a fresh access token, see
 [Setup and Authorize](../quick-start.md#step-1---setup).
 Then, call the [Create Payment][create-payment-endpoint] endpoint with `paymentMethod.type = "CARD"`.
 
-
-<Tabs
-defaultValue="postman"
-groupId="sdk-choice"
-values={[
-{label: 'Postman', value: 'postman'},
-{label: 'curl', value: 'curl'},
-]}>
-<TabItem value="postman">
-
-```bash
-Send request Create Payment - Card Payment
-```
-
-</TabItem>
-<TabItem value="curl">
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments \
@@ -59,31 +41,6 @@ curl https://apitest.vipps.no/epayment/v1/payments \
   "paymentDescription": "A simple free standing card payment"
 }'
 ```
-
-</TabItem>
-<TabItem value="csharp">
-
-```csharp
-var reference = Guid.NewGuid().ToString();
-var createPaymentRequest = new CreatePaymentRequest
-    {
-        Amount = new Amount
-        {
-            Currency = Currency.NOK,
-            Value = 1000 // 1000 øre = 10 KR
-        },
-        PaymentMethod = new PaymentMethod { Type = PaymentMethodType.CARD },
-        UserFlow = CreatePaymentRequestUserFlow.WEB_REDIRECT,
-        Reference = reference,
-        PaymentDescription = "A simple free standing card payment",
-        ReturnUrl = $"https://no.where.com/{reference}"
-    };
-var createPaymentResult = await EpaymentService.CreatePayment(createPaymentRequest);
-```
-
-</TabItem>
-</Tabs>
-
 
 ## Complete the payment
 
