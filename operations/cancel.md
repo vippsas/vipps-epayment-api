@@ -3,7 +3,7 @@
 title: Cancel the payment with the ePayment API
 sidebar_label: Cancel
 id: cancel
-sidebar_position: 20
+sidebar_position: 30
 description: Cancel payment with the ePayment API.
 ---
 
