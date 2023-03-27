@@ -58,7 +58,7 @@ The ePayment API also supports a new flow, [the `QR` flow](https://vippsas.githu
 ### Renamed and altered fields
 
 * `fallBack` -> Renamed `returnUrl`
-* `scope` -> Moved inside `profile` object
+* `scope` -> Moved inside the `profile` object
 * `transactionText` -> Renamed `paymentDescription`
 * `orderId` -> Renamed `reference`
 * `phoneNumber`: Now requires country code/MSISDN format
