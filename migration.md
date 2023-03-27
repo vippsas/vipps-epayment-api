@@ -15,7 +15,7 @@ END_METADATA -->
 
 # Migration
 
-## Why migrate to ePayment API?
+## Why migrate to the ePayment API?
 
 The Vipps MobilePay ePayment API serves as the replacement for both the existing [eCom API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api) and the [App Payments API](https://developer.mobilepay.dk/docs/app-payments). The ePayment API will receive future updates and features, while the other APIs will only receive maintenance support. Merchants are therefore advised to migrate to the ePayment API.
 
