@@ -61,7 +61,7 @@ The ePayment API also supports a new flow, [the `QR` flow](https://vippsas.githu
 * `scope` -> Moved inside the `profile` object
 * `transactionText` -> Renamed `paymentDescription`
 * `orderId` -> Renamed `reference`
-* `phoneNumber`: Now requires country code/MSISDN format
+* `phoneNumber`: Now requires the MSISDN format, where the country code is included. See the API specification, and [MSISDN](https://en.wikipedia.org/wiki/MSISDN).
 
 
 ### Payment Method
