@@ -3,7 +3,7 @@
 title: Refund the payment with the ePayment API
 sidebar_label: Refund
 id: refund
-sidebar_position: 30
+sidebar_position: 50
 pagination_next: Null
 ---
 

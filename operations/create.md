@@ -1,12 +1,12 @@
 <!-- START_METADATA
 ---
-title: Create payment with the ePayment API
-sidebar_label: Create payment
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
-sidebar_position: 20
+title: Create the payment with the ePayment API
+sidebar_label: Create
+id: create
+sidebar_position: 10
+description: Create payment with the ePayment API.
 ---
+
 END_METADATA -->
 
 # Create payment
@@ -17,13 +17,14 @@ The first step in the payment flow is creating a payment by calling [CreatePayme
 flowchart TD
     Payment --> Wallet[fa:fa-mobile paymentMethod: Wallet]
     Wallet --> WEB_REDIRECT[fa:fa-desktop userFlow: WEB_REDIRECT]
+    Wallet --> NATIVE_REDIRECT[fa:fa-mobile userFlow: NATIVE_REDIRECT]
     Wallet --> PUSH_MESSAGE[fa:fa-bell userFlow: PUSH_MESSAGE]
     Wallet --> QR[fa:fa-qrcode userFlow: QR]
     Payment --> Card[fa:fa-credit-card paymentMethod:Card]
     Card --> CARD_WEB_REDIRECT[fa:fa-desktop userFlow: WEB_REDIRECT]
 ```
 
-`paymentMethod.type` in the request determines the type of payment. Allowed values are `CARD` and `WALLET`. Please note that card payment is not available in our test environment, but works in production. 
+`paymentMethod.type` in the request determines the type of payment. Allowed values are `CARD` and `WALLET`. Please note that card payment is not available in our test environment, but works in production.
 
 ## User flow alternatives
 
@@ -36,9 +37,16 @@ Default flow for:
 - card payments
     - Opening the Vipps card entry page on both desktop/mobile. More information at [Card payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/checkout-api/vipps-checkout-api-faq#card-payments)
 
+
+### NATIVE_REDIRECT
+
+Applicable only for Wallet payments.
+The given `redirectUrl` will automatically open the Vipps app on mobile devices.
+
+
 ### PUSH_MESSAGE
 
-Applicable only for Wallet payments. This will skip the Vipps landing page and is only allowed if user is not starting the payment from own device (e.g., from a Point Of Sale device, automates and similar). 
+Applicable only for Wallet payments. This will skip the Vipps landing page and is only allowed if user is not starting the payment from own device (e.g., from a Point Of Sale device, automates and similar).
 If userFlow is `PUSH_MESSAGE`, a valid value for `$.customer.phoneNumber` is required.
 
 ### QR
