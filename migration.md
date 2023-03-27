@@ -3,12 +3,10 @@
 title: Migration
 sidebar_label: Migration
 id: migration
-sidebar_position: 11
+sidebar_position: 110
 description: Guide for existing merchants who wish to migrate their integration to the ePayment API.
 toc_min_heading_level: 2
 toc_max_heading_level: 5
-pagination_next: null
-pagination_prev: null
 ---
 
 END_METADATA -->
@@ -22,7 +20,7 @@ The Vipps MobilePay ePayment API serves as the replacement for both the existing
 Features of the ePayment API include:
 * [Profile Sharing](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/profile-sharing)
 * [Long-Living transactions](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/long-living-payments)
-* [Free Standing Card Payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/free-standing-card-payments)
+* [Free-standing Card Payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/free-standing-card-payments)
 * [QR Payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/qr-payments)
 * [Webhooks](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/webhooks)
 
@@ -47,13 +45,13 @@ The Webhooks API provides _guaranteed delivery_ callbacks. If the callback is no
 
 ### Payment flows
 
-In the eCom API, merchants could choose between three flows by setting the flags `isApp` and `skipLandingPage`. These flows exist in ePayment as well: Instead of setting the flags, you now simply decide which flow you want through the `userFlow` property. Here's how the fields correspond to each other:
+In the eCom API, merchants could choose between three flows by specifying the parameters `isApp` and `skipLandingPage`. These parameters were added to the original API over the years. The same functionality is available in the ePayment, but smarter: Instead of specifying the parameters, you now simply decide which flow you want through the `userFlow` property. Here's how the fields correspond to each other:
 
 * `isApp: false` and `skipLandingPage: false` -> `WEB_REDIRECT`
 * `isApp: true` and `skipLandingPage: false`  -> `NATIVE_REDIRECT`
 * `skipLandingPage: true`                     -> `PUSH_MESSAGE`
 
-The ePayment API also supports a new flow, [the `QR` flow](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/qr-payments).
+The ePayment API also supports a new flow, [the `QR` flow](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/qr-payments). The QR flow provides you with a direct link to a one-time payment QR code that the user can scan and pay from their app.
 
 ### Renamed and altered fields
 
@@ -66,7 +64,7 @@ The ePayment API also supports a new flow, [the `QR` flow](https://vippsas.githu
 
 ### Payment Method
 
-The ePayment API supports [Free standing Card Payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/free-standing-card-payments). Merchants are required to provide a value to the paymentMethod field to decide if this should be used.
+The ePayment API supports [free-standing card payments](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/free-standing-card-payments). Merchants are required to provide a value to the paymentMethod field to decide if this should be used.
 
 :::note
 The `WALLET` payment method means the user will use the Vipps app to pay.  The `CARD` payment method is intended for users who are not able to (or don't want to) use the app to pay.
