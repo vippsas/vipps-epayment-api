@@ -10,12 +10,12 @@ END_METADATA -->
 # Capture a payment
 
 See 
-[Common API topics - Reserve and Capture](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/reserve-and-capture)
+[Common API topics - Reserve and Capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture)
 for a general introduction to reservations and captures.
 
 A capture can be made in full, or partially if desired. The capture amount must be defined in capture API request.
 
-Captured funds will be settled to the merchants settlement account after two business days. See [Settlement Information](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/settlements) for more details.
+Captured funds will be settled to the merchants settlement account after two business days. See [Settlement Information](https://developer.vippsmobilepay.com/docs/vipps-developers/settlements) for more details.
 
 
 ## Capture via the API
@@ -120,4 +120,4 @@ Once capture is completed the `aggregate` object will be updated to reflect this
 
 If you are not going to capture the rest of the authorized amount you should [cancel](cancel.md#cancel-after-a-partial-capture) the remaining amount.
 
-[capture-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/capturePayment
+[capture-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/capturePayment

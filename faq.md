@@ -12,10 +12,10 @@ END_METADATA -->
 
 For common questions, see:
 
-* [Common API FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
+* [Common API FAQ](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs)
 
 ## Direct Capture fails
 Make sure you are configured for [Reserve Capture][reserve-capture-check], and make sure you add the flag `directCapture: true` to your [Create Payment][create-payment-endpoint] request.
 
-[create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
-[reserve-capture-check]: https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/reserve-and-capture-faq#how-can-i-check-if-i-have-reserve-capture-or-direct-capture
+[create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment
+[reserve-capture-check]: https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/reserve-and-capture-faq#how-can-i-check-if-i-have-reserve-capture-or-direct-capture

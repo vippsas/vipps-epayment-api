@@ -12,7 +12,7 @@ END_METADATA -->
 # Cancel a payment
 
 See
-[Common API topics - Cancellations](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/cancel)
+[Common API topics - Cancellations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel)
 for a general introduction to cancellations.
 
 If you no longer wish to initiate settlement of the remaining funds on a payment then you should [Cancel][cancel-payment-endpoint] the payment. Cancelling a payment provides a good user experience and synchronizes the users bank statement and Vipps payment overview with their expectations from a merchant.
@@ -184,4 +184,4 @@ The aggregate would then be updated to reflect the modification and the funds re
 Cancelling a payment will always cancel the entire remaining not-captured amount, this is not reversible.
 :::
 
-[cancel-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/cancelPayment
+[cancel-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/cancelPayment

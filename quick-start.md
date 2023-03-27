@@ -24,7 +24,7 @@ END_METADATA -->
 
 This document covers the quick steps for getting started with the ePayment API.
 You must have already signed up as a organisation with Vipps MobilePay and have your test credentials from the merchant portal, as described in the
-[Vipps Quick start guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/getting-started).
+[Vipps Quick start guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started).
 
 <!-- START_COMMENT -->
 <!--
@@ -399,7 +399,7 @@ new CaptureModificationRequest { ModificationAmount = captureAmount });
 </Tabs>
 
 See
-[Common topics: capture](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/reserve-and-capture#capture)
+[Common topics: capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture#capture)
 for more details about the types of captures.
 
 ### (Optional) Step 7 - Refund the payment
@@ -452,7 +452,7 @@ new RefundModificationRequest { ModificationAmount = refundAmount });
 </Tabs>
 
 See
-[Common topics: refund](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/refund)
+[Common topics: refund](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/refund)
 for more details about refunds.
 
 ### (Optional) Step 8 - Cancel the payment
@@ -496,7 +496,7 @@ var cancelResult = await EpaymentService.CancelPayment(reference);
 </Tabs>
 
 See
-[Common topics: cancel](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/cancel)
+[Common topics: cancel](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel)
 for more details about cancel.
 
 ## Next Steps
@@ -511,12 +511,12 @@ read further to see the full range of possibilities within the Vipps ePayment AP
 
 
 
-[access-token-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
-[create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
-[get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
-[get-payment-event-log-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
-[cancel-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/cancelPayment
-[capture-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/capturePayment
-[refund-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment
-[adjust-authorization-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/adjustAuthorization
-[force-approve-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/ForceApprove/operation/forceApprove
+[access-token-endpoint]: https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
+[create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment
+[get-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPayment
+[get-payment-event-log-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
+[cancel-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/cancelPayment
+[capture-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/capturePayment
+[refund-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/refundPayment
+[adjust-authorization-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/adjustAuthorization
+[force-approve-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/ForceApprove/operation/forceApprove
