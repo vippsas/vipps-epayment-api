@@ -25,7 +25,7 @@ Add some nice text about getting started with Webhooks
 <!-- END_COMMENT -->
 
 
-ePayments API offers the possibility to subscribe to webhooks for any number of events.
+ePayment API offers the possibility to subscribe to webhooks for any number of events.
 For any webhook you will receive the following payload, where the only property changing is the `NAME`, which will reflect the event type you subscribed on.
 
 <ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/PaymentEventv2" />
