@@ -38,7 +38,7 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/canc
 
 ## Cancel before Authorization
 If the payment has not yet reached the `AUTHORIZED` state a cancellation by the merchant via the api will result in `TERMINATED` state of the payment.
-An example response for a cancel request Pre-authorization looks like this
+An example response for a cancel request pre-authorization looks like this
 ```json
 {
     "amount": {
@@ -72,7 +72,7 @@ An example response for a cancel request Pre-authorization looks like this
 After the cancel is complete, a notification will be sent if a [webhook](../features/webhooks.md) is registered for the event `epayments.payment.terminated.v1`.
 
 ## Cancel after Authorization
-If the payment has reached the `AUTHORIZED` state a cancellation by the merchant via the api will **not** change the state of the payment, it will remain `AUTHORIZED` forever.w
+If the payment has reached the `AUTHORIZED` state a cancellation by the merchant via the api will **not** change the state of the payment, it will remain `AUTHORIZED`.
 However, the reserved amount from the customer will be released, and the `aggregate` object will reflect this with the `cancelledAmount` property.
 An example response for a cancel request Post-authorization looks like this:
 ```json
