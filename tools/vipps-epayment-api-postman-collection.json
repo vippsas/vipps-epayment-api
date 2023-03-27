@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "1774363b-437c-49d7-a2fd-00ab8aa9af0b",
 		"name": "ePayment API v1 - Collection",
-		"description": "The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.\n\nContact Support:\n Name: Vipps AS",
+		"description": "The Vipps ePayment API. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api) for more information.\n\nContact Support:\n Name: Vipps AS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

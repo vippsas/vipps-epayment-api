@@ -5,12 +5,12 @@ servers:
   - url: https://apitest.vipps.no
     description: Test environment (uses the test API keys, the test app and test data)
 info:
-  description: 'The Vipps ePayment API. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api) for more information.'
+  description: 'The Vipps ePayment API. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api) for more information.'
   version: 1.1.2
   title: Vipps ePayment API
   contact:
     name: Vipps AS
-    url: 'https://vippsas.github.io/vipps-developer-docs/'
+    url: 'https://developer.vippsmobilepay.com/'
   license:
     name: MIT
     url: 'https://choosealicense.com/licenses/mit/'
@@ -592,7 +592,7 @@ components:
           description: |-
             If `profile.scope` was requested in `createPayment` this value will populate once
             `state` is `AUTHORIZED`. This can be used towards the
-            [Userinfo endpoint](https://vippsas.github.io/vipps-developer-docs/api/userinfo#operation/getUserinfo)
+            [Userinfo endpoint](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo)
             to fetch requested user data.
     PaymentMethod:
       title: PaymentMethod
