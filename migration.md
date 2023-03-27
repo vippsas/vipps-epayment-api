@@ -41,7 +41,7 @@ Merchants are advised to fully migrate over to the ePayment API. However, it is 
 
 ### Callbacks
 
-For payment callbacks, you no longer have to submit the `CallbackPrefix` as part of the Initiate Payment request. Instead, you can use the [Webhooks API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/webhooks) to register URLs that will receive callbacks whenever various events occur for your payments.
+For payment callbacks, you no longer have to submit the `callbackPrefix` as part of the Initiate Payment request. Instead, you can use the [Webhooks API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/webhooks) to register URLs that will receive callbacks whenever various events occur for your payments.
 
 The Webhooks API provides _Guaranteed Delivery_ callbacks. If the callback is not successfully received on your end, we will retry sending it for several days. In addition, you can now receive callbacks for _all_ adjustments to your payment. Head over to the [Webhooks documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/epayment-api/features/webhooks) to read more.
 
