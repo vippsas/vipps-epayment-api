@@ -4,27 +4,24 @@ title: Capture the payment with the ePayment API
 sidebar_label: Capture
 id: capture
 sidebar_position: 10
-pagination_prev: null
 ---
-import ApiSchema from '@theme/ApiSchema';
-
 END_METADATA -->
 
-# Capturing a payment
+# Capture a payment
 
-When a payment is initiated with `$.directCapture = false` you must [Capture][capture-payment-endpoint] a payment in order to initiate settlement of the authorized funds.
-
-Captured funds will be settled to the merchants settlement account after two business days. See [Settlement Information](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/settlements) for more details.
+See 
+[Common API topics - Reserve and Capture](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/reserve-and-capture)
+for a general introduction to reservations and captures.
 
 A capture can be made in full, or partially if desired. The capture amount must be defined in capture API request.
 
+Captured funds will be settled to the merchants settlement account after two business days. See [Settlement Information](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/settlements) for more details.
+
+
 ## Capture via the API
 
-Once the good or services are delivered or on their way to the customer it is time to capture the payment.
+Once the goods or services are delivered or on their way to the customer it is time to capture the payment.
 This can be done through the [Capture Payment Endpoint][capture-payment-endpoint].
-This endpoint take the following properties in the body of the request
-
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/CaptureModificationRequest" />
 
 An example capture would look like:
 
@@ -44,13 +41,8 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capt
 }'
 ```
 
-Response:
+In the response,  the `aggregate` object will be updated to reflect the capture, for example:
 
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/ModificationResponse" />
-
-A notification will also be sent once the modification is completed if a webhook is registered.
-
-After capture the `aggregate` object will be updated to reflect this, for example:
 
 ```json
 {
@@ -74,6 +66,8 @@ After capture the `aggregate` object will be updated to reflect this, for exampl
   }
 }
 ```
+
+A notification will also be sent once the capture is completed if a [webhook](../features/webhooks.md) is registered for the event `epayments.payment.captured.v1`.
 
 ## Partial Capture
 
