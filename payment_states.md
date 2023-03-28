@@ -1,24 +1,38 @@
 <!-- START_METADATA
 ---
-title: Payment session states for ePayment
+title: Payment states and modifications
 sidebar_label: Payment states
 sidebar_position: 15
-description: Payment session states for ePayment.
+description: Payment states and modifications
 pagination_next: null
 pagination_prev: null
 ---
 END_METADATA -->
 
-# Payment session states
+# Payment states and modifications
 
-Once a payment is `CREATED`, several modification actions can be made.
-These are:
+A payment can have several different _states_, and change states when a
+_modification_ is made.
+
+| State         | Description   |
+| ------------- | ------------- |
+| `CREATED`     | The payment has been initiated. |
+| `AUTHORIZED`  | The user has accepted the payment. |
+| `CAPTURED`    | The payment has been captured. |
+| `REFUNDED`    | The payment has been refunded. |
+| `ABORTED`     | The payment has been actively stopped by the user. |
+| `EXPIRED`     | The payment has expired. See [Timeouts](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/timeouts).|
+| `CANCELLED`   | The payment has been cancelled by the merchant. |
+| `TERMINATED`  | The merchant has stopped the payment. |
+
+When a payment is initiated it has the state `CREATED`.
+Once a payment is `CREATED`, several modification actions can be made:
 
 - [Capture](./operations/capture.md)
 - [Refund](./operations/refund.md)
 - [Cancel](./operations/cancel.md)
 
-Modification actions are defined as separate endpoints in the api.
+Each modification action is defined as a separate endpoint in the API.
 
 The following flow diagram describes when each modification action is applicable.
 
@@ -50,7 +64,7 @@ REFUNDED : REFUNDED
 REFUNDED : Payment fully or partially refunded\nDefined by ""aggregate.refundedAmount"" object
 REFUNDED --> [*] : Once payment is\nfully refunded
 CREATED --> CANCELLED : Not possible if the user is \nactively authorizing the \npayment
-AUTHORIZED --> CANCELLED 
+AUTHORIZED --> CANCELLED
 CAPTURED --> CANCELLED : Not possible after \nfull capture
 CANCELLED : CANCELLED
 CANCELLED : Cancel the remaining un-captured amount\nDefined by ""aggregate.cancelledAmount"" object
