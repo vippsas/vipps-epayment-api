@@ -34,7 +34,9 @@ The payment can be cancelled with
 [`POST:/payments/{reference}/cancel`][cancel-payment-endpoint].
 
 ## Cancel before Authorization
-If the payment has not yet reached the `AUTHORIZED` state a cancellation by the merchant via the api will result in `TERMINATED` state of the payment.
+
+If the payment has not yet reached the `AUTHORIZED` state a cancellation by the
+merchant via the API will result in `TERMINATED` state of the payment.
 
 An example response for a cancel request pre-authorization looks like this
 ```json
