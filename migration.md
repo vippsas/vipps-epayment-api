@@ -24,6 +24,10 @@ Features of the ePayment API include:
 * [QR Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments)
 * [Webhooks](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks)
 
+**Important:**
+The ePayment API only offers “reserve capture”. There is no “direct capture”, as
+in the eCom API. Read more about the benefits of "reserve capture":
+[Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture).
 
 ## Migrating from the eCom API
 
