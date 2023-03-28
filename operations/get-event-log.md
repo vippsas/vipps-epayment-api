@@ -8,18 +8,9 @@ description: Get payment events with the ePayment API.
 END_METADATA -->
 
 # Get payment event log
-A [Get payment event log][get-payment-event-log-endpoint] request will return a list of all events for a given payment.
 
-An example request would look like:
-
-```bash
-curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/events \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
--X GET \
-'
-```
+A [`GET:/payments/{reference}/events`][get-payment-event-log-endpoint]
+request will return a list of all events for a given payment.
 
 An example response would look like this:
 ```json
@@ -73,6 +64,5 @@ An example response would look like this:
     }
 ]
 ```
-
 
 [get-payment-event-log-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
