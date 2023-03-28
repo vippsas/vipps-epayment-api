@@ -19,16 +19,20 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
-The ePayment API is the successor to the [eCommerce API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api).
-The ePayment API allows merchants to accept payments using the following payment methods:
+The ePayment API is the successor to the
+[eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api),
+and allows merchants to accept payments using the following payment methods:
 
-* [Vipps Wallet](how-it-works/vipps-epayment-api-how-it-works-online.md#1-pay-with-vipps)
-* [Credit and debit cards](features/free-standing-card-payments.md) (Please note card payment is not available in test environment at the moment)
+* [Vipps](how-it-works/vipps-epayment-api-how-it-works-online.md#1-pay-with-vipps) (the app)
+* [Credit and debit cards](features/free-standing-card-payments.md) without Vipps.
+  **Please note:** Card payment is not available in test environment.
 
 ## How it works
 
-* [ePayment API: How It Works](./how-it-works/vipps-epayment-api-how-it-works-online.md): Let your customers pay with Vipps MobilePay online or in your app.
-* [ePayment API: How it works in the store](./how-it-works/vipps-epayment-api-how-it-works-in-store.md): How the ePayment API can be integrated in your Point Of Sale (POS) system.
+* [ePayment API: How It Works](./how-it-works/vipps-epayment-api-how-it-works-online.md):
+  Let your customers pay with Vipps MobilePay online or in your app.
+* [ePayment API: How it works in the store](./how-it-works/vipps-epayment-api-how-it-works-in-store.md):
+  How the ePayment API can be integrated in your Point Of Sale (POS) system.
 
 ## Next steps
 
@@ -38,7 +42,7 @@ for information about API keys, product activation, how to make API calls, etc.
 
 Review the detailed documentation found here:
 
-* [Quick start](quick-start.md)
-* [Features](features/README.md): Developer guide for Vipps eCom API.
-* [Checklist](checklist.md): For direct and POS integrations.
-* [Reference](https://developer.vippsmobilepay.com/api/epayment): ePayment API reference specifications.
+* [API quick start](quick-start.md)
+* [API features](features/README.md): Developer guide for Vipps eCom API.
+* [API checklist](checklist.md): For direct and POS integrations.
+* [API spec](https://developer.vippsmobilepay.com/api/epayment): ePayment API reference specifications.
