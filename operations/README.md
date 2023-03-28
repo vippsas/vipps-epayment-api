@@ -8,7 +8,7 @@ END_METADATA -->
 
 # Payment operations
 
-ePayment API exposes 6 payment operations:
+The ePayment API exposes six payment operations:
 
 * [Create a payment](create.md)
 * [Capture a payment](capture.md)
@@ -16,3 +16,5 @@ ePayment API exposes 6 payment operations:
 * [Refund a payment](refund.md)
 * [Get a payment](get_info.md)
 * [Get payment event log](get_event_log.md)
+
+See: [Payment states and modifications](../payment_states).
