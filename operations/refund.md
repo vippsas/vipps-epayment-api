@@ -44,8 +44,6 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refu
 }'
 ```
 
-
-
 In the response, the `aggregate` object will be updated to reflect the refunded amount, for example:
 
 ```json

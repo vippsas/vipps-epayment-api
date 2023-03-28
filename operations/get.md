@@ -9,18 +9,8 @@ END_METADATA -->
 
 # Get payment
 
-A [Get payment][get-payment-endpoint] request will return a point in time snapshot of a given payment.
-
-An example request would look like:
-
-```bash
-curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
--X GET \
-'
-```
+A [`GET:/payments/{reference}`][get-payment-endpoint]
+request will return a point in time snapshot of a given payment.
 
 An example response would look like this:
 ```json
@@ -57,10 +47,15 @@ An example response would look like this:
 }
 ```
 
-In the case where the merchant requested `scopes` in the [Create payment][create-payment-endpoint] request, the `.profile` object will contain a `sub` identifying the customer, after the customer has authorized the payment, for example
+In the case where the merchant requested `scopes` in the
+[Create payment][create-payment-endpoint]
+request, the `profile` object will contain a `sub` identifying the customer,
+after the customer has authorized the payment.
+
+For example (truncated):
+
 ```json
 {
-  ..., 
   "state": "AUTHORIZED",
   "profile" : {
     "sub": "c06c4afe-d9e1-4c5d-939a-177d752a0944"
@@ -68,6 +63,9 @@ In the case where the merchant requested `scopes` in the [Create payment][create
 }
 ```
 
+The `sub` can then be used to retrieve the user's info with the
+[Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api):
+[`GET:i/userinfo/{sub}`](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo).
 
 [get-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPayment
 [create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment

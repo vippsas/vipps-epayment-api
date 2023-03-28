@@ -48,7 +48,7 @@ An example response would look like this:
 ```
 
 In the case where the merchant requested `scopes` in the
-[`POST:/epayment/v1/payments`][create-payment-endpoint]
+[`POST:/payments`][create-payment-endpoint]
 request, the `profile` object will contain a `sub` identifying the customer,
 after the customer has authorized the payment,
 
@@ -62,6 +62,10 @@ For example (truncated):
   }
 }
 ```
+
+The `sub` can then be used to retrieve the user's info with the
+[Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api):
+[`GET:i/userinfo/{sub}`](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo).
 
 [get-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/QueryPayments/operation/getPayment
 [create-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/CreatePayments/operation/createPayment
