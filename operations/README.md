@@ -17,4 +17,4 @@ The ePayment API exposes six payment operations:
 * [Get a payment](get_info.md)
 * [Get payment event log](get_event_log.md)
 
-See: [Payment states and modifications](../payment_states).
+See: [Payment states and modifications](../payment_states.md).
