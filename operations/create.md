@@ -12,7 +12,7 @@ END_METADATA -->
 # Create payment
 
 The first step in the payment flow is creating a payment by calling
-[CreatePayment](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments)
+[`POST:/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments)
 endpoint. This endpoint supports card and wallet as payment methods and different user flows for each.
 
 ```mermaid
@@ -40,6 +40,7 @@ and how thew user experience will be.
 | `WEB_REDIRECT` | The normal flow for browser-based payment flows. |
 | `NATIVE_REDIRECT` | For automatic app-switch between the merchant's native app and the Vipps app. |
 | `PUSH_MESSAGE` | For payments initiated on a different device than the user's phone. Similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page#skip-landing-page) in the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api)  |
+| `QR`| Returns a QR code that can be scanned to complete the payment. |
 
 ### WEB_REDIRECT
 

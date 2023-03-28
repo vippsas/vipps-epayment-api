@@ -65,7 +65,7 @@ For example (truncated):
 
 The `sub` can then be used to retrieve the user's info with the
 [Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api):
-[`GET:i/userinfo/{sub}`](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo).
+[`GET:/userinfo/{sub}`](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo).
 
 [get-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPayment
 [create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment

@@ -122,7 +122,7 @@ after the cancellation is processed, if a
 :::info
 It is not possible to cancel a payment while a user is actively authorizing the
 payment. Eg: The payment is under processing with the payment scheme, or the
-user is in a 3 D Secure session.
+user is in a 3-D Secure session.
 :::
 
 ## Cancel after a partial capture

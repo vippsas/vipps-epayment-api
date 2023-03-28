@@ -18,11 +18,8 @@ _modification_ is made.
 | ------------- | ------------- |
 | `CREATED`     | The payment has been initiated. |
 | `AUTHORIZED`  | The user has accepted the payment. |
-| `CAPTURED`    | The payment has been captured. |
-| `REFUNDED`    | The payment has been refunded. |
 | `ABORTED`     | The payment has been actively stopped by the user. |
 | `EXPIRED`     | The payment has expired. See [Timeouts](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/timeouts).|
-| `CANCELLED`   | The payment has been cancelled by the merchant. |
 | `TERMINATED`  | The merchant has stopped the payment. |
 
 When a payment is initiated it has the state `CREATED`.
