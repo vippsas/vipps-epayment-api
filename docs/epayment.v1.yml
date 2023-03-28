@@ -269,13 +269,6 @@ components:
       properties:
         amount:
           $ref: '#/components/schemas/Amount'
-        directCapture:
-          type: boolean
-          default: false
-          description: |-
-            For special cases only. The sales unit must be configured by Vipps to use “direct capture” and directCapture must be set to true in the initiate request. 
-            We strongly recommend using “reserve capture” in all situations, see the FAQ.
-            The default is false.
         customer:
           $ref: '#/components/schemas/Customer'
         customerInteraction:

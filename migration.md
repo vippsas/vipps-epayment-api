@@ -74,11 +74,6 @@ The `WALLET` payment method means the user will use the Vipps app to pay.  The `
 Express payments on the ePayment API will be available soon.
 
 
-### Direct Capture
-
-Merchants that are configured for direct capture now need to set the `directCapture` flag to `true`.
-See [Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture).
-
 
 ### Partial Cancellations
 
