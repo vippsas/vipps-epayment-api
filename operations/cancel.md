@@ -23,7 +23,7 @@ the user's bank statement and Vipps payment overview with their expectations fro
 a merchant.
 
 A payment can be cancelled via the API or
-[porta.vipps.no](https://portal.vipps.no)
+[portal.vipps.no](https://portal.vipps.no)
 at any point until the
 payment is fully captured. A cancellation will release any remaining authorized
 funds on the customers bank account.
