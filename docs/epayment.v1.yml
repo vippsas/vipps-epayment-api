@@ -804,6 +804,8 @@ components:
           $ref: '#/components/schemas/Customer'
         token:
           type: string
+          description: |-
+            The token value received in the redirectUrl property in the Create payment response
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
