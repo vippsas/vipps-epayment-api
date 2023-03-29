@@ -23,8 +23,12 @@ END_METADATA -->
 ## Before you begin
 
 This document covers the quick steps for getting started with the ePayment API.
-You must have already signed up as a organisation with Vipps MobilePay and have your test credentials from the merchant portal, as described in the
+You must have already signed up as a organisation with Vipps MobilePay and have
+your test credentials from the merchant portal, as described in the
 [Vipps Quick start guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started).
+
+**Important:** The examples use standard example values that you must change to
+use _your_ values. This includes API keys, HTTP headers, reference, etc.
 
 <!-- START_COMMENT -->
 <!--
@@ -34,7 +38,6 @@ Once your merchant account is setup for Merchant Payments, you should look at av
 <!-- END_COMMENT -->
 
 ## Your first Vipps Payment
-
 
 ### Step 1 - Setup
 <Tabs
@@ -89,7 +92,9 @@ dotnet add package vipps.net
 
 ### Step 2 - Authentication
 
-For all of the following, you will need an `access_token` from the [Get Access Token][access-token-endpoint] endpoint.
+For all of the following, you will need an `access_token` from the
+[Access token API](https://developer.vippsmobilepay.com/docs/APIs/access-token-api):
+[`POST:/accesstoken/get`][access-token-endpoint]
 This provides you with access to the API.
 
 <Tabs
@@ -113,6 +118,11 @@ curl https://apitest.vipps.no/accessToken/get \
 -H "client_id: YOUR-CLIENT-ID" \
 -H "client_secret: YOUR-CLIENT-SECRET" \
 -H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
 -X POST \
 --data ''
 ```
@@ -138,15 +148,15 @@ VippsConfiguration.ConfigureVipps(vippsConfigurationOptions);
 </TabItem>
 </Tabs>
 
-
 The property `access_token` should be used for all other API requests in the `Authorization` header as the Bearer token.
 
 ### Step 3 - A simple ePayment payment with web redirect
 
-Initiate a payment via the [Create Payment][create-payment-endpoint] endpoint.
+Initiate a payment with: [`POST:/payments`][create-payment-endpoint].
 In this example, we use the default user flow, `WEB_REDIRECT`.
-This provides you with a link you can click to go to the landing page. When your test mobile number (with country code)
-is provided, it will be prefilled in the form.
+This provides you with a link you can click to go to the landing page.
+When your test mobile number (in MSISDN format)
+is provided in `phoneNumber`, it will be pre-filled in the form.
 
 <Tabs
 defaultValue="postman"
@@ -166,11 +176,15 @@ Send request Create Payment - Web redirect
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
--H "Idempotency-Key: UNIQUE-ID" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
 -X POST \
 -d '{
   "amount": {
@@ -181,12 +195,12 @@ curl https://apitest.vipps.no/epayment/v1/payments \
     "type": "WALLET"
   },
   "customer": {
-    "phoneNumber": "YOUR-TEST-PHONE-NUMBER (NB! MSISDN format)"
+    "phoneNumber": "4791234567"
   },
-  "reference": "UNIQUE-PAYMENT-REFERENCE",
+  "reference": "acme-shop-123-order123abc",
   "returnUrl": "https://yourwebsite.come/redirect?reference=abcc123",
   "userFlow": "WEB_REDIRECT",
-  "paymentDescription": "A simple payment"
+  "paymentDescription": "One pair of Vipps socks"
 }'
 ```
 
@@ -195,7 +209,7 @@ curl https://apitest.vipps.no/epayment/v1/payments \
 
 ```csharp
 var reference = Guid.NewGuid().ToString();
-var customerPhoneNumber = "YOUR-TEST-PHONE-NUMBER (NB! MSISDN format)";
+var customerPhoneNumber = "4791234567";
 var createPaymentRequest = new CreatePaymentRequest
     {
         Amount = new Amount
@@ -206,7 +220,7 @@ var createPaymentRequest = new CreatePaymentRequest
         PaymentMethod = new PaymentMethod { Type = PaymentMethodType.WALLET },
         UserFlow = CreatePaymentRequestUserFlow.WEB_REDIRECT,
         Reference = reference,
-        PaymentDescription = "Two pair of socks and one coffee",
+        PaymentDescription = "Two pairs of socks and one coffee",
         ReturnUrl = $"https://no.where.com/{reference}",
         Customer = new Customer { PhoneNumber = customerPhoneNumber }
     };
@@ -276,7 +290,8 @@ If the user had rejected the payment, the event would look like
 -->
 <!-- END_COMMENT -->
 
-To receive the result of the user action you may poll the status of the payment via the [Get Payment][get-payment-endpoint].
+To receive the result of the user action you may poll the status of the payment via the
+[`GET:/payments/{reference}`][get-payment-endpoint].
 
 <Tabs
 defaultValue="postman"
@@ -296,8 +311,15 @@ Send request Get payment
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
 -X GET
 ```
 
@@ -311,10 +333,14 @@ var payment = await EpaymentService.GetPayment(reference);
 </TabItem>
 </Tabs>
 
+To verify that a payment has been authorized by the user, check that the `state`
+property is marked `AUTHORIZED`. If the user has instead chosen to reject the
+payment or chosen to click `cancel` on the landing page or in the Vipps App,
+the `state` property will be marked `ABORTED`. If the user did not act within
+the payment expiration time, the `state` property will be marked `EXPIRED`.
 
-To verify that a payment has been authorized by the user, check that the `state` property is marked `AUTHORIZED`. If the user has instead chosen to reject the payment or chosen to click `cancel` on the landing page or in the Vipps App, the `state` property will be marked `ABORTED`. If the user did not act within the payment expiration time, the `state` property will be marked `EXPIRED`.
-
-For more details of the lifecycle of the payment session the [Get Payment event log][get-payment-event-log-endpoint] endpoint.
+For more details of the lifecycle of the payment session the
+[`GET:/payments/{reference}/events`][get-payment-event-log-endpoint] endpoint.
 
 <Tabs
 defaultValue="postman"
@@ -334,8 +360,15 @@ Send request Get payment event log
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/events \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
 -X GET
 ```
 
@@ -351,7 +384,9 @@ var paymentEventLog = await EpaymentService.GetPaymentEventLog(reference);
 
 ### Step 6 - Capture the payment
 
-After the goods or services have been delivered, you can capture the authorized amount either partially or fully. Send a [Capture Request][capture-payment-endpoint].
+After the goods or services have been delivered, you can capture the authorized
+amount either partially or fully:
+[`POST:/payments/{reference}/capture`][capture-payment-endpoint].
 
 <Tabs
 defaultValue="postman"
@@ -371,11 +406,15 @@ Send request Capture payment
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/capture \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
--H "Idempotency-Key: UNIQUE-ID" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
 -X POST \
 -d '{
   "modificationAmount": {
@@ -399,12 +438,13 @@ new CaptureModificationRequest { ModificationAmount = captureAmount });
 </Tabs>
 
 See
-[Common topics: capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture#capture)
+[Common topics: Capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture#capture)
 for more details about the types of captures.
 
 ### (Optional) Step 7 - Refund the payment
 
-To refund the captured amount, either partially or fully, send a [Refund Request][refund-payment-endpoint].
+To refund the captured amount, either partially or fully:
+[`POST:/payments/{reference}/refund`][refund-payment-endpoint].
 
 <Tabs
 defaultValue="postman"
@@ -424,11 +464,15 @@ Send request Refund payment
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refund \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
--H "Idempotency-Key: UNIQUE-ID" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
 -X POST \
 -d '{
   "modificationAmount": {
@@ -457,7 +501,8 @@ for more details about refunds.
 
 ### (Optional) Step 8 - Cancel the payment
 
-To cancel the payment, either fully or after a partial capture, send a [Cancel Request][cancel-payment-endpoint].
+To cancel the payment, either fully or after a partial capture:
+[`POST:/payments/{reference}/cancel`][cancel-payment-endpoint].
 
 <Tabs
 defaultValue="postman"
@@ -477,11 +522,15 @@ Send request Cancel payment
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/cancel \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
 -H "Content-Type: application/json" \
--H "Idempotency-Key: UNIQUE-ID" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
 -X POST
 ```
 
@@ -496,7 +545,7 @@ var cancelResult = await EpaymentService.CancelPayment(reference);
 </Tabs>
 
 See
-[Common topics: cancel](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel)
+[Common topics: Cancel](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel)
 for more details about cancel.
 
 ## Next Steps
@@ -508,8 +557,6 @@ read further to see the full range of possibilities within the Vipps ePayment AP
 - [Payment modification, how to use cancel, capture and refund?](operations/README.md)
 - [Using Vipps ePayment API in a shopper present context](features/customer-present-payments.md)
 - [Profile sharing, requesting the users personal information](features/profile-sharing.md)
-
-
 
 [access-token-endpoint]: https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
 [create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment
