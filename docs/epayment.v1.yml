@@ -6,7 +6,7 @@ servers:
     description: Test environment (uses the test API keys, the test app and test data)
 info:
   description: 'The Vipps ePayment API. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api) for more information.'
-  version: 1.1.3
+  version: 1.1.4
   title: Vipps ePayment API
   contact:
     name: Vipps AS
@@ -870,6 +870,8 @@ components:
       required: true
       schema:
         type: string
+        minLength: 1
+        maxLength: 50
       description: 'Idempotency key for the request, ensures idempotent actions.'
   securitySchemes:
     Bearer-Authorization:
