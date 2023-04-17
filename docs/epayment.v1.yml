@@ -825,13 +825,18 @@ components:
       schema:
         type: string
         example: da7d5b0e18a84aeda961c0c31b75c2a9
-      description: APIM Subscription Key
+      description: |-
+            The subscription key for the authorization token is available on
+            portal.vipps.no, under the 'Utvikler' tab.
+            Keep it secret.
+            Vipps will never ask for it, and do not need it.
     Vipps-System-Name:
       name: Vipps-System-Name
       in: header
       description: The name of the ecommerce solution. One word in lowercase letters is good.
       schema:
         type: string
+        maxLength: 30
         example: woocommerce
     Vipps-System-Version:
       name: Vipps-System-Version
@@ -839,6 +844,7 @@ components:
       description: The version number of the ecommerce solution.
       schema:
         type: string
+        maxLength: 30
         example: '5.4.0'
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
@@ -846,13 +852,15 @@ components:
       description: The name of the ecommerce plugin (if applicable). One word in lowercase letters is good.
       schema:
         type: string
-      example: "vipps-woocommerce"
+        maxLength: 30
+        example: "vipps-woocommerce"
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
       in: header
       description: The version number of the ecommerce plugin (if applicable).
       schema:
         type: string
+        maxLength: 30
         example: "1.2.1"
     Payment-Reference-ID:
       name: reference
