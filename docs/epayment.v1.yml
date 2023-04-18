@@ -821,7 +821,7 @@ components:
         pattern: '^[0-9]{4,6}$'
         minLength: 4
         maxLength: 6
-        example: '123456'
+      example: '123456'
       description: |-
         The merchant serial number (MSN) for the sales unit.
     APIM-Subscription-Key:
@@ -830,7 +830,7 @@ components:
       required: true
       schema:
         type: string
-        example: da7d5b0e18a84aeda961c0c31b75c2a9
+      example: da7d5b0e18a84aeda961c0c31b75c2a9
       description: |-
             The subscription key for the authorization token is available on
             portal.vipps.no, under the 'Utvikler' tab.
@@ -846,7 +846,7 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: woocommerce
+      example: woocommerce
     Vipps-System-Version:
       name: Vipps-System-Version
       in: header
@@ -856,7 +856,7 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: '5.4.0'
+      example: '5.4.0'
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
       in: header
@@ -867,7 +867,7 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: "vipps-woocommerce"
+      example: "vipps-woocommerce"
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
       in: header
@@ -877,7 +877,7 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: "1.2.1"
+      example: "1.2.1"
     Payment-Reference-ID:
       name: reference
       in: path
