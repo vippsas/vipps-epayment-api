@@ -897,6 +897,7 @@ components:
       required: true
       schema:
         type: string
+        maxLength: 50
       description: |-
         Idempotency key for the request, ensures idempotent actions.
         See [idempotency](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers#idempotency)
