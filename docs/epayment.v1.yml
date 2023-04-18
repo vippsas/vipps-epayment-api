@@ -822,7 +822,12 @@ components:
         minLength: 4
         maxLength: 6
         example: '123456'
-      description: "The Sales unit's MSN: The unique identifier for the sales unit."
+      description: |-
+        The merchant serial number (MSN) for the sales unit. Partners must always send
+        the Merchant-Serial-Number header, and we recommend that everyone sends it,
+        also when using the merchant's own API keys. The Merchant-Serial-Number header
+        can be used with all API keys, and can speed up any trouble-shooting of API
+        problems quite a bit.
     APIM-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
@@ -905,8 +910,11 @@ components:
       type: apiKey
       in: header
       description: |-
-        Access bearer token (JWT).
-        See [access token](https://developer.vippsmobilepay.com/docs/APIs/access-token-api).
+        The access token is a base64-encoded string that is required for all API calls.
+        It is a JWT (JSON Web Token). The access token is fetched from the
+        [`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost)
+        endpoint.
+        It is valid for 1 hour in the test environment and 24 hours in the production environment.
   responses:
     GetPaymentResponse:
       description: Get Payment response
