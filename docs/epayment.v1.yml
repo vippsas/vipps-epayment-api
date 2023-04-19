@@ -538,6 +538,27 @@ components:
       maxLength: 50
       example: reference-string
       x-examples: {}
+    PaymentEventName:
+      type: string
+      enum:
+        - CREATED
+        - ABORTED
+        - EXPIRED
+        - CANCELLED
+        - CAPTURED
+        - REFUNDED
+        - AUTHORIZED
+        - TERMINATED
+      example: AUTHORIZED
+      x-enum-varnames:
+        - CREATED
+        - ABORTED
+        - EXPIRED
+        - CANCELLED
+        - CAPTURED
+        - REFUNDED
+        - AUTHORIZED
+        - TERMINATED
     PspReference:
       type: string
       title: PspReference
@@ -652,26 +673,7 @@ components:
         pspReference:
           $ref: '#/components/schemas/PspReference'
         name:
-          type: string
-          enum:
-            - CREATED
-            - ABORTED
-            - EXPIRED
-            - CANCELLED
-            - CAPTURED
-            - REFUNDED
-            - AUTHORIZED
-            - TERMINATED
-          example: AUTHORIZED
-          x-enum-varnames:
-            - CREATED
-            - ABORTED
-            - EXPIRED
-            - CANCELLED
-            - CAPTURED
-            - REFUNDED
-            - AUTHORIZED
-            - TERMINATED
+          $ref: '#/components/schemas/PaymentEventName'
         amount:
           $ref: '#/components/schemas/Amount'
         timestamp:
@@ -702,26 +704,7 @@ components:
         pspReference:
           $ref: '#/components/schemas/PspReference'
         name:
-          type: string
-          enum:
-            - CREATED
-            - ABORTED
-            - EXPIRED
-            - CANCELLED
-            - CAPTURED
-            - REFUNDED
-            - AUTHORIZED
-            - TERMINATED
-          example: AUTHORIZED
-          x-enum-varnames:
-            - CREATED
-            - ABORTED
-            - EXPIRED
-            - CANCELLED
-            - CAPTURED
-            - REFUNDED
-            - AUTHORIZED
-            - TERMINATED
+          $ref: '#/components/schemas/PaymentEventName'
         paymentAction:
           deprecated: true
           type: string
