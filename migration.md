@@ -11,25 +11,7 @@ toc_max_heading_level: 5
 
 END_METADATA -->
 
-# Migration
-
-## Why migrate to the ePayment API?
-
-The Vipps MobilePay ePayment API serves as the replacement for both the existing [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) and the [App Payments API](https://developer.mobilepay.dk/docs/app-payments). The ePayment API will receive future updates and features, while the other APIs will only receive maintenance support. Merchants are therefore advised to migrate to the ePayment API.
-
-Features of the ePayment API include:
-* [Profile Sharing](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/profile-sharing)
-* [Long-Living transactions](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/long-living-payments)
-* [Free-standing Card Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments)
-* [QR Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments)
-* [Webhooks](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks)
-
-**Important:**
-The ePayment API only offers “reserve capture”. There is no “direct capture”, as
-in the eCom API. Read more about the benefits of "reserve capture":
-[Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture).
-
-## Migrating from the eCom API
+# Migration fromt the eCom API to the ePayment API
 
 The ePayment API expands upon the functionality of the eCom API and simplifies the existing flows. Merchants currently using the eCom API should find the ePayment API familiar and intuitive.
 
@@ -40,6 +22,11 @@ The ePayment API is backwards compatible with the eCom API. However, the eCom AP
 :::
 
 Merchants are advised to fully migrate over to the ePayment API. However, it is possible to migrate one endpoint at a time, _provided that the Create Payment endpoint is migrated last (see above note)_.
+
+**Important:**
+The ePayment API only offers “reserve capture”. There is no “direct capture”, as
+in the eCom API. Read more about the benefits of "reserve capture":
+[Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture).
 
 ### Callbacks
 

@@ -24,16 +24,24 @@ learned through the
 [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api)
 over several years.
 
-The main benefits are:
+The Vipps MobilePay ePayment API serves as the replacement for both the existing
+[eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) and the
+[App Payments API](https://developer.mobilepay.dk/docs/app-payments).
+It's based on everything we have learned through those APIs over several years.
 
-* Support for different flows, like pay by QR code, out-of-the-box without the "hacks" required in the eCom API
-* Support for long-lived payments (payment requests from merchants) that are valid up to 28 days
-* Support for free-standing card payments: Pay with VISA and MasterCard without the Vipps app
-* Uses the
-  [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api)
-  to always reliably send information back to the merchant or partner
+The ePayment API will receive future updates and features, while the other APIs will only
+receive maintenance support. Merchants should
+[migrate to the ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/migration/)
+as soon as possible.
 
-The ePayment API allows merchants to accept payments using the following payment methods:
+Features of the ePayment API include:
+* [Profile Sharing](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/profile-sharing)
+* [Long-Living transactions](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/long-living-payments)
+* [Free-standing Card Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments)
+* [QR Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments)
+* [Webhooks](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks)
+
+The ePayment API lets merchants accept payments using both the app and cards without the app:
 
 * [Vipps](how-it-works/vipps-epayment-api-how-it-works-online.md#1-pay-with-vipps) (the app)
 * [Credit and debit cards](features/free-standing-card-payments.md) without Vipps.
