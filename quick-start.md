@@ -51,7 +51,7 @@ values={[
 
 Save the following files to your computer:
 
-* [ePayment API Postman collection](tools/vipps-epayment-api-postman-collection.json)
+* [ePayment API Postman collection](/tools/vipps-epayment-api-postman-collection.json)
 * [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
 Then, import the Postman files

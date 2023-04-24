@@ -21,7 +21,7 @@ END_METADATA -->
 
 ## Endpoints to integrate
 
-Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epayment). For examples of requests and responses, see the [Postman collection](tools/vipps-epayment-api-postman-collection.json) and [environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json).
+Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epayment). For examples of requests and responses, see the [Postman collection](/tools/vipps-epayment-api-postman-collection.json) and [environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json).
 
 | Endpoint | Comment |
 |-----|-----------|
