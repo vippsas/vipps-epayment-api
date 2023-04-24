@@ -1,19 +1,10 @@
-<!-- START_METADATA
 ---
 title: How ePayment works online
 sidebar_label: How it works online
 sidebar_position: 10
 ---
-END_METADATA -->
 
 # How ePayment works online
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
-
-<!-- END_COMMENT -->
 
 This is how payment in webshops or merchant websites work with epayment API.
 

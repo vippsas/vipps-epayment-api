@@ -1,10 +1,8 @@
-<!-- START_METADATA
 ---
 sidebar_label: Payment operations
 id: payment-operations
 sidebar_position: 30
 ---
-END_METADATA -->
 
 # Payment operations
 

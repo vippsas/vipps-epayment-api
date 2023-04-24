@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Get payment event log with the ePayment API
 sidebar_label: Get payment event log
@@ -8,6 +7,5 @@ pagination_next: null
 pagination_prev: null
 draft: true
 ---
-END_METADATA -->
 
 # Get payment event log

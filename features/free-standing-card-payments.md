@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Free Standing Card Payments
 hide_table_of_contents: true
@@ -6,7 +5,6 @@ sidebar_position: 40
 ---
 
 
-END_METADATA -->
 
 # Free Standing Card Payments
 

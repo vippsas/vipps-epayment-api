@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Create the payment with the ePayment API
 sidebar_label: Create
@@ -7,7 +6,6 @@ sidebar_position: 10
 description: Create payment with the ePayment API.
 ---
 
-END_METADATA -->
 
 # Create payment
 

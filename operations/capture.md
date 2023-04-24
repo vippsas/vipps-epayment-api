@@ -1,11 +1,9 @@
-<!-- START_METADATA
 ---
 title: Capture the payment with the ePayment API
 sidebar_label: Capture
 id: capture
 sidebar_position: 20
 ---
-END_METADATA -->
 
 # Capture a payment
 

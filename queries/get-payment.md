@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Get payment information with the ePayment API
 sidebar_label: Get payment
@@ -8,7 +7,6 @@ pagination_next: null
 pagination_prev: null
 draft: true
 ---
-END_METADATA -->
 
 # Get payment
 

@@ -1,11 +1,9 @@
-<!-- START_METADATA
 ---
 title: QR Payments
 hide_table_of_contents: true
 sidebar_position: 50
 ---
 
-END_METADATA -->
 
 # QR Payments
 

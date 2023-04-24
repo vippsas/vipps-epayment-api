@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: How ePayment works
 sidebar_label: How it works
@@ -6,16 +5,9 @@ sidebar_position: 5
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # How it works
 
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
-
-<!-- END_COMMENT -->
 
 The following guides illustrate how the ePayment API works in different scenarios:
 

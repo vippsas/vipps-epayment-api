@@ -1,10 +1,8 @@
-<!-- START_METADATA
 ---
 sidebar_label: Get payment event log
 sidebar_position: 100
 description: Get payment events with the ePayment API.
 ---
-END_METADATA -->
 
 # Get payment event log
 

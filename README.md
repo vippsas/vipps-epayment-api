@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Introduction to the ePayment API
 sidebar_label: Introduction
@@ -8,16 +7,8 @@ description: Use the ePayment API to create various online payment flows.
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # ePayment API
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
-
-<!-- END_COMMENT -->
 
 The new ePayment API is designed from scratch, based on everything we have
 learned through the

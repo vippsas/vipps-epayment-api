@@ -1,11 +1,9 @@
-<!-- START_METADATA
 ---
 title: Profile sharing
 sidebar_label: Profile sharing
 hide_table_of_contents: true
 sidebar_position: 10
 ---
-END_METADATA -->
 
 # Profile sharing
 

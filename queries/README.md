@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Query Payment
 sidebar_label: Queries
@@ -8,7 +7,6 @@ pagination_prev: null
 sidebar_position: 50
 draft: true
 ---
-END_METADATA -->
 
 # Queries
 
