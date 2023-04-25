@@ -1,5 +1,5 @@
 ---
-title: eCom API checklist
+title: ePayment API checklist
 sidebar_label: Checklist
 sidebar_position: 100
 description: Checklist for full integration with the ePayment API.
