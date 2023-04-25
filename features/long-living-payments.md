@@ -1,10 +1,8 @@
-<!-- START_METADATA
 ---
 title: Long-living payments
 hide_table_of_contents: true
 sidebar_position: 20
 ---
-END_METADATA -->
 
 # Long-living payments
 

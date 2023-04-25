@@ -1,11 +1,9 @@
-<!-- START_METADATA
 ---
 title: Force Approve the payment with the ePayment API
 sidebar_label: Force Approve
 id: force-approve
 sidebar_position: 200
 ---
-END_METADATA -->
 
 # Force Approve a payment
 

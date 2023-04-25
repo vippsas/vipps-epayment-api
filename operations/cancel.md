@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Cancel the payment with the ePayment API
 sidebar_label: Cancel
@@ -7,7 +6,6 @@ sidebar_position: 30
 description: Cancel payment with the ePayment API.
 ---
 
-END_METADATA -->
 
 # Cancel a payment
 

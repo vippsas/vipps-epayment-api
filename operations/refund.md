@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Refund the payment with the ePayment API
 sidebar_label: Refund
@@ -6,7 +5,6 @@ id: refund
 sidebar_position: 50
 ---
 
-END_METADATA -->
 
 # Refund a payment
 

@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Payment states and modifications
 sidebar_label: Payment states
@@ -7,7 +6,6 @@ description: Payment states and modifications
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # Payment states and modifications
 

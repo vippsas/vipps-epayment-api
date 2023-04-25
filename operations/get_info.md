@@ -1,10 +1,8 @@
-<!-- START_METADATA
 ---
 sidebar_label: Get payment
 sidebar_position: 90
 description: Get payment with the ePayment API.
 ---
-END_METADATA -->
 
 # Get payment
 

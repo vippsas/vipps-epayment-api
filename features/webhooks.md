@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Webhooks
 sidebar_label: Webhooks
@@ -8,7 +7,6 @@ sidebar_position: 60
 
 import ApiSchema from '@theme/ApiSchema';
 
-END_METADATA -->
 
 # Webhooks
 

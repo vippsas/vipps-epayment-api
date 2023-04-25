@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Migration
 sidebar_label: Migration
@@ -9,7 +8,6 @@ toc_min_heading_level: 2
 toc_max_heading_level: 5
 ---
 
-END_METADATA -->
 
 # Migration fromt the eCom API to the ePayment API
 

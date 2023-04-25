@@ -1,19 +1,10 @@
-<!-- START_METADATA
 ---
 title: How ePayment works in the store
 sidebar_label: How it works in the store
 sidebar_position: 20
 ---
-END_METADATA -->
 
 # How ePayment works in the store
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/epayment-api).
-
-<!-- END_COMMENT -->
 
 Vipps in store is designed for stores that want to let customers pay easily and quickly from their own phone, without the need to touch the terminal. This page shows an example of how you can offer contactless payment to your customers by integrating Vipps in your POS system.
 

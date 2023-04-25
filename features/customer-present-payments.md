@@ -1,10 +1,8 @@
-<!-- START_METADATA
 ---
 title: Customer-present payments
 hide_table_of_contents: true
 sidebar_position: 30
 ---
-END_METADATA -->
 
 # Customer-present payments
 
