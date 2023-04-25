@@ -28,10 +28,10 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 |-----|-----------|
 |     Handle responses | Make sure to handle all responses and states from the payment: `CREATED`, `ABORTED`, `EXPIRED`, `CANCELLED`, `CAPTURED`, `REFUNDED`, `AUTHORIZED` and `TERMINATED`.|
 |     Handle errors | Make sure to log and handle [all errors](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api.md#errors). All integrations should to display errors in a way that the users (customers and merchant employees/administrators) can see and understand them.|
-|     Include HTTP Headers | Send the [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers) in all API requests for better tracking and troubleshooting (mandatory for partners and platforms, who must send these headers as part of the checklist approval). |
-|     Add information to the payment history| We recommend using the [Vipps Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) to add receipts and/or images to the payment history. This is a great benefit for the end user experience. It is also mandatory for merchants using ["Vipps Assisted Content Monitoring"](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring). |
+|     Include Vipps HTTP headers | Send the [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers) in all API requests for better tracking and troubleshooting (mandatory for partners and platforms, who must send these headers as part of the checklist approval). |
+|     Add information to the payment history| We recommend using the [Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) to add receipts and/or images to the payment history. This is a great benefit for the end user experience. It is also mandatory for merchants using ["Vipps Assisted Content Monitoring"](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring). |
 
-## Avoid Integration pitfalls
+## Avoid integration pitfalls
 
 |  | Comment |
 |-----|-----------|
