@@ -66,11 +66,11 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
    - A complete order ending in `CANCELLED`
      ([`/cancel`](https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/cancelPayment)
      request).
-   - In the test environment this must be verified using the API itself.
-6. The Merchant verifies the integration in the production environment (similar to step 5):
+   - In the test environment, this must be verified using the API itself.
+6. The merchant verifies the integration in the production environment (similar to step 5):
     - A complete order ending in `AUTHORIZED`, `CAPTURED`, `REFUNDED` and `CANCELLED`
       request.
-    - We recommend checking this using both the API itself and the API Dashboard available under "Utvikler" on
+    - We recommend checking this using both the API itself and the API Dashboard, available under *Utvikler* on
       [portal.vipps.no](https://portal.vipps.no).  
     - **Please note:** Vipps does not do any kind of activation or make any changes based on this checklist.
       The API keys for the production environment are made available on
