@@ -9,7 +9,7 @@ toc_max_heading_level: 5
 ---
 
 
-# Migration fromt the eCom API to the ePayment API
+# Migration from the eCom API to the ePayment API
 
 The ePayment API expands upon the functionality of the eCom API and simplifies the existing flows. Merchants currently using the eCom API should find the ePayment API familiar and intuitive.
 
