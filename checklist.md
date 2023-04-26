@@ -1,5 +1,5 @@
 ---
-title: eCom API checklist
+title: ePayment API checklist
 sidebar_label: Checklist
 sidebar_position: 100
 description: Checklist for full integration with the ePayment API.
@@ -24,20 +24,20 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 
 ## Quality assurance
 
-|  | Comment |
+| Action | Comment |
 |-----|-----------|
-|     Response handling| Make sure handle all responses and states from the payment: `CREATED`, `ABORTED`, `EXPIRED`, `CANCELLED`, `CAPTURED`, `REFUNDED`, `AUTHORIZED` and `TERMINATED`.|
-|     Error handling| Make sure to log and handle [all errors](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api.md#errors). All integrations should to display errors in a way that the users (customers and merchant employees/administrators) can see and understand them.|
-|     HTTP Headers| Send the [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers) in all API requests for better tracking and troubleshooting (mandatory for partners and platforms, who must send these headers as part of the checklist approval). |
-|     Vipps Order management| We recommend using the [Vipps Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) to add receipts and/or images to the payment history. This is a great benefit for the end user experience. It is also mandatory for merchants using ["Vipps Assisted Content Monitoring"](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring). |
+|     Handle responses | Make sure to handle all responses and states from the payment: `CREATED`, `ABORTED`, `EXPIRED`, `CANCELLED`, `CAPTURED`, `REFUNDED`, `AUTHORIZED` and `TERMINATED`.|
+|     Handle errors | Make sure to log and handle all errors. All integrations should to display errors in a way that the users (customers and merchant employees/administrators) can see and understand them.|
+|     Include Vipps HTTP headers | Send the [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers) in all API requests for better tracking and troubleshooting (mandatory for partners and platforms, who must send these headers as part of the checklist approval). |
+|     Add information to the payment history| We recommend using the [Order Management API](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) to add receipts and/or images to the payment history. This is a great benefit for the end user experience. It is also mandatory for merchants using ["Vipps Assisted Content Monitoring"](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api#vipps-assisted-content-monitoring). |
 
-## Avoid Integration pitfalls
+## Avoid integration pitfalls
 
-|  | Comment |
+|     | Comment |
 |-----|-----------|
-|     Reference recommendations| Follow our [reference recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid). |
+|     Send useful `reference` | Follow our [reference recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid). |
 |     Polling recommendations| Follow our [polling recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/polling-guidelines) |
-|     Handle redirects| The merchant must handle that the `fallback` URL is opened in the default browser on the phone, and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc. See the API guide: [Recommendations regarding handling redirects](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api.md#recommendations-regarding-handling-redirects). See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/common-problems-faq#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)|
+|     Handle redirects| The merchant must handle that the `fallback` URL is opened in the default browser on the phone, and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc. Follow our [recommendations regarding handling redirects](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/redirects/). See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/common-problems-faq#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)|
 |     Follow design guidelines| The Vipps branding must be according to the [Vipps design guidelines](https://developer.vippsmobilepay.com/docs/vipps-design-guidelines).|
 |     Educate customer support| Make sure your customer service, etc. has all the tools and information they need available in _your_ system, through the APIs listed in the first item in this checklist, and that they do not need to visit [portal.vipps.no](https://portal.vipps.no) for normal work.|
 
@@ -50,7 +50,7 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 3. The merchant receives an email from Vipps saying that they can log in with
    BankID on
    [portal.vipps.no](https://portal.vipps.no)
-   and retrieve API keys.
+   and retrieve [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/#getting-the-api-keys).
 4. The merchant completes all checklist items above.
    Please double-check to avoid mistakes.
 5. The merchant verifies the integration in the test environment by checking that
@@ -66,11 +66,11 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
    - A complete order ending in `CANCELLED`
      ([`/cancel`](https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/cancelPayment)
      request).
-   - In the test environment this must be verified using the API itself.
-6. The Merchant verifies the integration in the production environment (similar to step 5):
+   - In the test environment, this must be verified using the API itself.
+6. The merchant verifies the integration in the production environment (similar to step 5):
     - A complete order ending in `AUTHORIZED`, `CAPTURED`, `REFUNDED` and `CANCELLED`
       request.
-    - We recommend checking this using both the API itself and the API Dashboard available under "Utvikler" on
+    - We recommend checking this using both the API itself and the API Dashboard, available under *Utvikler* on
       [portal.vipps.no](https://portal.vipps.no).  
     - **Please note:** Vipps does not do any kind of activation or make any changes based on this checklist.
       The API keys for the production environment are made available on
