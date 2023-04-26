@@ -14,7 +14,7 @@ pagination_prev: null
 Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epayment). For examples of requests and responses, see the [Postman collection](/tools/vipps-epayment-api-postman-collection.json) and [environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json).
 
 | Endpoint | Comment |
-|-----|-----------|
+|----------|---------|
 |     Create payment| [`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment) |
 |     Get Payment| [`POST:/epayment/v1/payments/{reference}`](https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPayment)|
 |     Get Payment Event log| [`POST:/epayment/v1/payments/{reference}/events`](https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPaymentEventLog)|
@@ -25,7 +25,7 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 ## Quality assurance
 
 | Action | Comment |
-|-----|-----------|
+|--------|---------|
 |     Handle responses | Make sure to handle all responses and states from the payment: `CREATED`, `ABORTED`, `EXPIRED`, `CANCELLED`, `CAPTURED`, `REFUNDED`, `AUTHORIZED` and `TERMINATED`.|
 |     Handle errors | Make sure to log and handle all errors. All integrations should to display errors in a way that the users (customers and merchant employees/administrators) can see and understand them.|
 |     Include Vipps HTTP headers | Send the [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers) in all API requests for better tracking and troubleshooting (mandatory for partners and platforms, who must send these headers as part of the checklist approval). |
@@ -33,10 +33,10 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 
 ## Avoid integration pitfalls
 
-|     | Comment |
+| Action | Comment |
 |-----|-----------|
 |     Send useful `reference` | Follow our [reference recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid). |
-|     Polling recommendations| Follow our [polling recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/polling-guidelines) |
+|     Poll for payment details | The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll [`GET:/ecomm/v2/payments/{orderId}/details`](https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/getPaymentDetailsUsingGET) as documented (this is part of the first item in this checklist, but it's still a common error). Follow our [polling recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/polling-guidelines). |
 |     Handle redirects| The merchant must handle that the `fallback` URL is opened in the default browser on the phone, and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc. Follow our [recommendations regarding handling redirects](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/redirects/). See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/common-problems-faq#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)|
 |     Follow design guidelines| The Vipps branding must be according to the [Vipps design guidelines](https://developer.vippsmobilepay.com/docs/vipps-design-guidelines).|
 |     Educate customer support| Make sure your customer service, etc. has all the tools and information they need available in _your_ system, through the APIs listed in the first item in this checklist, and that they do not need to visit [portal.vipps.no](https://portal.vipps.no) for normal work.|
