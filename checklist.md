@@ -76,7 +76,7 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
       The API keys for the production environment are made available on
       [portal.vipps.no](https://portal.vipps.no)
       as soon as the customer control (see step 2) is completed, independently of this checklist.
-7. The Merchant goes live 🎉
+7. The merchant goes live 🎉
 
 ## Flow to go live for direct integrations for partners
 
