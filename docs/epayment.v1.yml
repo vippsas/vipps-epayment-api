@@ -9,7 +9,7 @@ info:
     The Vipps ePayment API.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api)
     for more information.
-  version: 1.1.4
+  version: 1.2.0
   title: Vipps ePayment API
   contact:
     name: Vipps AS
@@ -705,35 +705,9 @@ components:
           $ref: '#/components/schemas/PspReference'
         name:
           $ref: '#/components/schemas/PaymentEventName'
-        paymentAction:
-          deprecated: true
-          type: string
-          enum:
-            - CREATE
-            - ABORT
-            - EXPIRE
-            - CANCEL
-            - CAPTURE
-            - REFUND
-            - AUTHORISE
-            - TERMINATE
-          example: CREATE
-          x-enum-varnames:
-            - CREATE
-            - ABORT
-            - EXPIRE
-            - CANCEL
-            - CAPTURE
-            - REFUND
-            - AUTHORISE
-            - TERMINATE
         amount:
           $ref: '#/components/schemas/Amount'
         timestamp:
-          type: string
-          format: date-time
-        processedAt:
-          deprecated: true
           type: string
           format: date-time
         idempotencyKey:
