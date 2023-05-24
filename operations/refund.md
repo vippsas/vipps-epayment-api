@@ -1,31 +1,28 @@
-<!-- START_METADATA
 ---
-title: Refund
+title: Refund the payment with the ePayment API
+sidebar_label: Refund
 id: refund
-sidebar_position: 30
-pagination_prev: APIs/epayment-api/modifications/capture
-pagination_next: Null
+sidebar_position: 50
 ---
 
-import ApiSchema from '@theme/ApiSchema';
 
-END_METADATA -->
+# Refund a payment
 
-# Refunding a payment
+See
+[Common API topics - Refunds](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/refund)
+for a general introduction to refunds.
+
 
 A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the Merchant back to the customer.
 
 Refunds can be made in full or partially as needed. The refund amount must be defined in the refund API request.
 
-Refunded funds will be deducted from the merchants settlement account after two business days. See [Settlement Information](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/settlements) for more details.
+Refunded funds will be deducted from the merchants settlement account after two business days. See [Settlement Information](https://developer.vippsmobilepay.com/docs/vipps-developers/settlements) for more details.
 
 ## Refund via the API
 
 If a customer has returned the goods or the service is not delivered you should refund the payment.
 This can be done through the [Refund Payment Endpoint][refund-payment-endpoint].
-This endpoint take the following properties in the body of the request
-
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/RefundModificationRequest" />
 
 An example refund would look like:
 
@@ -45,13 +42,7 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refu
 }'
 ```
 
-Response:
-
-<ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/ModificationResponse" />
-
-A notification will also be sent once the modification is completed if a webhook is registered.
-
-After refund the `aggregate` object will be updated to reflect this, for example:
+In the response, the `aggregate` object will be updated to reflect the refunded amount, for example:
 
 ```json
 {
@@ -75,6 +66,8 @@ After refund the `aggregate` object will be updated to reflect this, for example
   }
 }
 ```
+
+A notification will also be sent once the refund is completed if a [webhook](../features/webhooks.md) is registered for the event `epayments.payment.refunded.v1`.
 
 ## Partial Refund
 
@@ -100,7 +93,7 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refu
 }'
 ```
 
-Once capture is completed the `aggregate` object will be updated to reflect this, for example:
+Once refund is completed the `aggregate` object will be updated to reflect this, for example:
 
 ```json
 {
@@ -125,4 +118,4 @@ Once capture is completed the `aggregate` object will be updated to reflect this
 }
 ```
 
-[refund-payment-endpoint]: https://vippsas.github.io/vipps-developer-docs/api/epayment#tag/AdjustPayments/operation/refundPayment
+[refund-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/refundPayment
