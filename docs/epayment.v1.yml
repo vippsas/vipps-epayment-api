@@ -229,12 +229,19 @@ components:
         phoneNumber:
           type: string
           description: |-
-            The phone number of the user paying the transaction with Vipps.
+            The customer's phone number, if available.
             Only Norwegian mobile numbers are supported (for now).
-            The format is MSISDN: Digits only: Country code and subscriber
-            number, but no prefix.
-
+            The format is MSISDN: Digits only: Country code and subscriber number, but no prefix.
             See: https://en.wikipedia.org/wiki/MSISDN
+
+            **Please note:** The phone number is optional, and should only be sent if it is
+            already known.
+            Users should never be asked for the phone number, as they will
+            either be automatically app-switched to the Vipps app, or they will be presented
+            with the landing page.
+            If the customer's phone number is needed by the merchant: Use `scope` and the Userinfo API:
+            https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/
+            See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
           minLength: 10
           maxLength: 15
           example: "4791234567"
