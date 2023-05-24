@@ -151,7 +151,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CaptureModificationRequest'
-        description: Requested a capture modification
+        description: Request a capture modification
       tags:
         - AdjustPayments
   '/epayment/v1/payments/{reference}/refund':
