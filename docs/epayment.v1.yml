@@ -720,7 +720,7 @@ components:
           deprecated: true
           type: string
           format: date-time
-          example: 2019-01-01T00:00:00Z
+          example: 2022-12-31T00:00:00Z
         idempotencyKey:
           type: string
           description: |-
