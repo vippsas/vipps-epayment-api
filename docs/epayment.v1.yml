@@ -727,7 +727,7 @@ components:
             The idempotency key of the request.
             Specified by the merchant/partner making the API request.
           nullable: true
-          maxLength: 30
+          maxLength: 36
           example: fb492b5e-7907-4d83-ba20-c7fb60ca35de
         success:
           type: boolean
