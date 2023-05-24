@@ -715,7 +715,7 @@ components:
         timestamp:
           type: string
           format: date-time
-          example: 2019-01-01T00:00:00Z
+          example: 2022-12-31T00:00:00Z
         processedAt:
           deprecated: true
           type: string
