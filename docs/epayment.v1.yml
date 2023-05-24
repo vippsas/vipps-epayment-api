@@ -324,7 +324,7 @@ components:
             - QR
           example: NATIVE_REDIRECT
           description: |-
-            The flow for bringing to user to the Vipps app's payment confirmation screen.
+            The flow for bringing the user to the Vipps app's payment confirmation screen.
             If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required.
         expiresAt:
           type: string
