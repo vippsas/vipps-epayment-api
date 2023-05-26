@@ -186,7 +186,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RefundModificationRequest'
-        description: Request a refund modification
+        description: Requested refund modification
       tags:
         - AdjustPayments
   '/epayment/v1/test/payments/{reference}/approve':
