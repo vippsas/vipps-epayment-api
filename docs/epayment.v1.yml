@@ -406,7 +406,7 @@ components:
         redirectUrl:
           type: string
           format: uri
-          example: 'https://example.com/vipps-redirect?orderid=acme-shop-123-order123abc'
+          example: 'https://landing.vipps.no?token=abc123'
           description: The URL you should redirect the user to to continue with the payment.
         reference:
           $ref: '#/components/schemas/Reference'
