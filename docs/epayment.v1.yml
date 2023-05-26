@@ -407,7 +407,10 @@ components:
           type: string
           format: uri
           example: 'https://landing.vipps.no?token=abc123'
-          description: The URL you should redirect the user to to continue with the payment.
+          description: |-
+            The URL you should redirect the user to to continue with the payment.
+            This is the URL to the Vipps landing page.
+            See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
         reference:
           $ref: '#/components/schemas/Reference'
       required:
