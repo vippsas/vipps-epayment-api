@@ -6,7 +6,7 @@ sidebar_position: 40
 
 
 
-# Free Standing Card Payments
+# Free-standing card payments
 
 The ePayment API supports free-standing card payments (FSCP),
 where any user can pay regardless of having the Vipps app installed.
