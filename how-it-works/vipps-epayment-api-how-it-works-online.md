@@ -6,7 +6,7 @@ sidebar_position: 10
 
 # How ePayment works online
 
-This is how payment in web shops or merchant websites work with ePayment API.
+This is how payments in web shops or merchant websites work with the ePayment API.
 
 ## The ecommerce payment process for Vipps users
 
