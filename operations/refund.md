@@ -12,12 +12,11 @@ See
 [Common API topics - Refunds](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/refund)
 for a general introduction to refunds.
 
-
 A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the Merchant back to the customer.
 
 Refunds can be made in full or partially as needed. The refund amount must be defined in the refund API request.
 
-Refunded funds will be deducted from the merchants settlement account after two business days. See [Settlement Information](https://developer.vippsmobilepay.com/docs/vipps-developers/settlements) for more details.
+Refunded funds will be deducted from the merchant's settlement account after two business days. See [Settlement Information](https://developer.vippsmobilepay.com/docs/vipps-developers/settlements) for more details.
 
 ## Refund via the API
 

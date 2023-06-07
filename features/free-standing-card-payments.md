@@ -48,6 +48,4 @@ The card entry page currently is not currently available in the test environment
 
 On successful payment, the user is redirected back to the merchant’s store, and the order is confirmed.
 
-
-
 [create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment

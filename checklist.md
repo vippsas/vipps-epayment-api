@@ -41,7 +41,6 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 |     Follow design guidelines| The Vipps branding must be according to the [Vipps design guidelines](https://developer.vippsmobilepay.com/docs/vipps-design-guidelines).|
 |     Educate customer support| Make sure your customer service, etc. has all the tools and information they need available in _your_ system, through the APIs listed in the first item in this checklist, and that they do not need to visit [portal.vipps.no](https://portal.vipps.no) for normal work.|
 
-
 ## Flow to go live for direct integrations
 
 1. The merchant orders
@@ -70,7 +69,7 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 6. The merchant verifies the integration in the production environment (similar to step 5):
     - A complete order ending in `AUTHORIZED`, `CAPTURED`, `REFUNDED` and `CANCELLED`
       request.
-    - We recommend checking this using both the API itself and the API Dashboard, available under *Utvikler* on
+    - We recommend checking this using both the API itself and the API Dashboard, available under _Utvikler_ on
       [portal.vipps.no](https://portal.vipps.no).  
     - **Please note:** Vipps does not do any kind of activation or make any changes based on this checklist.
       The API keys for the production environment are made available on
@@ -81,4 +80,3 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 ## Flow to go live for direct integrations for partners
 
 See: [Vipps partners](https://developer.vippsmobilepay.com/docs/vipps-partner).
-

@@ -10,8 +10,8 @@ sidebar_position: 50
 The ePayment API supports QR payments directly, making it easy to provide
 [One-Time payment QR](https://developer.vippsmobilepay.com/docs/vipps-solutions/qr-code-print).
 
-
 ## Create a QR Payment
+
 Remember to have a fresh access token, see
 [Setup and Authorize](../quick-start.md#step-1---setup).
 Then, call the [Create Payment][create-payment-endpoint] endpoint with `userFlow = "QR"`.
@@ -42,7 +42,6 @@ curl https://apitest.vipps.no/epayment/v1/payments \
   }
 }'
 ```
-
 
 ## Complete the payment
 

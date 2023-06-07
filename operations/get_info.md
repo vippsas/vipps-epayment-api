@@ -10,6 +10,7 @@ A [`GET:/payments/{reference}`][get-payment-endpoint]
 request will return a point in time snapshot of a given payment.
 
 An example response would look like this:
+
 ```json
 {
     "aggregate": {

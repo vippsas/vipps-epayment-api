@@ -7,14 +7,11 @@ sidebar_position: 60
 
 import ApiSchema from '@theme/ApiSchema';
 
-
 # Webhooks
 
 :::note
 Webhooks will be released early Q2.
 :::
-
-
 
 ePayment API offers the possibility to subscribe to webhooks for any number of events.
 Visit the

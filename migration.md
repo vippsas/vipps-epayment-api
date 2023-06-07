@@ -26,15 +26,15 @@ The ePayment API only offers “reserve capture”. There is no “direct captur
 in the eCom API. Read more about the benefits of "reserve capture":
 [Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture).
 
-### Callbacks
+## Callbacks
 
 For payment callbacks, you no longer have to submit the `callbackPrefix` as part of the Initiate Payment request. Instead, you can use the [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks) to register URLs that will receive callbacks whenever various events occur for your payments.
 
-The Webhooks API provides _guaranteed delivery_ callbacks. If the callback is not successfully received on your end, we will retry sending it for several days. In addition, you can now receive callbacks for _all_ adjustments to your payment. Head over to the [Webhooks documentation](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks) to read more.
+The Webhooks API provides _guaranteed delivery_ callbacks. If the callback is not successfully received on your end, we will retry sending it for several days. In addition, you can now receive callbacks for _all_ adjustments to your payment. Head over to the [Webhooks](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks) to read more.
 
-### Payment flows
+## Payment flows
 
-In the eCom API, merchants could choose between three flows by specifying the parameters `isApp` and `skipLandingPage`. These parameters were added to the original API over the years. The same functionality is available in the ePayment, but smarter: Instead of specifying the parameters, you now simply decide which flow you want through the `userFlow` property. Here's how the fields correspond to each other:
+In the eCom API, merchants could choose between three flows by specifying the parameters `isApp` and `skipLandingPage`. These parameters were added to the original API over the years. The same functionality is available in ePayment, but smarter: Instead of specifying the parameters, you now simply decide which flow you want through the `userFlow` property. Here's how the fields correspond to each other:
 
 * `isApp: false` and `skipLandingPage: false` -> `WEB_REDIRECT`
 * `isApp: true` and `skipLandingPage: false`  -> `NATIVE_REDIRECT`
@@ -42,7 +42,7 @@ In the eCom API, merchants could choose between three flows by specifying the pa
 
 The ePayment API also supports a new flow, [the `QR` flow](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments). The QR flow provides you with a direct link to a one-time payment QR code that the user can scan and pay from their app.
 
-### Renamed and altered fields
+## Renamed and altered fields
 
 * `fallBack` -> Renamed `returnUrl`
 * `scope` -> Moved inside the `profile` object
@@ -50,26 +50,23 @@ The ePayment API also supports a new flow, [the `QR` flow](https://developer.vip
 * `orderId` -> Renamed `reference`
 * `phoneNumber`: Now requires the MSISDN format, where the country code is included. See the API specification, and [MSISDN](https://en.wikipedia.org/wiki/MSISDN).
 
+## Payment Method
 
-### Payment Method
-
-The ePayment API supports [free-standing card payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments). Merchants are required to provide a value to the paymentMethod field to decide if this should be used.
+The ePayment API supports [freestanding card payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments). Merchants are required to provide a value to the `paymentMethod` field to decide if this should be used.
 
 :::note
 The `WALLET` payment method means the user will use the Vipps app to pay.  The `CARD` payment method is intended for users who are not able to (or don't want to) use the app to pay.
 :::
-### Express Payments
+
+## Express Payments
 
 Express payments on the ePayment API will be available soon.
 
-
-
-### Partial Cancellations
+## Partial Cancellations
 
 Cancellation of partially captured payments is supported in the eCom API by setting the `shouldReleaseRemainingFunds` flag.  
 In the ePayment API, this behavior works by default.
 
-
-### Customer Present Payments
+## Customer Present Payments
 
 See [Customer-Present Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/customer-present-payments).

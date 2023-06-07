@@ -37,6 +37,7 @@ If the payment has not yet reached the `AUTHORIZED` state a cancellation by the
 merchant via the API will result in `TERMINATED` state of the payment.
 
 An example response for a cancel request pre-authorization looks like this
+
 ```json
 {
    "amount":{
@@ -119,17 +120,18 @@ after the cancellation is processed, if a
 
 :::info
 It is not possible to cancel a payment while a user is actively authorizing the
-payment. Eg: The payment is under processing with the payment scheme, or the
-user is in a 3-D Secure session.
+payment (e.g., the payment is under processing with the payment scheme, or the
+user is in a 3-D Secure session).
 :::
 
 ## Cancel after a partial capture
 
 If you have captured a partial amount of the authorized amount and will not
-capture the remaining amount you should release this. The cancel endpoint will
-do this for you when called.
+capture the remaining amount, you should release this.
+The [cancel](https://developer.vippsmobilepay.com/api/epayment/#tag/AdjustPayments/operation/cancelPayment) endpoint will
+do this for you.
 
-For example we wish to release the remaining funds of a payment with the
+For example, to release the remaining funds of a payment with the
 following aggregate state:
 
 ```json
@@ -155,7 +157,7 @@ following aggregate state:
 }
 ```
 
-We would then call
+Call
 [`POST:/payments/{reference}/cancel`][cancel-payment-endpoint]
 as normal.
 

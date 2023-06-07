@@ -26,6 +26,7 @@ receive maintenance support. Merchants should
 as soon as possible.
 
 Features of the ePayment API include:
+
 * [Profile Sharing](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/profile-sharing)
 * [Long-Living transactions](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/long-living-payments)
 * [Free-standing Card Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments)

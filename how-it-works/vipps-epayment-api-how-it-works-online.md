@@ -6,11 +6,11 @@ sidebar_position: 10
 
 # How ePayment works online
 
-This is how payment in webshops or merchant websites work with epayment API.
+This is how payment in web shops or merchant websites work with ePayment API.
 
 ## The ecommerce payment process for Vipps users
 
-![Ecom process](../images/vipps-ecom-process-svg.svg)
+![eCom process](../images/vipps-ecom-process-svg.svg)
 
 ## 1. Pay with Vipps
 
@@ -23,13 +23,14 @@ The user chooses “Pay with Vipps”, on the product page of a merchant’s web
 If the payment was started on a desktop device the user will be sent to the Vipps landing page.
 The user confirms their number, and is prompted to log in to Vipps.
 
-If the payment was started from a mobile device, the app wil automatically switch over to Vipps.
+If the payment was started from a mobile device, the app will automatically switch over to Vipps.
 
 ![Vipps landing page](../images/vipps-ecom-step2.svg)
 
 ## 3. Confirm payment in Vipps
 
-The user receives a push notification on their phone. They log in to Vipps, and confirm the payment. The payment is reserved and the user gets a receipt of the successful payment
+The user receives a push notification on their phone. They log in to Vipps, and confirm the payment.
+The payment is reserved, and the user gets a receipt of the successful payment
 
 ![Confirm payment](../images/vipps-ecom-confirm2.png)
 
@@ -51,7 +52,6 @@ The payment is transferred to the merchant’s account. This may take 2-3 days d
 
 ![Money](../images/vipps-money.svg)
 
-
 ## Pay with Credit/Debit cards
 
 If the users do not have Vipps profile or choose to pay with card they can select “Card” on the product page of a merchant’s website or app.
@@ -65,4 +65,3 @@ The user is sent to card entry page, where they enter their card details.
 On successful payment, the user is redirected back to the merchant’s store, and the order is confirmed.
 
 Great! Now you know how the payment process works
-
