@@ -65,7 +65,7 @@ Express payments in the ePayment API will be available soon.
 ## Partial Cancellations
 
 Cancellation of partially captured payments is supported in the eCom API by setting the `shouldReleaseRemainingFunds` flag.  
-In the ePayment API, this behavior works by default.
+In the ePayment API, this behavior is enabled by default.
 
 ## Customer Present Payments
 
