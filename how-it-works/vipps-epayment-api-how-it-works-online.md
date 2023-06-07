@@ -8,7 +8,7 @@ sidebar_position: 10
 
 This is how payments in web shops or merchant websites work with the ePayment API.
 
-## The ecommerce payment process for Vipps users
+## The ePayment payment process for Vipps users
 
 ![eCom process](../images/vipps-ecom-process-svg.svg)
 
