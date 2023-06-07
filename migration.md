@@ -60,7 +60,7 @@ The `WALLET` payment method means the user will use the Vipps app to pay.  The `
 
 ## Express Payments
 
-Express payments on the ePayment API will be available soon.
+Express payments in the ePayment API will be available soon.
 
 ## Partial Cancellations
 
