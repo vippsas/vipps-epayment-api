@@ -10,6 +10,7 @@ A [`GET:/payments/{reference}/events`][get-payment-event-log-endpoint]
 request will return a list of all events for a given payment.
 
 An example response would look like this:
+
 ```json
 [
     {

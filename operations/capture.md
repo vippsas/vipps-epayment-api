@@ -14,7 +14,7 @@ for a general introduction to reservations and captures.
 A capture can be made in full, or partially if desired. The capture amount must
 be defined in capture API request.
 
-Captured funds will be settled to the merchants settlement account after two
+Captured funds will be settled to the merchant's settlement account after two
 business days. See
 [Settlement Information](https://developer.vippsmobilepay.com/docs/vipps-developers/settlements)
 for more details.
@@ -36,8 +36,7 @@ An example of a capture request body:
 }
 ```
 
-In the response,  the `aggregate` object will be updated to reflect the capture, for example:
-
+In the response, the `aggregate` object will be updated to reflect the capture, for example:
 
 ```json
 {

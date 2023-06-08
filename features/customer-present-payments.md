@@ -6,6 +6,6 @@ sidebar_position: 30
 
 # Customer-present payments
 
-When using the ePayment API to process payments in a physical setting (e.g.,  from a Point Of Sale device, in a restaurant), the payment must be flagged with `"customerInteraction": "CUSTOMER_PRESENT"`.
+When using the ePayment API to process payments in a physical setting (e.g., from a Point Of Sale device, in a restaurant), the payment must be flagged with `"customerInteraction": "CUSTOMER_PRESENT"`.
 
 `CUSTOMER_PRESENT` marking is required for compliance and reporting reasons.

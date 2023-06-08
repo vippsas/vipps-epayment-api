@@ -32,12 +32,12 @@ values are `CARD` and `WALLET`.
 ## User flow alternatives
 
 The `userFlow` parameter specifies how the API should handle the payment,
-and how thew user experience will be.
+and how the user experience will be.
 
 | `userFlow` | Description |
 | `WEB_REDIRECT` | The normal flow for browser-based payment flows. |
 | `NATIVE_REDIRECT` | For automatic app-switch between the merchant's native app and the Vipps app. |
-| `PUSH_MESSAGE` | For payments initiated on a different device than the user's phone. Similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page#skip-landing-page) in the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api)  |
+| `PUSH_MESSAGE` | For payments initiated on a different device than the user's phone. Similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page#skip-landing-page) in the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) |
 | `QR`| Returns a QR code that can be scanned to complete the payment. |
 
 ### WEB_REDIRECT
@@ -45,13 +45,12 @@ and how thew user experience will be.
 The default flow for:
 
 - Wallet payments
-    - Opens the
+  - Open the
     [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page)
     on desktop, and automatic redirect to Vipps on mobile devices.
 - Card payments
-    - Opens the Vipps card entry page on both desktop and mobile. More information at
+  - Open the Vipps card entry page on both desktop and mobile. More information at
     [Card payments](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api-faq#card-payments).
-
 
 ### NATIVE_REDIRECT
 

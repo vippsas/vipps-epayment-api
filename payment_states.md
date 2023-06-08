@@ -9,7 +9,7 @@ pagination_prev: null
 
 # Payment states and modifications
 
-A payment can have several different _states_, and change states when a
+A payment can have several _states_, and change states when a
 _modification_ is made.
 
 | State         | Description   |
