@@ -21,8 +21,9 @@ just for
 [Express Checkout](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api/#express-checkout-payments).
 
 As mentioned on the [API platform overview page](https://developer.vippsmobilepay.com/docs/APIs):
-
-With the Vipps MobilePay API platform, you benefit from a shared API framework for all the APIs. This means that all APIs use the same API keys, authentication methods, terminology, and error message formats. Integrating with our APIs is straightforward, and combining functionalities from multiple APIs is easy.
+With the Vipps MobilePay API platform, you benefit from a shared API framework for all the APIs.
+This means that all APIs use the same API keys, authentication methods, terminology, and error message formats.
+Integrating with our APIs is straightforward, and combining functionalities from multiple APIs is easy.
 
 ## Can payments be "mixed and matched" between the eCom API and the ePayment API?
 
