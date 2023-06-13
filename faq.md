@@ -30,7 +30,7 @@ Yes, to a certain extent. If the payments are initiated with the
 [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/)
 it's possible to capture, cancel, query, and adjust using the ePayment API.
 
-The eCom API uses the ePayment API “behind the scenes”.
+The eCom API uses the ePayment API *behind the scenes*.
 
 **Important:** Freestanding card payments are only available in the ePayment API,
 so payments initiated with the ePayment API may fail if the eCom API is used.
