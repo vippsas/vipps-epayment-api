@@ -44,12 +44,12 @@ and how the user experience will be.
 
 The default flow for:
 
-- Wallet payments
-  - Open the
+* Wallet payments
+  * Open the
     [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page)
     on desktop, and automatic redirect to Vipps on mobile devices.
-- Card payments
-  - Open the Vipps card entry page on both desktop and mobile. More information at
+* Card payments
+  * Open the Vipps card entry page on both desktop and mobile. More information at
     [Card payments](https://developer.vippsmobilepay.com/docs/APIs/checkout-api/vipps-checkout-api-faq#card-payments).
 
 ### NATIVE_REDIRECT
