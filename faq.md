@@ -26,7 +26,7 @@ As mentioned on the [API platform overview page](https://developer.vippsmobilepa
 
 ## Can payments be "mixed and matched" between the eCom API and the ePayment API?
 
-Yes, to a certain extent: If the payments were initiated with the
+Yes, to a certain extent. If the payments are initiated with the
 [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/)
 it's possible to  captured, cancel, etc. using the ePayment API.
 
