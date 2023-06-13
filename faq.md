@@ -14,7 +14,7 @@ For common questions, see [Common API FAQ](https://developer.vippsmobilepay.com/
 
 Not yet.
 
-It's possible to impement the ePayment API for everything except Express Checkout,
+It's possible to implement the ePayment API for everything except Express Checkout,
 and use the
 [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/)
 just for
