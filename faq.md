@@ -28,7 +28,7 @@ As mentioned on the [API platform overview page](https://developer.vippsmobilepa
 
 Yes, to a certain extent. If the payments are initiated with the
 [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/)
-it's possible to  captured, cancel, etc. using the ePayment API.
+it's possible to capture, cancel, query, and adjust using the ePayment API.
 
 The eCom API uses the ePayment API “behind the scenes”.
 
