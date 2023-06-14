@@ -10,27 +10,22 @@ pagination_prev: null
 
 # ePayment API
 
-The new ePayment API is designed from scratch, based on everything we have
-learned through the
-[eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api)
-over several years.
-
-The Vipps MobilePay ePayment API serves as the replacement for both the existing
-[eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) and the
-[App Payments API](https://developer.mobilepay.dk/docs/app-payments).
+The ePayment API is a replacement for both the
+[Vipps eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) and the
+[MobilePay App Payments API](https://developer.mobilepay.dk/docs/app-payments).
 It's based on everything we have learned through those APIs over several years.
 
-The ePayment API will receive future updates and features, while the other APIs will only
+The ePayment API will receive updates and features, while the replaced APIs will only
 receive maintenance support. Merchants should
 [migrate to the ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/migration/)
 as soon as possible.
 
 Features of the ePayment API include:
 
-* [Profile Sharing](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/profile-sharing)
+* [Profile sharing](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/profile-sharing)
 * [Long-Living transactions](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/long-living-payments)
-* [Free-standing Card Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments)
-* [QR Payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments)
+* [Freestanding card payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments)
+* [QR payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments)
 * [Webhooks](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks)
 
 The ePayment API lets merchants accept payments using both the app and cards without the app:
