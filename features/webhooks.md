@@ -11,7 +11,7 @@ import ApiSchema from '@theme/ApiSchema';
 
 The ePayment API offers the possibility to subscribe to webhooks for any number of events:
 * You register a webhook URL
-* We send  updates and information to the webhook URL you have specified
+* We send updates and information to the webhook URL you have specified
 
 See the
 [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api)
