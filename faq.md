@@ -27,11 +27,19 @@ Integrating with our APIs is straightforward, and combining functionalities from
 
 ## Can payments be "mixed and matched" between the eCom API and the ePayment API?
 
-Yes, to a certain extent. If the payments are initiated with the
-[eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/)
-it's possible to capture, cancel, query, and adjust using the ePayment API.
-
+Yes, to a certain extent. 
 The eCom API uses the ePayment API *behind the scenes*.
+
+The ePayment API is _backwards compatible: with the eCom API,
+but the eCom API is _forwards compatible_ with the ePayment API:
+
+* If the payments are initiated with the
+  [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/)
+  it's possible to capture, cancel, query, and adjust using the ePayment API.
+* Payments initiated with the ePayment API can not be modified or retrieved using the eCom API.
 
 **Important:** Freestanding card payments are only available in the ePayment API,
 so payments initiated with the ePayment API may fail if the eCom API is used.
+
+See:
+[Migration from the eCom API to the ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/migration/).
