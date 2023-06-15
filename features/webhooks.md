@@ -10,6 +10,7 @@ import ApiSchema from '@theme/ApiSchema';
 # Webhooks
 
 The ePayment API offers the possibility to subscribe to webhooks for any number of events:
+
 * You register a webhook URL
 * We send updates and information to the webhook URL you have specified
 
