@@ -40,14 +40,14 @@ to register URLs that will receive callbacks whenever various events occur for y
 
 **Please note:** The Webhooks API provides _guaranteed delivery_: If the callback is not successful
 (we do not get the expected response from you), we will retry sending it for several days.
-In addition, you can now receive callbacks for _all_ adjustments to your payment. 
+In addition, you can now receive callbacks for _all_ adjustments to your payment.
 
 ## Payment flows
 
 In the eCom API, merchants could choose between three flows by specifying the parameters
 [`isApp`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/isApp/)
 and
-[`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/#skip-landing-page). 
+[`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/#skip-landing-page).
 
 These parameters were added to the original API over the years. The same functionality is available in ePayment,
 but smarter: Instead of specifying the parameters, you now simply decide which flow you want through the
@@ -85,11 +85,11 @@ See:
 ## Partial Cancellations
 
 Cancellation of partially captured payments is supported in the eCom API by setting the `shouldReleaseRemainingFunds` flag
-in the 
+in the
 [`PUT:/ecomm/v2/payments/{orderId}/cancel`](https://developer.vippsmobilepay.com/api/ecom/#tag/Vipps-eCom-API/operation/cancelPaymentRequestUsingPUT)
 request.
 
-In the ePayment API, this behavior is the default behavious for the
+In the ePayment API, this behavior is the default behavior for the
 [`POST:/epayment/v1/payments/{reference}/cancel`](https://developer.vippsmobilepay.com/api/epayment/#tag/AdjustPayments/operation/cancelPayment)
 request, and there is no need to do anything extra.
 

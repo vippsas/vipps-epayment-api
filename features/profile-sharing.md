@@ -8,7 +8,7 @@ sidebar_position: 10
 # Profile sharing
 
 The ePayment API lets merchants ask for the user's profile information (such as phone number or
-email addrss) as part of the payment flow. We call this the `userinfo` flow.
+email address) as part of the payment flow. We call this the `userinfo` flow.
 
 To enable the possibility to fetch profile information for a user, the merchant
 can add a `scope` parameter to
@@ -16,7 +16,7 @@ can add a `scope` parameter to
 
 See the available values for
 [scope](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/#scope)
-in the 
+in the
 [Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/)
 documentation.
 

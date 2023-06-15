@@ -22,9 +22,10 @@ as soon as possible to take advantage of the new functionality and improved user
 
 ## User flows
 
-The ePayment API supports several different user flows and can be used for any type of payment situation:
+The ePayment API supports several user flows and can be used for any type of payment situation:
+
 * Payments online (remote sales)
-* Paymens in physical situations (when the customer is present)
+* Payments in physical situations (when the customer is present)
 * Payments initiated on the customer's phone, or on a different device (including the merchant's device)
 * Payments using QR codes
 * etc

@@ -21,7 +21,7 @@ since the app is required (it does not work with
 Vipps wants the user experience, including the standard timeout, to be as
 consistent as possible, so this should only be used in special cases.
 To request this feature: Please contact your key account manager, your partner manager, or
-[customer service)(https://vipps.no/kontakt-oss/).
+[customer service](https://vipps.no/kontakt-oss/).
 
 ## Request
 
@@ -44,16 +44,15 @@ To request this feature: Please contact your key account manager, your partner m
 }
 ```
 
-This will send a push message to the customer's app (specifed with `phoneNumber`),
+This will send a push message to the customer's app (specified with `phoneNumber`),
 and the customer confirms the payment.
 
-If the customer's phone number is unknown, the the request can specify `userFlow` as `QR`.
+If the customer's phone number is unknown, the request can specify `userFlow` as `QR`.
 This will return the QR code for a payment, including the expiration time specified.
 The customer scans the QR code to complete the payment flow in the app.
 
 If a payment is initiated with the `expiresAt` for a sales unit that is not allowed to use
 the feature, the response will be an error.
-
 
 ## Response
 

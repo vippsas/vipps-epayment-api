@@ -40,5 +40,3 @@ curl https://apitest.vipps.no/epayment/v1/payments \
   "paymentDescription": "Two pairs of socks"
 }'
 ```
-
-
