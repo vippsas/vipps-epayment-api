@@ -1,14 +1,14 @@
 ---
-title: '"Customer present" payments'
+title: Customer present payments
 hide_table_of_contents: true
 sidebar_position: 30
 ---
 
-# "Customer present" payments
+# Customer present payments
 
 When using the ePayment API to process payments in a physical setting (e.g., from a Point of Sale
 device or in a restaurant), the
-[`POST:/epayment/v1//payments`](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment)
+[`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment)
 request must specify `"customerInteraction": "CUSTOMER_PRESENT"`.
 
 The `CUSTOMER_PRESENT` parameter is required for compliance and reporting reasons, as
