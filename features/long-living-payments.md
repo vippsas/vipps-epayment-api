@@ -57,4 +57,4 @@ the feature, the response will be an error.
 
 ## Response
 
-The respinse is similar to a regular payment initiation.
+The response is similar to a regular payment initiation.
