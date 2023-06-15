@@ -616,6 +616,7 @@ components:
         scope:
           type: string
           description: A space-separated string list of requested user information in accordance with the OpenID Connect specification.
+          example: "phoneNumber name address email"
     ProfileResponse:
       title: Profile
       type: object
