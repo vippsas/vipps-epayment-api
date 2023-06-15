@@ -10,7 +10,7 @@ The ePayment API supports freestanding card payments, where any user can pay reg
 ## Create a freestanding card payment
 
 Remember to have a fresh access token (see
-[Setup and Authorize](../quick-start.md#step-1---setup)).
+[Set up and Authorize](../quick-start.md#step-1---setup)).
 Then, call the [Create Payment][create-payment-endpoint] endpoint with `paymentMethod.type = "CARD"`.
 
 ```bash

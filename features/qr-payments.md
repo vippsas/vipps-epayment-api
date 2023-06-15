@@ -13,7 +13,7 @@ The ePayment API supports QR payments directly, making it easy to provide
 ## Create a QR Payment
 
 Remember to have a fresh access token, see
-[Setup and Authorize](../quick-start.md#step-1---setup).
+[Set up and Authorize](../quick-start.md#step-1---setup).
 Then, call the [Create Payment][create-payment-endpoint] endpoint with `userFlow = "QR"`.
 
 ```bash
