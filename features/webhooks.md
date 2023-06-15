@@ -9,15 +9,12 @@ import ApiSchema from '@theme/ApiSchema';
 
 # Webhooks
 
-:::note
-Webhooks will be released early Q2.
-:::
+You can subscribe to webhooks for any number of events.
+See the
+[Webhooks API guide](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api)
+to get started.
 
-ePayment API offers the possibility to subscribe to webhooks for any number of events.
-Visit the
-[Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api)
-for general information about webhooks, and how to get started.
-For any webhook you will receive the following payload, where the only property changing is the `NAME`, which will reflect the event type you subscribed on.
+For any webhook, you will receive the following payload. The only property changing is the `NAME`, which will reflect the event type you subscribed on.
 
 <ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/WebhookEvent" />
 
