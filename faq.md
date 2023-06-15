@@ -30,8 +30,8 @@ Integrating with our APIs is straightforward, and combining functionalities from
 Yes, to a certain extent. 
 The eCom API uses the ePayment API *behind the scenes*.
 
-The ePayment API is _backwards compatible: with the eCom API,
-but the eCom API is _forwards compatible_ with the ePayment API:
+The ePayment API is *backwards compatible* with the eCom API,
+but the eCom API is *forwards compatible* with the ePayment API:
 
 * If the payments are initiated with the
   [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/)
