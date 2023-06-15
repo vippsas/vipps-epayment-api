@@ -17,7 +17,7 @@ See the
 [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api)
 for more information.
 
-For any webhook you will receive the following payload, where the only property changing is
+For any webhook, you will receive the following payload, where the only property changing is
 the `name`, which will reflect the event type you subscribed on.
 
 <ApiSchema id="epayment-swagger-id" pointer="#/components/schemas/WebhookEvent" />
