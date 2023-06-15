@@ -18,11 +18,11 @@ Then, call the [Create Payment][create-payment-endpoint] endpoint with `userFlow
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni (truncated)" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
 -H "Content-Type: application/json" \
--H "Idempotency-Key: UNIQUE-ID" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
+-H "Merchant-Serial-Number: 123456" \
 -X POST \
 -d '{
   "amount": {
@@ -32,10 +32,10 @@ curl https://apitest.vipps.no/epayment/v1/payments \
   "paymentMethod": {
     "type": "WALLET"
   },
-  "reference": "UNIQUE-PAYMENT-REFERENCE",
-  "returnUrl": "https://yourwebsite.come/redirect?reference=abcc123",
+  "reference": "acme-shop-123-order123abc,
+  "returnUrl": "https://example.com/redirect?reference=acme-shop-123-order123abc",
   "userFlow": "QR",
-  "paymentDescription": "A simple QR payment",
+  "paymentDescription": "Two pairs of socks, paid with a QR code",
   "qrFormat": {
     "format": "IMAGE/SVG+XML",
     "size": 1024

@@ -16,11 +16,11 @@ An example response would look like this:
     "aggregate": {
         "authorizedAmount": {
             "currency": "NOK",
-            "value": 1000
+            "value": 49900
         },
         "cancelledAmount": {
             "currency": "NOK",
-            "value": 1000
+            "value": 49900
         },
         "capturedAmount": {
             "currency": "NOK",
@@ -33,7 +33,7 @@ An example response would look like this:
     },
     "amount": {
         "currency": "NOK",
-        "value": 1000
+        "value": 49900
     },
     "state": "AUTHORIZED",
     "paymentMethod": {
@@ -41,7 +41,7 @@ An example response would look like this:
     },
     "profile": {},
     "pspReference": "37c34d8c-2649-448e-864b-060d5d93e4c4",
-    "reference": "UNIQUE-PAYMENT-REFERENCE"
+    "reference": "acme-shop-123-order123abc"
 }
 ```
 

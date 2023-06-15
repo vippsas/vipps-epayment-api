@@ -11,15 +11,20 @@ toc_max_heading_level: 5
 
 # Migration from the eCom API to the ePayment API
 
-The ePayment API expands upon the functionality of the eCom API and simplifies the existing flows. Merchants currently using the eCom API should find the ePayment API familiar and intuitive.
+The ePayment API expands upon the functionality of the eCom API and simplifies the existing flows.
+Merchants currently using the eCom API should find the ePayment API familiar and intuitive.
 
-The ePayment API is **backwards compatible** with the eCom API. This means that payments initiated via the eCom API can be captured, refunded, cancelled, and retrieved using the ePayment API.
+The ePayment API is **backwards compatible** with the eCom API. This means that payments initiated
+via the eCom API can be captured, refunded, cancelled, and retrieved using the ePayment API.
 
 :::note
 The ePayment API is backwards compatible with the eCom API. However, the eCom API is _not forwards compatible_ with the ePayment API. This means that **payments initiated with the ePayment API can not be modified or retrieved using the eCom API**.
 :::
 
 Merchants are advised to fully migrate over to the ePayment API. However, it is possible to migrate one endpoint at a time, _provided that the Create Payment endpoint is migrated last (see above note)_.
+
+See
+[Can payments be "mixed and matched" between the eCom API and the ePayment API?](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/faq/#can-payments-be-mixed-and-matched-between-the-ecom-api-and-the-epayment-api)
 
 **Important:**
 The ePayment API only offers “reserve capture”. There is no “direct capture”, as
@@ -28,19 +33,33 @@ in the eCom API. Read more about the benefits of "reserve capture":
 
 ## Callbacks
 
-For payment callbacks, you no longer have to submit the `callbackPrefix` as part of the Initiate Payment request. Instead, you can use the [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks) to register URLs that will receive callbacks whenever various events occur for your payments.
+For payment callbacks, you no longer have to submit the `callbackPrefix` as part of the Initiate Payment request
+Instead, you can use the
+[Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks)
+to register URLs that will receive callbacks whenever various events occur for your payments.
 
-The Webhooks API provides _guaranteed delivery_ callbacks. If the callback is not successfully received on your end, we will retry sending it for several days. In addition, you can now receive callbacks for _all_ adjustments to your payment. See [Webhooks](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks) for details.
+**Please note:** The Webhooks API provides _guaranteed delivery_: If the callback is not successful
+(we do not get the expected response from you), we will retry sending it for several days.
+In addition, you can now receive callbacks for _all_ adjustments to your payment. 
 
 ## Payment flows
 
-In the eCom API, merchants could choose between three flows by specifying the parameters `isApp` and `skipLandingPage`. These parameters were added to the original API over the years. The same functionality is available in ePayment, but smarter: Instead of specifying the parameters, you now simply decide which flow you want through the `userFlow` property. Here's how the fields correspond to each other:
+In the eCom API, merchants could choose between three flows by specifying the parameters
+[`isApp`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/isApp/)
+and
+[`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/#skip-landing-page). 
+
+These parameters were added to the original API over the years. The same functionality is available in ePayment,
+but smarter: Instead of specifying the parameters, you now simply decide which flow you want through the
+`userFlow` property. Here's how the fields correspond to each other:
 
 * `isApp: false` and `skipLandingPage: false` -> `WEB_REDIRECT`
 * `isApp: true` and `skipLandingPage: false`  -> `NATIVE_REDIRECT`
 * `skipLandingPage: true`                     -> `PUSH_MESSAGE`
 
-The ePayment API also supports a new flow, [the `QR` flow](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments). The QR flow provides you with a direct link to a one-time payment QR code that the user can scan and pay from their app.
+The ePayment API also supports a new flow:
+[the `QR` flow](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments).
+The QR flow provides you with a direct link to a one-time payment QR code that the user can scan and pay from their app.
 
 ## Renamed and altered fields
 
@@ -60,12 +79,19 @@ The `WALLET` payment method means the user will use the Vipps app to pay.  The `
 
 ## Express Payments
 
-Express payments in the ePayment API will be available soon.
+See:
+[Is Express Checkout available in the ePayment API?](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/faq/#is-express-checkout-available-in-the-epayment-api)
 
 ## Partial Cancellations
 
-Cancellation of partially captured payments is supported in the eCom API by setting the `shouldReleaseRemainingFunds` flag.  
-In the ePayment API, this behavior is enabled by default.
+Cancellation of partially captured payments is supported in the eCom API by setting the `shouldReleaseRemainingFunds` flag
+in the 
+[`PUT:/ecomm/v2/payments/{orderId}/cancel`](https://developer.vippsmobilepay.com/api/ecom/#tag/Vipps-eCom-API/operation/cancelPaymentRequestUsingPUT)
+request.
+
+In the ePayment API, this behavior is the default behavious for the
+[`POST:/epayment/v1/payments/{reference}/cancel`](https://developer.vippsmobilepay.com/api/epayment/#tag/AdjustPayments/operation/cancelPayment)
+request, and there is no need to do anything extra.
 
 ## Customer Present Payments
 

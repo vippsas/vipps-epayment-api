@@ -15,28 +15,29 @@ for a general introduction to cancellations.
 
 If you no longer wish to initiate settlement of the remaining funds on a payment
 then you should cancel the payment:
-[`POST:/payments/{reference}/cancel`][cancel-payment-endpoint].
+[`POST:/epayment/v1/payments/{reference}/cancel`][cancel-payment-endpoint].
 Cancelling a payment provides a good user experience and synchronizes
 the user's bank statement and Vipps payment overview with their expectations from
 a merchant.
 
 A payment can be cancelled via the API or
 [portal.vipps.no](https://portal.vipps.no)
-at any point until the
-payment is fully captured. A cancellation will release any remaining authorized
+at any point until the payment is fully captured. A cancellation will release any remaining authorized
 funds on the customers bank account.
 
 ## Cancel via the API
 
 The payment can be cancelled with
-[`POST:/payments/{reference}/cancel`][cancel-payment-endpoint].
+[`POST:/epayment/v1/payments/{reference}/cancel`][cancel-payment-endpoint].
 
 ## Cancel before Authorization
 
-If the payment has not yet reached the `AUTHORIZED` state a cancellation by the
-merchant via the API will result in `TERMINATED` state of the payment.
+If the payment has not yet reached the `AUTHORIZED` state, a cancellation by the
+merchant via the API will result in the `TERMINATED` state for the payment.
 
-An example response for a cancel request pre-authorization looks like this
+An example response for
+[`POST:/epayment/v1/payments/{reference}/cancel`][cancel-payment-endpoint]
+before authorization looks like this:
 
 ```json
 {
@@ -74,30 +75,31 @@ After the cancel is complete, a notification will be sent if a
 
 ## Cancel after Authorization
 
-If the payment has reached the `AUTHORIZED` state a cancellation by the merchant
-via the API will **not** change the state of the payment, it will remain `AUTHORIZED`.
-However, the reserved amount from the customer will be released, and the `aggregate`
+If the payment has reached the `AUTHORIZED` state a
+[`POST:/epayment/v1/payments/{reference}/cancel`][cancel-payment-endpoint]
+request will **not** change the state of the payment, it will remain `AUTHORIZED`.
+However, the reserved amount from will be released (for the customer), and the `aggregate`
 object will reflect this with the `cancelledAmount` property.
 
 An example response for a
-[`POST:/payments/{reference}/cancel`][cancel-payment-endpoint]
-request post-authorization looks like this:
+[`POST:/epayment/v1/payments/{reference}/cancel`][cancel-payment-endpoint]
+request after authorization looks like this:
 
 ```json
 {
    "amount":{
       "currency":"NOK",
-      "value":1000
+      "value":49900
    },
    "state":"AUTHORIZED",
    "aggregate":{
       "authorizedAmount":{
          "currency":"NOK",
-         "value":1000
+         "value":49900
       },
       "cancelledAmount":{
          "currency":"NOK",
-         "value":1000
+         "value":49900
       },
       "capturedAmount":{
          "currency":"NOK",
@@ -109,7 +111,7 @@ request post-authorization looks like this:
       }
    },
    "pspReference":"37c34d8c-2649-448e-864b-060d5d93e4c4",
-   "reference":"UNIQUE-PAYMENT-REFERENCE"
+   "reference":"acme-shop-123-order123abc"
 }
 ```
 
@@ -139,7 +141,7 @@ following aggregate state:
    "aggregate":{
       "authorizedAmount":{
          "currency":"NOK",
-         "value":1000
+         "value":49900
       },
       "cancelledAmount":{
          "currency":"NOK",
@@ -147,7 +149,7 @@ following aggregate state:
       },
       "capturedAmount":{
          "currency":"NOK",
-         "value":250
+         "value":10000
       },
       "refundedAmount":{
          "currency":"NOK",
