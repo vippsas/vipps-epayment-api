@@ -1,10 +1,10 @@
 ---
-title: '"Customer present" payments'
+title: 'Customer-present payments'
 hide_table_of_contents: true
 sidebar_position: 30
 ---
 
-# "Customer present" payments
+# Customer-present payments
 
 When using the ePayment API to process payments in a physical setting (e.g., from a Point of Sale
 device or in a restaurant), the

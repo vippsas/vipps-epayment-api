@@ -73,5 +73,5 @@ If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is req
 ### QR
 
 Applicable only for `WALLET` payments. For customer-facing screens where payment
-can be initiated with
-[Vipps One Time Payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-one-time-payment-api-howitworks).
+can be initiated with a
+[One-Time Payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-api/#one-time-payment-qr-codes).
