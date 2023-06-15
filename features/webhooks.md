@@ -15,7 +15,7 @@ The ePayment API offers the possibility to subscribe to webhooks for any number 
 
 See the
 [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api)
-more information.
+for more information.
 
 For any webhook you will receive the following payload, where the only property changing is
 the `name`, which will reflect the event type you subscribed on.
