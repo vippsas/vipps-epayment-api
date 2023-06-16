@@ -10,7 +10,7 @@ description: Create payment with the ePayment API.
 # Create payment
 
 The first step in the payment flow is creating a payment by calling
-[`POST:/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments)
+[`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments)
 endpoint. This endpoint supports card and wallet as payment methods and different user flows for each.
 
 ```mermaid
@@ -46,11 +46,11 @@ and how the user experience will be.
 The default flow for:
 
 * Wallet payments
-  * Open the
+  * Opens the
     [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page)
-    when the user is on another device than a phone (such as a /laptop computer), and automatically redirect to the app when the user is using a phone.
+    when the user is on another device than a phone (such as a /laptop computer), and automatic redirects to the app when the user is using a phone.
 * Card payments
-  * Open the card entry page on both desktop and mobile. More information at
+  * Opens the card entry page on both desktop and mobile. More information at
     [Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments).
 
 ### NATIVE_REDIRECT
@@ -61,7 +61,7 @@ The given `redirectUrl` will automatically open the Vipps app on mobile devices 
 
 ### PUSH_MESSAGE
 
-Applicable only for `WALLET` payments.
+Applicable only for `WALLET` payments. 
 
 This will skip the
 [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page)
@@ -73,5 +73,5 @@ If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is req
 ### QR
 
 Applicable only for `WALLET` payments. For customer-facing screens where payment
-can be initiated with a
-[One-Time Payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-api/#one-time-payment-qr-codes).
+can be initiated with
+[Vipps One Time Payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-one-time-payment-api-howitworks).
