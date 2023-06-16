@@ -9,6 +9,10 @@ description: Get payment with the ePayment API.
 A [`GET:/payments/{reference}`][get-payment-endpoint]
 request will return a point in time snapshot of a given payment.
 
+This is the recommended way to get the current information about a payment.
+[`GET:/payments/{reference}/events`][get-payment-event-log-endpoint]
+may be used to get all the details.
+
 An example response would look like this:
 
 ```json
@@ -69,4 +73,5 @@ See:
 [What is the `sub`?](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/userinfo-api-faq/#what-is-the-sub)
 
 [get-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPayment
+[get-payment-event-log-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
 [create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment

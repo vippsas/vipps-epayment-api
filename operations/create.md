@@ -66,7 +66,7 @@ The default flow for:
 
 Applicable only for `WALLET` payments.
 
-The given `redirectUrl` will automatically open the Vipps app on mobile devices (with app-switch).
+The `redirectUrl` will automatically open the Vipps app on mobile devices, using app-switch.
 
 ### PUSH_MESSAGE
 
@@ -77,10 +77,12 @@ This will skip the
 and is only allowed if user is not starting the payment from own device
 (e.g., from a Point Of Sale device, vending machines and similar).
 
-If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required.
+If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required, since there is no
+way for the customer to enter the phone number manually.
 
 ### QR
 
-Applicable only for `WALLET` payments. For customer-facing screens where payment
-can be initiated with
+Applicable only for `WALLET` payments. 
+
+For customer-facing screens where payments can be initiated with
 [Vipps One Time Payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-one-time-payment-api-howitworks).
