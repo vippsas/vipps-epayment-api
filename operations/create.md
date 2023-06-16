@@ -9,9 +9,10 @@ description: Create payment with the ePayment API.
 
 # Create payment
 
-The first step in the payment flow is creating a payment by calling
-[`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments)
-endpoint. This endpoint supports card and wallet as payment methods and different user flows for each.
+The first step in the payment flow is to create a payment with
+[`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments).
+This endpoint supports both wallet (the app) and freestanding card payments (by entering the card details),
+and different user flows for each payment type.
 
 ```mermaid
 flowchart TD
@@ -24,8 +25,15 @@ flowchart TD
     Card --> CARD_WEB_REDIRECT[fa:fa-desktop userFlow: WEB_REDIRECT]
 ```
 
-`paymentMethod.type` in the request determines the type of payment. Allowed
-values are `CARD` and `WALLET`.
+The `paymentMethod.type` in the request determines the type of payment:
+* `WALLET`: With the Vipps MobilePay app. This includes delegated SCA (secure customer authentication),
+   where the login to the app eliminates the need for a separate SCA step.
+  `WALLET` payments also include retry functionality; If the user attempts to pay
+  with a card that is declined, the user can retry with a different card,
+  while still in the same payment process.
+* `CARD`: The user enters the card details in a form, followed by a 3D Secure step-up
+  for SCA. See
+  [Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments).
 
 **Please note:** Card payment (`CARD`) is not available in test environment.
 
