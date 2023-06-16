@@ -45,13 +45,14 @@ and how the user experience will be.
 
 The default flow for:
 
-* Wallet payments
-  * Opens the
-    [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page)
-    when the user is on another device than a phone (such as a /laptop computer), and automatic redirects to the app when the user is using a phone.
-* Card payments
-  * Opens the card entry page on both desktop and mobile. More information at
-    [Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments).
+* Wallet payments:
+  Opens the
+  [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page)
+  when the user is on another device than a phone (such as a /laptop computer), and automatically redirects to the
+  app when the user is using a phone.
+* Card payments:
+  Opens the card entry page on both desktop and mobile. More information at
+  [Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments).
 
 ### NATIVE_REDIRECT
 
