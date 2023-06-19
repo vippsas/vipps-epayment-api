@@ -9,9 +9,20 @@ The ePayment API supports freestanding card payments, where any user can pay wit
 using the app. This lets merchants accept payments from customers in countries where
 the Vipps MobilePay app is not yet available.
 
+# Freestanding card payments
+
+The ePayment API supports freestanding card payments (FSCP),
+where any user can pay regardless of having the Vipps or MobilePay app installed.
+See
+[FAQ: Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments).
+
 ## Create a freestanding card payment
 
-To initiate a freestanding card payment the
+Remember to have a fresh access token, see 
+[Setup and Authorize](../quick-start.md#step-1---setup).
+Then, call the [Create Payment][create-payment-endpoint] endpoint with `paymentMethod.type = "CARD"`.
+
+To initiate a freestanding card payment, the
 [`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment/#tag/CreatePayments/operation/createPayment)
 request must specify `paymentMethod.type = "CARD"`.
 
@@ -44,7 +55,8 @@ The response for the request above will contain a `redirectUrl` pointing to the 
 where the user enters the payment card details.
 
 :::note
-The card entry page currently is not currently available in the test environment.
+The card entry page currently is not currently available in the
+[test environment)(https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment/).
 :::
 
 ![Enter card details](../images/vipps-ecom-pay-by-card-step2.png)
