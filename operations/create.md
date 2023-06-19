@@ -84,5 +84,5 @@ way for the customer to enter the phone number manually.
 
 Applicable only for `WALLET` payments. 
 
-For customer-facing screens where payments can be initiated with
+This is for customer-facing screens where payments can be initiated with
 [Vipps One Time Payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-one-time-payment-api-howitworks).
