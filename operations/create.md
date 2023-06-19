@@ -44,7 +44,7 @@ and how the user experience will be.
 
 | `userFlow`        | Description                                          |
 | ----------------- | ---------------------------------------------------- |
-| `WEB_REDIRECT`    | The normal flow for browser-based payment flows. The user will be automatically app-switched to the Vipps MobilePay app if on a mobile device, or be presented with the [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/) if not.    |
+| `WEB_REDIRECT`    | The normal flow for browser-based payment flows. If on a mobile device, the Vipps MobilePay app will open. Otherwise, the [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/) will open.    |
 | `NATIVE_REDIRECT` | For automatic app-switch between the merchant's native app and the Vipps MobilePay app. |
 | `PUSH_MESSAGE`    | For payments initiated on a different device than the user's phone. The user gets a push message that opens the payment in the app.Similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page#skip-landing-page) in the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) |
 | `QR`              | Returns a QR code that can be scanned to complete the payment. |
