@@ -9,9 +9,11 @@ description: Create payment with the ePayment API.
 
 # Create payment
 
-The first step in the payment flow is creating a payment by calling
-[`POST:/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments)
-endpoint. This endpoint supports card and wallet as payment methods and different user flows for each.
+The first step in the payment flow is to create a payment with
+[`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments).
+This endpoint supports both *wallet* (i.e., the Vipps MobilePay app) and
+freestanding card payments, when card details are entered.
+Each payment type offers separate user flows.
 
 ```mermaid
 flowchart TD
@@ -24,54 +26,61 @@ flowchart TD
     Card --> CARD_WEB_REDIRECT[fa:fa-desktop userFlow: WEB_REDIRECT]
 ```
 
-`paymentMethod.type` in the request determines the type of payment. Allowed
-values are `CARD` and `WALLET`.
+The `paymentMethod.type` in the request determines the type of payment:
 
-**Please note:** Card payment (`CARD`) is not available in test environment.
+* `WALLET`: The user pays through the Vipps MobilePay app. This includes delegated Secure Customer Authentication (SCA),
+   where the login to the app eliminates the need for a separate SCA step.
+  `WALLET` payments include retry functionality such that, if the user attempts to pay
+  with a declined card, they can retry with a different card for the same payment process.
+* `CARD`: The user pays with a card. They enter the card details into a form and then complete the 3D Secure step-up
+  for SCA. See
+  [Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments)
+  for more information.
+
+  **Please note:** Card payment (`CARD`) is not available in the test environment.
 
 ## User flow alternatives
 
-The `userFlow` parameter specifies how the API should handle the payment,
+The `userFlow` parameter specifies how the API should handle the payment
 and how the user experience will be.
 
 | `userFlow`        | Description                                          |
 | ----------------- | ---------------------------------------------------- |
-| `WEB_REDIRECT`    | The normal flow for browser-based payment flows.     |
-| `NATIVE_REDIRECT` | For automatic app-switch between the merchant's native app and the Vipps app. |
-| `PUSH_MESSAGE`    | For payments initiated on a different device than the user's phone. Similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page#skip-landing-page) in the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) |
+| `WEB_REDIRECT`    | The normal flow for browser-based payment flows. If on a mobile device, the Vipps MobilePay app will open. Otherwise, the [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/) will open.    |
+| `NATIVE_REDIRECT` | Automatic app-switch between the merchant's native app and the Vipps MobilePay app. |
+| `PUSH_MESSAGE`    | For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page#skip-landing-page). |
 | `QR`              | Returns a QR code that can be scanned to complete the payment. |
 
 ### WEB_REDIRECT
 
-The default flow for:
+This is the default flow for wallet and card payments.
 
-* Wallet payments
-  * Open the
-    [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page)
-    when the user is on another device than a phone (such as a /laptop computer), and automatically redirect to the app when the user is using a phone.
-* Card payments
-  * Open the card entry page on both desktop and mobile. More information at
-    [Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments).
+* Wallet flow:
+  When the user is on a mobile device, redirect them to the Vipps MobilePay app. From the desktop, open the
+  [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page).
+
+* Card flow:
+  Whether the user is on a desktop or mobile device, open the card entry page. See
+  [Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments) for more information.
 
 ### NATIVE_REDIRECT
 
 Applicable only for `WALLET` payments.
 
-The given `redirectUrl` will automatically open the Vipps app on mobile devices (with app-switch).
+The `redirectUrl` will automatically open the Vipps MobilePay app on mobile devices.
 
 ### PUSH_MESSAGE
 
 Applicable only for `WALLET` payments.
 
-This will skip the
-[Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page)
-and is only allowed if user is not starting the payment from own device
-(e.g., from a Point Of Sale device, vending machines and similar).
+For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page#skip-landing-page).
 
-If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required.
+If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required, since there is no
+way for the customer to enter the phone number manually.
 
 ### QR
 
-Applicable only for `WALLET` payments. For customer-facing screens where payment
-can be initiated with a
-[One-Time Payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-api/#one-time-payment-qr-codes).
+Applicable only for `WALLET` payments.
+
+This user flow is for customer-facing screens where payments can be initiated with the
+[One-time payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-api/#one-time-payment-qr-codes).
