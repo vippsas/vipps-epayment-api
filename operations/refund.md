@@ -12,12 +12,11 @@ See
 [Common API topics - Refunds](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/refund)
 for a general introduction to refunds.
 
-
 A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the Merchant back to the customer.
 
 Refunds can be made in full or partially as needed. The refund amount must be defined in the refund API request.
 
-Refunded funds will be deducted from the merchants settlement account after two business days. See [Settlement Information](https://developer.vippsmobilepay.com/docs/vipps-developers/settlements) for more details.
+Refunded funds will be deducted from the merchant's settlement account after two business days. See [Settlement Information](https://developer.vippsmobilepay.com/docs/vipps-developers/settlements) for more details.
 
 ## Refund via the API
 
@@ -28,16 +27,16 @@ An example refund would look like:
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refund \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni (truncated)" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
 -H "Content-Type: application/json" \
--H "Idempotency-Key: UNIQUE-ID" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
+-H "Merchant-Serial-Number: 123456" \
 -X POST \
 -d '{
   "modificationAmount": {
     "currency": "NOK",
-    "value": 1000
+    "value": 10000
   }
 }'
 ```
@@ -49,7 +48,7 @@ In the response, the `aggregate` object will be updated to reflect the refunded 
   "aggregate": {
     "authorizedAmount": {
       "currency": "NOK",
-      "value": 1000
+      "value": 49900
     },
     "cancelledAmount": {
       "currency": "NOK",
@@ -57,17 +56,19 @@ In the response, the `aggregate` object will be updated to reflect the refunded 
     },
     "capturedAmount": {
       "currency": "NOK",
-      "value": 1000
+      "value": 10000
     },
     "refundedAmount": {
       "currency": "NOK",
-      "value": 1000
+      "value": 10000
     }
   }
 }
 ```
 
-A notification will also be sent once the refund is completed if a [webhook](../features/webhooks.md) is registered for the event `epayments.payment.refunded.v1`.
+A notification will also be sent once the refund is completed if a
+[webhook](../features/webhooks.md)
+is registered for the event `epayments.payment.refunded.v1`.
 
 ## Partial Refund
 
@@ -79,16 +80,16 @@ An example partial refund would look like:
 
 ```bash
 curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/refund \
--H "Authorization: Bearer <TOKEN>" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni (truncated)" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
 -H "Content-Type: application/json" \
--H "Idempotency-Key: UNIQUE-ID" \
--H "Merchant-Serial-Number: YOUR-MERCHANT-ACCOUNT-NUMBER" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
+-H "Merchant-Serial-Number: 123456" \
 -X POST \
 -d '{
   "modificationAmount": {
     "currency": "NOK",
-    "value": 250
+    "value": 10000
   }
 }'
 ```
@@ -100,7 +101,7 @@ Once refund is completed the `aggregate` object will be updated to reflect this,
   "aggregate": {
     "authorizedAmount": {
       "currency": "NOK",
-      "value": 1000
+      "value": 49900
     },
     "cancelledAmount": {
       "currency": "NOK",
@@ -108,11 +109,11 @@ Once refund is completed the `aggregate` object will be updated to reflect this,
     },
     "capturedAmount": {
       "currency": "NOK",
-      "value": 1000
+      "value": 10000
     },
     "refundedAmount": {
       "currency": "NOK",
-      "value": 250
+      "value": 10000
     }
   }
 }
