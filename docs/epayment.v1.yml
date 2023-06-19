@@ -223,34 +223,57 @@ components:
     Customer:
       title: Customer
       type: object
-      description: Target customer if the identity is known. Sending in more than one identity will result in a failure.
+      description: |-
+        The target customer if the identity is known.
+        The customer can be specified either with phone numbner or with the
+        user's personal QR code.
+        Specifying more than one of these will result in an error.
+        
+        **Please note:** The phone number (and QR code) is optional and should only be sent if it is
+        already known. Users should never be asked for the phone number, as they will
+        either be automatically app-switched to the Vipps app, or they will be presented
+        with the landing page. If the customer's phone number is needed by the merchant:
+        Use `scope` and the Userinfo API:
+        https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/
+        See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
+      oneOf:
+        - $ref: '#/components/schemas/CustomerPhoneNumber'
+        - $ref: '#/components/schemas/PersonalQrCode'
+    CustomerPhoneNumber:
+      title: Customer phone number
+      type: object
+      description: |-
+        The customer's phone number, if available.
+        Only Norwegian mobile numbers are supported (for now).
       properties:
         phoneNumber:
           type: string
-          description: |-
-            The customer's phone number, if available.
-            Only Norwegian mobile numbers are supported (for now).
+          description: |-       
             The format is MSISDN: Digits only: Country code and subscriber number, but no prefix.
-            See: https://en.wikipedia.org/wiki/MSISDN
-
-            **Please note:** The phone number is optional, and should only be sent if it is
-            already known.
-            Users should never be asked for the phone number, as they will
-            either be automatically app-switched to the Vipps app, or they will be presented
-            with the landing page.
-            If the customer's phone number is needed by the merchant: Use `scope` and the Userinfo API:
-            https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/
-            See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
+            See: https://en.wikipedia.org/wiki/MSISDN    
           minLength: 10
           maxLength: 15
           example: '4791234567'
           pattern: '^\d{10,15}$'
+    PersonalQrCode:
+      title: Personal QR code
+      type: object
+      description: |-
+        The full content of the user's personal QR code in the app, used in 'merchant scan' scenarios. 
+        After the personal QR code has been scanned in a physical context, send the complete QR
+        code content in this field to initiate a payment from the user (and do not send `phoneNumber`).
+        **Important:** The content of the QR code can change at any time, without warning.
+        It is very important to send the _complete content of the QR code_, like the complete URL in the example below.
+        While the personal QR code does reveal the user's phone number in this example, that may change.
+        The [Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/)
+        should be used if you need the user to share personal inforemation, 
+        such as phone number, email address, etc.
+      properties:
         personalQr:
           type: string
-          description: |-
-            The URL from the user's personal QR code in the app, used in merchant scan scenarios. 
-            After this has been scanned in a physichal context, pass it on in this field to trigger a payment to the user.
-            The content of the QR code can change at any time, so it is important to send over the raw url that was scanned in the QR.
+          description: The full content of the user's personal QR code in the app. 
+          minLength: 5
+          maxLength: 255
           example: 'https://qr.vipps.no/28/2/01/031/4791234567?v=1'
     Amount:
       description: Amount object
