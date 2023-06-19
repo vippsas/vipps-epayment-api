@@ -262,6 +262,7 @@ components:
         The full content of the user's personal QR code in the app, used in 'merchant scan' scenarios. 
         After the personal QR code has been scanned in a physical context, send the complete QR
         code content in this field to initiate a payment from the user (and do not send `phoneNumber`).
+        
         **Important:** The content of the QR code can change at any time, without warning.
         It is very important to send the _complete content of the QR code_, like the complete URL in the example below.
         While the personal QR code does reveal the user's phone number in this example, that may change.
