@@ -228,14 +228,6 @@ components:
         The customer can be specified either with phone numbner or with the
         user's personal QR code.
         Specifying more than one of these will result in an error.
-        
-        **Please note:** The phone number (and QR code) is optional and should only be sent if it is
-        already known. Users should never be asked for the phone number, as they will
-        either be automatically app-switched to the Vipps app, or they will be presented
-        with the landing page. If the customer's phone number is needed by the merchant:
-        Use `scope` and the Userinfo API:
-        https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/
-        See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
       oneOf:
         - $ref: '#/components/schemas/CustomerPhoneNumber'
         - $ref: '#/components/schemas/PersonalQrCode'
@@ -245,6 +237,14 @@ components:
       description: |-
         The customer's phone number, if available.
         Only Norwegian mobile numbers are supported (for now).
+
+        **Please note:** The phone number (and QR code) is optional and should only be sent if it is
+        already known. Users should never be asked for the phone number, as they will
+        either be automatically app-switched to the Vipps app, or they will be presented
+        with the landing page. If the customer's phone number is needed by the merchant:
+        Use `scope` and the Userinfo API:
+        https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/
+        See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
       properties:
         phoneNumber:
           type: string
