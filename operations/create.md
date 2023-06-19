@@ -11,8 +11,8 @@ description: Create payment with the ePayment API.
 
 The first step in the payment flow is to create a payment with
 [`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments).
-This endpoint supports both wallet (the app) and freestanding card payments (by entering the card details),
-and different user flows for each payment type.
+This endpoint supports both wallet (the app) and freestanding card payments (by entering the card details);
+as well as providing different user flows for each payment type.
 
 ```mermaid
 flowchart TD
