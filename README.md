@@ -49,12 +49,10 @@ The ePayment API lets merchants accept payments using both the app and cards wit
 * [Vipps](how-it-works/vipps-epayment-api-how-it-works-online.md#1-pay-with-vipps) (the app)
 * [Credit and debit cards](features/free-standing-card-payments.md) without Vipps.
 
-## How it works
+## Recommended flows
 
-* [ePayment API: How It Works](./how-it-works/vipps-epayment-api-how-it-works-online.md):
-  Let your customers pay with Vipps MobilePay online or in your app.
-* [ePayment API: How it works in the store](./how-it-works/vipps-epayment-api-how-it-works-in-store.md):
-  How the ePayment API can be integrated in your Point Of Sale (POS) system.
+* [Recommended flows: Online payments](https://developer.vippsmobilepay.com/docs/vipps-solutions/online/)
+* [Recommended flows: In-store payments](https://developer.vippsmobilepay.com/docs/vipps-solutions/in-store/)
 
 ## Next steps
 

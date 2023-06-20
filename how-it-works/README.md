@@ -10,5 +10,5 @@ pagination_prev: null
 
 The following guides illustrate how the ePayment API works in different scenarios:
 
-* [How ePayment works online](vipps-epayment-api-how-it-works-online.md)
-* [How ePayment works in the store](vipps-epayment-api-how-it-works-in-store.md)
+* [Recommended flows: Online payments](https://developer.vippsmobilepay.com/docs/vipps-solutions/online/)
+* [Recommended flows: In-store payments](https://developer.vippsmobilepay.com/docs/vipps-solutions/in-store/)

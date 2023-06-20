@@ -249,7 +249,7 @@ components:
           type: string
           description: |-
             The URL from the user's personal QR code in the app, used in merchant scan scenarios. 
-            After this has been scanned in a physichal context, pass it on in this field to trigger a payment to the user.
+            After this has been scanned in a physical context, pass it on in this field to trigger a payment to the user.
             The content of the QR code can change at any time, so it is important to send over the raw url that was scanned in the QR.
           example: 'https://qr.vipps.no/28/2/01/031/4791234567?v=1'
     Amount:
