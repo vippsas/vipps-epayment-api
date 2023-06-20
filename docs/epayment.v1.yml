@@ -270,7 +270,7 @@ components:
         It is very important to send the _complete content of the QR code_, like the complete URL in the example below.
         While the personal QR code does reveal the user's phone number in this example, that may change.
         The [Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/)
-        should be used if you need the user to share personal inforemation, 
+        should be used if you need the user to share personal information, 
         such as phone number, email address, etc.
       properties:
         personalQr:
