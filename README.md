@@ -51,8 +51,8 @@ The ePayment API lets merchants accept payments using both the app and cards wit
 
 ## Recommended flows
 
-* [Recommended flows: Online payments](https://developer.vippsmobilepay.com/docs/vipps-solutions/online/)
-* [Recommended flows: In-store payments](https://developer.vippsmobilepay.com/docs/vipps-solutions/in-store/)
+* [Online payments](https://developer.vippsmobilepay.com/docs/vipps-solutions/online/)
+* [In-store payments](https://developer.vippsmobilepay.com/docs/vipps-solutions/in-store/)
 
 ## Next steps
 
