@@ -225,7 +225,7 @@ components:
       type: object
       description: |-
         The target customer if the identity is known.
-        The customer can be specified either with phone numbner or with the
+        The customer can be specified either with phone number or with the
         user's personal QR code.
         Specifying more than one of these will result in an error.
       oneOf:
