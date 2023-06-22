@@ -372,6 +372,8 @@ components:
             The format must adhere to RFC 3339.
             The value must be more than 10 minutes and less than 28 days in the future.
             Can only be combined with `userFlow: PUSH_MESSAGE` or `userFlow: QR`.
+
+            If ExpiresAt is set, receipt also has to be set.
         qrFormat:
           nullable: true
           type: object
@@ -406,6 +408,8 @@ components:
           description: |-
             The payment description summary that will be provided to the user
             through the app, the merchant portal, and the settlement files.
+        receipt:
+          $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.17/docs/swagger.yaml#/components/schemas/Receipt'
       required:
         - amount
         - paymentMethod
