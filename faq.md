@@ -27,7 +27,7 @@ Integrating with our APIs is straightforward, and combining functionalities from
 
 ## Can payments be "mixed and matched" between the eCom API and the ePayment API?
 
-Yes, to a certain extent. 
+Yes, to a certain extent.
 The eCom API uses the ePayment API *behind the scenes*.
 
 The ePayment API is *backwards compatible* with the eCom API,
@@ -51,7 +51,7 @@ They should be self-explanatory, but please let us know if they can be improved.
 
 Errors responses have this format:
 
-```
+```json
 {
    "type":"http://example.com",
    "title":"string",
@@ -63,15 +63,14 @@ Errors responses have this format:
 We will change this to match the common
 [Errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors/)
 format by changing `traceId` to `instance`.
-The ePayment documentation will be updated when that is done. 
-
+The ePayment documentation will be updated when that is done.
 
 | Title                   | Description                                                  | Comment                    |
 | ----------------------- | ------------------------------------------------------------ | -------------------------- |
 | Amount too small        | The amount is too small. Amounts are specified in minor units, like øre or cent. | For NOK the minimum is 100.|
 | Amount invalid          | The amount is invalid. Amounts must be integers, no decimals. They are specified in minor units, like øre or cent. | A common error is to specify amounts with decimals, sometimes due to rounding errors. |
 | Express payment not allowed | Express payment is not allowed for this sales unit. | |
-| Missing static shipping details | Express payments with static shipping details require a list of shipping options. | | 
+| Missing static shipping details | Express payments with static shipping details require a list of shipping options. | |
 | No cards   | The user does not have any payment cards. | The user must add a valid card in the app. |
 | Payment limit exceeded | The merchant's payment request limit is exceeded. | |
 | Operation not supported |  The attempted payment operation is not supported. | |
@@ -82,8 +81,8 @@ The ePayment documentation will be updated when that is done.
 | Capture idempotency conflict | The capture request in an idempotent retry must be identical to the previous request(s). | See [Idempotency](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers/#idempotency). |
 | Cannot cancel a captured payment | Cannot cancel a payment that has been captured. Check the payment event log. | See [Cancellations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel/) and [`GET:/epayment/v1/payments/{reference}/events`](https://developer.vippsmobilepay.com/api/epayment/#tag/QueryPayments/operation/getPaymentEventLog). |
 | Cannot cancel a non-reserved payment | Cannot cancel a payment that is not reserved. Check the payment event log. | See [Cancellations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel/) and [`GET:/epayment/v1/payments/{reference}/events`](https://developer.vippsmobilepay.com/api/epayment/#tag/QueryPayments/operation/getPaymentEventLog).  |
-| Cancel period expired | Payments can only be canceled within 180 days of the reservation. See the FAQ. | See [Cancellations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel/).  | 
-| Cannot cancel pending | Cannot cancel a pending payment." | See [Cancellations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel/). |
+| Cancel period expired | Payments can only be canceled within 180 days of the reservation. See the FAQ. | See [Cancellations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel/).  |
+| Cannot cancel pending | Cannot cancel a pending payment. | See [Cancellations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel/). |
 | Order processing | Too many concurrent requests. The payment is being processed. | |
 | Internal error | Internal error. This may be caused by an incorrect API request. Please check the request. See the status page. | |
 | Payment already refunded | Cannot refund a payment that has already been refunded. Check the payment event log. | See [`GET:/epayment/v1/payments/{reference}/events`](https://developer.vippsmobilepay.com/api/epayment/#tag/QueryPayments/operation/getPaymentEventLog). |
@@ -92,9 +91,9 @@ The ePayment documentation will be updated when that is done.
 | Refund idempotency conflict | The request in an idempotent retry must be identical to the previous request(s). | See [Idempotency](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers/#idempotency). |
 | Attempted refund before reservation | Cannot refund a payment that is not reserved. Check the payment event log. | See and [`GET:/epayment/v1/payments/{reference}/events`](https://developer.vippsmobilepay.com/api/epayment/#tag/QueryPayments/operation/getPaymentEventLog). |
 | Invalid Phone number | The phone number is invalid. Phone numbers must be in MSISDN format: Country code and subscriber number, but no prefix. | |
-| merchantinfo.StaticShippingDetailsPrefix.missing | Dynamic express payments require the shipping detail prefix. | |
+| `merchantinfo.StaticShippingDetailsPrefix.missing` | Dynamic express payments require the shipping detail prefix. | |
 | Customer not found | The phone number does not belong to a Vipps user, or the user cannot pay businesses. We cannot give more details. | |
-| Idempotency error | Reference `acme-shop-123-order123abc` already exists. | See [Idempotency](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers/#idempotency). | 
+| Idempotency error | Reference `acme-shop-123-order123abc` already exists. | See [Idempotency](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers/#idempotency). |
 | Reference not found | The reference `acme-shop-123-order123abc` does not exist for MSN 123456 | |
 | Idempotency error | Idempotency-Key `49ca711a-acee-4d01-993b-9487112e1def` already exists. | See [Idempotency](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers/#idempotency). |
 | Invalid URL | The parameter `htt://example.com` is invalid. | |
@@ -107,11 +106,9 @@ The ePayment documentation will be updated when that is done.
 | Payment cannot be refunded | Reference `acme-shop-123-order123abc` cannot be refunded. Invalid state: `something-something`. | |
 | Payment cannot be captured | Reference `acme-shop-123-order123abc` cannot be captured. Invalid state: `something-something`. | |
 | Payment cannot be created | Reference `acme-shop-123-order123abc` cannot be created. Invalid state: `something-something`. | |
-| Payment is already reserved | The payment with reference `acme-shop-123-order123abc` has already been reserved. | | 
+| Payment is already reserved | The payment with reference `acme-shop-123-order123abc` has already been reserved. | |
 | Invalid scope | The scope `something-something` is invalid. | |
 | Illegal scope | The scope `something-something` is illegal. Are you asking for more than you are allowed to? | |
 | Approve failed | Force approve payment failed (this is only available in the test environment). Reason: `something-something`. | |
 | Expiration date invalid | The expiration date `something-something` is invalid. | |
-| ExpiresAt not allowed | Cannot set 'ExpiresAt' for flow `something-something`. | |
-
- 
+| ExpiresAt not allowed | Cannot set `ExpiresAt` for flow `something-something`. | |
