@@ -66,10 +66,10 @@ format by changing `traceId` to `instance`.
 The ePayment documentation will be updated when that is done. 
 
 
-| Title                       | Description                         | Comment                             |
-| --------------------------- | ----------------------------------- | ----------------------------------- |
-| Amount too small            | The amount is too small. Amounts are specified in minor units, like øre or cent. | For NOK the minimum is 100.|
-| Amount invalid              | The amount is invalid. Amounts must be integers, no decimals. They are specified in minor units, like øre or cent. | A common error is to specify amounts with decimals, sometimes due to rounding errors. |
+| Title                   | Description                                                  | Comment                    |
+| ----------------------- | ------------------------------------------------------------ | -------------------------- |
+| Amount too small        | The amount is too small. Amounts are specified in minor units, like øre or cent. | For NOK the minimum is 100.|
+| Amount invalid          | The amount is invalid. Amounts must be integers, no decimals. They are specified in minor units, like øre or cent. | A common error is to specify amounts with decimals, sometimes due to rounding errors. |
 | Express payment not allowed | Express payment is not allowed for this sales unit. | |
 | Missing static shipping details | Express payments with static shipping details require a list of shipping options. | | 
 | No cards   | The user does not have any payment cards. | The user must add a valid card in the app. |
