@@ -8,7 +8,7 @@ pagination_prev: null
 
 # Frequently asked questions
 
-For common questions, see [Common API g](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs).
+For common questions, see [Common API FAQ](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs).
 
 ## Is Express Checkout available in the ePayment API?
 
