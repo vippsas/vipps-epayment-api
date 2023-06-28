@@ -5,6 +5,7 @@ servers:
   - url: 'https://apitest.vipps.no'
     description: 'Test environment (uses the test API keys, the test app and test data)'
 info:
+  description: |-
     The Vipps ePayment API.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api)
     for more information.
@@ -798,7 +799,6 @@ components:
         The standard error object, based on RFC 7808.
         See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/errors
       type: object
-      description: 'See [errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors).'
       properties:
         type:
           type: string
