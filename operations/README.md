@@ -14,6 +14,6 @@ The ePayment API exposes seven payment operations:
 * [Refund a payment](refund.md)
 * [Get a payment](get_info.md)
 * [Get payment event log](get_event_log.md)
-* [Force approve](force-approve.md)
+* [Force approve](force-approve.md) (only available in the test environment)
 
 See: [Payment states and modifications](../payment_states.md).

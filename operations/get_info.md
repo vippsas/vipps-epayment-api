@@ -9,17 +9,22 @@ description: Get payment with the ePayment API.
 A [`GET:/payments/{reference}`][get-payment-endpoint]
 request will return a point in time snapshot of a given payment.
 
+This is the recommended way to get the current information about a payment.
+[`GET:/payments/{reference}/events`][get-payment-event-log-endpoint]
+may be used to get all the details.
+
 An example response would look like this:
+
 ```json
 {
     "aggregate": {
         "authorizedAmount": {
             "currency": "NOK",
-            "value": 1000
+            "value": 49900
         },
         "cancelledAmount": {
             "currency": "NOK",
-            "value": 1000
+            "value": 49900
         },
         "capturedAmount": {
             "currency": "NOK",
@@ -32,7 +37,7 @@ An example response would look like this:
     },
     "amount": {
         "currency": "NOK",
-        "value": 1000
+        "value": 49900
     },
     "state": "AUTHORIZED",
     "paymentMethod": {
@@ -40,7 +45,7 @@ An example response would look like this:
     },
     "profile": {},
     "pspReference": "37c34d8c-2649-448e-864b-060d5d93e4c4",
-    "reference": "UNIQUE-PAYMENT-REFERENCE"
+    "reference": "acme-shop-123-order123abc"
 }
 ```
 
@@ -64,5 +69,9 @@ The `sub` can then be used to retrieve the user's info with the
 [Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api):
 [`GET:/userinfo/{sub}`](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo).
 
+See:
+[What is the `sub`?](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/userinfo-api-faq/#what-is-the-sub)
+
 [get-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPayment
+[get-payment-event-log-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPaymentEventLog
 [create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment

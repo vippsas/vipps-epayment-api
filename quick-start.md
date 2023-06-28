@@ -14,24 +14,22 @@ import ApiSchema from '@theme/ApiSchema';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
-
 # Quick start
 
 ## Before you begin
 
 This document covers the quick steps for getting started with the ePayment API.
-You must have already signed up as a organisation with Vipps MobilePay and have
+You must have already signed up as an organization with Vipps MobilePay and have
 your test credentials from the merchant portal, as described in the
 [Vipps Quick start guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started).
 
 **Important:** The examples use standard example values that you must change to
-use _your_ values. This includes API keys, HTTP headers, reference, etc.
-
+use *your* values. This includes API keys, HTTP headers, reference, etc.
 
 ## Your first Vipps Payment
 
 ### Step 1 - Setup
+
 <Tabs
 defaultValue="postman"
 groupId="sdk-choice"
@@ -61,7 +59,7 @@ Lastly, tweak the Postman environment with your own secrets
     * `client_id` - Merchant key is required for getting the access token.
     * `client_secret` - Merchant key is required for getting the access token.
     * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
-    * `merchantSerialNumber` - Merchant id.
+    * `merchantSerialNumber` - Merchant ID.
     * `internationalMobileNumber` - The MSISDN for the test app profile you have received or registered. This is your test mobile number *including* country code.
 
 </TabItem>
@@ -81,10 +79,9 @@ dotnet add package vipps.net
 </TabItem>
 </Tabs>
 
-
 ### Step 2 - Authentication
 
-For all of the following, you will need an `access_token` from the
+For all the following, you will need an `access_token` from the
 [Access token API](https://developer.vippsmobilepay.com/docs/APIs/access-token-api):
 [`POST:/accesstoken/get`][access-token-endpoint]
 This provides you with access to the API.
@@ -122,7 +119,7 @@ curl https://apitest.vipps.no/accessToken/get \
 </TabItem>
 <TabItem value="csharp">
 
-The Vipps-net SDK will handle Access Token fetching for you, all you need to do is to add the following configuration code
+The [.NET SDK](https://developer.vippsmobilepay.com/docs/SDKs/dotnet-sdk/) will handle access token fetching for you, all you need to do is to add the following configuration code
 
 ```csharp
 var vippsConfigurationOptions = new VippsConfigurationOptions
@@ -222,17 +219,15 @@ var createPaymentResult = await EpaymentService.CreatePayment(createPaymentReque
 </TabItem>
 </Tabs>
 
-
-
 ### Step 4 - Completing the payment
 
-*Ctrl+click* (*Command-click* on macOS) on the link that appears and it will take you to the Vipps landing page.
+*Ctrl+click* (*Command-click* on macOS) on the link that appears, and it will take you to the Vipps landing page.
 The phone number of your test user should already be filled in, so you only have to click "Next".
 You will be presented with the payment in the Vipps app, where you can complete or reject the payment.
 Once you have acted upon the payment you will be redirected back to the specified `returnUrl` under a "best effort" policy.
 
 :::note
-We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable and the user may choose to fully close the Vipps app or browser.
+We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable, and the user may choose to fully close the Vipps app or browser.
 :::
 
 ### Step 5 - Getting the status of the payment
@@ -500,10 +495,10 @@ for more details about cancel.
 Now that you have completed your first payment,
 read further to see the full range of possibilities within the Vipps ePayment API.
 
-- [Capture the payment](operations/capture.md)
-- [Payment modification, how to use cancel, capture and refund?](operations/README.md)
-- [Using Vipps ePayment API in a shopper present context](features/customer-present-payments.md)
-- [Profile sharing, requesting the users personal information](features/profile-sharing.md)
+* [Capture the payment](operations/capture.md)
+* [Payment modification, how to use cancel, capture and refund?](operations/README.md)
+* [Using Vipps ePayment API in a shopper present context](features/customer-present-payments.md)
+* [Profile sharing, requesting the users personal information](features/profile-sharing.md)
 
 [access-token-endpoint]: https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost
 [create-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment

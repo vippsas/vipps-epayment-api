@@ -9,7 +9,7 @@ pagination_prev: null
 
 # Payment states and modifications
 
-A payment can have several different _states_, and change states when a
+A payment can have several _states_, and change states when a
 _modification_ is made.
 
 | State         | Description   |
@@ -23,9 +23,9 @@ _modification_ is made.
 When a payment is initiated it has the state `CREATED`.
 Once a payment is `CREATED`, several modification actions can be made:
 
-- [Capture](./operations/capture.md)
-- [Refund](./operations/refund.md)
-- [Cancel](./operations/cancel.md)
+* [Capture](./operations/capture.md)
+* [Refund](./operations/refund.md)
+* [Cancel](./operations/cancel.md)
 
 Each modification action is defined as a separate endpoint in the API.
 

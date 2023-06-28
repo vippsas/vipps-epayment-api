@@ -1,9 +1,9 @@
 openapi: 3.0.0
 servers:
-  - url: https://api.vipps.no
-    description: Production environment (uses the production API keys, the official app and live data)
-  - url: https://apitest.vipps.no
-    description: Test environment (uses the test API keys, the test app and test data)
+  - url: 'https://api.vipps.no'
+    description: 'Production environment (uses the production API keys, the official app and live data)'
+  - url: 'https://apitest.vipps.no'
+    description: 'Test environment (uses the test API keys, the test app and test data)'
 info:
     The Vipps ePayment API.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api)
@@ -22,11 +22,11 @@ info:
     backgroundColor: '#FFFFFF'
     altText: Vipps logo
 tags:
-  - description: "Create payment endpoints"
+  - description: Create payment endpoints
     name: CreatePayments
-  - description: "Query payments endpoints"
+  - description: Query payments endpoints
     name: QueryPayments
-  - description: "Adjust payments endpoints"
+  - description: Adjust payments endpoints
     name: AdjustPayments
 paths:
   /epayment/v1/payments:
@@ -224,7 +224,30 @@ components:
       title: Customer
       type: object
       description: |-
-        Target customer
+        The target customer if the identity is known.
+        The customer can be specified either with phone number or with the
+        user's personal QR code.
+        Specifying more than one of these will result in an error.
+      oneOf:
+        - $ref: '#/components/schemas/CustomerPhoneNumber'
+        - $ref: '#/components/schemas/PersonalQrCode'
+    CustomerPhoneNumber:
+      title: Customer phone number
+      type: object
+      description: |-
+        The customer's phone number, if available.
+        Only Norwegian mobile numbers are supported (for now).
+
+        **Please note:** The phone number (and QR code) is optional and should only be sent if it is
+        already known. Users should never be asked for the phone number, as they will
+        either be automatically app-switched to the Vipps app, or they will be presented
+        with the landing page. The exception for this is "manual POS" integration,
+        where the cashier asks the customer for the number, and then enters it manually on the POS.
+        
+        If the customer's phone number is needed by the merchant:
+        Use `scope` and the Userinfo API:
+        https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/
+        See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
       properties:
         phoneNumber:
           type: string
@@ -236,8 +259,29 @@ components:
             See: https://en.wikipedia.org/wiki/MSISDN
           minLength: 10
           maxLength: 15
-          example: "4791234567"
+          example: '4791234567'
           pattern: '^\d{10,15}$'
+    PersonalQrCode:
+      title: Personal QR code
+      type: object
+      description: |-
+        The full content of the user's personal QR code in the app, used in 'merchant scan' scenarios. 
+        After the personal QR code has been scanned in a physical context, send the complete QR
+        code content in this field to initiate a payment from the user (and do not send `phoneNumber`).
+        
+        **Important:** The content of the QR code can change at any time, without warning.
+        It is very important to send the _complete content of the QR code_, like the complete URL in the example below.
+        While the personal QR code does reveal the user's phone number in this example, that may change.
+        The [Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/)
+        should be used if you need the user to share personal information, 
+        such as phone number, email address, etc.
+      properties:
+        personalQr:
+          type: string
+          description: The full content of the user's personal QR code in the app. 
+          minLength: 5
+          maxLength: 255
+          example: 'https://qr.vipps.no/28/2/01/031/4791234567?v=1'
     Amount:
       description: Amount object, containing a `value` and a `currency`.
       type: object
@@ -341,8 +385,7 @@ components:
                 - IMAGE/SVG+XML
                 - IMAGE/PNG
               example: IMAGE/SVG+XML
-              description: |-
-                If `userFlow` is `QR` and `qrFormat` is not set, the QR code image will be returned as `SVG+XML`, by default.
+              description: 'If `userFlow` is `QR` and `qrFormat` is not set, the QR code image will be returned as `SVG+XML`, by default.'
               default: IMAGE/SVG+XML
             size:
               type: integer
@@ -539,8 +582,7 @@ components:
       minLength: 4
       maxLength: 6
       example: '123456'
-      description: |-
-        The merchant serial number (MSN) for the sales unit.
+      description: The merchant serial number (MSN) for the sales unit.
     Reference:
       type: string
       title: ReferenceType
@@ -756,8 +798,7 @@ components:
         The standard error object, based on RFC 7808.
         See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/errors
       type: object
-      description: |-
-        See [errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors).
+      description: 'See [errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors).'
       properties:
         type:
           type: string
@@ -807,8 +848,7 @@ components:
           $ref: '#/components/schemas/Customer'
         token:
           type: string
-          description: |-
-            The token value received in the redirectUrl property in the Create payment response
+          description: The token value received in the redirectUrl property in the Create payment response
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
@@ -846,7 +886,7 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: '5.4.0'
+        example: 5.4.0
     Vipps-System-Plugin-Name:
       name: Vipps-System-Plugin-Name
       in: header
@@ -857,7 +897,7 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: "woocommerce-payment"
+        example: woocommerce-payment
     Vipps-System-Plugin-Version:
       name: Vipps-System-Plugin-Version
       in: header
@@ -867,7 +907,7 @@ components:
       schema:
         type: string
         maxLength: 30
-        example: "1.2.1"
+        example: 1.2.1
     Payment-Reference-ID:
       name: reference
       in: path
