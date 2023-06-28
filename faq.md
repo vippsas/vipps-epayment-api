@@ -60,10 +60,17 @@ Errors responses have this format:
 }
 ```
 
-We will change this to match the common
+We will change the above format to match the common
 [Errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors/)
 format by changing `traceId` to `instance`.
 The ePayment documentation will be updated when that is done.
+
+**Important:** The unique identifier of an error is the `type`.
+When handling errors, you must never attempt to identify the type of an error by
+any other field than the `type`.
+The `title` and `description` may be updated at any time, without warning,
+to improve the API and make the error messages easier to understand.
+
 
 | Title                   | Description                                                  | Comment                    |
 | ----------------------- | ------------------------------------------------------------ | -------------------------- |
@@ -90,7 +97,7 @@ The ePayment documentation will be updated when that is done.
 | Refund period expired | Payments can only be refunded within 365 days of the reservation. See the FAQ. | See [Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture/). |
 | Refund idempotency conflict | The request in an idempotent retry must be identical to the previous request(s). | See [Idempotency](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers/#idempotency). |
 | Attempted refund before reservation | Cannot refund a payment that is not reserved. Check the payment event log. | See and [`GET:/epayment/v1/payments/{reference}/events`](https://developer.vippsmobilepay.com/api/epayment/#tag/QueryPayments/operation/getPaymentEventLog). |
-| Invalid Phone number | The phone number is invalid. Phone numbers must be in MSISDN format: Country code and subscriber number, but no prefix. | |
+| Invalid phone number | The phone number is invalid. Phone numbers must be in MSISDN format: Country code and subscriber number, but no prefix. | |
 | `merchantinfo.StaticShippingDetailsPrefix.missing` | Dynamic express payments require the shipping detail prefix. | |
 | Customer not found | The phone number does not belong to a Vipps user, or the user cannot pay businesses. We cannot give more details. | |
 | Idempotency error | Reference `acme-shop-123-order123abc` already exists. | See [Idempotency](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers/#idempotency). |
