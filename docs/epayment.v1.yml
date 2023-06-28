@@ -5,7 +5,6 @@ servers:
   - url: 'https://apitest.vipps.no'
     description: 'Test environment (uses the test API keys, the test app and test data)'
 info:
-  description: |-
     The Vipps ePayment API.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api)
     for more information.
@@ -96,7 +95,7 @@ paths:
       operationId: getPaymentEventLog
       security:
         - Bearer-Authorization: []
-      description: Get event log for the specified payment `reference` id.
+      description: Get event log for the specified payment's `reference` id.
   '/epayment/v1/payments/{reference}/cancel':
     parameters:
       - $ref: '#/components/parameters/Payment-Reference-ID'
@@ -204,11 +203,12 @@ paths:
           description: OK
       operationId: forceApprove
       description: |-
-        This endpoint allows developers to approve a payment through the Vipps ePayment API
+        This endpoint is only available in the test environment.
+        It allows developers to approve a payment through the Vipps ePayment API
         without the use of the Vipps app. This is useful for automated testing.
-        Express checkout is not supported for this endpoint. The endpoint is only available
-        in our test environment. Attempted use of the endpoint in production is not allowed,
-        and will fail. Important: All test users must manually approve at least one payment
+        Express checkout is not supported for this endpoint.
+        Attempted use in production is not allowed, and will fail.
+        Important: All test users must manually approve at least one payment
         in Vipps (using the app) before this endpoint can be used for that user.
       security:
         - Bearer-Authorization: []
@@ -251,9 +251,12 @@ components:
       properties:
         phoneNumber:
           type: string
-          description: |-       
-            The format is MSISDN: Digits only: Country code and subscriber number, but no prefix.
-            See: https://en.wikipedia.org/wiki/MSISDN    
+          description: |-
+            The phone number of the user paying the transaction with Vipps.
+            Only Norwegian mobile numbers are supported (for now).
+            The format is MSISDN: Digits only: Country code and subscriber
+            number, but no prefix.
+            See: https://en.wikipedia.org/wiki/MSISDN
           minLength: 10
           maxLength: 15
           example: '4791234567'
@@ -280,7 +283,7 @@ components:
           maxLength: 255
           example: 'https://qr.vipps.no/28/2/01/031/4791234567?v=1'
     Amount:
-      description: Amount object
+      description: Amount object, containing a `value` and a `currency`.
       type: object
       properties:
         currency:
@@ -289,7 +292,7 @@ components:
           type: integer
           minimum: 0
           maximum: 65000000
-          example: 1000
+          example: 49900
           format: int64
           description: |-
             Integer value of price in the currency's monetary subunit (e.g., Norwegian øre),
@@ -341,7 +344,7 @@ components:
           example: 'https://example.com/redirect?orderId=acme-shop-123-order123abc'
           description: |-
             The URL the user is returned to after the payment session.
-            The URL has to use the `https://` scheme or a custom URL scheme.
+            The URL must use the `https://` scheme or a custom URL scheme.
         userFlow:
           type: string
           enum:
@@ -356,7 +359,7 @@ components:
             - QR
           example: NATIVE_REDIRECT
           description: |-
-            The flow for bringing to user to the Vipps Wallet payment confirmation screen.
+            The flow for bringing the user to the Vipps app's payment confirmation screen.
             If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required.
         expiresAt:
           type: string
@@ -399,7 +402,9 @@ components:
           type: string
           minLength: 3
           maxLength: 100
-          description: 'The payment description summary that will be provided to the user through the app, the merchant portal, and the settlement files.'
+          description: |-
+            The payment description summary that will be provided to the user
+            through the app, the merchant portal, and the settlement files.
       required:
         - amount
         - paymentMethod
@@ -415,8 +420,9 @@ components:
           format: uri
           example: 'https://landing.vipps.no?token=abc123'
           description: |-
-            The URL to which the user is redirected when continuing the payment for `NATIVE_REDIRECT` and `WEB_REDIRECT`.
-            When `userFlow` is `QR`, a link to the QR image (or the target URL) will be returned.
+            The URL to which the user is redirected when continuing the payment
+            for `NATIVE_REDIRECT` and `WEB_REDIRECT`. When `userFlow` is `QR`,
+            a link to the QR image (or the target URL) will be returned.
             Nothing will be returned when `userFlow` is `PUSH_MESSAGE`.
         reference:
           $ref: '#/components/schemas/Reference'
@@ -444,7 +450,10 @@ components:
           type: string
           format: uri
           example: 'https://landing.vipps.no?token=abc123'
-          description: 'The URL you should redirect the user to to continue with the payment. '
+          description: |-
+            The URL you should redirect the user to to continue with the payment.
+            This is the URL to the Vipps landing page.
+            See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
         reference:
           $ref: '#/components/schemas/Reference'
       required:
@@ -456,7 +465,8 @@ components:
         - pspReference
         - reference
     IndustryData:
-      description: Additional compliance data related to the transaction.
+      description: |-
+        Additional compliance data related to the transaction.
       type: object
       properties:
         airlineData:
@@ -471,7 +481,8 @@ components:
         - passengerName
       description: |-
         Airline related data.
-        If present, `passengerName`, `airlineCode`, `airlineDesignatorCode`, and `agencyInvoiceNumber` are all required.
+        If present, `passengerName`, `airlineCode`, `airlineDesignatorCode`,
+        and `agencyInvoiceNumber` are all required.
       properties:
         agencyInvoiceNumber:
           type: string
@@ -480,14 +491,18 @@ components:
           maxLength: 6
         airlineCode:
           type: string
-          description: IATA 3-digit accounting code (PAX); numeric. It identifies the carrier. eg KLM = 074
+          description: |-
+            IATA 3-digit accounting code (PAX); numeric.
+            It identifies the carrier. eg KLM = 074.
           format: IATA 3-digit accounting code (PAX)
           example: '074'
           minLength: 3
           maxLength: 3
         airlineDesignatorCode:
           type: string
-          description: IATA 2-letter accounting code (PAX); alphabetical. It identifies the carrier. Eg KLM = KL
+          description: |-
+            IATA 2-letter accounting code (PAX); alphabetical.
+            It identifies the carrier. Eg KLM = KL.
           format: IATA 2-letter airline code
           example: KL
           minLength: 2
@@ -504,6 +519,7 @@ components:
           description: The ticket's unique identifier.
           minLength: 1
           maxLength: 150
+          example: 123-1234567890
     Aggregate:
       title: Aggregate
       type: object
@@ -600,7 +616,7 @@ components:
     PspReference:
       type: string
       title: PspReference
-      description: Reference value for a payment defined by Vipps.
+      description: Reference value for a payment, defined by Vipps.
     Address:
       title: Address
       type: object
@@ -646,8 +662,10 @@ components:
       properties:
         scope:
           type: string
-          description: A space-separated string list of requested user information in accordance with the OpenID Connect specification.
-          example: "phoneNumber name address email"
+          description: |-
+            A space-separated string list of requested user information in
+            accordance with the OpenID Connect specification.
+            See https://vippsas.github.io/vipps-developer-docs/docs/APIs/userinfo-api#scope
     ProfileResponse:
       title: Profile
       type: object
@@ -674,6 +692,9 @@ components:
         type:
           $ref: '#/components/schemas/PaymentMethodType'
         cardBin:
+          description: |-
+            The payment card's Bank Identification Number (BIN), that
+            identifies which bank has issued the card.
           minLength: 6
           maxLength: 6
           type: string
@@ -688,7 +709,10 @@ components:
       example: WALLET
       description: |-
         The paymentMethod type to be performed.
-        `CARD` has to be combined with a `userFlow` of `WEB_REDIRECT`.
+        `WALLET` is a card used in the Vipps app.
+        `CARD` is free-standing card payments, outside of the Vipps app.
+        `CARD` has to be combined with a `userFlow` of `WEB_REDIRECT`,
+        as the card payment can not be completed in the Vipps app.
     PaymentAdjustment:
       title: PaymentAdjustment
       type: object
@@ -749,10 +773,15 @@ components:
         timestamp:
           type: string
           format: date-time
+          example: 2022-12-31T00:00:00Z
         idempotencyKey:
           type: string
-          description: The Idempotency key of the request.
+          description: |-
+            The idempotency key of the request.
+            Specified by the merchant/partner making the API request.
           nullable: true
+          maxLength: 50
+          example: fb492b5e-7907-4d83-ba20-c7fb60ca35de
         success:
           type: boolean
           description: The outcome of the event
@@ -765,6 +794,9 @@ components:
         - success
     Problem:
       title: Problem
+      description: |-
+        The standard error object, based on RFC 7808.
+        See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/errors
       type: object
       description: 'See [errors](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/errors).'
       properties:
@@ -789,7 +821,7 @@ components:
       type: string
       title: State
       description: |-
-        State of the Payment.
+        The state of the Payment.
         One of:
         - CREATED: User has not yet acted upon the payment
         - ABORTED: User has aborted the payment before authorization
@@ -832,10 +864,8 @@ components:
         type: string
         example: da7d5b0e18a84aeda961c0c31b75c2a9
       description: |-
-        The subscription key for the authorization token is available on
-        portal.vipps.no, under the 'Utvikler' tab.
-        Keep it secret.
-        Vipps will never ask for it, and do not need it.
+        The Azure API Management subscription key.
+        See: https://vippsas.github.io/vipps-developer-docs/docs/APIs/access-token-api
     Vipps-System-Name:
       name: Vipps-System-Name
       in: header
@@ -891,6 +921,7 @@ components:
         The primary reference when creating the payment.
         Similar to orderId in the eCom API.
         See [orderid](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid).
+      example: acme-shop-123-order123abc
     Idempotency-Key:
       name: Idempotency-Key
       in: header
@@ -901,6 +932,7 @@ components:
       description: |-
         Idempotency key for the request, ensures idempotent actions.
         See [idempotency](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers#idempotency)
+      example: fb492b5e-7907-4d83-ba20-c7fb60ca35de
   securitySchemes:
     Bearer-Authorization:
       name: Authorization
@@ -928,19 +960,19 @@ components:
           examples:
             UrlRedirect:
               value:
-                redirectUrl: 'https://landing.vipps.no?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni'
-                reference: reference-string
+                redirectUrl: 'https://landing.vipps.no?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni '
+                reference: acme-shop-123-order123abc
             QrImageUrl:
               value:
                 redirectUrl: 'https://qr-image.vipps.no/v1?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni'
-                reference: reference-string
+                reference: acme-shop-123-order123abc
             NativeRedirect:
               value:
                 redirectUrl: 'vipps://token=abc123'
-                reference: reference-string
+                reference: racme-shop-123-order123abc
             PushFlow:
               value:
-                reference: reference-string
+                reference: acme-shop-123-order123abc
     AdjustResponse:
       description: Adjustment response
       content:
