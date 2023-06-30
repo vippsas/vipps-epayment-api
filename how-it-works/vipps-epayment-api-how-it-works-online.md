@@ -10,13 +10,13 @@ This is how payments in web shops or merchant websites work with the ePayment AP
 
 ## The ePayment payment process for Vipps users
 
-![eCom process](../images/vipps-ecom-process-svg.svg)
+![ePayment process](../images/ePayment_in_store.png)
 
 ## 1. Pay with Vipps
 
 The user chooses “Pay with Vipps”, on the product page of a merchant’s website or app.
 
-![Pay with Vipps](../images/vipps-ecom-step1-2.png)
+![Pay](../images/vipps-ecom-step1-2.png)
 
 ## 2. The Vipps landing page (If customer started on desktop)
 
