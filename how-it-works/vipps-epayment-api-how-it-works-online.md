@@ -8,7 +8,7 @@ sidebar_position: 10
 
 This is how payments in web shops or merchant websites work with the ePayment API.
 
-![ePayment process](../images/ePayment_in_store.png)
+![ePayment process](../images/ePayment_online.png)
 
 ## Details
 
