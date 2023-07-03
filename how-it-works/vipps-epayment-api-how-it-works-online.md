@@ -44,13 +44,13 @@ The user is redirected back to the merchant’s store, and the order is confirme
 
 The merchant completes the order, and ships the order to the customer.
 
-![Shipping](../images/vipps-shipping.svg)
+![Shipping](../images/shipping.png)
 
 ## 6. Money in the bank
 
 The payment is transferred to the merchant’s account. This may take 2-3 days depending on your bank.
 
-![Money](../images/vipps-money.svg)
+![Money](../images/money_bag.png)
 
 ## Pay with Credit/Debit cards
 
