@@ -12,7 +12,7 @@ pagination_prev: null
 
 The ePayment API enables your customers to pay with Vipps MobilePay from online shops; as well as at the Point Of Sale (POS).
 
-![ePayment process flows](images/ePayment_flows_both.png)
+![ePayment online process](images/ePayment_online.png)
 
 ## History
 
@@ -33,7 +33,6 @@ The ePayment API supports several user flows and can be used for any type of pay
 * Payments in physical situations (when the customer is present)
 * Payments initiated on the customer's phone, or on a different device (including the merchant's device)
 * Payments using QR codes
-* etc
 
 See
 [Create payment](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/operations/create/)
