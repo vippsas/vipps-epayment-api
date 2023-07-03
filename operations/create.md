@@ -46,7 +46,7 @@ and how the user experience will be.
 
 | `userFlow`        | Description                                          |
 | ----------------- | ---------------------------------------------------- |
-| `WEB_REDIRECT`    | The normal flow for browser-based payment flows. If on a mobile device, the Vipps MobilePay app will open. Otherwise, the [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/) will open.    |
+| `WEB_REDIRECT`    | The normal flow for browser-based payment flows. If on a mobile device, the Vipps MobilePay app will open. Otherwise, the [landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/) will open.    |
 | `NATIVE_REDIRECT` | Automatic app-switch between the merchant's native app and the Vipps MobilePay app. |
 | `PUSH_MESSAGE`    | For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page#skip-landing-page). |
 | `QR`              | Returns a QR code that can be scanned to complete the payment. |
@@ -57,7 +57,7 @@ This is the default flow for wallet and card payments.
 
 * Wallet flow:
   When the user is on a mobile device, redirect them to the Vipps MobilePay app. From the desktop, open the
-  [Vipps landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page).
+  [landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page).
 
 * Card flow:
   Whether the user is on a desktop or mobile device, open the card entry page. See

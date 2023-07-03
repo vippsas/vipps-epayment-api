@@ -6,13 +6,13 @@ servers:
     description: 'Test environment (uses the test API keys, the test app and test data)'
 info:
   description: |-
-    The Vipps ePayment API.
+    The ePayment API.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api)
     for more information.
   version: 1.2.0
-  title: Vipps ePayment API
+  title: ePayment API
   contact:
-    name: Vipps AS
+    name: Vipps MobilePay AS
     url: 'https://developer.vippsmobilepay.com/'
   license:
     name: MIT
@@ -21,7 +21,7 @@ info:
   x-logo:
     url: 'https://vipps.no/static/vipps_frontend/311340/media/extra-images/vipps-logo.svg'
     backgroundColor: '#FFFFFF'
-    altText: Vipps logo
+    altText: Logo
 tags:
   - description: Create payment endpoints
     name: CreatePayments
@@ -205,12 +205,12 @@ paths:
       operationId: forceApprove
       description: |-
         This endpoint is only available in the test environment.
-        It allows developers to approve a payment through the Vipps ePayment API
-        without the use of the Vipps app. This is useful for automated testing.
+        It allows developers to approve a payment through the ePayment API
+        without the use of the Vipps MobilePay app. This is useful for automated testing.
         Express checkout is not supported for this endpoint.
         Attempted use in production is not allowed, and will fail.
         Important: All test users must manually approve at least one payment
-        in Vipps (using the app) before this endpoint can be used for that user.
+        in the Vipps MobilePay app before this endpoint can be used for that user.
       security:
         - Bearer-Authorization: []
       requestBody:
@@ -241,7 +241,7 @@ components:
 
         **Please note:** The phone number (and QR code) is optional and should only be sent if it is
         already known. Users should never be asked for the phone number, as they will
-        either be automatically app-switched to the Vipps app, or they will be presented
+        either be automatically app-switched to the Vipps MobilePay app, or they will be presented
         with the landing page. The exception for this is "manual POS" integration,
         where the cashier asks the customer for the number, and then enters it manually on the POS.
         
@@ -253,7 +253,7 @@ components:
         phoneNumber:
           type: string
           description: |-
-            The phone number of the user paying the transaction with Vipps.
+            The phone number of the user paying the transaction with Vipps MobilePay.
             Only Norwegian mobile numbers are supported (for now).
             The format is MSISDN: Digits only: Country code and subscriber
             number, but no prefix.
@@ -360,7 +360,7 @@ components:
             - QR
           example: NATIVE_REDIRECT
           description: |-
-            The flow for bringing the user to the Vipps app's payment confirmation screen.
+            The flow for bringing the user to the Vipps MobilePay app's payment confirmation screen.
             If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required.
         expiresAt:
           type: string
@@ -453,7 +453,7 @@ components:
           example: 'https://landing.vipps.no?token=abc123'
           description: |-
             The URL you should redirect the user to to continue with the payment.
-            This is the URL to the Vipps landing page.
+            This is the URL to the Vipps MobilePay landing page.
             See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
         reference:
           $ref: '#/components/schemas/Reference'
@@ -617,7 +617,7 @@ components:
     PspReference:
       type: string
       title: PspReference
-      description: Reference value for a payment, defined by Vipps.
+      description: Reference value for a payment, defined by Vipps MobilePay.
     Address:
       title: Address
       type: object
@@ -641,7 +641,7 @@ components:
         id:
           type: string
           format: uuid
-          description: 'Unique ID of the address, always provided in response from Vipps.'
+          description: 'Unique ID of the address, always provided in response from Vipps MobilePay.'
         lines:
           type: array
           description: 'Array of addressLines, for example street name, number, etc.'
@@ -710,10 +710,10 @@ components:
       example: WALLET
       description: |-
         The paymentMethod type to be performed.
-        `WALLET` is a card used in the Vipps app.
-        `CARD` is free-standing card payments, outside of the Vipps app.
+        `WALLET` is a card used in the Vipps MobilePay app.
+        `CARD` is free-standing card payments, outside of the Vipps MobilePay app.
         `CARD` has to be combined with a `userFlow` of `WEB_REDIRECT`,
-        as the card payment can not be completed in the Vipps app.
+        as the card payment can not be completed in the Vipps MobilePay app.
     PaymentAdjustment:
       title: PaymentAdjustment
       type: object

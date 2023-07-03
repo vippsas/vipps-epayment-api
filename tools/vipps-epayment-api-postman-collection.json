@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "1774363b-437c-49d7-a2fd-00ab8aa9af0b",
 		"name": "ePayment API v1 - Collection",
-		"description": "The Vipps ePayment API. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api) for more information.\n\nContact Support:\n Name: Vipps AS",
+		"description": "The ePayment API. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api) for more information.\n\nContact Support:\n Name: Vipps MobilePay AS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -1018,7 +1018,7 @@
 						"approve"
 					]
 				},
-				"description": "This endpoint allows developers to approve a payment through the Vipps ePayment API\nwithout the use of the Vipps app. This is useful for automated testing.\nExpress checkout is not supported for this endpoint. The endpoint is only available\nin our test environment. Attempted use of the endpoint in production is not allowed,\nand will fail. Important: All test users must manually approve at least one payment\nin Vipps (using the app) before this endpoint can be used for that user."
+				"description": "This endpoint allows developers to approve a payment through the ePayment API\nwithout the use of the Vipps MobilePay app. This is useful for automated testing.\nExpress checkout is not supported for this endpoint. The endpoint is only available\nin our test environment. Attempted use of the endpoint in production is not allowed,\nand will fail. Important: All test users must manually approve at least one payment\nin the Vipps MobilePay app before this endpoint can be used for that user."
 			},
 			"response": []
 		},

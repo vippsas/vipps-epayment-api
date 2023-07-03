@@ -34,9 +34,9 @@ The ePayment API is *backwards compatible* with the eCom API,
 but the eCom API is *forwards compatible* with the ePayment API:
 
 * If the payments are initiated with the
-  [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/)
+  [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/),
   it's possible to capture, cancel, query, and adjust using the ePayment API.
-* Payments initiated with the ePayment API can not be modified or retrieved using the eCom API.
+* Payments initiated with the ePayment API cannot be modified or retrieved using the eCom API.
 
 **Important:** Freestanding card payments are only available in the ePayment API,
 so payments initiated with the ePayment API may fail if the eCom API is used.
