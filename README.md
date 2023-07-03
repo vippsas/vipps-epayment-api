@@ -3,22 +3,28 @@ title: Introduction to the ePayment API
 sidebar_label: Introduction
 sidebar_position: 1
 hide_table_of_contents: true
-description: Use the ePayment API to create various online payment flows.
+description: Use the ePayment API to create various online and in-store payment flows.
 pagination_next: null
 pagination_prev: null
 ---
 
 # ePayment API
 
-The ePayment API is a replacement for both the
+The ePayment API enables your customers to pay with Vipps MobilePay from online shops; as well as at the Point Of Sale (POS).
+
+![ePayment online process](images/ePayment_online.png)
+![ePayment in-store process](images/ePayment_in_store.png)
+
+## History
+
+The ePayment API is the new version of both the
 [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) and the
 [MobilePay App Payments API](https://developer.mobilepay.dk/docs/app-payments).
-It's based on everything we have learned through those APIs over several years.
+It is based on everything we have learned through those APIs over several years.
 
-This API will receive updates and new functionality, while the replaced APIs will only
-receive maintenance support. Merchants should
+This API contains new functionality, so you should
 [migrate to the ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/migration/)
-as soon as possible to take advantage of the new functionality and improved user experience.
+as soon as possible to take advantage of the improved user experience.
 
 ## User flows
 
@@ -47,7 +53,7 @@ The features of the ePayment API include:
 The ePayment API enables merchants to accept payments using both the app and cards without the app:
 
 * [App](how-it-works/vipps-epayment-api-how-it-works-online.md#1-pay-with-vipps)
-* [Credit and debit cards](features/free-standing-card-payments.md) without Vipps MobildPay
+* [Credit and debit cards](features/free-standing-card-payments.md)
 
 ## How it works
 
@@ -59,7 +65,7 @@ The ePayment API enables merchants to accept payments using both the app and car
 ## Next steps
 
 See
-[Getting Started](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started)
+[Vipps MobilePay getting started](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started)
 for information about API keys, product activation, how to make API calls, etc.
 
 Review the detailed documentation found here:
