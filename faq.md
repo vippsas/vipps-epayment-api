@@ -66,11 +66,9 @@ format by changing `traceId` to `instance`.
 The ePayment documentation will be updated when that is done.
 
 **Important:** The unique identifier of an error is the `type`.
-When handling errors, you must never attempt to identify the type of an error by
-any other field than the `type`.
+When handling errors, you must always identify the type of error by the `type` field.
 The `title` and `description` may be updated at any time, without warning,
 to improve the API and make the error messages easier to understand.
-
 
 | Title                   | Description                                                  | Comment                    |
 | ----------------------- | ------------------------------------------------------------ | -------------------------- |
