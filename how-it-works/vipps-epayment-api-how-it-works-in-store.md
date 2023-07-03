@@ -6,36 +6,34 @@ sidebar_position: 20
 
 # How ePayment works in the store
 
-Vipps in store is designed for stores that want to let customers pay easily and quickly from their own phone, without the need to touch the terminal. This page shows an example of how you can offer contactless payment to your customers by integrating Vipps in your POS system.
+Enable your customers to pay easily and quickly from their own phone, without the need to touch the terminal.
+Offer contactless payment to your customers by integrating the ePayment API into your POS system.
 
 It is also possible to use our simpler solution, *Vipps number*, but then the amount must be entered manually at checkout, and there will be some follow-up with accounting and settlement.
 
-## The payment process in store
-
-![In store process](../images/vipps-in-store-process.svg)
+![In store process](../images/ePayment_in_store.png)
 
 ## 1. Add products to sell
 
 Add the products that the customer wants to buy in the POS system.
 
-![The POS system](../images/vipps-in-store-step1.svg)
+![The POS system](../images/vipps-in-store-step1.png)
 
 ## 2. Enter the customer's phone number
 
-When the customer is ready to pay, choose “Pay with Vipps”, and enter the customer’s phone number.
+When the customer is ready to pay, choose *Pay with Vipps* or *Pay with MobilePay*, as applicable.
+Enter the customer's phone number.
 
-![Enter phone number](../images/vipps-in-store-step2.svg)
+![Enter phone number](../images/vipps-in-store-step2.png)
 
-## 3. The customer confirms payment in Vipps
+## 3. The customer confirms payment in the app
 
-The customer confirms the payment in Vipps on their phone.
+The customer confirms the payment in  their Vipps or MobilePay app.
 
 ![Confirm payment](../images/vipps-in-store-step3-2.svg)
 
-## 4. Payment is registered
+## 4. Register the payment
 
-The payment is registered in the POS system.
+Register the payment in your POS system.
 
-![Payment confirmation](../images/vipps-in-store-step4.svg)
-
-Great! Now you know how the Vipps in store payment process works.
+![Payment confirmation](../images/vipps-in-store-step4.png)
