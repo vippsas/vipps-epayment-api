@@ -18,7 +18,7 @@ since the app is required (it does not work with
 [freestanding card payments](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/free-standing-card-payments/)).
 
 **Please note:** Sales units (i.e., Merchant Serial Numbers) must be especially approved to use this feature.
-Vipps wants the user experience, including the standard timeout, to be as
+The user experience, including the standard timeout, should be as
 consistent as possible, so this should only be used in special cases.
 To request this feature: Please contact your key account manager, your partner manager, or
 [customer service](https://vipps.no/kontakt-oss/).

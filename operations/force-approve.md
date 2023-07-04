@@ -14,12 +14,12 @@ without using the test app:
 [`POST:/epayment/v1/payments/{reference}/approve`][force-approve-endpoint].
 
 :::note
-Important: All test users must manually approve at least one payment in Vipps (using the app)
+Important: All test users must manually approve at least one payment in Vipps MobilePay app
 before
 [`POST:/epayment/v1/payments/{reference}/approve`][force-approve-endpoint]
 can be used for that user. If this has not been done, you will get an error.
 This is because the user needs to be registered as "BankID verified" in the backend,
-and this happens automatically in the test environment when using Vipps (the app),
+and this happens automatically in the test environment when using the Vipps MobilePay app,
 but not with "force approve".
 :::
 

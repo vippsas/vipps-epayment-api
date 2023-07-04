@@ -14,14 +14,14 @@ toc_max_heading_level: 5
 The ePayment API expands upon the functionality of the eCom API and simplifies the existing flows.
 Merchants currently using the eCom API should find the ePayment API familiar and intuitive.
 
-The ePayment API is **backwards compatible** with the eCom API. This means that payments initiated
+The ePayment API is *backwards compatible* with the eCom API. This means that payments initiated
 via the eCom API can be captured, refunded, cancelled, and retrieved using the ePayment API.
 
 :::note
-The ePayment API is backwards compatible with the eCom API. However, the eCom API is _not forwards compatible_ with the ePayment API. This means that **payments initiated with the ePayment API can not be modified or retrieved using the eCom API**.
+The ePayment API is backwards compatible with the eCom API. However, the eCom API is *not forwards compatible* with the ePayment API. This means that *payments initiated with the ePayment API can not be modified or retrieved using the eCom API*.
 :::
 
-Merchants are advised to fully migrate over to the ePayment API. However, it is possible to migrate one endpoint at a time, _provided that the Create Payment endpoint is migrated last (see above note)_.
+Merchants are advised to fully migrate over to the ePayment API. However, it is possible to migrate one endpoint at a time, *provided that the Create Payment endpoint is migrated last (see above note)*.
 
 See
 [Can payments be "mixed and matched" between the eCom API and the ePayment API?](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/faq/#can-payments-be-mixed-and-matched-between-the-ecom-api-and-the-epayment-api)
@@ -38,9 +38,9 @@ Instead, you can use the
 [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/webhooks)
 to register URLs that will receive callbacks whenever various events occur for your payments.
 
-**Please note:** The Webhooks API provides _guaranteed delivery_: If the callback is not successful
+**Please note:** The Webhooks API provides *guaranteed delivery*: If the callback is not successful
 (we do not get the expected response from you), we will retry sending it for several days.
-In addition, you can now receive callbacks for _all_ adjustments to your payment.
+In addition, you can now receive callbacks for *all* adjustments to your payment.
 
 ## Payment flows
 

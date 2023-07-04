@@ -21,12 +21,12 @@ import TabItem from '@theme/TabItem';
 This document covers the quick steps for getting started with the ePayment API.
 You must have already signed up as an organization with Vipps MobilePay and have
 your test credentials from the merchant portal, as described in the
-[Vipps Quick start guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started).
+[Quick start guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started).
 
 **Important:** The examples use standard example values that you must change to
 use *your* values. This includes API keys, HTTP headers, reference, etc.
 
-## Your first Vipps Payment
+## Your first Payment
 
 ### Step 1 - Setup
 
@@ -55,7 +55,8 @@ Lastly, tweak the Postman environment with your own secrets
 1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.
 2. Click the "eye" icon and, in the dropdown window, click `Edit` in the top-right corner.
 3. Fill in the `Current Value` for the following fields to get started.
-   For the first keys, go to *Vipps Portal* > *Utvikler* ->  *Test Keys*.
+   For information about how to find your keys, see
+   [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
     * `client_id` - Merchant key is required for getting the access token.
     * `client_secret` - Merchant key is required for getting the access token.
     * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
@@ -70,7 +71,7 @@ No setup needed :)
 </TabItem>
 <TabItem value="csharp">
 
-Install the Vipps .NET SDK to your project
+Install the .NET SDK to your project
 
 ```csharp
 dotnet add package vipps.net
@@ -189,7 +190,7 @@ curl https://apitest.vipps.no/epayment/v1/payments \
   "reference": "acme-shop-123-order123abc",
   "returnUrl": "https://yourwebsite.come/redirect?reference=abcc123",
   "userFlow": "WEB_REDIRECT",
-  "paymentDescription": "One pair of Vipps socks"
+  "paymentDescription": "One pair of socks"
 }'
 ```
 
@@ -221,13 +222,14 @@ var createPaymentResult = await EpaymentService.CreatePayment(createPaymentReque
 
 ### Step 4 - Completing the payment
 
-*Ctrl+click* (*Command-click* on macOS) on the link that appears, and it will take you to the Vipps landing page.
+*Ctrl+click* (*Command-click* on macOS) on the link that appears, and it will take you to the
+[landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/).
 The phone number of your test user should already be filled in, so you only have to click "Next".
-You will be presented with the payment in the Vipps app, where you can complete or reject the payment.
+You will be presented with the payment in the app, where you can complete or reject the payment.
 Once you have acted upon the payment you will be redirected back to the specified `returnUrl` under a "best effort" policy.
 
 :::note
-We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable, and the user may choose to fully close the Vipps app or browser.
+We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable, and the user may choose to fully close the app or browser.
 :::
 
 ### Step 5 - Getting the status of the payment
@@ -277,7 +279,7 @@ var payment = await EpaymentService.GetPayment(reference);
 
 To verify that a payment has been authorized by the user, check that the `state`
 property is marked `AUTHORIZED`. If the user has instead chosen to reject the
-payment or chosen to click `cancel` on the landing page or in the Vipps App,
+payment or chosen to click `cancel` on the landing page or in the app,
 the `state` property will be marked `ABORTED`. If the user did not act within
 the payment expiration time, the `state` property will be marked `EXPIRED`.
 
@@ -493,11 +495,11 @@ for more details about cancel.
 ## Next Steps
 
 Now that you have completed your first payment,
-read further to see the full range of possibilities within the Vipps ePayment API.
+read further to see the full range of possibilities within the ePayment API.
 
 * [Capture the payment](operations/capture.md)
 * [Payment modification, how to use cancel, capture and refund?](operations/README.md)
-* [Using Vipps ePayment API in a shopper present context](features/customer-present-payments.md)
+* [Using ePayment API in a shopper present context](features/customer-present-payments.md)
 * [Profile sharing, requesting the users personal information](features/profile-sharing.md)
 
 [access-token-endpoint]: https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost

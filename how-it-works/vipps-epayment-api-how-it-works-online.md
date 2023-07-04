@@ -8,60 +8,62 @@ sidebar_position: 10
 
 This is how payments in web shops or merchant websites work with the ePayment API.
 
-## The ePayment payment process for Vipps users
+![ePayment process](../images/ePayment_online.png)
 
-![eCom process](../images/vipps-ecom-process-svg.svg)
+## Details
 
-## 1. Pay with Vipps
+### 1. Customer selects their payment method
 
-The user chooses “Pay with Vipps”, on the product page of a merchant’s website or app.
+On the product page of a merchant's website or app, the customer chooses to pay with Vipps or MobilePay.
+They can alternatively select to pay with a card.
+See [Alternative flow: Pay with by card](#alternative-flow-pay-with-by-card) for details.
 
-![Pay with Vipps](../images/vipps-ecom-step1-2.png)
+![Pay](../images/vipps-ecom-step1-2.png)
 
-## 2. The Vipps landing page (If customer started on desktop)
+### 2. Customer enters their phone number and logs in
 
-If the payment was started on a desktop device the user will be sent to the Vipps landing page.
-The user confirms their number, and is prompted to log in to Vipps.
+If the payment was started from a mobile device, the Vipps or MobilePay app will automatically open.
 
-If the payment was started from a mobile device, the app will automatically switch over to Vipps.
+If the payment was started on a desktop device, the
+[landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/)
+will open. There, the customer confirms their number and logs in to Vipps MobilePay.
 
-![Vipps landing page](../images/vipps-ecom-step2.svg)
+![Vipps MobilePay landing page](../images/vipps-ecom-step2.svg)
 
-## 3. Confirm payment in Vipps
+### 3. Customer confirms the payment in the app
 
-The user receives a push notification on their phone. They log in to Vipps, and confirm the payment.
-The payment is reserved, and the user gets a receipt of the successful payment
+A push notification appears on the customer's phone. They log in to Vipps MobilePay and confirm the payment.
+The ePayment API automatically reserves the payment and provides a receipt of the successful payment.
 
 ![Confirm payment](../images/vipps-ecom-confirm2.png)
 
-## 4. Order Confirmation
+### 4. The merchant's shop confirms the order
 
-The user is redirected back to the merchant’s store, and the order is confirmed.
+The store page or app opens again and confirms that the order was successful.
 
 ![Order confirmation](../images/vipps-ecom-step4.png)
 
-## 5. Completing the order and shipping
+### 5 The merchant completes the order and shipping
 
-The merchant completes the order, and ships the order to the customer.
+The merchant completes the order and ships it to the customer.
 
-![Shipping](../images/vipps-shipping.svg)
+![Shipping](../images/shipping.png)
 
-## 6. Money in the bank
+### 6. Capture the payment
 
-The payment is transferred to the merchant’s account. This may take 2-3 days depending on your bank.
+The merchant captures the order through the ePayment API.
+The payment is transferred to the merchant's account. This may take 2-3 days depending on your bank.
 
-![Money](../images/vipps-money.svg)
+![Money](../images/money_bag.png)
 
-## Pay with Credit/Debit cards
+## Alternative flow: Pay with by card
 
-If the users do not have Vipps profile or choose to pay with card they can select “Card” on the product page of a merchant’s website or app.
+Customers can choose to pay with card by selecting *Card* on the product page of a merchant's website or app.
 
 ![Pay with Card](../images/vipps-ecom-pay-by-card-step1.png)
 
-The user is sent to card entry page, where they enter their card details.
+The card entry page opens, where they enter their card details.
 
 ![Enter card details](../images/vipps-ecom-pay-by-card-step2.png)
 
-On successful payment, the user is redirected back to the merchant’s store, and the order is confirmed.
-
-Great! Now you know how the payment process works
+On successful payment, the merchant's store page opens, and the order is confirmed.

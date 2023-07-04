@@ -34,9 +34,9 @@ The ePayment API is *backwards compatible* with the eCom API,
 but the eCom API is *forwards compatible* with the ePayment API:
 
 * If the payments are initiated with the
-  [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/)
+  [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/),
   it's possible to capture, cancel, query, and adjust using the ePayment API.
-* Payments initiated with the ePayment API can not be modified or retrieved using the eCom API.
+* Payments initiated with the ePayment API cannot be modified or retrieved using the eCom API.
 
 **Important:** Freestanding card payments are only available in the ePayment API,
 so payments initiated with the ePayment API may fail if the eCom API is used.
@@ -66,11 +66,9 @@ format by changing `traceId` to `instance`.
 The ePayment documentation will be updated when that is done.
 
 **Important:** The unique identifier of an error is the `type`.
-When handling errors, you must never attempt to identify the type of an error by
-any other field than the `type`.
+When handling errors, you must always identify the type of error by the `type` field.
 The `title` and `description` may be updated at any time, without warning,
 to improve the API and make the error messages easier to understand.
-
 
 | Title                   | Description                                                  | Comment                    |
 | ----------------------- | ------------------------------------------------------------ | -------------------------- |
