@@ -353,11 +353,13 @@ components:
             - NATIVE_REDIRECT
             - WEB_REDIRECT
             - QR
+            - MIT
           x-enum-varnames:
             - PUSH_MESSAGE
             - NATIVE_REDIRECT
             - WEB_REDIRECT
             - QR
+            - MIT
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing the user to the Vipps MobilePay app's payment confirmation screen.
@@ -688,6 +690,15 @@ components:
       properties:
         type:
           $ref: '#/components/schemas/PaymentMethodType'
+        mitDetails:
+          type: object
+          properties:
+            shopperRef:
+              type: string
+            paymentMethodId:
+              type: string
+            networkTxRef:
+              type: string
       required:
         - type
     PaymentMethodResponse:
@@ -704,6 +715,15 @@ components:
           maxLength: 6
           type: string
           example: '540185'
+        mitDetails:
+          type: object
+          properties:
+            shopperRef:
+              type: string
+            paymentMethodId:
+              type: string
+            networkTxRef:
+              type: string
       required:
         - type
     PaymentMethodType:
