@@ -691,16 +691,23 @@ components:
         type:
           $ref: '#/components/schemas/PaymentMethodType'
         mitDetails:
-          type: object
-          properties:
-            shopperRef:
-              type: string
-            paymentMethodId:
-              type: string
-            networkTxRef:
-              type: string
+          $ref: '#/components/schemas/MitDetails'
       required:
         - type
+    MitDetails:
+      title: MitDetails
+      type: object
+      properties:
+        shopperRef:
+          type: string
+        paymentMethodId:
+          type: string
+        networkTxRef:
+          type: string
+      required:
+        - shopperRef
+        - paymentMethodId
+        - networkTxRef
     PaymentMethodResponse:
       title: PaymentMethodResponse
       type: object
