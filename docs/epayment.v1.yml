@@ -690,24 +690,10 @@ components:
       properties:
         type:
           $ref: '#/components/schemas/PaymentMethodType'
-        mitDetails:
-          $ref: '#/components/schemas/MitDetails'
+        storePaymentMethod:
+          type: boolean
       required:
         - type
-    MitDetails:
-      title: MitDetails
-      type: object
-      properties:
-        shopperRef:
-          type: string
-        paymentMethodId:
-          type: string
-        networkTxRef:
-          type: string
-      required:
-        - shopperRef
-        - paymentMethodId
-        - networkTxRef
     PaymentMethodResponse:
       title: PaymentMethodResponse
       type: object
@@ -722,15 +708,8 @@ components:
           maxLength: 6
           type: string
           example: '540185'
-        mitDetails:
-          type: object
-          properties:
-            shopperRef:
-              type: string
-            paymentMethodId:
-              type: string
-            networkTxRef:
-              type: string
+        storedPaymentMethodId:
+          type: string
       required:
         - type
     PaymentMethodType:
