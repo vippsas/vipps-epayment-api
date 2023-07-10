@@ -692,6 +692,8 @@ components:
           $ref: '#/components/schemas/PaymentMethodType'
         storePaymentMethod:
           type: boolean
+        storedPaymentMethodId:
+          type: string
       required:
         - type
     PaymentMethodResponse:
