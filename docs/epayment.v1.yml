@@ -823,6 +823,7 @@ components:
       required:
         - type
         - title
+        - status
         - traceId
     State:
       type: string
