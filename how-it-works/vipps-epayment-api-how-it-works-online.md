@@ -25,7 +25,7 @@ See [Alternative flow: Pay with by card](#alternative-flow-pay-with-by-card) for
 If the payment was started from a mobile device, the Vipps or MobilePay app will automatically open.
 
 If the payment was started on a desktop device, the
-[landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/)
+[landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/)
 will open. There, the customer confirms their number and logs in to Vipps MobilePay.
 
 ![Vipps MobilePay landing page](../images/vipps-ecom-step2.svg)
