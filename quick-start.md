@@ -31,11 +31,11 @@ use *your* values. This includes API keys, HTTP headers, reference, etc.
 ### Step 1 - Setup
 
 <Tabs
-defaultValue="postman"
+defaultValue="curl"
 groupId="sdk-choice"
 values={[
-{label: 'Postman', value: 'postman'},
 {label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
 ]}>
 <TabItem value="postman">
 
@@ -91,8 +91,8 @@ This provides you with access to the API.
 defaultValue="postman"
 groupId="sdk-choice"
 values={[
-{label: 'Postman', value: 'postman'},
 {label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
 ]}>
 <TabItem value="postman">
 
@@ -152,8 +152,8 @@ is provided in `phoneNumber`, it will be pre-filled in the form.
 defaultValue="postman"
 groupId="sdk-choice"
 values={[
-{label: 'Postman', value: 'postman'},
 {label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
 ]}>
 <TabItem value="postman">
 
@@ -241,8 +241,8 @@ To receive the result of the user action you may poll the status of the payment 
 defaultValue="postman"
 groupId="sdk-choice"
 values={[
-{label: 'Postman', value: 'postman'},
 {label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
 ]}>
 <TabItem value="postman">
 
@@ -290,8 +290,8 @@ For more details of the lifecycle of the payment session the
 defaultValue="postman"
 groupId="sdk-choice"
 values={[
-{label: 'Postman', value: 'postman'},
 {label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
 ]}>
 <TabItem value="postman">
 
@@ -336,8 +336,8 @@ amount either partially or fully:
 defaultValue="postman"
 groupId="sdk-choice"
 values={[
-{label: 'Postman', value: 'postman'},
 {label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
 ]}>
 <TabItem value="postman">
 
@@ -394,8 +394,8 @@ To refund the captured amount, either partially or fully:
 defaultValue="postman"
 groupId="sdk-choice"
 values={[
-{label: 'Postman', value: 'postman'},
 {label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
 ]}>
 <TabItem value="postman">
 
@@ -452,8 +452,8 @@ To cancel the payment, either fully or after a partial capture:
 defaultValue="postman"
 groupId="sdk-choice"
 values={[
-{label: 'Postman', value: 'postman'},
 {label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
 ]}>
 <TabItem value="postman">
 
