@@ -21,7 +21,7 @@ import TabItem from '@theme/TabItem';
 This document covers the quick steps for getting started with the ePayment API.
 You must have already signed up as an organization with Vipps MobilePay and have
 your test credentials from the merchant portal, as described in the
-[Quick start guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started).
+[Getting started guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started).
 
 **Important:** The examples use standard example values that you must change to
 use *your* values. This includes API keys, HTTP headers, reference, etc.
@@ -39,29 +39,22 @@ values={[
 ]}>
 <TabItem value="postman">
 
-Save the following files to your computer:
+Import the following files into Postman:
 
 * [ePayment API Postman collection](/tools/vipps-epayment-api-postman-collection.json)
 * [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
-Then, import the Postman files
+In Postman, tweak the environment with your own values (see
+[API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/)):
 
-1. In Postman, click *Import* in the upper-left corner.
-1. In the dialog that opens, with *File* selected, click *Upload Files*.
-1. Select the two files you have just downloaded and click *Import*.
+* `client_id` - Merchant key required for getting the access token.
+* `client_secret` - Merchant key required for getting the access token.
+* `Ocp-Apim-Subscription-Key` - Merchant subscription key.
+* `merchantSerialNumber` - Merchant ID.
+* `internationalMobileNumber` - The MSISDN for the test app profile you have received or registered. This is your test mobile number *including* country code.
 
-Lastly, tweak the Postman environment with your own secrets
-
-1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.
-2. Click the "eye" icon and, in the dropdown window, click `Edit` in the top-right corner.
-3. Fill in the `Current Value` for the following fields to get started.
-   For information about how to find your keys, see
-   [API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/).
-    * `client_id` - Merchant key is required for getting the access token.
-    * `client_secret` - Merchant key is required for getting the access token.
-    * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
-    * `merchantSerialNumber` - Merchant ID.
-    * `internationalMobileNumber` - The MSISDN for the test app profile you have received or registered. This is your test mobile number *including* country code.
+For help using Postman, see
+[Quick start guides](https://developer.vippsmobilepay.com/docs/vipps-developers/quick-start-guides).
 
 </TabItem>
 <TabItem value="curl">
@@ -84,7 +77,7 @@ dotnet add package vipps.net
 
 For all the following, you will need an `access_token` from the
 [Access token API](https://developer.vippsmobilepay.com/docs/APIs/access-token-api):
-[`POST:/accesstoken/get`][access-token-endpoint]
+[`POST:/accesstoken/get`][access-token-endpoint].
 This provides you with access to the API.
 
 <Tabs
@@ -144,7 +137,8 @@ The property `access_token` should be used for all other API requests in the `Au
 
 Initiate a payment with: [`POST:/payments`][create-payment-endpoint].
 In this example, we use the default user flow, `WEB_REDIRECT`.
-This provides you with a link you can click to go to the landing page.
+This provides you with a link you can click to go to the
+[landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/).
 When your test mobile number (in MSISDN format)
 is provided in `phoneNumber`, it will be pre-filled in the form.
 
@@ -224,9 +218,9 @@ var createPaymentResult = await EpaymentService.CreatePayment(createPaymentReque
 
 *Ctrl+click* (*Command-click* on macOS) on the link that appears, and it will take you to the
 [landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/).
-The phone number of your test user should already be filled in, so you only have to click "Next".
+The phone number of your test user should already be filled in, so you only have to click *Next*.
 You will be presented with the payment in the app, where you can complete or reject the payment.
-Once you have acted upon the payment you will be redirected back to the specified `returnUrl` under a "best effort" policy.
+Once you have acted upon the payment, you will be redirected back to the specified `returnUrl` under a "best effort" policy.
 
 :::note
 We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable, and the user may choose to fully close the app or browser.
