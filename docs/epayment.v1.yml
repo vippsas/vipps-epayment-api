@@ -248,7 +248,7 @@ components:
         If the customer's phone number is needed by the merchant:
         Use `scope` and the Userinfo API:
         https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/
-        See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
+        See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/
       properties:
         phoneNumber:
           type: string
@@ -458,7 +458,7 @@ components:
           description: |-
             The URL you should redirect the user to to continue with the payment.
             This is the URL to the Vipps MobilePay landing page.
-            See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/vipps-landing-page/
+            See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/
         reference:
           $ref: '#/components/schemas/Reference'
       required:
