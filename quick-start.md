@@ -133,7 +133,7 @@ VippsConfiguration.ConfigureVipps(vippsConfigurationOptions);
 
 The property `access_token` should be used for all other API requests in the `Authorization` header as the Bearer token.
 
-### Step 3 - A simple ePayment payment with web redirect
+### Step 3 - Request a simple payment
 
 Initiate a payment with: [`POST:/payments`][create-payment-endpoint].
 In this example, we use the default user flow, `WEB_REDIRECT`.
@@ -214,20 +214,19 @@ var createPaymentResult = await EpaymentService.CreatePayment(createPaymentReque
 </TabItem>
 </Tabs>
 
-### Step 4 - Completing the payment
+### Step 4 - Complete the payment
 
-*Ctrl+click* (*Command-click* on macOS) on the link that appears, and it will take you to the
+Open the `redirectUrl` link that is returned, and it will take you to the
 [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/).
 The phone number of your test user should already be filled in, so you only have to click *Next*.
 
-You will be presented with the payment in the app, where you can complete or reject the payment.
-Once you have acted upon the payment, you will be redirected back to the specified `returnUrl` under a "best effort" policy.
+You will be presented with the payment in the app, where you can complete the payment and be directed to the specified `returnUrl` under a "best effort" policy.
 
 :::note
 We cannot guarantee the user will be redirected back to the same browser or session, or that they will at all be redirected back. User interaction can be unpredictable, and the user may choose to fully close the app or browser.
 :::
 
-### Step 5 - Getting the status of the payment
+### Step 5 - Get the status of the payment
 
 To receive the result of the user action you may poll the status of the payment via the
 [`GET:/payments/{reference}`][get-payment-endpoint].
