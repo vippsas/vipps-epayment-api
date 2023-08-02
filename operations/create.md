@@ -34,7 +34,7 @@ The `paymentMethod.type` in the request determines the type of payment:
   with a declined card, they can retry with a different card for the same payment process.
 * `CARD`: The user pays with a card. They enter the card details into a form and then complete the 3D Secure step-up
   for SCA. See
-  [Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments)
+  [Card payments](https://developer.vippsmobilepay.com/docs/faqs/users-and-payments-faq/#card-payments)
   for more information.
 
   **Please note:** Card payment (`CARD`) is not available in the test environment.
@@ -46,9 +46,9 @@ and how the user experience will be.
 
 | `userFlow`        | Description                                          |
 | ----------------- | ---------------------------------------------------- |
-| `WEB_REDIRECT`    | The normal flow for browser-based payment flows. If on a mobile device, the Vipps MobilePay app will open. Otherwise, the [landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/) will open.    |
+| `WEB_REDIRECT`    | The normal flow for browser-based payment flows. If on a mobile device, the Vipps MobilePay app will open. Otherwise, the [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/) will open.    |
 | `NATIVE_REDIRECT` | Automatic app-switch between the merchant's native app and the Vipps MobilePay app. |
-| `PUSH_MESSAGE`    | For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page#skip-landing-page). |
+| `PUSH_MESSAGE`    | For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/common-topics/landing-page#skip-landing-page). |
 | `QR`              | Returns a QR code that can be scanned to complete the payment. |
 
 ### WEB_REDIRECT
@@ -57,11 +57,11 @@ This is the default flow for wallet and card payments.
 
 * Wallet flow:
   When the user is on a mobile device, redirect them to the Vipps MobilePay app. From the desktop, open the
-  [landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page).
+  [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page).
 
 * Card flow:
   Whether the user is on a desktop or mobile device, open the card entry page. See
-  [Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments) for more information.
+  [Card payments](https://developer.vippsmobilepay.com/docs/faqs/users-and-payments-faq/#card-payments) for more information.
 
 ### NATIVE_REDIRECT
 
@@ -73,7 +73,7 @@ The `redirectUrl` will automatically open the Vipps MobilePay app on mobile devi
 
 Applicable only for `WALLET` payments.
 
-For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page#skip-landing-page).
+For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/common-topics/landing-page#skip-landing-page).
 
 If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required, since there is no
 way for the customer to enter the phone number manually.

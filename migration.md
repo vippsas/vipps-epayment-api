@@ -29,7 +29,7 @@ See
 **Important:**
 The ePayment API only offers “reserve capture”. There is no “direct capture”, as
 in the eCom API. Read more about the benefits of "reserve capture":
-[Reserve and capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture).
+[Reserve and capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture).
 
 ## Callbacks
 
@@ -45,9 +45,9 @@ In addition, you can now receive callbacks for *all* adjustments to your payment
 ## Payment flows
 
 In the eCom API, merchants could choose between three flows by specifying the parameters
-[`isApp`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/isApp/)
+[`isApp`](https://developer.vippsmobilepay.com/docs/common-topics/isApp/)
 and
-[`skipLandingPage`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/#skip-landing-page).
+[`skipLandingPage`](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/#skip-landing-page).
 
 These parameters were added to the original API over the years. The same functionality is available in ePayment,
 but smarter: Instead of specifying the parameters, you now simply decide which flow you want through the

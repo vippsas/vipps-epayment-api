@@ -8,7 +8,7 @@ sidebar_position: 200
 # Force Approve a payment
 
 To simplify automated testing in the
-[test environment](https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment/)
+[test environment](https://developer.vippsmobilepay.com/docs/test-environment/)
 the ePayment API provides a "force approve" endpoint that confirms payments
 without using the test app:
 [`POST:/epayment/v1/payments/{reference}/approve`][force-approve-endpoint].

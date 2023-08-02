@@ -21,7 +21,7 @@ import TabItem from '@theme/TabItem';
 This document covers the quick steps for getting started with the ePayment API.
 You must have already signed up as an organization with Vipps MobilePay and have
 your test credentials from the merchant portal, as described in the
-[Getting started guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started).
+[Getting started guide](https://developer.vippsmobilepay.com/docs/getting-started).
 
 **Important:** The examples use standard example values that you must change to
 use *your* values. This includes API keys, HTTP headers, reference, etc.
@@ -45,7 +45,7 @@ Import the following files into Postman:
 * [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
 In Postman, tweak the environment with your own values (see
-[API keys](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-keys/)):
+[API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/)):
 
 * `client_id` - Merchant key required for getting the access token.
 * `client_secret` - Merchant key required for getting the access token.
@@ -54,7 +54,7 @@ In Postman, tweak the environment with your own values (see
 * `internationalMobileNumber` - The MSISDN for the test app profile you have received or registered. This is your test mobile number *including* country code.
 
 For help using Postman, see
-[Quick start guides](https://developer.vippsmobilepay.com/docs/vipps-developers/quick-start-guides).
+[Quick start guides](https://developer.vippsmobilepay.com/docs/quick-start-guides).
 
 </TabItem>
 <TabItem value="curl">
@@ -138,7 +138,7 @@ The property `access_token` should be used for all other API requests in the `Au
 Initiate a payment with: [`POST:/payments`][create-payment-endpoint].
 In this example, we use the default user flow, `WEB_REDIRECT`.
 This provides you with a link you can click to go to the
-[landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/).
+[landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/).
 When your test mobile number (in MSISDN format)
 is provided in `phoneNumber`, it will be pre-filled in the form.
 
@@ -217,7 +217,7 @@ var createPaymentResult = await EpaymentService.CreatePayment(createPaymentReque
 ### Step 4 - Completing the payment
 
 *Ctrl+click* (*Command-click* on macOS) on the link that appears, and it will take you to the
-[landing page](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/).
+[landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/).
 The phone number of your test user should already be filled in, so you only have to click *Next*.
 
 You will be presented with the payment in the app, where you can complete or reject the payment.
@@ -377,7 +377,7 @@ new CaptureModificationRequest { ModificationAmount = captureAmount });
 </Tabs>
 
 See
-[Common topics: Capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture#capture)
+[Common topics: Capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture#capture)
 for more details about the types of captures.
 
 ### (Optional) Step 7 - Refund the payment
@@ -435,7 +435,7 @@ new RefundModificationRequest { ModificationAmount = refundAmount });
 </Tabs>
 
 See
-[Common topics: refund](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/refund)
+[Common topics: refund](https://developer.vippsmobilepay.com/docs/common-topics/refund)
 for more details about refunds.
 
 ### (Optional) Step 8 - Cancel the payment
@@ -484,7 +484,7 @@ var cancelResult = await EpaymentService.CancelPayment(reference);
 </Tabs>
 
 See
-[Common topics: Cancel](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/cancel)
+[Common topics: Cancel](https://developer.vippsmobilepay.com/docs/common-topics/cancel)
 for more details about cancel.
 
 ## Next Steps

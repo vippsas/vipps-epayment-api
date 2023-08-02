@@ -10,7 +10,7 @@ using the app. This lets merchants accept payments from customers in countries w
 the Vipps MobilePay app is not yet available.
 
 See
-[FAQ: Card payments](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/users-and-payments-faq/#card-payments).
+[FAQ: Card payments](https://developer.vippsmobilepay.com/docs/faqs/users-and-payments-faq/#card-payments).
 
 ## Create a freestanding card payment
 
@@ -52,7 +52,7 @@ where the user enters the payment card details.
 
 :::note
 The card entry page currently is not currently available in the
-[test environment](https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment/).
+[test environment](https://developer.vippsmobilepay.com/docs/test-environment/).
 :::
 
 ![Enter card details](../images/vipps-ecom-pay-by-card-step2.png)

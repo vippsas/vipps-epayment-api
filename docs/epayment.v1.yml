@@ -248,7 +248,7 @@ components:
         If the customer's phone number is needed by the merchant:
         Use `scope` and the Userinfo API:
         https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/
-        See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/
+        See: https://developer.vippsmobilepay.com/docs/common-topics/landing-page/
       properties:
         phoneNumber:
           type: string
@@ -458,7 +458,7 @@ components:
           description: |-
             The URL you should redirect the user to to continue with the payment.
             This is the URL to the Vipps MobilePay landing page.
-            See: https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/landing-page/
+            See: https://developer.vippsmobilepay.com/docs/common-topics/landing-page/
         reference:
           $ref: '#/components/schemas/Reference'
       required:
@@ -670,7 +670,7 @@ components:
           description: |-
             A space-separated string list of requested user information in
             accordance with the OpenID Connect specification.
-            See https://vippsas.github.io/vipps-developer-docs/docs/APIs/userinfo-api#scope
+            See https://developer.vippsmobilepay.com/docs/APIs/userinfo-api#scope
     ProfileResponse:
       title: Profile
       type: object
@@ -801,7 +801,7 @@ components:
       title: Problem
       description: |-
         The standard error object, based on RFC 7808.
-        See https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/errors
+        See https://developer.vippsmobilepay.com/docs/common-topics/errors
       type: object
       properties:
         type:
@@ -873,14 +873,14 @@ components:
         example: da7d5b0e18a84aeda961c0c31b75c2a9
       description: |-
         The Azure API Management subscription key.
-        See: https://vippsas.github.io/vipps-developer-docs/docs/APIs/access-token-api
+        See: https://developer.vippsmobilepay.com/docs/APIs/access-token-api
     Vipps-System-Name:
       name: Vipps-System-Name
       in: header
       description: |-
         The name of the ecommerce solution.
         One word in lowercase letters is good.
-        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
         maxLength: 30
@@ -890,7 +890,7 @@ components:
       in: header
       description: |-
         The version number of the ecommerce solution.
-        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
         maxLength: 30
@@ -901,7 +901,7 @@ components:
       description: |-
         The name of the ecommerce plugin (if applicable).
         One word in lowercase letters is good.
-        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
         maxLength: 30
@@ -911,7 +911,7 @@ components:
       in: header
       description: |-
         The version number of the ecommerce plugin (if applicable).
-        See [http-headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers).
       schema:
         type: string
         maxLength: 30
@@ -928,7 +928,7 @@ components:
       description: |-
         The primary reference when creating the payment.
         Similar to orderId in the eCom API.
-        See [orderid](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid).
+        See [orderid](https://developer.vippsmobilepay.com/docs/common-topics/orderid).
       example: acme-shop-123-order123abc
     Idempotency-Key:
       name: Idempotency-Key
@@ -939,7 +939,7 @@ components:
         maxLength: 50
       description: |-
         Idempotency key for the request, ensures idempotent actions.
-        See [idempotency](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers#idempotency)
+        See [idempotency](https://developer.vippsmobilepay.com/docs/common-topics/http-headers#idempotency)
       example: fb492b5e-7907-4d83-ba20-c7fb60ca35de
   securitySchemes:
     Bearer-Authorization:

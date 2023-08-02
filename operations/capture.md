@@ -8,7 +8,7 @@ sidebar_position: 20
 # Capture a payment
 
 See
-[Common API topics - Reserve and Capture](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/reserve-and-capture)
+[Common API topics - Reserve and Capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture)
 for a general introduction to reservations and captures.
 
 A capture can be made in full, or partial.
@@ -20,7 +20,7 @@ request.
 
 Once the goods or services are delivered or on their way to the customer it is time to capture the payment.
 See:
-[When should I charge the customer?](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs/reserve-and-capture-faq/#when-should-i-charge-the-customer).
+[When should I charge the customer?](https://developer.vippsmobilepay.com/docs/faqs/reserve-and-capture-faq/#when-should-i-charge-the-customer).
 
 Capture is done with a
 [`POST:/payments/{reference}/capture`][capture-payment-endpoint]
