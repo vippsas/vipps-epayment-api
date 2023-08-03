@@ -39,7 +39,9 @@ values={[
 ]}>
 <TabItem value="postman">
 
-Import the following files into Postman:
+**Please note:** Postman is discontinuing their offline version. Use only your test keys and delete them after testing. Ensure that your company allows for cloud use before continuing.
+
+If you wish to use Postman, import the following files:
 
 * [ePayment API Postman collection](/tools/vipps-epayment-api-postman-collection.json)
 * [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
@@ -52,9 +54,6 @@ In Postman, tweak the environment with your own values (see
 * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
 * `merchantSerialNumber` - Merchant ID.
 * `internationalMobileNumber` - The MSISDN for the test app profile you have received or registered. This is your test mobile number *including* country code.
-
-For help using Postman, see
-[Quick start guides](https://developer.vippsmobilepay.com/docs/quick-start-guides).
 
 </TabItem>
 <TabItem value="curl">
