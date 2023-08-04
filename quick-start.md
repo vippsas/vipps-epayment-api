@@ -80,7 +80,7 @@ For all the following, you will need an `access_token` from the
 This provides you with access to the API.
 
 <Tabs
-defaultValue="postman"
+defaultValue="curl"
 groupId="sdk-choice"
 values={[
 {label: 'curl', value: 'curl'},
@@ -142,7 +142,7 @@ When your test mobile number (in MSISDN format)
 is provided in `phoneNumber`, it will be pre-filled in the form.
 
 <Tabs
-defaultValue="postman"
+defaultValue="curl"
 groupId="sdk-choice"
 values={[
 {label: 'curl', value: 'curl'},
@@ -231,7 +231,7 @@ To receive the result of the user action you may poll the status of the payment 
 [`GET:/payments/{reference}`][get-payment-endpoint].
 
 <Tabs
-defaultValue="postman"
+defaultValue="curl"
 groupId="sdk-choice"
 values={[
 {label: 'curl', value: 'curl'},
@@ -280,7 +280,7 @@ For more details of the lifecycle of the payment session the
 [`GET:/payments/{reference}/events`][get-payment-event-log-endpoint] endpoint.
 
 <Tabs
-defaultValue="postman"
+defaultValue="curl"
 groupId="sdk-choice"
 values={[
 {label: 'curl', value: 'curl'},
@@ -326,7 +326,7 @@ amount either partially or fully:
 [`POST:/payments/{reference}/capture`][capture-payment-endpoint].
 
 <Tabs
-defaultValue="postman"
+defaultValue="curl"
 groupId="sdk-choice"
 values={[
 {label: 'curl', value: 'curl'},
@@ -384,7 +384,7 @@ To refund the captured amount, either partially or fully:
 [`POST:/payments/{reference}/refund`][refund-payment-endpoint].
 
 <Tabs
-defaultValue="postman"
+defaultValue="curl"
 groupId="sdk-choice"
 values={[
 {label: 'curl', value: 'curl'},
@@ -442,7 +442,7 @@ To cancel the payment, either fully or after a partial capture:
 [`POST:/payments/{reference}/cancel`][cancel-payment-endpoint].
 
 <Tabs
-defaultValue="postman"
+defaultValue="curl"
 groupId="sdk-choice"
 values={[
 {label: 'curl', value: 'curl'},
