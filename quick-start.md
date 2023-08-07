@@ -227,7 +227,7 @@ We cannot guarantee the user will be redirected back to the same browser or sess
 
 ### Step 5 - Get the status of the payment
 
-To receive the result of the user action you may poll the status of the payment via the
+To receive the result of the user action, you may poll the status of the payment via the
 [`GET:/payments/{reference}`][get-payment-endpoint].
 
 <Tabs
@@ -256,7 +256,6 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE \
 -H "Vipps-System-Version: 3.1.2" \
 -H "Vipps-System-Plugin-Name: acme-webshop" \
 -H "Vipps-System-Plugin-Version: 4.5.6" \
--H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
 -X GET
 ```
 
@@ -305,7 +304,6 @@ curl https://apitest.vipps.no/epayment/v1/payments/UNIQUE-PAYMENT-REFERENCE/even
 -H "Vipps-System-Version: 3.1.2" \
 -H "Vipps-System-Plugin-Name: acme-webshop" \
 -H "Vipps-System-Plugin-Version: 4.5.6" \
--H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
 -X GET
 ```
 
