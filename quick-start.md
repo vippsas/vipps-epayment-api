@@ -1,5 +1,5 @@
 ---
-title: Quick start
+title:  Quick start for the ePayment API
 sidebar_label: Quick start
 id: quick-start
 sidebar_position: 10
