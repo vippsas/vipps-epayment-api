@@ -39,6 +39,95 @@ The `paymentMethod.type` in the request determines the type of payment:
 
   **Please note:** Card payment (`CARD`) is not available in the test environment.
 
+
+<details>
+<summary>General create request example</summary>
+<div>
+
+Here is an example HTTP POST:
+
+[`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment)
+
+With body:
+
+   ```json
+   {
+      "amount":{
+         "currency":"NOK",
+         "value":6000
+      },
+      "customer":{
+         "phoneNumber":4791234567
+      },
+      "paymentMethod":{
+         "type":"WALLET"
+      },
+      "receiptInfo":{
+         "orderLines": [
+            {
+               "name": "Socks",
+               "id": "line_item_1",
+               "totalAmount": 1000,
+               "totalAmountExcludingTax": 800,
+               "totalTaxAmount": 200,
+               "taxPercentage": 25,
+               "unitInfo": {
+               "unitPrice": 400,
+               "quantity": "2.5",
+               "quantityUnit": "KG"
+               },
+               "discount": 0,
+               "productUrl": "https://example.com/store/socks",
+               "isReturn": false,
+               "isShipping": false
+            },
+            {
+               "name": "Flip-flops",
+               "id": "line_item_2",
+               "totalAmount": 5000,
+               "totalAmountExcludingTax": 4000,
+               "totalTaxAmount": 1000,
+               "taxPercentage": 25,
+               "unitInfo": {
+               "unitPrice": 2500,
+               "quantity": "3",
+               "quantityUnit": "PCS"
+               },
+               "discount": 2500,
+               "productUrl": "https://example.com/store/flipflops",
+               "isReturn": false,
+               "isShipping": false
+            }
+         ],
+         "bottomLine": {
+            "currency": "NOK",
+            "tipAmount": 0,
+            "posId": "pos_122",
+            "paymentSources": {
+               "giftCard": 0,
+               "card": 0,
+               "voucher": 0,
+               "cash": 0
+            },
+            "barcode": {
+               "format": "CODE 39",
+               "data": "SC0527013501 "
+            },
+            "receiptNumber": "0527013501"
+         }
+      },
+      "reference":"acme-shop-123-order123abc",
+      "paymentDescription": "Invoice# 424243, due date: 01 Jan 2025",
+      "returnUrl":"https://example.com/redirect?orderId=1512202",
+      "userFlow":"PUSH_MESSAGE",
+      "expiresAt":"2023-09-15T00:00:00Z"
+   }
+   ```
+
+</div>
+</details>
+
+
 ## User flow alternatives
 
 The `userFlow` parameter specifies how the API should handle the payment
@@ -84,3 +173,9 @@ Applicable only for `WALLET` payments.
 
 This user flow is for customer-facing screens where payments can be initiated with the
 [One-time payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-api/#one-time-payment-qr-codes).
+
+### Receipt
+
+Add a receipt to the payment. This includes the order Lines for the payment, which are identical to those referenced in the [Order Management](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) API.
+
+Applicable only for `WALLET` payments.
