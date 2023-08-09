@@ -48,10 +48,19 @@ Here is an example HTTP POST:
 
 [`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments/operation/createPayment)
 
-With body:
-
-   ```json
-   {
+```bash
+curl https://apitest.vipps.no/epayment/v1/payments \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: acme" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-9773b-9487112e1def" \
+-X POST \
+-d '{
       "amount":{
          "currency":"NOK",
          "value":6000
@@ -62,7 +71,7 @@ With body:
       "paymentMethod":{
          "type":"WALLET"
       },
-      "receiptInfo":{
+      "receipt":{
          "orderLines": [
             {
                "name": "Socks",
@@ -111,17 +120,16 @@ With body:
             },
             "barcode": {
                "format": "CODE 39",
-               "data": "SC0527013501 "
+               "data": "SC0527013501"
             },
             "receiptNumber": "0527013501"
          }
       },
-      "reference":"acme-shop-123-order123abc",
+      "reference":"acme-shop-123-1234589",
       "paymentDescription": "Invoice# 424243, due date: 01 Jan 2025",
       "returnUrl":"https://example.com/redirect?orderId=1512202",
-      "userFlow":"PUSH_MESSAGE",
-      "expiresAt":"2023-09-15T00:00:00Z"
-   }
+      "userFlow":"WEB_REDIRECT",
+   }'
    ```
 
 </div>
