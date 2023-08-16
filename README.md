@@ -62,13 +62,11 @@ The ePayment API enables merchants to accept payments using both the app and car
 
 ## Next steps
 
-See
-[Vipps MobilePay getting started](https://developer.vippsmobilepay.com/docs/getting-started)
-for information about API keys, product activation, how to make API calls, etc.
+* [API quick start](quick-start.md): Run the basic examples in curl or Postman.
+* [API features](features/README.md): Learn about the ePayment API features.
+* [API checklist](checklist.md): Complete the checklist for direct and POS integrations.
+* [API spec](https://developer.vippsmobilepay.com/api/epayment): Go straight to the endpoint specifications.
 
-Review the detailed documentation found here:
-
-* [API quick start](quick-start.md): Quick start guide.
-* [API features](features/README.md): Developer guide for the ePayment API.
-* [API checklist](checklist.md): For direct and POS integrations.
-* [API spec](https://developer.vippsmobilepay.com/api/epayment): ePayment API reference specifications.
+If you're new to the platform, see
+[Getting started](https://developer.vippsmobilepay.com/docs/getting-started/)
+for information about API keys, product activation, and the test environment.
