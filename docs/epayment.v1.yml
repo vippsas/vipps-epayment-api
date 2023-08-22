@@ -255,8 +255,7 @@ components:
           description: |-
             The phone number of the user paying the transaction with Vipps MobilePay.
             Only Norwegian mobile numbers are supported (for now).
-            The format is MSISDN: Digits only: Country code and subscriber
-            number, but no prefix.
+            The format is MSISDN: Digits only: Country code and subscriber number, but no prefix.
             If the phone number is a Norwegian phone number `(+47) 91 23 45 67`, the MSISDN representation is `4791234567`.
             See: https://en.wikipedia.org/wiki/MSISDN
           minLength: 10
