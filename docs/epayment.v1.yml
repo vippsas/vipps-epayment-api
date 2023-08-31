@@ -314,10 +314,10 @@ components:
         Metadata is a key-value map that can be used to store additional
         information about the payment. The metadata is not used by Vipps
         MobilePay, but is passed through in the `GetPaymentResponse` object.
-        Metadata key length is limited to 100.
+        Key length is limited to 100 characters, and value length is limited to 500 characters.
+        Max capacity is 5 key-value pairs.
       additionalProperties:
         type: string
-        maxLength: 500
       maxProperties: 5
       example:
         key1: value1
