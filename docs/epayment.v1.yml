@@ -320,9 +320,9 @@ components:
         type: string
       maxProperties: 5
       example:
-        key1: value1
-        key2: value2
-        key3: value3
+        key1: "value1"
+        key2: "value2"
+        key3: "value3"
       nullable: true
     CreatePaymentRequest:
       title: Create payment request
