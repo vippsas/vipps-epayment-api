@@ -291,7 +291,7 @@ components:
           $ref: '#/components/schemas/Currency'
         value:
           type: integer
-          minimum: 0
+          minimum: 100
           maximum: 65000000
           example: 49900
           format: int64
