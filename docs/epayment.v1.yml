@@ -9,7 +9,7 @@ info:
     The ePayment API.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api)
     for more information.
-  version: 1.2.0
+  version: 1.3.0
   title: ePayment API
   contact:
     name: Vipps MobilePay AS
@@ -308,6 +308,22 @@ components:
       enum:
         - NOK
       description: Currency code as defined in ISO 4217. eg NOK for Norwegian kroner.
+    Metadata:
+      type: object
+      description: |-
+        Metadata is a key-value map that can be used to store additional
+        information about the payment. The metadata is not used by Vipps
+        MobilePay, but is passed through in the `GetPaymentResponse` object.
+        Key length is limited to 100 characters, and value length is limited to 500 characters.
+        Max capacity is 5 key-value pairs.
+      additionalProperties:
+        type: string
+      maxProperties: 5
+      example:
+        key1: "value1"
+        key2: "value2"
+        key3: "value3"
+      nullable: true
     CreatePaymentRequest:
       title: Create payment request
       description: The `CreatePaymentRequest` object.
@@ -410,6 +426,8 @@ components:
             through the app, the merchant portal, and the settlement files.
         receipt:
           $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.17/docs/swagger.yaml#/components/schemas/Receipt'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
       required:
         - amount
         - paymentMethod
@@ -461,6 +479,8 @@ components:
             See: https://developer.vippsmobilepay.com/docs/common-topics/landing-page/
         reference:
           $ref: '#/components/schemas/Reference'
+        metadata:
+          $ref: '#/components/schemas/Metadata'
       required:
         - aggregate
         - amount
