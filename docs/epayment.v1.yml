@@ -693,6 +693,13 @@ components:
             See the
             [Userinfo user guide](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/userinfo-api-guide#scope)
             for details.
+            Possible values are:
+            - name
+            - address
+            - email
+            - phoneNumber
+            - birthDate
+            - nin
     ProfileResponse:
       title: Profile
       type: object
