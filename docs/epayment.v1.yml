@@ -389,7 +389,7 @@ components:
             The value must be more than 10 minutes and less than 28 days in the future.
             Can only be combined with `userFlow: PUSH_MESSAGE` or `userFlow: QR`.
 
-            If ExpiresAt is set, receipt also has to be set.
+            If `ExpiresAt` is set, `receipt` also must be set.
         qrFormat:
           nullable: true
           type: object
@@ -687,10 +687,13 @@ components:
       properties:
         scope:
           type: string
+          example: name phoneNumber
           description: |-
-            A space-separated string list of requested user information in
+            A space-separated string list of required user information (e.g., "name phoneNumber") in
             accordance with the OpenID Connect specification.
-            See https://developer.vippsmobilepay.com/docs/APIs/userinfo-api#scope
+            See the
+            [Userinfo user guide](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/userinfo-api-guide#scope)
+            for details.
     ProfileResponse:
       title: Profile
       type: object
@@ -698,10 +701,10 @@ components:
         sub:
           type: string
           description: |-
-            If `profile.scope` was requested in `createPayment` this value will populate once
+            If `profile.scope` was requested in `createPayment`, this value will be populated once
             `state` is `AUTHORIZED`. This can be used towards the
             [Userinfo endpoint](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo)
-            to fetch requested user data.
+            to fetch required user data.
     PaymentMethod:
       title: PaymentMethod
       type: object
