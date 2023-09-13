@@ -14,6 +14,14 @@ All notable changes to the current API will be documented in this file.
 To learn about API versioning, see
 [Common topics: API Lifecycle](https://developer.vippsmobilepay.com/docs/common-topics/api-lifecycle/).
 
+## September 2023
+
+* v1.4.0: Added `DKK` and `EUR` currencies. Only allowed for Danish and Finnish merchants, respectively.
+
+## August 2023
+
+* v1.3.0: Added `metadata` to the `CreatePaymentRequest`. The `metadata` is returned in the `/epayment/v1/payments/{reference}`
+
 ## July 2023
 
 * v1.2.3: Added the possibility of sending `receipt` data through the ePayment API. Receipts are generated in the
