@@ -7,8 +7,8 @@ sidebar_position: 50
 
 # QR Payments
 
-The ePayment API supports QR payments directly, making it easy to provide
-[One-Time payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-api/#one-time-payment-qr-codes).
+The ePayment API supports QR payments directly, making it easy to provide One-Time payment QR codes. 
+Read more about the concept in [One-Time payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-api/#one-time-payment-qr-codes).
 
 ## Create a QR Payment
 
