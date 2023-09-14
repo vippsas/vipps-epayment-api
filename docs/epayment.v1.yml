@@ -245,10 +245,9 @@ components:
         with the landing page. The exception for this is "manual POS" integration,
         where the cashier asks the customer for the number, and then enters it manually on the POS.
         
-        If the customer's phone number is needed by the merchant:
-        Use `scope` and the Userinfo API:
-        https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/
-        See: https://developer.vippsmobilepay.com/docs/common-topics/landing-page/
+        If the customer's phone number is needed by the merchant,
+        use `scope` and the [Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/).
+        See also [Landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/).
       properties:
         phoneNumber:
           type: string
@@ -391,7 +390,7 @@ components:
             The value must be more than 10 minutes and less than 28 days in the future.
             Can only be combined with `userFlow: PUSH_MESSAGE` or `userFlow: QR`.
 
-            If ExpiresAt is set, receipt also has to be set.
+            If `ExpiresAt` is set, `receipt` also must be set.
         qrFormat:
           nullable: true
           type: object
@@ -689,10 +688,20 @@ components:
       properties:
         scope:
           type: string
+          example: name phoneNumber
           description: |-
-            A space-separated string list of requested user information in
+            A space-separated string list of the required user information (e.g., "name phoneNumber") for the payment, in
             accordance with the OpenID Connect specification.
-            See https://developer.vippsmobilepay.com/docs/APIs/userinfo-api#scope
+            See the
+            [Userinfo user guide](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/userinfo-api-guide#scope)
+            for details.
+            Possible values are:
+            - name
+            - address
+            - email
+            - phoneNumber
+            - birthDate
+            - nin
     ProfileResponse:
       title: Profile
       type: object
@@ -700,10 +709,10 @@ components:
         sub:
           type: string
           description: |-
-            If `profile.scope` was requested in `createPayment` this value will populate once
+            If `profile.scope` was requested in `createPayment`, this value will be populated once
             `state` is `AUTHORIZED`. This can be used towards the
             [Userinfo endpoint](https://developer.vippsmobilepay.com/api/userinfo#operation/getUserinfo)
-            to fetch requested user data.
+            to fetch required user data.
     PaymentMethod:
       title: PaymentMethod
       type: object
