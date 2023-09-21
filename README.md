@@ -10,7 +10,7 @@ pagination_prev: null
 
 # ePayment API
 
-![Vipps](./images/vipps.png) *All the features are available for Vipps now.*
+![Vipps](./images/vipps.png) *Available for Vipps unless otherwise stated.*
 
 ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 
