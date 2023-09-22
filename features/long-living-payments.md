@@ -6,6 +6,12 @@ sidebar_position: 20
 
 # Long-living payments
 
+![Vipps](../images/vipps.png) *Partially available for Vipps.*
+
+![MobilePay](../images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+
+💥 *Please note: The API is available, but the orderlines page is not added to the Vipps app yet. This is expected to be released by end of Q3 2023. In addition, we will send a push notification to the user when the payment is getting close to expiring. This should be available in Q4 2023.* 💥
+
 The ePayment API supports long-living payments where the merchant
 can specify the expiration time when initiating the payment with
 [`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments).
@@ -20,7 +26,7 @@ since the app is required (it does not work with
 **Please note:** Sales units (i.e., Merchant Serial Numbers) must be especially approved to use this feature.
 The user experience, including the standard timeout, should be as
 consistent as possible, so this should only be used in special cases.
-To request this feature: Please contact your key account manager, your partner manager, or
+To request this feature, please contact your key account manager, your partner manager, or
 [customer service](https://vipps.no/kontakt-oss/).
 
 ## Request

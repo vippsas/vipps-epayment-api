@@ -10,20 +10,26 @@ pagination_prev: null
 
 # ePayment API
 
-The ePayment API enables your customers to pay with Vipps MobilePay from online shops; as well as at the Point Of Sale (POS).
+![Vipps](./images/vipps.png) *Available for Vipps unless otherwise stated.*
+
+![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+
+The ePayment API enables your customers to pay with Vipps MobilePay from online shops and at the Point Of Sale (POS).
 
 ![ePayment online process](images/ePayment_online.png)
 
 ## History
 
-The ePayment API is the new version of both the
+The ePayment API is the new API that replaces both the
 [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api) and the
 [MobilePay App Payments API](https://developer.mobilepay.dk/docs/app-payments).
 It is based on everything we have learned through those APIs over several years.
 
-This API contains new functionality, so you should
-[migrate to the ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/migration/)
-as soon as possible to take advantage of the improved user experience.
+This API contains new functionality, so you should migrate it as soon as possible
+to take advantage of the improved user experience.
+
+* [Migrate from the eCom API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/migration/)
+* [Migrate from the MobilePay APIs](https://developer.vippsmobilepay.com/docs/mp-migration-guide/)
 
 ## User flows
 
