@@ -22,7 +22,7 @@ See [Alternative flow: Pay with by card](#alternative-flow-pay-with-by-card) for
 
 ### 2. Customer enters their phone number and logs in
 
-If the payment was started from a mobile device, the Vipps or MobilePay app will automatically open.
+If the payment was started from a mobile device, the Vipps MobilePay app will automatically open.
 
 If the payment was started on a desktop device, the
 [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/)
