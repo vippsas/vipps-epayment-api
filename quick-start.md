@@ -18,9 +18,7 @@ import TabItem from '@theme/TabItem';
 
 ## Before you begin
 
-This document covers the quick steps for getting started with the ePayment API.
-
-**Important:** The examples use standard example values that you must change to
+The examples use standard example values that you must change to
 use *your* values. This includes API keys, HTTP headers, reference, etc.
 
 ## Your first Payment
