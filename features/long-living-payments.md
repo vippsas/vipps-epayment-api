@@ -6,7 +6,7 @@ sidebar_position: 20
 
 # Long-living payments
 
-![Vipps](../images/vipps.png) *Partially available for Vipps.*
+![Vipps](../images/vipps.png) *Available for Vipps.*
 
 ![MobilePay](../images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 
