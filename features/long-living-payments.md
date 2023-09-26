@@ -10,7 +10,7 @@ sidebar_position: 20
 
 ![MobilePay](../images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 
-💥 *Please note: In QR 2023, we will additionally send a push notification to the user when the payment is getting close to expiring.* 💥
+💥 *Please note: In Q4 2023, we will additionally send a push notification to the user when the payment is getting close to expiring.* 💥
 
 The ePayment API supports long-living payments where the merchant
 can specify the expiration time when initiating the payment with
