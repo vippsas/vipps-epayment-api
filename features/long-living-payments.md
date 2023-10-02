@@ -71,7 +71,7 @@ The response is similar to a regular payment initiation.
 
 ## Invoice scenarios
 
-Use Vipps MobilePay to make *long living payment requests* for your customers by using the `"expiresAt"` feature. This will create payment requests that can be seen and postponed by the user, up to 28 days. Note: The APIs are ready, but it is not testable before app updates planned summer 2023.
+Use Vipps MobilePay to make *long living payment requests* for your customers by using the `"expiresAt"` feature. This will create payment requests that can be seen and postponed by the user, up to 28 days.
 
 The following sections will explain how to implement this feature for a couple scenarios:
 
@@ -102,7 +102,7 @@ values={[
 
 1. To create this payment, you first need to make a [create payment](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments) request where `customer.phoneNumber` is set.
 2. The customer will receive a push notification in their Vipps or MobilePay app.
-3. When the customer selects `See details` in the payment confirmation screen, they are presented with the order information provided by the merchant without leaving the Vipps or MobilePay app.
+3. When the customer selects `Show details` in the payment confirmation screen, they are presented with the order information provided by the merchant without leaving the Vipps or MobilePay app.
 4. The customer approves the payment.
 
    Users also have the option of soft-dismissing the payment and postponing it for later.
