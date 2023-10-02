@@ -33,7 +33,8 @@ consistent as possible, so this should only be used in special cases.
 To request this feature, please contact your key account manager, your partner manager, or
 [customer service](https://vipps.no/kontakt-oss/).
 
-## Request
+## Example
+### Request
 
 ```json
 {
@@ -64,17 +65,17 @@ The customer scans the QR code to complete the payment flow in the app.
 If a payment is initiated with the `expiresAt` for a sales unit that is not allowed to use
 the feature, the response will be an error.
 
-## Response
+### Response
 
 The response is similar to a regular payment initiation.
 
-# Payment Requests
+## Invoice scenarios
 
 Use Vipps MobilePay to make *long living payment requests* for your customers by using the `"expiresAt"` feature. This will create payment requests that can be seen and postponed by the user, up to 28 days. Note: The APIs are ready, but it is not testable before app updates planned summer 2023.
 
 The following sections will explain how to implement this feature for a couple scenarios:
 
-## Scenario 1. Payment request sent directly to app
+### Scenario 1. Payment request sent directly to app
 
 If you have the customer's phone number and their consent to send payment requests through Vipps MobilePay, you can send payment requests directly to the customer.
 
@@ -106,7 +107,7 @@ values={[
 
    Users also have the option of soft-dismissing the payment and postponing it for later.
 
-## Scenario 2. Payment request as a link
+### Scenario 2. Payment request as a link
 
 Even if you don't know your customer's phone number, you can start a payment request by sending them a link to your own landing page. This, in turn, can trigger a payment request through the API.
 
@@ -139,7 +140,7 @@ values={[
    [Landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/)
    opens. If on a mobile device, the Vipps or MobilePay app opens automatically.
 
-## Scenario 3. Payment request with sharing of telephone number
+### Scenario 3. Payment request with sharing of telephone number
 
 The flow for the customer will look like this:
 
