@@ -72,7 +72,7 @@ The response is similar to a regular payment initiation.
 
 Use Vipps MobilePay to make *long living payment requests* for your customers by using the `"expiresAt"` feature. This will create payment requests that can be seen and postponed by the user, up to 28 days. Note: The APIs are ready, but it is not testable before app updates planned summer 2023.
 
-The following section will explain how to implement this feature for a couple scenarios:
+The following sections will explain how to implement this feature for a couple scenarios:
 
 ## Scenario 1. Payment request sent directly to app
 
@@ -108,7 +108,7 @@ values={[
 
 ## Scenario 2. Payment request as a link
 
-When a merchant does not know the phone number of the user and want to start a payment request, you could send them a link to your own landing page that in turn triggers a payment request through the API.
+Even if you don't know your customer's phone number, you can start a payment request by sending them a link to your own landing page. This, in turn, can trigger a payment request through the API.
 
 The flow for the customer will look like this:
 
@@ -187,7 +187,7 @@ Example body:
       "paymentMethod":{
          "type":"WALLET"
       },
-      "receiptInfo":{
+      "receipt":{
          "orderLines": [
             {
                "name": "Socks",
@@ -255,6 +255,6 @@ To create a *payment request*, the following parameters can/must be used, depend
 * `expiresAt` - The expiration date for the payment. This is what separates the long living payment request from a regular payment.
 * `userFlow`  - Must be `"PUSH_MESSAGE"` or `"QR"`.
 * `paymentDescription` - Short description with relevant information about the payment request.
-* `receiptInfo` (might be renamed)- Order Lines for the payment. The orderlines are the same as referenced in the [Order Management](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) API. This **must** be present.
+* `receipt.orderLines` Order lines for the payment. The orderlines are the same as referenced in the [Order Management](https://developer.vippsmobilepay.com/docs/APIs/order-management-api/vipps-order-management-api/#adding-a-receipt) API. This **must** be present.
 * `customer.phoneNumber` - The customer's phone number. This is optional, and will be used if the users phone number is known in advance.
 * `scope` - This can be used to request the user to share their telephone number.
