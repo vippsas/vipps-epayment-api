@@ -9,7 +9,7 @@ info:
     The ePayment API.
     See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api)
     for more information.
-  version: 1.4.0
+  version: 1.4.1
   title: ePayment API
   contact:
     name: Vipps MobilePay AS
@@ -226,12 +226,13 @@ components:
       type: object
       description: |-
         The target customer if the identity is known.
-        The customer can be specified either with phone number or with the
-        user's personal QR code.
+        The customer can be specified either with phone number, the customer token
+        or with the user's personal QR code
         Specifying more than one of these will result in an error.
       oneOf:
         - $ref: '#/components/schemas/CustomerPhoneNumber'
         - $ref: '#/components/schemas/PersonalQrCode'
+        - $ref: '#/components/schemas/CustomerToken'
     CustomerPhoneNumber:
       title: Customer phone number
       type: object
@@ -282,6 +283,16 @@ components:
           minLength: 5
           maxLength: 255
           example: 'https://qr.vipps.no/28/2/01/031/4791234567?v=1'
+    CustomerToken:
+      title: Customer token
+      type: object
+      description: The customer's token, if it is available. This token will be obtained when a user scans a static QR
+      properties:
+        CustomerToken:
+          type: string
+          description: |-
+            A distinct token per customer.
+          example: 'ey%382jf8+qk3nnfdsao0i5jlalidugujnakgo9t8ghn'
     Amount:
       description: Amount object, containing a `value` and a `currency`.
       type: object
@@ -999,7 +1010,7 @@ components:
           examples:
             UrlRedirect:
               value:
-                redirectUrl: 'https://landing.vipps.no?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni '
+                redirectUrl: 'https://landing.vipps.no?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni'
                 reference: acme-shop-123-order123abc
             QrImageUrl:
               value:
