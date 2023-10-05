@@ -8,11 +8,7 @@ sidebar_position: 50
 
 # Refund a payment
 
-See
-[Common API topics: Refunds](https://developer.vippsmobilepay.com/docs/common-topics/refund)
-for a general introduction to refunds.
-
-A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the Merchant back to the customer.
+A [Refund][refund-payment-endpoint] will reverse the direction of a transaction and move money from the merchant back to the customer.
 
 Refunds can be made in full or partially as needed. The refund amount must be defined in the refund API request.
 
