@@ -141,7 +141,7 @@ following aggregate state:
    "aggregate":{
       "authorizedAmount":{
          "currency":"NOK",
-         "value":49900
+         "value":1000
       },
       "cancelledAmount":{
          "currency":"NOK",
@@ -149,7 +149,7 @@ following aggregate state:
       },
       "capturedAmount":{
          "currency":"NOK",
-         "value":10000
+         "value":250
       },
       "refundedAmount":{
          "currency":"NOK",
