@@ -376,7 +376,7 @@ new CaptureModificationRequest { ModificationAmount = captureAmount });
 </Tabs>
 
 See
-[Common topics: Capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture#capture)
+[Knowledge base: Capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture#capture)
 for more details about the types of captures.
 
 ### (Optional) Step 7 - Refund the payment
@@ -434,7 +434,7 @@ new RefundModificationRequest { ModificationAmount = refundAmount });
 </Tabs>
 
 See
-[Common topics: refund](https://developer.vippsmobilepay.com/docs/common-topics/refund)
+[Knowledge base: refund](https://developer.vippsmobilepay.com/docs/common-topics/refund)
 for more details about refunds.
 
 ### (Optional) Step 8 - Cancel the payment
@@ -483,7 +483,7 @@ var cancelResult = await EpaymentService.CancelPayment(reference);
 </Tabs>
 
 See
-[Common topics: Cancel](https://developer.vippsmobilepay.com/docs/common-topics/cancel)
+[Knowledge base: Cancel](https://developer.vippsmobilepay.com/docs/common-topics/cancel)
 for more details about cancel.
 
 ## Next Steps

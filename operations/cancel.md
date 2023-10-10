@@ -10,7 +10,7 @@ description: Cancel payment with the ePayment API.
 # Cancel a payment
 
 See
-[Common API topics: Cancellations](https://developer.vippsmobilepay.com/docs/common-topics/cancel)
+[Knowledge base: Cancellations](https://developer.vippsmobilepay.com/docs/common-topics/cancel)
 for a general introduction to cancellations.
 
 If you no longer wish to initiate settlement of the remaining funds on a payment

@@ -8,7 +8,7 @@ sidebar_position: 20
 # Capture a payment
 
 See
-[Common API topics: Reserve and Capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture)
+[Knowledge base: Reserve and Capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture)
 for a general introduction to reservations and captures.
 
 A capture can be made in full, or partial.
