@@ -64,7 +64,7 @@ The ePayment API enables merchants to accept payments using both the app and car
 * [ePayment API: How It Works online](./how-it-works/vipps-epayment-api-how-it-works-online.md):
   Enable your customers to pay with Vipps or MobilePay online or in your app.
 * [ePayment API: How it works in the store](./how-it-works/vipps-epayment-api-how-it-works-in-store.md):
-  How the ePayment API can be integrated in your Point Of Sale (POS) system.## Plugins for Login
+  How the ePayment API can be integrated in your Point Of Sale (POS) system.
 
 ## Next steps
 
