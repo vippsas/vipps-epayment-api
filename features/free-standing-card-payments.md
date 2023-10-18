@@ -7,7 +7,7 @@ sidebar_position: 40
 
 The ePayment API supports freestanding card payments, where any user can pay with a card without
 using the app. This lets merchants accept payments from customers in countries where
-the Vipps MobilePay app is not yet available.
+the Vipps or MobilePay app is not yet available.
 
 See
 [FAQ: Card payments](https://developer.vippsmobilepay.com/docs/faqs/users-and-payments-faq/#card-payments).

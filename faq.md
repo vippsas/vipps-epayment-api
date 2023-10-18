@@ -20,8 +20,7 @@ and use the
 just for
 [Express Checkout](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api/#express-checkout-payments).
 
-As mentioned on the [API platform overview page](https://developer.vippsmobilepay.com/docs/APIs):
-With the Vipps MobilePay API platform, you benefit from a shared API framework for all the APIs.
+With the API platform, you benefit from a shared API framework for all the APIs.
 This means that all APIs use the same API keys, authentication methods, terminology, and error message formats.
 Integrating with our APIs is straightforward, and combining functionalities from multiple APIs is easy.
 
@@ -97,7 +96,7 @@ to improve the API and make the error messages easier to understand.
 | Attempted refund before reservation | Cannot refund a payment that is not reserved. Check the payment event log. | See and [`GET:/epayment/v1/payments/{reference}/events`](https://developer.vippsmobilepay.com/api/epayment/#tag/QueryPayments/operation/getPaymentEventLog). |
 | Invalid phone number | The phone number is invalid. Phone numbers must be in MSISDN format: Country code and subscriber number, but no prefix. | |
 | `merchantinfo.StaticShippingDetailsPrefix.missing` | Dynamic express payments require the shipping detail prefix. | |
-| Customer not found | The phone number does not belong to a Vipps user, or the user cannot pay businesses. We cannot give more details. | |
+| Customer not found | The phone number does not belong to a Vipps or MobilePay user, or the user cannot pay businesses. We cannot give more details. | |
 | Idempotency error | Reference `acme-shop-123-order123abc` already exists. | See [Idempotency](https://developer.vippsmobilepay.com/docs/common-topics/http-headers/#idempotency). |
 | Reference not found | The reference `acme-shop-123-order123abc` does not exist for MSN 123456 | |
 | Idempotency error | Idempotency-Key `49ca711a-acee-4d01-993b-9487112e1def` already exists. | See [Idempotency](https://developer.vippsmobilepay.com/docs/common-topics/http-headers/#idempotency). |

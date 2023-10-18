@@ -28,7 +28,7 @@ Enter the customer's phone number.
 
 ## 3. The customer confirms payment in the app
 
-The customer confirms the payment in  their Vipps MobilePay app.
+The customer confirms the payment in  their Vipps or MobilePay app.
 
 ![Confirm payment](../images/vipps-in-store-step3-2.svg)
 

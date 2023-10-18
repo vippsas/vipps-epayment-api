@@ -17,7 +17,7 @@ If you no longer wish to initiate settlement of the remaining funds on a payment
 then you should cancel the payment:
 [`POST:/epayment/v1/payments/{reference}/cancel`][cancel-payment-endpoint].
 Cancelling a payment provides a good user experience and synchronizes
-the user's bank statement and the Vipps MobilePay app payment overview with their expectations from
+the user's bank statement and the Vipps or MobilePay app payment overview with their expectations from
 a merchant.
 
 A payment can be cancelled via the API or
