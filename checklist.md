@@ -36,19 +36,19 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 | Action | Comment   |
 |--------|-----------|
 |     Send useful `reference` | Follow our [reference recommendations](https://developer.vippsmobilepay.com/docs/common-topics/orderid). |
-|     Poll for payment details | The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll [`GET:/ecomm/v2/payments/{orderId}/details`](https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/getPaymentDetailsUsingGET) as documented (this is part of the first item in this checklist, but it's still a common error). Follow our [polling recommendations](https://developer.vippsmobilepay.com/docs/common-topics/polling-guidelines). |
+|     Poll for payment details | The Merchant _must not_ rely on `fallback` or `callback` alone, and must poll [`GET:/ecomm/v2/payments/{orderId}/details`](https://developer.vippsmobilepay.com/api/ecom#tag/eCom-API/operation/getPaymentDetailsUsingGET) as documented (this is part of the first item in this checklist, but it's still a common error). Follow our [polling recommendations](https://developer.vippsmobilepay.com/docs/common-topics/polling-guidelines). |
 |     Handle redirects| The merchant must handle that the `fallback` URL is opened in the default browser on the phone, and not in a specific browser, in a specific tab, in an embedded browser, requiring a session token, etc. Follow our [recommendations regarding handling redirects](https://developer.vippsmobilepay.com/docs/common-topics/redirects/). See the FAQ: [How can I open the fallback URL in a specific (embedded) browser?](https://developer.vippsmobilepay.com/docs/faqs/common-problems-faq#how-can-i-open-the-fallback-url-in-a-specific-embedded-browser)|
-|     Follow design guidelines| The Vipps MobilePay branding must be according to the [design guidelines](https://developer.vippsmobilepay.com/docs/design-guidelines).|
+|     Follow design guidelines| The Vipps and MobilePay branding must be according to the [design guidelines](https://developer.vippsmobilepay.com/docs/design-guidelines).|
 |     Educate customer support| Make sure your customer service, etc. has all the tools and information they need available in _your_ system, through the APIs listed in the first item in this checklist, and that they do not need to visit [portal.vipps.no](https://portal.vipps.no) for normal work.|
 
 ## Flow to go live for direct integrations
 
 1. The merchant orders
    [Vipps på Nett](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/ta-betalt-paa-nett/).
-2. Vipps MobilePay completes customer control (KYC, PEP, AML, etc.).
-3. The merchant receives an email from Vipps saying that they can log in with
-   BankID on
-   [portal.vipps.no](https://portal.vipps.no)
+2. We complete customer control (KYC, PEP, AML, etc.).
+3. The merchant receives an email from us saying that they can log in with
+   BankID on the
+   [merchant portal](https://portal.vipps.no)
    and retrieve [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/#getting-the-api-keys).
 4. The merchant completes all checklist items above.
    Please double-check to avoid mistakes.
@@ -71,12 +71,12 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
       request.
    * We recommend checking this using both the API itself and the API Dashboard, available under _Utvikler_ on
       [portal.vipps.no](https://portal.vipps.no).  
-   * **Please note:** Vipps does not do any kind of activation or make any changes based on this checklist.
-      The API keys for the production environment are made available on
-      [portal.vipps.no](https://portal.vipps.no)
+   * **Please note:** We don't do any kind of activation or make any changes based on this checklist.
+      The API keys for the production environment are made available on the
+      [merchant portal](https://portal.vipps.no)
       as soon as the customer control (see step 2) is completed, independently of this checklist.
 7. The merchant goes live 🎉
 
 ## Flow to go live for direct integrations for partners
 
-See: [Vipps partners](https://developer.vippsmobilepay.com/docs/partner).
+See: [Vipps MobilePay partners](https://developer.vippsmobilepay.com/docs/partner).

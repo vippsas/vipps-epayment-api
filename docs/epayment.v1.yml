@@ -206,11 +206,11 @@ paths:
       description: |-
         This endpoint is only available in the test environment.
         It allows developers to approve a payment through the ePayment API
-        without the use of the Vipps MobilePay app. This is useful for automated testing.
+        without the use of the Vipps or MobilePay app. This is useful for automated testing.
         Express checkout is not supported for this endpoint.
         Attempted use in production is not allowed, and will fail.
         Important: All test users must manually approve at least one payment
-        in the Vipps MobilePay app before this endpoint can be used for that user.
+        in the Vipps or MobilePay app before this endpoint can be used for that user.
       security:
         - Bearer-Authorization: []
       requestBody:
@@ -242,7 +242,7 @@ components:
 
         **Please note:** The phone number (and QR code) is optional and should only be sent if it is
         already known. Users should never be asked for the phone number, as they will
-        either be automatically app-switched to the Vipps MobilePay app, or they will be presented
+        either be automatically app-switched to the Vipps or MobilePay app, or they will be presented
         with the landing page. The exception for this is "manual POS" integration,
         where the cashier asks the customer for the number, and then enters it manually on the POS.
         
@@ -388,7 +388,7 @@ components:
             - QR
           example: NATIVE_REDIRECT
           description: |-
-            The flow for bringing the user to the Vipps MobilePay app's payment confirmation screen.
+            The flow for bringing the user to the Vipps or MobilePay app's payment confirmation screen.
             If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required.
         expiresAt:
           type: string
@@ -756,10 +756,10 @@ components:
       example: WALLET
       description: |-
         The paymentMethod type to be performed.
-        `WALLET` is a card used in the Vipps MobilePay app.
-        `CARD` is free-standing card payments, outside of the Vipps MobilePay app.
+        `WALLET` is a card used in the Vipps or MobilePay app.
+        `CARD` is free-standing card payments, outside of the Vipps or MobilePay app.
         `CARD` has to be combined with a `userFlow` of `WEB_REDIRECT`,
-        as the card payment can not be completed in the Vipps MobilePay app.
+        as the card payment can not be completed in the Vipps or MobilePay app.
     PaymentAdjustment:
       title: PaymentAdjustment
       type: object
