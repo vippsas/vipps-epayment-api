@@ -873,15 +873,15 @@ components:
       description: |-
         The state of the Payment.
         One of:
-        - CREATED: The user has not yet acted upon the payment.
+        - `CREATED`: The user has not yet acted upon the payment.
           Example: The user has received a push message, but not yet opened it.
-        - ABORTED: The user has aborted the payment before authorization. This is a final state.
+        - `ABORTED`: The user has aborted the payment before authorization. This is a final state.
           Example: The user cancelled instead of accepting the payment.
-        - EXPIRED: The user did not act on the payment within the payment expiration time. This is a final state.
+        - `EXPIRED`: The user did not act on the payment within the payment expiration time. This is a final state.
           Example: The user received a push message, but did nothing before the payment request timed out.
-        - AUTHORIZED: The user has approved the payment. This is a final state.
-          Example: A payment that has been refunded may have one or more refund events, but the state would be `AUTHORIZED. 
-        - TERMINATED: The merchant has terminated the payment via the cancelPayment endpoint. This is a final state.
+        - `AUTHORIZED`: The user has approved the payment. This is a final state.
+          Example: A payment that has been refunded may have one or more refund events, but the state would be `AUTHORIZED`. 
+        - `TERMINATED`: The merchant has terminated the payment via the cancelPayment endpoint. This is a final state.
           Example: The merchant was not able to provide the product or service, and has cancelled the payment.
       enum:
         - CREATED
@@ -903,7 +903,7 @@ components:
           $ref: '#/components/schemas/Customer'
         token:
           type: string
-          description: The token value received in the redirectUrl property in the Create payment response
+          description: The token value received in the `redirectUrl` property in the Create payment response
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number
