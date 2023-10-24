@@ -1018,7 +1018,7 @@
 						"approve"
 					]
 				},
-				"description": "This endpoint allows developers to approve a payment through the ePayment API\nwithout the use of the Vipps MobilePay app. This is useful for automated testing.\nExpress checkout is not supported for this endpoint. The endpoint is only available\nin our test environment. Attempted use of the endpoint in production is not allowed,\nand will fail. Important: All test users must manually approve at least one payment\nin the Vipps MobilePay app before this endpoint can be used for that user."
+				"description": "This endpoint allows developers to approve a payment through the ePayment API\nwithout the use of the Vipps or MobilePay app. This is useful for automated testing.\nExpress checkout is not supported for this endpoint. The endpoint is only available\nin our test environment. Attempted use of the endpoint in production is not allowed,\nand will fail. Important: All test users must manually approve at least one payment\nin the Vipps or MobilePay app before this endpoint can be used for that user."
 			},
 			"response": []
 		},

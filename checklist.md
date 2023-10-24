@@ -45,10 +45,10 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 
 1. The merchant orders
    [Vipps på Nett](https://www.vipps.no/produkter-og-tjenester/bedrift/ta-betalt-paa-nett/ta-betalt-paa-nett/).
-2. Vipps MobilePay completes customer control (KYC, PEP, AML, etc.).
-3. The merchant receives an email from Vipps saying that they can log in with
-   BankID on
-   [portal.vipps.no](https://portal.vipps.no)
+2. We complete customer control (KYC, PEP, AML, etc.).
+3. The merchant receives an email from us saying that they can log in with
+   BankID on the
+   [merchant portal](https://portal.vipps.no)
    and retrieve [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/#getting-the-api-keys).
 4. The merchant completes all checklist items above.
    Please double-check to avoid mistakes.
@@ -71,12 +71,12 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
       request.
    * We recommend checking this using both the API itself and the API Dashboard, available under _Utvikler_ on
       [portal.vipps.no](https://portal.vipps.no).  
-   * **Please note:** Vipps does not do any kind of activation or make any changes based on this checklist.
-      The API keys for the production environment are made available on
-      [portal.vipps.no](https://portal.vipps.no)
+   * **Please note:** We don't do any kind of activation or make any changes based on this checklist.
+      The API keys for the production environment are made available on the
+      [merchant portal](https://portal.vipps.no)
       as soon as the customer control (see step 2) is completed, independently of this checklist.
 7. The merchant goes live 🎉
 
 ## Flow to go live for direct integrations for partners
 
-See: [Vipps partners](https://developer.vippsmobilepay.com/docs/partner).
+See: [Vipps MobilePay partners](https://developer.vippsmobilepay.com/docs/partner).

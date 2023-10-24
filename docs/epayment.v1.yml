@@ -206,11 +206,11 @@ paths:
       description: |-
         This endpoint is only available in the test environment.
         It allows developers to approve a payment through the ePayment API
-        without the use of the Vipps MobilePay app. This is useful for automated testing.
+        without the use of the Vipps or MobilePay app. This is useful for automated testing.
         Express checkout is not supported for this endpoint.
         Attempted use in production is not allowed, and will fail.
         Important: All test users must manually approve at least one payment
-        in the Vipps MobilePay app before this endpoint can be used for that user.
+        in the Vipps or MobilePay app before this endpoint can be used for that user.
       security:
         - Bearer-Authorization: []
       requestBody:
@@ -242,7 +242,7 @@ components:
 
         **Please note:** The phone number (and QR code) is optional and should only be sent if it is
         already known. Users should never be asked for the phone number, as they will
-        either be automatically app-switched to the Vipps MobilePay app, or they will be presented
+        either be automatically app-switched to the Vipps or MobilePay app, or they will be presented
         with the landing page. The exception for this is "manual POS" integration,
         where the cashier asks the customer for the number, and then enters it manually on the POS.
         
@@ -388,7 +388,7 @@ components:
             - QR
           example: NATIVE_REDIRECT
           description: |-
-            The flow for bringing the user to the Vipps MobilePay app's payment confirmation screen.
+            The flow for bringing the user to the Vipps or MobilePay app's payment confirmation screen.
             If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required.
         expiresAt:
           type: string
@@ -756,10 +756,10 @@ components:
       example: WALLET
       description: |-
         The paymentMethod type to be performed.
-        `WALLET` is a card used in the Vipps MobilePay app.
-        `CARD` is free-standing card payments, outside of the Vipps MobilePay app.
+        `WALLET` is a card used in the Vipps or MobilePay app.
+        `CARD` is free-standing card payments, outside of the Vipps or MobilePay app.
         `CARD` has to be combined with a `userFlow` of `WEB_REDIRECT`,
-        as the card payment can not be completed in the Vipps MobilePay app.
+        as the card payment can not be completed in the Vipps or MobilePay app.
     PaymentAdjustment:
       title: PaymentAdjustment
       type: object
@@ -873,11 +873,16 @@ components:
       description: |-
         The state of the Payment.
         One of:
-        - CREATED: User has not yet acted upon the payment
-        - ABORTED: User has aborted the payment before authorization
-        - EXPIRED: User did not act on the payment within the payment expiration time
-        - AUTHORIZED: User has approved the payment
-        - TERMINATED: Merchant has terminated the payment via the cancelPayment endpoint
+        - `CREATED`: The user has not yet acted upon the payment.
+          Example: The user has received a push message, but not yet opened it.
+        - `ABORTED`: The user has aborted the payment before authorization. This is a final state.
+          Example: The user cancelled instead of accepting the payment.
+        - `EXPIRED`: The user did not act on the payment within the payment expiration time. This is a final state.
+          Example: The user received a push message, but did nothing before the payment request timed out.
+        - `AUTHORIZED`: The user has approved the payment. This is a final state.
+          Example: A payment that has been refunded may have one or more refund events, but the state would be `AUTHORIZED`. 
+        - `TERMINATED`: The merchant has terminated the payment via the cancelPayment endpoint. This is a final state.
+          Example: The merchant was not able to provide the product or service, and has cancelled the payment.
       enum:
         - CREATED
         - ABORTED
@@ -898,7 +903,7 @@ components:
           $ref: '#/components/schemas/Customer'
         token:
           type: string
-          description: The token value received in the redirectUrl property in the Create payment response
+          description: The token value received in the `redirectUrl` property in the Create payment response
   parameters:
     Merchant-Serial-Number:
       name: Merchant-Serial-Number

@@ -11,7 +11,7 @@ description: Create payment with the ePayment API.
 
 The first step in the payment flow is to create a payment with
 [`POST:/epayment/v1/payments`](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments).
-This endpoint supports both *wallet* (i.e., the Vipps MobilePay app) and
+This endpoint supports both *wallet* (i.e., the Vipps or MobilePay app) and
 freestanding card payments, when card details are entered.
 Each payment type offers separate user flows.
 
@@ -28,7 +28,7 @@ flowchart TD
 
 The `paymentMethod.type` in the request determines the type of payment:
 
-* `WALLET`: The user pays through the Vipps MobilePay app. This includes delegated Secure Customer Authentication (SCA),
+* `WALLET`: The user pays through the Vipps or MobilePay app. This includes delegated Secure Customer Authentication (SCA),
    where the login to the app eliminates the need for a separate SCA step.
   `WALLET` payments include retry functionality such that, if the user attempts to pay
   with a declined card, they can retry with a different card for the same payment process.
@@ -143,8 +143,8 @@ and how the user experience will be.
 
 | `userFlow`        | Description                                          |
 | ----------------- | ---------------------------------------------------- |
-| `WEB_REDIRECT`    | The normal flow for browser-based payment flows. If on a mobile device, the Vipps MobilePay app will open. Otherwise, the [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/) will open.    |
-| `NATIVE_REDIRECT` | Automatic app-switch between the merchant's native app and the Vipps MobilePay app. |
+| `WEB_REDIRECT`    | The normal flow for browser-based payment flows. If on a mobile device, the Vipps or MobilePay app will open. Otherwise, the [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/) will open.    |
+| `NATIVE_REDIRECT` | Automatic app-switch between the merchant's native app and the Vipps or MobilePay app. |
 | `PUSH_MESSAGE`    | For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/common-topics/landing-page#skip-landing-page). |
 | `QR`              | Returns a QR code that can be scanned to complete the payment. |
 
@@ -153,7 +153,7 @@ and how the user experience will be.
 This is the default flow for wallet and card payments.
 
 * Wallet flow:
-  When the user is on a mobile device, redirect them to the Vipps MobilePay app. From the desktop, open the
+  When the user is on a mobile device, redirect them to the Vipps or MobilePay app. From the desktop, open the
   [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page).
 
 * Card flow:
@@ -164,7 +164,7 @@ This is the default flow for wallet and card payments.
 
 Applicable only for `WALLET` payments.
 
-The `redirectUrl` will automatically open the Vipps MobilePay app on mobile devices.
+The `redirectUrl` will automatically open the Vipps or MobilePay app on mobile devices.
 
 ### PUSH_MESSAGE
 
