@@ -306,9 +306,9 @@ components:
           example: 49900
           format: int64
           description: |-
-            Integer value of price in the currency's monetary subunit (e.g., Norwegian øre),
-            or monetary unit where applicable (e.g., Euro EUR). The type of the monetary
-            unit can be one of these: NOK, DKK, and EUR.
+            Amounts are specified in minor units (i.e., integers with two trailing zeros).
+            For example: 10.00 NOK should be written as 1000.
+            Only NOK is supported at the moment. Support for EUR and DKK will be provided in early 2024.
       required:
         - value
         - currency
