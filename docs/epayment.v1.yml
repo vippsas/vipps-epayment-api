@@ -306,9 +306,9 @@ components:
           example: 49900
           format: int64
           description: |-
-            Integer value of price in the currency's monetary subunit (e.g., Norwegian øre),
-            or monetary unit where applicable (e.g., Japanese YEN). The type of the monetary
-            unit is defined in ISO 4217.
+            Amounts are specified in minor units (i.e., integers with two trailing zeros).
+            For example: 10.00 NOK should be written as 1000.
+            Only NOK is supported at the moment. Support for EUR and DKK will be provided in early 2024.
       required:
         - value
         - currency
@@ -319,7 +319,7 @@ components:
         - NOK
         - DKK
         - EUR
-      description: Currency code as defined in ISO 4217. eg NOK for Norwegian kroner.
+      description: Available types of currency are NOK, DKK, and EUR.
     Metadata:
       type: object
       description: |-
