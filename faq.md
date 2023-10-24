@@ -100,7 +100,7 @@ to improve the API and make the error messages easier to understand.
 | Idempotency error | Reference `acme-shop-123-order123abc` already exists. | See [Idempotency](https://developer.vippsmobilepay.com/docs/common-topics/http-headers/#idempotency). |
 | Reference not found | The reference `acme-shop-123-order123abc` does not exist for MSN 123456 | |
 | Idempotency error | Idempotency-Key `49ca711a-acee-4d01-993b-9487112e1def` already exists. | See [Idempotency](https://developer.vippsmobilepay.com/docs/common-topics/http-headers/#idempotency). |
-| Invalid URL | The parameter `htt://example.com` is invalid. | |
+| Invalid URL | The parameter `http://example.com` is invalid. | |
 | Missing required parameter | The parameter `something-something` is required. | |
 | Direct capture not allowed | The sales unit with MSN `123456` is not allowed to use direct capture. | |
 | Reserve capture not allowed | The sales unit with MSN `123456` is not allowed to use reserve capture. | |

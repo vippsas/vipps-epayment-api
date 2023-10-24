@@ -7,11 +7,11 @@ description: Get payment events with the ePayment API.
 # Get payment event log
 
 A
-[`GET:/payments/{reference}/events`][get-payment-event-log-endpoint]
+[`GET:/epayment/v1/payments/{reference}/events`][get-payment-event-log-endpoint]
 request will return a list of all events for a given payment.
 
 This is the authoritative data for all details and operations for a payment.
-[`GET:/payments/{reference}`][get-payment-endpoint]
+[`GET:/epayment/v1/payments/{reference}`][get-payment-endpoint]
 is the recommended way to get the current information about a payment.
 
 An example response would look like this:

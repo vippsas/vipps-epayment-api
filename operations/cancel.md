@@ -160,7 +160,7 @@ following aggregate state:
 ```
 
 Call
-[`POST:/payments/{reference}/cancel`][cancel-payment-endpoint]
+[`POST:/epayment/v1/payments/{reference}/cancel`][cancel-payment-endpoint]
 as normal.
 
 The `aggregate` would then be updated to reflect the modification and the funds
