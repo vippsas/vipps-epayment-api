@@ -307,8 +307,8 @@ components:
           format: int64
           description: |-
             Integer value of price in the currency's monetary subunit (e.g., Norwegian øre),
-            or monetary unit where applicable (e.g., Japanese YEN). The type of the monetary
-            unit is defined in ISO 4217.
+            or monetary unit where applicable (e.g., Euro EUR). The type of the monetary
+            unit can be one of these: NOK, DKK, and EUR.
       required:
         - value
         - currency
@@ -319,7 +319,7 @@ components:
         - NOK
         - DKK
         - EUR
-      description: Currency code as defined in ISO 4217. eg NOK for Norwegian kroner.
+      description: Available types of currency are NOK, DKK, and EUR.
     Metadata:
       type: object
       description: |-
