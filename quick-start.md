@@ -137,7 +137,7 @@ The property `access_token` should be used for all other API requests in the `Au
 
 ### Step 3 - Request a simple payment
 
-Initiate a payment with: [`POST:/payments`][create-payment-endpoint].
+Initiate a payment with: [`POST:/epayment/v1/payments`][create-payment-endpoint].
 In this example, we use the default user flow, `WEB_REDIRECT`.
 This provides you with a link you can click to go to the
 [landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/).
@@ -231,7 +231,7 @@ We cannot guarantee the user will be redirected back to the same browser or sess
 ### Step 5 - Get the status of the payment
 
 To receive the result of the user action, you may poll the status of the payment via the
-[`GET:/payments/{reference}`][get-payment-endpoint].
+[`GET:/epayment/v1/payments/{reference}`][get-payment-endpoint].
 
 <Tabs
 defaultValue="curl"
@@ -279,7 +279,7 @@ the `state` property will be marked `ABORTED`. If the user did not act within
 the payment expiration time, the `state` property will be marked `EXPIRED`.
 
 For more details of the lifecycle of the payment session the
-[`GET:/payments/{reference}/events`][get-payment-event-log-endpoint] endpoint.
+[`GET:/epayment/v1/payments/{reference}/events`][get-payment-event-log-endpoint] endpoint.
 
 <Tabs
 defaultValue="curl"
@@ -324,7 +324,7 @@ var paymentEventLog = await EpaymentService.GetPaymentEventLog(reference);
 
 After the goods or services have been delivered, you can capture the authorized
 amount either partially or fully:
-[`POST:/payments/{reference}/capture`][capture-payment-endpoint].
+[`POST:/epayment/v1/payments/{reference}/capture`][capture-payment-endpoint].
 
 <Tabs
 defaultValue="curl"
@@ -382,7 +382,7 @@ for more details about the types of captures.
 ### (Optional) Step 7 - Refund the payment
 
 To refund the captured amount, either partially or fully:
-[`POST:/payments/{reference}/refund`][refund-payment-endpoint].
+[`POST:/epayment/v1/payments/{reference}/refund`][refund-payment-endpoint].
 
 <Tabs
 defaultValue="curl"
@@ -440,7 +440,7 @@ for more details about refunds.
 ### (Optional) Step 8 - Cancel the payment
 
 To cancel the payment, either fully or after a partial capture:
-[`POST:/payments/{reference}/cancel`][cancel-payment-endpoint].
+[`POST:/epayment/v1/payments/{reference}/cancel`][cancel-payment-endpoint].
 
 <Tabs
 defaultValue="curl"

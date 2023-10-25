@@ -13,7 +13,7 @@ for a general introduction to reservations and captures.
 
 A capture can be made in full, or partial.
 The capture amount must be defined in the
-[`POST:/payments/{reference}/capture`][capture-payment-endpoint]
+[`POST:/epayment/v1/payments/{reference}/capture`][capture-payment-endpoint]
 request.
 
 ## Capture via the API
@@ -23,7 +23,7 @@ See:
 [When should I charge the customer?](https://developer.vippsmobilepay.com/docs/faqs/reserve-and-capture-faq/#when-should-i-charge-the-customer).
 
 Capture is done with a
-[`POST:/payments/{reference}/capture`][capture-payment-endpoint]
+[`POST:/epayment/v1/payments/{reference}/capture`][capture-payment-endpoint]
 request.
 
 An example request body:
