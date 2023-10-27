@@ -34,7 +34,7 @@ The `paymentMethod.type` in the request determines the type of payment:
   with a declined card, they can retry with a different card for the same payment process.
 * `CARD`: The user pays with a card. They enter the card details into a form and then complete the 3D Secure step-up
   for SCA. See
-  [Card payments](https://developer.vippsmobilepay.com/docs/faqs/users-and-payments-faq/#card-payments)
+  [Card payments](https://developer.vippsmobilepay.com/docs/common-topics/payments#card-payments)
   for more information.
 
   **Please note:** Card payment (`CARD`) is not available in the test environment.
@@ -158,7 +158,7 @@ This is the default flow for wallet and card payments.
 
 * Card flow:
   Whether the user is on a desktop or mobile device, open the card entry page. See
-  [Card payments](https://developer.vippsmobilepay.com/docs/faqs/users-and-payments-faq/#card-payments) for more information.
+  [Card payments](https://developer.vippsmobilepay.com/docs/common-topics/payments#card-payments) for more information.
 
 ### NATIVE_REDIRECT
 
