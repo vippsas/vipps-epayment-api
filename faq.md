@@ -61,7 +61,7 @@ Errors responses have this format:
 ```
 
 We will change the above format to match the common
-[Errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/)
+[HTTP response codes and errors](https://developer.vippsmobilepay.com/docs/common-topics/errors/)
 format by changing `traceId` to `instance`.
 The ePayment documentation will be updated when that is done.
 
