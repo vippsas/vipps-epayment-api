@@ -12,7 +12,7 @@ pagination_prev: null
 
 ![Vipps](./images/vipps.png) *Available for Vipps unless otherwise stated.*
 
-![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/about).*
 
 The ePayment API enables your customers to pay with Vipps or MobilePay from online shops and at the Point Of Sale (POS).
 
