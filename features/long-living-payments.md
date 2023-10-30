@@ -137,7 +137,7 @@ values={[
 3. Send the [create payment](https://developer.vippsmobilepay.com/api/epayment#tag/CreatePayments) request.
 
 4. If the customer is on a desktop computer, the
-   [Landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/)
+   [Landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page/)
    opens. If on a mobile device, the Vipps or MobilePay app opens automatically.
 
 ### Scenario 3. Payment request with sharing of telephone number

@@ -140,7 +140,7 @@ The property `access_token` should be used for all other API requests in the `Au
 Initiate a payment with: [`POST:/epayment/v1/payments`][create-payment-endpoint].
 In this example, we use the default user flow, `WEB_REDIRECT`.
 This provides you with a link you can click to go to the
-[landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/).
+[landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page/).
 When your test mobile number (in MSISDN format)
 is provided in `phoneNumber`, it will be pre-filled in the form.
 
@@ -219,7 +219,7 @@ var createPaymentResult = await EpaymentService.CreatePayment(createPaymentReque
 ### Step 4 - Complete the payment
 
 Open the `redirectUrl` link that is returned, and it will take you to the
-[landing page](https://developer.vippsmobilepay.com/docs/common-topics/landing-page/).
+[landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page/).
 The phone number of your test user should already be filled in, so you only have to click *Next*.
 
 You will be presented with the payment in the app, where you can complete the payment and be directed to the specified `returnUrl` under a "best effort" policy.
@@ -376,7 +376,7 @@ new CaptureModificationRequest { ModificationAmount = captureAmount });
 </Tabs>
 
 See
-[Knowledge base: Capture](https://developer.vippsmobilepay.com/docs/common-topics/reserve-and-capture#capture)
+[Knowledge base: Capture](https://developer.vippsmobilepay.com/docs/knowledge-base/reserve-and-capture#capture)
 for more details about the types of captures.
 
 ### (Optional) Step 7 - Refund the payment
@@ -434,7 +434,7 @@ new RefundModificationRequest { ModificationAmount = refundAmount });
 </Tabs>
 
 See
-[Knowledge base: refund](https://developer.vippsmobilepay.com/docs/common-topics/refund)
+[Knowledge base: refund](https://developer.vippsmobilepay.com/docs/knowledge-base/refund)
 for more details about refunds.
 
 ### (Optional) Step 8 - Cancel the payment
@@ -483,7 +483,7 @@ var cancelResult = await EpaymentService.CancelPayment(reference);
 </Tabs>
 
 See
-[Knowledge base: Cancel](https://developer.vippsmobilepay.com/docs/common-topics/cancel)
+[Knowledge base: Cancel](https://developer.vippsmobilepay.com/docs/knowledge-base/cancel)
 for more details about cancel.
 
 ## Next Steps
