@@ -10,7 +10,7 @@ using the app. This lets merchants accept payments from customers in countries w
 the Vipps or MobilePay app is not yet available.
 
 See
-[FAQ: Card payments](https://developer.vippsmobilepay.com/docs/common-topics/payments#card-payments).
+[FAQ: Card payments](https://developer.vippsmobilepay.com/docs/knowledge-base/payments#card-payments).
 
 ## Create a freestanding card payment
 
