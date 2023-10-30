@@ -86,7 +86,7 @@ See:
 
 Cancellation of partially captured payments is supported in the eCom API by setting the `shouldReleaseRemainingFunds` flag
 in the
-[`PUT:/ecomm/v2/payments/{orderId}/cancel`](https://developer.vippsmobilepay.com/api/ecom/#tag/Vipps-eCom-API/operation/cancelPaymentRequestUsingPUT)
+[`PUT:/ecomm/v2/payments/{orderId}/cancel`](https://developer.vippsmobilepay.com/api/ecom/#tag/eCom-API/operation/cancelPaymentRequestUsingPUT)
 request.
 
 In the ePayment API, this behavior is the default behavior for the
