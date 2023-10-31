@@ -180,7 +180,7 @@ way for the customer to enter the phone number manually.
 Applicable only for `WALLET` payments.
 
 This user flow is for customer-facing screens where payments can be initiated with the
-[One-time payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/vipps-qr-api/#one-time-payment-qr-codes).
+[One-time payment QR](https://developer.vippsmobilepay.com/docs/APIs/qr-api/qr-api-guide/#one-time-payment-qr-codes).
 
 ### Receipt
 
