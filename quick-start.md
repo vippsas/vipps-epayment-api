@@ -49,7 +49,7 @@ values={[
 
 In Postman, import the following files:
 
-* [ePayment API Postman collection](/tools/vipps-epayment-api-postman-collection.json)
+* [ePayment API Postman collection](/tools/epayment-api-postman-collection.json)
 * [Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
 🔥 **To reduce risk of exposure, never store production keys in Postman or any similar tools.** 🔥
