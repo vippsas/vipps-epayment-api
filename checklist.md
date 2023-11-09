@@ -22,6 +22,13 @@ Integrate _all_ the [API endpoints](https://developer.vippsmobilepay.com/api/epa
 |     Full and Partial capture payment| [`POST:/epayment/v1/payments/{reference}/capture`](https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/capturePayment)|
 |     Full and partial refund payment| [`POST:/epayment/v1/payments/{reference}/refund`](https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/refundPayment)|
 
+When the checklist is completed, notify Vipps MobilePay Integration Service
+at [developer@vippsmobilepay.com](mailto:developer@vippsmobilepay.com).
+Include examples from the test environment, pilot customer info, and a description of the implemented solution.
+
+We will verify the integration and contact you.
+After the checklist is approved, we'll send you the information you need to get started.
+
 ## Quality assurance
 
 | Action | Comment |
