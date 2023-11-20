@@ -21,7 +21,7 @@ _modification_ is made.
 | `TERMINATED`  | The merchant has stopped the payment. |
 
 When a payment is initiated it has the state `CREATED`.
-Once a payment is `CREATED`, several modification actions can be made:
+Once a payment is `AUTHORIZED`, several modification actions can be made:
 
 * [Capture](./operations/capture.md)
 * [Refund](./operations/refund.md)
