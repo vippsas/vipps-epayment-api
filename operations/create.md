@@ -66,7 +66,7 @@ curl https://apitest.vipps.no/epayment/v1/payments \
          "value":6000
       },
       "customer":{
-         "phoneNumber":4791234567
+         "phoneNumber":"4791234567"
       },
       "paymentMethod":{
          "type":"WALLET"
