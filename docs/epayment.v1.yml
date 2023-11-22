@@ -251,7 +251,7 @@ components:
         See also [Landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page/).
       properties:
         phoneNumber:
-          type: string
+          type: integer
           description: |-
             The phone number of the user paying the transaction with Vipps MobilePay.
             Only Norwegian mobile numbers are supported (for now).
@@ -260,8 +260,8 @@ components:
             See: https://en.wikipedia.org/wiki/MSISDN
           minLength: 10
           maxLength: 15
-          example: '4791234567'
-          pattern: '^\d{10,15}$'
+          example: 4791234567
+          pattern: ^\d{10,15}$
     PersonalQrCode:
       title: Personal QR code
       type: object
