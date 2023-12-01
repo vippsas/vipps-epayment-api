@@ -6,9 +6,9 @@ servers:
     description: 'Test environment (uses the test API keys, the test app and test data)'
 info:
   description: |-
-    The ePayment API.
-    See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api)
-    for more information.
+    The ePayment API enables you to create Vipps MobilePay payments for online and in-person payments.
+    See the [ePayment API Guide](https://developer.vippsmobilepay.com/docs/APIs/epayment-api)
+    for more details.
   version: 1.4.1
   title: ePayment API
   contact:
