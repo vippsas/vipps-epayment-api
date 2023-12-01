@@ -142,7 +142,7 @@ In this example, we use the default user flow, `WEB_REDIRECT`.
 This provides you with a link you can click to go to the
 [landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page/).
 When your test mobile number (in MSISDN format)
-is provided in `phoneNumber`, it will be pre-filled in the form.
+is provided in `phoneNumber`, it will be prefilled in the form.
 
 <Tabs
 defaultValue="curl"
