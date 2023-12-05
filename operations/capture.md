@@ -110,4 +110,9 @@ Once the capture is completed the `aggregate` will be updated to reflect this, f
 If you are not going to capture the rest of the authorized amount you should
 [cancel](cancel.md#cancel-after-a-partial-capture) the remaining amount.
 
+# Rate limiting
+
+See:
+[Rate limiting](../#rate-limiting).
+
 [capture-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/capturePayment
