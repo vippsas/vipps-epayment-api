@@ -38,11 +38,11 @@ The MSN is the unique identifier of the sales unit.
 | [Get payment event log](get_event_log.md) | 120 per minute | `reference` + subscription key | 120 calls per minute per unique `reference` |
 
 
-**Please note:** The "Key" column is important. The above means that we allow two
+**Please note:** The "Key" column is important. The above means that we allow 5
 [Create](create.md)  
 calls per minute *per unique `reference`* for that MSN. This
 is to prevent too many initiate calls for the same payment. The overall limit
-for number of *different* payments is *far* higher than 2. The same goes for
+for number of *different* payments is *far* higher than 5. The same goes for
 [Capture a payment](capture.md):
 You can make five capture calls per minute for
 one unique `reference`, and the limit for capture calls for different `reference` values
