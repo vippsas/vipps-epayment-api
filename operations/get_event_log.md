@@ -68,5 +68,8 @@ An example response would look like this:
 ]
 ```
 
+For rate limiting questions, see:
+[Rate limiting](../#rate-limiting).
+
 [get-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPayment
 [get-payment-event-log-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/QueryPayments/operation/getPaymentEventLog

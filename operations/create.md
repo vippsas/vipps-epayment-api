@@ -187,3 +187,5 @@ This user flow is for customer-facing screens where payments can be initiated wi
 Add a receipt to the payment. This includes the order Lines for the payment, which are identical to those referenced in the [Order Management](https://developer.vippsmobilepay.com/docs/APIs/order-management-api) API.
 
 Applicable only for `WALLET` payments.
+
+
