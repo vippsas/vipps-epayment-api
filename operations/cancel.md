@@ -194,9 +194,7 @@ Cancelling a payment will always cancel the entire remaining not-captured amount
 this is irreversible.
 :::
 
-# Rate limiting
 
-See:
-[Rate limiting](../#rate-limiting).
+For rate limiting questions, see: [Rate limiting](../#rate-limiting).
 
 [cancel-payment-endpoint]: https://developer.vippsmobilepay.com/api/epayment#tag/AdjustPayments/operation/cancelPayment
