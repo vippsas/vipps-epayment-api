@@ -39,7 +39,7 @@ The MSN is the unique identifier of the sales unit.
 
 
 **Please note:** The "Key" column is important. The above means that we allow 5
-[Create](create.md)  
+[Create](create.md)
 calls per minute *per unique `reference`* for that MSN. This
 is to prevent too many initiate calls for the same payment. The overall limit
 for number of *different* payments is *far* higher than 5. The same goes for
