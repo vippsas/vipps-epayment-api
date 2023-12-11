@@ -390,6 +390,7 @@ components:
           description: |-
             The flow for bringing the user to the Vipps or MobilePay app's payment confirmation screen.
             If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required.
+            If `userFlow` is `WEB_REDIRECT`, a valid value for `returnUrl` is required.
         expiresAt:
           type: string
           example: '2023-02-26T17:32:28Z'
