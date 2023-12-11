@@ -172,8 +172,7 @@ Applicable only for `WALLET` payments.
 
 For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page#skip-landing-page).
 
-If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required, since there is no
-way for the customer to enter the phone number manually.
+If `userFlow` is `PUSH_MESSAGE`, a valid `customer` is required.
 
 ### QR
 
