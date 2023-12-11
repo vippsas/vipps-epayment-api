@@ -152,11 +152,11 @@ and how the user experience will be.
 
 This is the default flow for wallet and card payments.
 
-* Wallet flow:
+* `WALLET` flow:
   When the user is on a mobile device, redirect them to the Vipps or MobilePay app. From the desktop, open the
   [landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page).
 
-* Card flow:
+* `Card` flow:
   Whether the user is on a desktop or mobile device, open the card entry page. See
   [Card payments](https://developer.vippsmobilepay.com/docs/knowledge-base/payments#card-payments) for more information.
 
