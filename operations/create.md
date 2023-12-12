@@ -152,11 +152,11 @@ and how the user experience will be.
 
 This is the default flow for wallet and card payments.
 
-* Wallet flow:
+* `WALLET` flow:
   When the user is on a mobile device, redirect them to the Vipps or MobilePay app. From the desktop, open the
   [landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page).
 
-* Card flow:
+* `Card` flow:
   Whether the user is on a desktop or mobile device, open the card entry page. See
   [Card payments](https://developer.vippsmobilepay.com/docs/knowledge-base/payments#card-payments) for more information.
 
@@ -172,8 +172,7 @@ Applicable only for `WALLET` payments.
 
 For payments initiated on a device other than the user's phone, the user gets a push message that opens the payment in the app. This is similar to [`skipLandingPage`](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page#skip-landing-page).
 
-If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer.phoneNumber` is required, since there is no
-way for the customer to enter the phone number manually.
+If `userFlow` is `PUSH_MESSAGE`, a valid `customer` is required.
 
 ### QR
 
