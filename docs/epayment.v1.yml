@@ -389,7 +389,10 @@ components:
           example: NATIVE_REDIRECT
           description: |-
             The flow for bringing the user to the Vipps or MobilePay app's payment confirmation screen.
-            `WEB_REDIRECT` is the normal flow for browser-based payment flows. If on a mobile device, the Vipps or MobilePay app will open.
+            If `userFlow` is `PUSH_MESSAGE`, a valid value for `customer` is required.
+            If `userFlow` is `WEB_REDIRECT`, a valid value for `returnUrl` is required.
+            `WEB_REDIRECT` is the normal flow for browser-based payment flows. 
+            If on a mobile device, the Vipps or MobilePay app will open. A valid value for `returnUrl` is required.
             Otherwise, the [landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page/) will open.
             `NATIVE_REDIRECT` is for automatic app-switch between the merchant's native app and the Vipps or MobilePay app.
             `PUSH_MESSAGE` is to skip the landing page for payments initiated on a device other than the user's phone.
