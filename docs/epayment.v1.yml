@@ -445,7 +445,7 @@ components:
             The payment description summary that will be provided to the user
             through the app, the merchant portal, and the settlement files.
         receipt:
-          $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.17/docs/swagger.yaml#/components/schemas/Receipt'
+          $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.24/docs/swagger.yaml#/components/schemas/Receipt'
         metadata:
           $ref: '#/components/schemas/Metadata'
       required:
