@@ -245,7 +245,7 @@ components:
         either be automatically app-switched to the Vipps or MobilePay app, or they will be presented
         with the landing page. The exception for this is "manual POS" integration,
         where the cashier asks the customer for the number, and then enters it manually on the POS.
-        
+
         If the customer's phone number is needed by the merchant,
         use `scope` and the [Userinfo API](https://developer.vippsmobilepay.com/docs/APIs/userinfo-api/).
         See also [Landing page](https://developer.vippsmobilepay.com/docs/knowledge-base/landing-page/).
@@ -269,7 +269,7 @@ components:
         The full content of the user's personal QR code in the app, used in 'merchant scan' scenarios. 
         After the personal QR code has been scanned in a physical context, send the complete QR
         code content in this field to initiate a payment from the user (and do not send `phoneNumber`).
-        
+
         **Important:** The content of the QR code can change at any time, without warning.
         It is very important to send the _complete content of the QR code_, like the complete URL in the example below.
         While the personal QR code does reveal the user's phone number in this example, that may change.
@@ -286,15 +286,14 @@ components:
     CustomerToken:
       title: Customer token
       type: object
-      description: The customer's token, if it is available. This token will be sent as part of the user.checked-in.v1 webhook event when a user scans a merchant callback QR
+      description: 'The customer''s token, if it is available. This token will be sent as part of the user.checked-in.v1 webhook event when a user scans a merchant callback QR'
       properties:
         customerToken:
           type: string
-          description: |-
-            A distinct token per customer.
-          example: 'ey%382jf8+qk3nnfdsao0i5jlalidugujnakgo9t8ghn'
+          description: A distinct token per customer.
+          example: ey%382jf8+qk3nnfdsao0i5jlalidugujnakgo9t8ghn
     Amount:
-      description: Amount object, containing a `value` and a `currency`.
+      description: 'Amount object, containing a `value` and a `currency`.'
       type: object
       properties:
         currency:
@@ -319,7 +318,7 @@ components:
         - NOK
         - DKK
         - EUR
-      description: Available types of currency are NOK, DKK, and EUR.
+      description: 'Available types of currency are NOK, DKK, and EUR.'
     Metadata:
       type: object
       description: |-
@@ -332,9 +331,9 @@ components:
         type: string
       maxProperties: 5
       example:
-        key1: "value1"
-        key2: "value2"
-        key3: "value3"
+        key1: value1
+        key2: value2
+        key3: value3
       nullable: true
     CreatePaymentRequest:
       title: Create payment request
@@ -402,7 +401,6 @@ components:
           type: string
           example: '2023-02-26T17:32:28Z'
           pattern: '^((?:(\d{4}-\d{2}-\d{2})(T|t)(\d{2}:\d{2}:\d{2}(?:\.\d+)?))(Z|z|([+-](?:2[0-3]|[01][0-9]):[0-5][0-9])))$'
-          nullable: true
           description: |-
             The payment will expire at the given date and time.
             The format must adhere to RFC 3339.
@@ -410,12 +408,13 @@ components:
             Can only be combined with `userFlow: PUSH_MESSAGE` or `userFlow: QR`.
 
             If `ExpiresAt` is set, `receipt` also must be set.
-        qrFormat:
           nullable: true
+        qrFormat:
           type: object
           description: |-
             Optional setting that is only applicable when `userFlow` is set to `QR`.
             This is used to set the format for the QR code.
+          nullable: true
           properties:
             format:
               type: string
@@ -448,6 +447,12 @@ components:
           $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.24/docs/swagger.yaml#/components/schemas/Receipt'
         metadata:
           $ref: '#/components/schemas/Metadata'
+        merchantReceiptUrl:
+          type: string
+          description: |-
+            The URL where a receipt can be viewed or downloaded.
+            The URL must use the `https://` scheme or a custom URL scheme.
+          example: 'https://example.com/receipt/9876543210'
       required:
         - amount
         - paymentMethod
@@ -510,8 +515,7 @@ components:
         - pspReference
         - reference
     IndustryData:
-      description: |-
-        Additional compliance data related to the transaction.
+      description: Additional compliance data related to the transaction.
       type: object
       properties:
         airlineData:
@@ -661,7 +665,7 @@ components:
     PspReference:
       type: string
       title: PspReference
-      description: Reference value for a payment, defined by Vipps MobilePay.
+      description: 'Reference value for a payment, defined by Vipps MobilePay.'
     Address:
       title: Address
       type: object
@@ -828,7 +832,7 @@ components:
         timestamp:
           type: string
           format: date-time
-          example: 2022-12-31T00:00:00Z
+          example: '2022-12-31T00:00:00Z'
         idempotencyKey:
           type: string
           description: |-
