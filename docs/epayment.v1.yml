@@ -448,7 +448,7 @@ components:
           $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.24/docs/swagger.yaml#/components/schemas/Receipt'
         metadata:
           $ref: '#/components/schemas/Metadata'
-        merchantReceiptUrl:
+        receiptUrl:
           type: string
           description: |-
             The URL where a receipt can be viewed or downloaded.
