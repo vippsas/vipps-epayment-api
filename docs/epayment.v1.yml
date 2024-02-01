@@ -448,6 +448,13 @@ components:
           $ref: 'https://raw.githubusercontent.com/vippsas/vipps-order-management-api/2.3.24/docs/swagger.yaml#/components/schemas/Receipt'
         metadata:
           $ref: '#/components/schemas/Metadata'
+        receiptUrl:
+          type: string
+          description: |-
+            The URL where a receipt can be viewed or downloaded.
+            The URL must use the `https://` scheme or a custom URL scheme.
+          example: 'https://example.com/receipt/9876543210'
+          nullable: true
       required:
         - amount
         - paymentMethod
